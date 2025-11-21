@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://rhmsuguqvlui"]
+
+[ext_resource type="PackedScene" uid="uid://dk5yfsouptced" path="res://bonki_model.tscn" id="1_telaj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eqxf7"]
+
+[node name="Bonki" type="CharacterBody3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_eqxf7")
+
+[node name="BonkiModel" parent="." instance=ExtResource("1_telaj")]

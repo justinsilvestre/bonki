@@ -1,13 +1,37 @@
-[gd_scene load_steps=12 format=4 uid="uid://dk5yfsouptced"]
+[gd_scene load_steps=16 format=4 uid="uid://dk5yfsouptced"]
 
 [ext_resource type="PackedScene" uid="uid://tpos6334dgb7" path="res://bonki_face_BODY_ONLY.gltf" id="1_6ksm0"]
 [ext_resource type="Shader" uid="uid://cdhoddy2rbp4v" path="res://bonki_model.gdshader" id="2_f8ipg"]
 [ext_resource type="Material" uid="uid://d0m46fntpstll" path="res://bonki_eye_material.tres" id="2_o8842"]
+[ext_resource type="Gradient" uid="uid://8lmbtxh1mn62" path="res://bonki_model_fresnel_gradient.tres" id="3_8585f"]
 [ext_resource type="Material" uid="uid://dfd6f3bjvhr41" path="res://bonki_eye_shadow_material.tres" id="3_f8ipg"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8585f"]
+gradient = ExtResource("3_8585f")
+
+[sub_resource type="Gradient" id="Gradient_kl7cs"]
+offsets = PackedFloat32Array(0.22613065, 0.26884422, 0.451005, 0.830402)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.11888111, 0.11888111, 0.11888111, 1, 0.49152538, 0.49152538, 0.49152538, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g32e2"]
+gradient = SubResource("Gradient_kl7cs")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8585f"]
 render_priority = 0
 shader = ExtResource("2_f8ipg")
+shader_parameter/albedo = Color(0.8447067, 0.53193, 0.2517803, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_8585f")
+shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_g32e2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7g0a"]
 resource_name = "material_0"

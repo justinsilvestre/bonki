@@ -84,10 +84,25 @@ func set_dimensions(params: BonkiAppearanceParameters) -> void:
 	
 	var tree := $AnimationTree
 	#tree.set("parameters/BlendTree/Animation/animation", "shake")
+	
 
-	for prop in $AnimationTree.get_property_list():
-		if "parameters/" in prop.name:
-			print(prop.name)
+	#for prop in $AnimationTree.get_property_list():
+		##if "parameters/" in prop.name:
+			#print(prop.name)
+			#
+	#print(tree.get_node("parameters/BlendTree/Animation").animation)
+	for prop in $AnimationTree.tree_root.get_property_list():
+	#if "parameters/" in prop.name:
+		print(prop.name)
+	print(tree.tree_root)
+	#print(tree.tree_root.get_node("nodes/BlendTree/node"))
+	print(tree.tree_root.get_node_list())
+	print(tree.tree_root.get_node("BlendTree"))
+	var blend_tree: AnimationNodeBlendTree = tree.tree_root.get_node("BlendTree")
+	print(blend_tree.get_node_list())
+	print(blend_tree.get_node("Animation").animation)
+	#blend_tree.get_node("Animation").animation = "shake"
+	print(blend_tree.get_node("Animation").animation)
 		
 	## Example: move the head up slightly
 	##var head_idx = skeleton.find_bone("head")

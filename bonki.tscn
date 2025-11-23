@@ -1,10 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://rhmsuguqvlui"]
+[gd_scene load_steps=4 format=3 uid="uid://rhmsuguqvlui"]
 
 [ext_resource type="PackedScene" uid="uid://dk5yfsouptced" path="res://bonki_model.tscn" id="1_telaj"]
+
+[sub_resource type="GDScript" id="GDScript_telaj"]
+script/source = "@tool
+extends CharacterBody3D
+
+@export var body_color: Color = Color.CADET_BLUE
+@export var eye_shine_color: Color = Color.AQUAMARINE
+@export var eye_shadow_color: Color = Color.YELLOW
+@export var eye_base_color: Color = Color.DARK_CYAN
+
+@export var skull_stretch_factor: float = 1
+@export var spine_base_spread_factor: float = 1
+
+
+#const SPEED = 5.0
+#const JUMP_VELOCITY = 4.5
+
+func _ready() -> void:
+	var appearance_params = BonkiAppearanceParameters.new()
+	appearance_params.body_color = body_color
+	appearance_params.eye_shine_color = eye_shine_color
+	appearance_params.eye_shadow_color = eye_shadow_color
+	appearance_params.eye_base_color = eye_base_color
+	appearance_params.skull_stretch_factor = skull_stretch_factor
+	appearance_params.spine_base_spread_factor = spine_base_spread_factor
+	$BonkiModel.set_appearance(appearance_params)
+
+#func _physics_process(delta: float) -> void:
+	## Add the gravity.
+	#if not is_on_floor():
+		#velocity += get_gravity() * delta
+#
+	## Handle jump.
+	#if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+#
+	## Get the input direction and handle the movement/deceleration.
+	## As good practice, you should replace UI actions with custom gameplay actions.
+	#var input_dir := Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
+	#var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	#if direction:
+		#velocity.x = direction.x * SPEED
+		#velocity.z = direction.z * SPEED
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+		#velocity.z = move_toward(velocity.z, 0, SPEED)
+#
+	#move_and_slide()
+"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eqxf7"]
 
 [node name="Bonki" type="CharacterBody3D"]
+script = SubResource("GDScript_telaj")
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -12,3 +62,4 @@
 shape = SubResource("SphereShape3D_eqxf7")
 
 [node name="BonkiModel" parent="." instance=ExtResource("1_telaj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)

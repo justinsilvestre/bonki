@@ -149,11 +149,11 @@ bind/10/pose = Transform3D(-0.34202015, 0.9396926, 0, -0.9396926, -0.34202015, 0
 script = ExtResource("2_rrh6x")
 
 [node name="Skeleton3D" parent="armature" index="0"]
-bones/0/rotation = Quaternion(0.0015387182, 0.00023407437, 9.396096e-05, 0.9999988)
-bones/0/scale = Vector3(1.0071344, 0.98573107, 1)
-bones/2/rotation = Quaternion(0.004483321, -0.0004055711, -0.00012547537, 0.99998987)
-bones/5/scale = Vector3(1, 0.8222395, 1)
-bones/8/scale = Vector3(1, 0.8222395, 1)
+bones/0/rotation = Quaternion(-0.024447842, -0.0012621362, -0.0010449231, 0.99969983)
+bones/0/scale = Vector3(1.0897949, 0.82041013, 1)
+bones/2/rotation = Quaternion(-0.032988664, -0.0042829346, -0.0020593454, 0.9994445)
+bones/5/scale = Vector3(1, 1.1750481, 1)
+bones/8/scale = Vector3(1, 1.2224311, 1)
 
 [node name="armature" parent="armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("3_o8842")
@@ -170,4 +170,4 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = ExtResource("5_8585f")
 anim_player = NodePath("../AnimationPlayer")
-parameters/BlendTree/Add2/add_amount = 0.125
+parameters/BlendTree/Add2/add_amount = 1.0

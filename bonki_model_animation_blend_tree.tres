@@ -3,13 +3,13 @@
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_f8ipg"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f8ipg"]
-animation = &"blink"
+animation = &"sway"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o8842"]
 animation = &"sway"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f8ipg"]
-graph_offset = Vector2(-416.711, 42.09723)
+graph_offset = Vector2(-403.27094, 164.97678)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_f8ipg")
 nodes/Add2/position = Vector2(120, 190)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_o8842")
@@ -19,7 +19,7 @@ nodes/Animation/position = Vector2(-230, 240)
 node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation 2", &"Add2", 1, &"Animation"]
 
 [resource]
-graph_offset = Vector2(-212.11208, 16.70874)
+graph_offset = Vector2(-25.919983, 94.08007)
 nodes/BlendTree/node = SubResource("AnimationNodeBlendTree_f8ipg")
 nodes/BlendTree/position = Vector2(80, 100)
 node_connections = [&"output", 0, &"BlendTree"]

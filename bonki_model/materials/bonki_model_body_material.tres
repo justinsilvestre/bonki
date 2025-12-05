@@ -1,10 +1,10 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://ckp2oqynh8bc2"]
 
-[ext_resource type="Shader" uid="uid://cdhoddy2rbp4v" path="res://bonki_model/bonki_model.gdshader" id="1_q52k6"]
-[ext_resource type="Gradient" uid="uid://8lmbtxh1mn62" path="res://bonki_model/bonki_model_fresnel_gradient.tres" id="2_r5fbe"]
+[ext_resource type="Shader" uid="uid://cdhoddy2rbp4v" path="res://bonki_model/bonki_model.gdshader" id="1_ylgm3"]
+[ext_resource type="Gradient" uid="uid://8lmbtxh1mn62" path="res://bonki_model/bonki_model_fresnel_gradient.tres" id="2_ehucb"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8585f"]
-gradient = ExtResource("2_r5fbe")
+gradient = ExtResource("2_ehucb")
 
 [sub_resource type="Gradient" id="Gradient_kl7cs"]
 offsets = PackedFloat32Array(0.22613065, 0.26884422, 0.451005, 0.830402)
@@ -15,7 +15,7 @@ gradient = SubResource("Gradient_kl7cs")
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_q52k6")
+shader = ExtResource("1_ylgm3")
 shader_parameter/albedo = Color(0.8447067, 0.53193, 0.2517803, 1)
 shader_parameter/albedo_texture_size = Vector2i(0, 0)
 shader_parameter/point_size = 0.0

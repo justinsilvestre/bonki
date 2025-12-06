@@ -66,7 +66,7 @@ func set_dimensions(params: BonkiAppearanceParameters) -> void:
 	
 	var eyes_closeness_factor: float = params.eyes_closeness_factor
 	var eyes_tilt_factor: float = params.eyes_tilt_factor
-	var eyes_height_factor: float = params.eyes_height_factor
+	var eyes_height_factor: float = params.eyes_height_factor + tall_stretch_factor * 0.7
 	set_eyes_dimension(0, eyes_closeness_factor)
 	set_eyes_dimension(1, eyes_tilt_factor)
 	set_eyes_dimension(2, eyes_height_factor)

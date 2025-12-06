@@ -16,6 +16,48 @@ extends CharacterBody3D
 @export var eyes_tilt_factor: float = 0
 @export var eyes_height_factor: float = 0
 
+	
+@onready var anim_tree: AnimationTree = $BonkiModel/AnimationTree
+@onready var blink_blend_path := "parameters/Add2/add_amount"
+@onready var anim_player: AnimationPlayer = $BonkiModel/AnimationPlayer
+
+var blink_timer := 0.0
+const MIN_BLINK_INTERVAL := 2.0
+const MAX_BLINK_INTERVAL := 5.0
+
+
+func _start_blink_timer():
+	print($BonkiModel/AnimationTree.get_property_list())
+	anim_tree.active = true
+	_reset_blink_timer()
+
+func _process(delta: float) -> void:
+	blink_timer -= delta
+	if blink_timer <= 0.0:
+		await _do_blink()
+		_reset_blink_timer()
+
+func _reset_blink_timer() -> void:
+	blink_timer = randf_range(MIN_BLINK_INTERVAL, MAX_BLINK_INTERVAL)
+
+func _do_blink() -> void:
+	var anim_tree := $BonkiModel/AnimationTree
+	var anim_player := $BonkiModel/AnimationPlayer
+	# Trigger blink blend
+	anim_tree.set(blink_blend_path, 1.0)
+
+	# Wait for duration of Blink animation
+	#var blink_length = anim_player.get_animation("Blink").length / 2
+	var blink_length = 0.2
+	
+	var blinks_count = 1 if (randf() < 0.80) else 2
+
+	await get_tree().create_timer(blink_length * blinks_count).timeout
+
+	# Fade back to Idle_Sway
+	anim_tree.set(blink_blend_path, 0.0)
+
+
 #const SPEED = 5.0
 #const JUMP_VELOCITY = 4.5
 
@@ -35,6 +77,12 @@ func _ready() -> void:
 	appearance_params.eyes_tilt_factor = eyes_tilt_factor
 	appearance_params.eyes_height_factor = eyes_height_factor
 	$BonkiModel.set_appearance(appearance_params)
+	
+	_start_blink_timer()
+	
+
+
+
 
 #func _physics_process(delta: float) -> void:
 	## Add the gravity.

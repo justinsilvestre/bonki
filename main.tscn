@@ -29,31 +29,32 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
 
-[node name="Bonki" parent="." instance=ExtResource("1_ig7tw")]
+[node name="DirectionalLight3D2" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.4264834, 0.315475, 9.956547)
+body_color = Color(0.53313285, 0.6196782, 0.62782896, 1)
 pearness_factor = 1.0
 eyes_closeness_factor = -1.0
 eyes_tilt_factor = -1.0
+eyes_height_factor = -1.0
 
-[node name="Bonki2" parent="." instance=ExtResource("1_ig7tw")]
+[node name="DirectionalLight3D3" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.999913, -0.113808155, 10.153634)
-body_color = Color(0.90553516, 0.40285462, 0.651567, 1)
+body_color = Color(0.79683304, 0.5176912, 0.536921, 1)
 eye_shine_color = Color(0.97367424, 0.85406995, 0.88311815, 1)
 eye_shadow_color = Color(0.30593735, 0.0025975686, 0.30112174, 1)
 eye_base_color = Color(0.5741249, 0.2973827, 0.8840081, 1)
 horn_stretch_factor = 1.0
 wonkiness_factor = 0.5
-eyes_closeness_factor = 0.0
 eyes_height_factor = 1.0
 
-[node name="Bonki3" parent="." instance=ExtResource("1_ig7tw")]
+[node name="DirectionalLight3D4" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0.24391556, 10)
 body_color = Color(0.5617313, 0.54557747, 0.727318, 1)
 eye_shine_color = Color(0.9736342, 0.888521, 0.5825573, 1)
 eye_shadow_color = Color(1, 0, 0, 1)
 eye_base_color = Color(0.73904747, 0.3431095, 0.14888573, 1)
+wide_stretch_factor = 1.0
 tall_stretch_factor = 1.0
-eyes_closeness_factor = 0.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, 0)
@@ -66,8 +67,8 @@ mesh = SubResource("BoxMesh_7dm0k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_7dm0k")
 
-[node name="CameraPivot" type="Marker3D" parent="."]
+[node name="DirectionalLight3D5" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, -0.25881904, 0, 0.25881904, 0.9659259, -1.3683205, 4, 20)
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+[node name="DirectionalLight3D" type="Camera3D" parent="DirectionalLight3D5"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 2, 13.223103, 35.206596)

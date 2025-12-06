@@ -6,16 +6,16 @@
 [ext_resource type="Material" uid="uid://d0m46fntpstll" path="res://bonki_model/materials/bonki_eye_material.tres" id="4_hjk1a"]
 [ext_resource type="Material" uid="uid://b1cjlp6ody7yq" path="res://bonki_model/materials/bonki_eye_shadow_material.tres" id="5_k57ku"]
 [ext_resource type="Material" uid="uid://3myt3sfunf7t" path="res://bonki_model/materials/bonki_eye_shine_material.tres" id="6_41361"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://c522ts4uxsrk8" path="res://bonki_model_animation_blend_tree.tres" id="7_ohmwe"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://c522ts4uxsrk8" path="res://bonki_model_animation_blend_tree.tres" id="7_dmfh7"]
 
 [node name="BonkiModel" instance=ExtResource("1_dmfh7")]
 script = ExtResource("2_2xsow")
 
 [node name="Skeleton3D" parent="Armature" index="1"]
-bones/1/rotation = Quaternion(2.9904268e-16, -9.752554e-09, 0.084561355, 0.99641836)
-bones/2/rotation = Quaternion(0.0065819877, 0.019140499, -0.08904858, 0.9958216)
-bones/5/rotation = Quaternion(0.14356817, 0.7399317, 0.6345922, -0.17082757)
-bones/5/scale = Vector3(0.9999999, 0.99999976, 0.99999994)
+bones/1/rotation = Quaternion(-1.32460675e-17, 4.085634e-09, -0.0032894746, 0.99999464)
+bones/2/rotation = Quaternion(0.0001610019, 0.0008490675, -0.0038907102, 0.9999921)
+bones/5/rotation = Quaternion(0.14356814, 0.7399317, 0.6345922, -0.17082757)
+bones/5/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("3_lcqbr")
@@ -39,6 +39,6 @@ surface_material_override/0 = ExtResource("6_41361")
 surface_material_override/0 = ExtResource("6_41361")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-tree_root = ExtResource("7_ohmwe")
+tree_root = ExtResource("7_dmfh7")
 anim_player = NodePath("../AnimationPlayer")
-parameters/BlendTree/Add2/add_amount = 1.0
+parameters/Add2/add_amount = 0.0

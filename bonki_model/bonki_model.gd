@@ -1,7 +1,7 @@
 @tool
 extends Node3D
 
-class_name BonkiModel2
+class_name BonkiModel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -63,10 +63,24 @@ func set_dimensions(params: BonkiAppearanceParameters) -> void:
 	set_dimension(3, tall_stretch_factor)
 	set_dimension(4, pearness_factor)
 	set_dimension(5, wonkiness_factor)
+	
+	var eyes_closeness_factor: float = params.eyes_closeness_factor
+	var eyes_tilt_factor: float = params.eyes_tilt_factor
+	var eyes_height_factor: float = params.eyes_height_factor
+	set_eyes_dimension(0, eyes_closeness_factor)
+	set_eyes_dimension(1, eyes_tilt_factor)
+	set_eyes_dimension(2, eyes_height_factor)
 
 func set_dimension(index: int, value: float) -> void:
-	if (value > 0.0):
+	if (value != 0.0):
 		$Armature/Skeleton3D/Body.set_blend_shape_value(index, value)
-	
 
+func set_eyes_dimension(index:int, value: float) -> void:
+	if (value != 0.0):
+		$Armature/Skeleton3D/EyeBase_R.set_blend_shape_value(index, value)
+		$Armature/Skeleton3D/EyeBase_L.set_blend_shape_value(index, value)
+		$Armature/Skeleton3D/EyeShadow_R.set_blend_shape_value(index, value)
+		$Armature/Skeleton3D/EyeShadow_L.set_blend_shape_value(index, value)
+		$Armature/Skeleton3D/EyeShine_R.set_blend_shape_value(index, value)
+		$Armature/Skeleton3D/EyeShine_L.set_blend_shape_value(index, value)
 		

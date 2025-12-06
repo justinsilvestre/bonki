@@ -7,6 +7,7 @@
 
 [node name="Bonki" type="CharacterBody3D"]
 script = ExtResource("1_3gbxg")
+eyes_closeness_factor = null
 
 [node name="Node3D" type="Node3D" parent="."]
 

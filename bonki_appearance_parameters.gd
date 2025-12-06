@@ -13,3 +13,6 @@ class_name BonkiAppearanceParameters
 @export var pearness_factor: float = 0
 @export var tall_stretch_factor: float = 0
 @export var wonkiness_factor: float = 0
+@export var eyes_closeness_factor: float = 0
+@export var eyes_tilt_factor: float = 0
+@export var eyes_height_factor: float = 0

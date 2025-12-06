@@ -12,8 +12,8 @@
 script = ExtResource("2_2xsow")
 
 [node name="Skeleton3D" parent="Armature" index="1"]
-bones/1/rotation = Quaternion(-2.012225e-18, -2.7682327e-17, -0.06860204, 0.9976441)
-bones/2/rotation = Quaternion(0.0010148427, 0.011218877, 0.07674267, 0.99698734)
+bones/1/rotation = Quaternion(2.9904268e-16, -9.752554e-09, 0.084561355, 0.99641836)
+bones/2/rotation = Quaternion(0.0065819877, 0.019140499, -0.08904858, 0.9958216)
 bones/5/rotation = Quaternion(0.14356817, 0.7399317, 0.6345922, -0.17082757)
 bones/5/scale = Vector3(0.9999999, 0.99999976, 0.99999994)
 

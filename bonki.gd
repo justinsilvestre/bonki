@@ -12,7 +12,9 @@ extends CharacterBody3D
 @export var pearness_factor: float = 0
 @export var tall_stretch_factor: float = 0
 @export var wonkiness_factor: float = 0
-
+@export var eyes_closeness_factor: float = 0
+@export var eyes_tilt_factor: float = 0
+@export var eyes_height_factor: float = 0
 
 #const SPEED = 5.0
 #const JUMP_VELOCITY = 4.5
@@ -29,6 +31,9 @@ func _ready() -> void:
 	appearance_params.pearness_factor = pearness_factor
 	appearance_params.tall_stretch_factor = tall_stretch_factor
 	appearance_params.wonkiness_factor = wonkiness_factor
+	appearance_params.eyes_closeness_factor = eyes_closeness_factor
+	appearance_params.eyes_tilt_factor = eyes_tilt_factor
+	appearance_params.eyes_height_factor = eyes_height_factor
 	$BonkiModel.set_appearance(appearance_params)
 
 #func _physics_process(delta: float) -> void:

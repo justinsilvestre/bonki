@@ -30,16 +30,21 @@ shadow_enabled = true
 environment = SubResource("Environment_h2yge")
 
 [node name="Bonki" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.4553876, 0.31547546, 9.947559)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.4264834, 0.315475, 9.956547)
 pearness_factor = 1.0
+eyes_closeness_factor = -1.0
+eyes_tilt_factor = -1.0
 
 [node name="Bonki2" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, -0.083354, 10.154488)
-body_color = Color(0.8806819, 0.34582373, 0.6189794, 1)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.999913, -0.113808155, 10.153634)
+body_color = Color(0.90553516, 0.40285462, 0.651567, 1)
 eye_shine_color = Color(0.97367424, 0.85406995, 0.88311815, 1)
 eye_shadow_color = Color(0.30593735, 0.0025975686, 0.30112174, 1)
 eye_base_color = Color(0.5741249, 0.2973827, 0.8840081, 1)
-horn_stretch_factor = 1.5699999999999998
+horn_stretch_factor = 1.0
+wonkiness_factor = 0.5
+eyes_closeness_factor = 0.0
+eyes_height_factor = 1.0
 
 [node name="Bonki3" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0.24391556, 10)
@@ -47,7 +52,8 @@ body_color = Color(0.5617313, 0.54557747, 0.727318, 1)
 eye_shine_color = Color(0.9736342, 0.888521, 0.5825573, 1)
 eye_shadow_color = Color(1, 0, 0, 1)
 eye_base_color = Color(0.73904747, 0.3431095, 0.14888573, 1)
-tall_stretch_factor = 0.5
+tall_stretch_factor = 1.0
+eyes_closeness_factor = 0.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, 0)

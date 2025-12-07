@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://d0m46fntpstll"]
 
 [resource]
-cull_mode = 1
+render_priority = 50
+no_depth_test = true
 albedo_color = Color(0.73862964, 0.26819986, 0.62179875, 1)
 disable_receive_shadows = true

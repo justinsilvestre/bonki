@@ -1,0 +1,26 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=4 format=3 uid="uid://c522ts4uxsrk8"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ttdyf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_poafa"]
+animation = &"Blink"
+advance_on_start = true
+use_custom_timeline = true
+timeline_length = 0.2
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgj0r"]
+animation = &"Sway"
+
+[resource]
+graph_offset = Vector2(198.71956, 147.83989)
+nodes/output/position = Vector2(1130, 160)
+nodes/Blink/node = SubResource("AnimationNodeAnimation_poafa")
+nodes/Blink/position = Vector2(580, 300)
+nodes/Sway/node = SubResource("AnimationNodeAnimation_qgj0r")
+nodes/Sway/position = Vector2(590, 100)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_ttdyf")
+nodes/Add2/position = Vector2(867.8396, 174.8799)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Sway", &"Add2", 1, &"Blink"]

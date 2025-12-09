@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://efo527cl1gvw"]
+
+[ext_resource type="Script" uid="uid://mi1p5gkymlga" path="res://scroll_demo/scroll_demo.gd" id="1_ee3i5"]
+[ext_resource type="Script" uid="uid://bmqtxewly8xef" path="res://scroll_demo/scroll_row.gd" id="2_84if4"]
+[ext_resource type="Sky" uid="uid://rjywlprepe5s" path="res://scroll_demo/scroll_demo_sky.tres" id="2_dbhbj"]
+
+[sub_resource type="Environment" id="Environment_n5r25"]
+background_mode = 2
+sky = ExtResource("2_dbhbj")
+
+[sub_resource type="Environment" id="Environment_wsl7h"]
+background_mode = 2
+sky = ExtResource("2_dbhbj")
+ambient_light_energy = 0.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_x05px"]
+plane = Plane(1, 0, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ee3i5"]
+plane = Plane(-1, 0, 0, 0)
+
+[node name="ScrollDemo" type="Node3D"]
+script = ExtResource("1_ee3i5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n5r25")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_energy = 1.896
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+environment = SubResource("Environment_wsl7h")
+projection = 1
+size = 9.0
+
+[node name="LeftBoundary" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBoundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_x05px")
+
+[node name="RightBoundary" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBoundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_ee3i5")
+
+[node name="TopRow" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.6, 0)
+script = ExtResource("2_84if4")
+spawn_first_instantly = true
+spawn_wait = 2.0
+child_velocity = Vector3(-2, 0, 0)
+
+[node name="MiddleRow" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -0.39999998, 0)
+script = ExtResource("2_84if4")
+spawn_first_instantly = true
+spawn_wait = 2.0
+child_velocity = Vector3(2, 0, 0)
+
+[node name="BottomRow" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -3.4, 0)
+script = ExtResource("2_84if4")
+spawn_first_instantly = true
+spawn_wait = 2.0
+child_velocity = Vector3(-2, 0, 0)
+
+[connection signal="body_entered" from="LeftBoundary" to="." method="_on_boundary_entered"]
+[connection signal="body_entered" from="RightBoundary" to="." method="_on_boundary_entered"]

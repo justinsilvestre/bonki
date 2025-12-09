@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://beg1s66x1ogeb"]
+[gd_scene load_steps=13 format=3 uid="uid://beg1s66x1ogeb"]
 
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ud6prmgfqv7u" path="res://bonki_model/crowns/cone_crown.tscn" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://do0tqfbw2c4ye" path="res://bonki_model/crowns/torus_crown.tscn" id="3_lquwl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -12,7 +15,60 @@ sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
 sky = SubResource("Sky_0xm2m")
-tonemap_mode = 2
+
+[sub_resource type="Resource" id="Resource_lquwl"]
+script = ExtResource("2_lquwl")
+body_color = Color(0.6957059, 0.74261713, 0.9324837, 1)
+eye_shine_color = Color(0.5124221, 0.5054931, 0.76102376, 1)
+eye_shadow_color = Color(0.62348163, 0.18804152, 0.8077017, 1)
+eye_base_color = Color(0.11803251, 0.5153408, 0.7413955, 1)
+wide_stretch_factor = 0.4033475629149243
+horn_stretch_factor = 0.57398397
+long_stretch_factor = -0.0558892764574016
+pearness_factor = -0.9206465626753456
+tall_stretch_factor = 0.5149297728900355
+wonkiness_factor = 0.6821965485039121
+eyes_closeness_factor = -0.1210825809099767
+eyes_tilt_factor = 1.1856757835731495
+eyes_height_factor = 0.19472093632933185
+horn_pscn = ExtResource("2_1bvp3")
+metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
+
+[sub_resource type="Resource" id="Resource_7mycd"]
+script = ExtResource("2_lquwl")
+body_color = Color(0.9184007, 0.73956704, 0.8877542, 1)
+eye_shine_color = Color(0.63459635, 0.6952556, 0.50078017, 1)
+eye_shadow_color = Color(0.48259953, 0.64188886, 0.019586898, 1)
+eye_base_color = Color(0.043008655, 0.5960318, 0.13998868, 1)
+wide_stretch_factor = 0.6279259299514486
+horn_stretch_factor = 0.71144617
+long_stretch_factor = -0.4116820473057594
+pearness_factor = 0.8068006570189568
+tall_stretch_factor = 0.07021303602473838
+wonkiness_factor = 0.6111513981479382
+eyes_closeness_factor = -1.4300901039511569
+eyes_tilt_factor = 1.2125461201147272
+eyes_height_factor = -0.608230099119358
+horn_pscn = ExtResource("3_lquwl")
+metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
+
+[sub_resource type="Resource" id="Resource_272bh"]
+script = ExtResource("2_lquwl")
+body_color = Color(0.8598934, 0.95556855, 0.9482882, 1)
+eye_shine_color = Color(0.5235552, 0.5967902, 0.68859756, 1)
+eye_shadow_color = Color(0.74985635, 0.4987894, 0.0116069345, 1)
+eye_base_color = Color(0.4774895, 0.7249088, 0.18981977, 1)
+wide_stretch_factor = 0.7110289330180888
+horn_stretch_factor = 0.80612254
+long_stretch_factor = 0.4492067450947932
+pearness_factor = 0.48283977218514695
+tall_stretch_factor = -0.19999999999999996
+wonkiness_factor = 0.21463258470178517
+eyes_closeness_factor = 0.06893122207125035
+eyes_tilt_factor = 0.15219436365908323
+eyes_height_factor = 0.5254160846792746
+horn_pscn = ExtResource("3_lquwl")
+metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
 size = Vector3(60, 2, 60)
@@ -20,41 +76,27 @@ size = Vector3(60, 2, 60)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
 size = Vector3(60, 2, 60)
 
-[node name="Main" type="Node"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
+[node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
 
-[node name="DirectionalLight3D2" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.4264834, 0.315475, 9.956547)
-body_color = Color(0.53313285, 0.6196782, 0.62782896, 1)
-pearness_factor = 1.0
-eyes_closeness_factor = -1.0
-eyes_tilt_factor = -1.0
-eyes_height_factor = -1.0
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 36.843292, 0)
+light_energy = 0.1
+shadow_enabled = true
 
-[node name="DirectionalLight3D3" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.999913, -0.113808155, 10.153634)
-body_color = Color(0.79683304, 0.5176912, 0.536921, 1)
-eye_shine_color = Color(0.97367424, 0.85406995, 0.88311815, 1)
-eye_shadow_color = Color(0.30593735, 0.0025975686, 0.30112174, 1)
-eye_base_color = Color(0.5741249, 0.2973827, 0.8840081, 1)
-horn_stretch_factor = 1.0
-wonkiness_factor = 0.5
-eyes_height_factor = 1.0
-
-[node name="DirectionalLight3D4" parent="." instance=ExtResource("1_ig7tw")]
+[node name="LeftBonki" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0.24391556, 10)
-body_color = Color(0.5617313, 0.54557747, 0.727318, 1)
-eye_shine_color = Color(0.9736342, 0.888521, 0.5825573, 1)
-eye_shadow_color = Color(1, 0, 0, 1)
-eye_base_color = Color(0.73904747, 0.3431095, 0.14888573, 1)
-wide_stretch_factor = 1.0
-tall_stretch_factor = 1.0
+appearance = SubResource("Resource_lquwl")
+
+[node name="MiddleBonki" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.4264834, 0.315475, 9.956547)
+appearance = SubResource("Resource_7mycd")
+
+[node name="RightBonki" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.999913, -0.113808155, 10.153634)
+appearance = SubResource("Resource_272bh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, 0)
@@ -67,8 +109,9 @@ mesh = SubResource("BoxMesh_7dm0k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_7dm0k")
 
-[node name="DirectionalLight3D5" type="Marker3D" parent="."]
+[node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, -0.25881904, 0, 0.25881904, 0.9659259, -1.3683205, 4, 20)
 
-[node name="DirectionalLight3D" type="Camera3D" parent="DirectionalLight3D5"]
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 2, 13.223103, 35.206596)
+current = true

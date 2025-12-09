@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjntln0hqbj2h"]
+
+[ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="1_4qksq"]
+[ext_resource type="PackedScene" uid="uid://c3pqpi4a10wy7" path="res://bonki_model/crowns/yellow_staghorn_crown.tscn" id="2_owwx1"]
+[ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="2_ris5e"]
+
+[sub_resource type="Resource" id="Resource_kh2rj"]
+script = ExtResource("2_ris5e")
+body_color = Color(0.4713307, 0.46312648, 0.3271981, 1)
+eye_shine_color = Color(0.75983924, 0.89981043, 0.8244878, 1)
+eye_shadow_color = Color(0.15315425, 0.5566366, 0.47672457, 1)
+eye_base_color = Color(0.33060113, 0.69877124, 0.5315866, 1)
+wide_stretch_factor = -0.6010318205255798
+horn_stretch_factor = 0.7106765
+long_stretch_factor = 0.943678749497425
+pearness_factor = 0.07399314737029683
+tall_stretch_factor = 0.017634627508229528
+wonkiness_factor = 0.9139686006544676
+eyes_closeness_factor = 0.5905831078539974
+eyes_tilt_factor = 1.2849224368410201
+eyes_height_factor = 0.660766383567071
+crown_pscn = ExtResource("2_owwx1")
+metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
+
+[node name="AppearanceTest" type="Node3D"]
+
+[node name="Bonki" parent="." instance=ExtResource("1_4qksq")]
+appearance = SubResource("Resource_kh2rj")

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://efo527cl1gvw"]
+
+[ext_resource type="Script" uid="uid://bmqtxewly8xef" path="res://bonki_row_scroller.gd" id="2_84if4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dbhbj"]
+ground_bottom_color = Color(0.21586502, 0.39, 0.1677, 1)
+ground_curve = 0.0030778637
+
+[sub_resource type="Sky" id="Sky_wsl7h"]
+sky_material = SubResource("ProceduralSkyMaterial_dbhbj")
+
+[sub_resource type="Environment" id="Environment_n5r25"]
+background_mode = 2
+sky = SubResource("Sky_wsl7h")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_dgaec"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_x05px"]
+plane = Plane(1, 0, 0, 0)
+
+[node name="ScrollDemo" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+projection = 1
+size = 9.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n5r25")
+camera_attributes = SubResource("CameraAttributesPractical_dgaec")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("WorldBoundaryShape3D_x05px")
+
+[node name="BonkiRowScroller" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+script = ExtResource("2_84if4")

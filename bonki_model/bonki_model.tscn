@@ -12,8 +12,8 @@
 script = ExtResource("2_2xsow")
 
 [node name="Skeleton3D" parent="Armature" index="1"]
-bones/1/rotation = Quaternion(-1.32460675e-17, 4.085634e-09, -0.0032894746, 0.99999464)
-bones/2/rotation = Quaternion(0.0001610019, 0.0008490675, -0.0038907102, 0.9999921)
+bones/1/rotation = Quaternion(-1.4505168e-16, 1.7137324e-08, -0.08755081, 0.99616015)
+bones/2/rotation = Quaternion(0.0010267575, 0.011350595, 0.09810482, 0.99511087)
 bones/5/rotation = Quaternion(0.14356814, 0.7399317, 0.6345922, -0.17082757)
 bones/5/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
 
@@ -42,3 +42,10 @@ surface_material_override/0 = ExtResource("6_41361")
 tree_root = ExtResource("7_dmfh7")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Add2/add_amount = 0.0
+
+[node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3"]
+transform = Transform3D(0.9993788, -0.027125921, 0.022496555, 0.027214931, 0.9996228, -0.0036606062, -0.022388771, 0.004270574, 0.99974024, 0.007985224, 0.8750383, -0.013264002)
+bone_name = "Horn"
+bone_idx = 3
+use_external_skeleton = true
+external_skeleton = NodePath("../Armature/Skeleton3D")

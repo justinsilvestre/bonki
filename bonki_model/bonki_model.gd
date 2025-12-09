@@ -1,86 +1,127 @@
 @tool
+class_name BonkiModel
 extends Node3D
 
-class_name BonkiModel
+# Hierarchy
+@onready var anim_tree: AnimationTree = $AnimationTree
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var body_mesh: MeshInstance3D = $Armature/Skeleton3D/Body
+@onready var eye_base_l_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeBase_L
+@onready var eye_shadow_l_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShadow_L
+@onready var eye_shine_l_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShine_L
+@onready var eye_base_r_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeBase_R
+@onready var eye_shadow_r_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShadow_R
+@onready var eye_shine_r_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShine_R
+@onready var crown_attachment: BoneAttachment3D = $CrownAttachment
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+# Should be set by Bonki.appearance, and point to same resource
+var appearance: BonkiAppearanceParameters:
+	set(new_val): # Should be called automatically at scene instantiation
+		if appearance == new_val: return # no-op if unchanged
+		if new_val != null:
+			# temporary connection. not visible to editor or saved to .tscn
+			new_val.changed.connect(_on_appearance_changed)
+			pass
+		appearance = new_val
+		_on_appearance_changed()
+		pass
 
+# Cached variables from appearance changes
+var _crown_pscn: PackedScene = null:
+	set(new_val):
+		if _crown_pscn == new_val: return # no-op if unchanged
+		if new_val != null:
+			var new_inst =  new_val.instantiate()
+			if new_inst is Crown:
+				_crown_node = new_val.instantiate() # attach new crown
+			else:
+				new_inst.queue_free()
+				push_error("Crown Pscn must inherit from Crown!")
+		else: _crown_node = null # despawn crown
+		_crown_pscn = new_val
+var _crown_node: Crown = null: # Should be set by _crown_pscn setter
+	set(new_val):
+		if _crown_node == new_val: return # no-op if unchanged
+		if _crown_node != null: # Despawn previous if it's not null
+			crown_attachment.remove_child(_crown_node)
+			_crown_node.queue_free()
+			_crown_node = null
+		if new_val != null: # Attach new if it's not null
+			# new_val.name = "crown"
+			new_val.owner = null 
+			var _old_y = new_val.position.y
+			_crown_node_initial_y = new_val.position.y
+			crown_attachment.add_child(new_val, false, INTERNAL_MODE_BACK)
+		_crown_node = new_val
+var _crown_node_initial_y: float = 0 
 
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
+func _on_appearance_changed():
+	if appearance == null: return # TODO: maybe reset appearance to default?
+	set_colors(appearance)
+	set_dimensions(appearance)
+	_crown_pscn = appearance.crown_pscn
 	
-func set_appearance(params: BonkiAppearanceParameters):
-	set_colors(params)
-	set_dimensions(params)
+	if _crown_node != null:
+		var crown_y_offset: float = 0
+		crown_y_offset += appearance.tall_stretch_factor * _crown_node.tall_stretch_coeff
+		crown_y_offset += appearance.horn_stretch_factor * _crown_node.horn_stretch_coeff
+		_crown_node.position.y = _crown_node_initial_y + crown_y_offset
 
-func set_colors(params: BonkiAppearanceParameters) -> void:
-	var body_color: Color = params.body_color
-	var eye_shine_color: Color = params.eye_shine_color
-	var eye_shadow_color: Color = params.eye_shadow_color
-	var eye_base_color: Color = params.eye_base_color
+func set_colors(params: BonkiAppearanceParameters):
+	if params == null: return
 	
-	var body_mesh := $Armature/Skeleton3D/Body
-	var body_material: ShaderMaterial = body_mesh.get_active_material(0).duplicate()  # surface override or material
+	var body_material: ShaderMaterial = preload(
+		"res://bonki_model/materials/bonki_model_body_material.tres"
+	).duplicate()  # surface override or material
+	body_material.set_shader_parameter("albedo", params.body_color)
 	body_mesh.set_surface_override_material(0, body_material)	
-	body_material.set_shader_parameter("albedo", body_color)
 		
-	var eye_base_l_mesh := $Armature/Skeleton3D/EyeBase_L
-	var eye_shadow_l_mesh := $Armature/Skeleton3D/EyeShadow_L
-	var eye_shine_l_mesh := $Armature/Skeleton3D/EyeShine_L
-	var eye_base_r_mesh := $Armature/Skeleton3D/EyeBase_R
-	var eye_shadow_r_mesh := $Armature/Skeleton3D/EyeShadow_R
-	var eye_shine_r_mesh := $Armature/Skeleton3D/EyeShine_R
-	var eye_base_material_L: StandardMaterial3D = eye_base_l_mesh.get_active_material(0)
-	var eye_shadow_material_L: StandardMaterial3D = eye_shadow_l_mesh.get_active_material(0)
-	var eye_shine_material_LR: StandardMaterial3D = eye_shine_l_mesh.get_active_material(0)
-	var eye_base_material := eye_base_material_L.duplicate()
-	var eye_shadow_material := eye_shadow_material_L.duplicate()
-	var eye_shine_material := eye_shine_material_LR.duplicate()
-	eye_base_material.albedo_color = eye_base_color
-	eye_shadow_material.albedo_color = eye_shadow_color
-	eye_shine_material.albedo_color = eye_shine_color
+	var eye_base_material: StandardMaterial3D = preload(
+		"res://bonki_model/materials/bonki_eye_material.tres"
+	).duplicate()
+	var eye_shadow_material: StandardMaterial3D = preload(
+		"res://bonki_model/materials/bonki_eye_shadow_material.tres"
+	).duplicate()
+	var eye_shine_material: StandardMaterial3D = preload(
+		"res://bonki_model/materials/bonki_eye_shine_material.tres"
+	).duplicate()
+	eye_base_material.albedo_color = params.eye_base_color
+	eye_shadow_material.albedo_color = params.eye_shadow_color
+	eye_shine_material.albedo_color = params.eye_shine_color
+	
 	eye_base_l_mesh.set_surface_override_material(0, eye_base_material)
-	eye_shadow_l_mesh.set_surface_override_material(0, eye_shadow_material)
-	eye_shine_l_mesh.set_surface_override_material(0, eye_shine_material)
 	eye_base_r_mesh.set_surface_override_material(0, eye_base_material)
+	
+	eye_shadow_l_mesh.set_surface_override_material(0, eye_shadow_material)
 	eye_shadow_r_mesh.set_surface_override_material(0, eye_shadow_material)
+	
+	eye_shine_l_mesh.set_surface_override_material(0, eye_shine_material)
 	eye_shine_r_mesh.set_surface_override_material(0, eye_shine_material)
 	
 
-func set_dimensions(params: BonkiAppearanceParameters) -> void:
-	var wide_stretch_factor: float = params.wide_stretch_factor
-	var horn_stretch_factor: float = params.horn_stretch_factor
-	var long_stretch_factor: float = params.long_stretch_factor
-	var pearness_factor: float = params.pearness_factor
-	var tall_stretch_factor: float = params.tall_stretch_factor
-	var wonkiness_factor: float = params.wonkiness_factor
-	set_dimension(0, wide_stretch_factor)
-	set_dimension(1, horn_stretch_factor)
-	set_dimension(2, long_stretch_factor)
-	set_dimension(3, tall_stretch_factor)
-	set_dimension(4, pearness_factor)
-	set_dimension(5, wonkiness_factor)
+func set_dimensions(params: BonkiAppearanceParameters):
+	if params == null: return
 	
-	var eyes_closeness_factor: float = params.eyes_closeness_factor
-	var eyes_tilt_factor: float = params.eyes_tilt_factor
-	var eyes_height_factor: float = params.eyes_height_factor + tall_stretch_factor * 0.7
-	set_eyes_dimension(0, eyes_closeness_factor)
-	set_eyes_dimension(1, eyes_tilt_factor)
-	set_eyes_dimension(2, eyes_height_factor)
+	set_dimension(0, params.wide_stretch_factor)
+	set_dimension(1, params.horn_stretch_factor)
+	set_dimension(2, params.long_stretch_factor)
+	set_dimension(3, params.tall_stretch_factor)
+	set_dimension(4, params.pearness_factor)
+	set_dimension(5, params.wonkiness_factor)
+	
+	set_eyes_dimension(0, params.eyes_closeness_factor)
+	set_eyes_dimension(1, params.eyes_tilt_factor)
+	set_eyes_dimension(2, params.eyes_height_factor)
 
 func set_dimension(index: int, value: float) -> void:
 	if (value != 0.0):
-		$Armature/Skeleton3D/Body.set_blend_shape_value(index, value)
+		body_mesh.set_blend_shape_value(index, value)
 
 func set_eyes_dimension(index:int, value: float) -> void:
 	if (value != 0.0):
-		$Armature/Skeleton3D/EyeBase_R.set_blend_shape_value(index, value)
-		$Armature/Skeleton3D/EyeBase_L.set_blend_shape_value(index, value)
-		$Armature/Skeleton3D/EyeShadow_R.set_blend_shape_value(index, value)
-		$Armature/Skeleton3D/EyeShadow_L.set_blend_shape_value(index, value)
-		$Armature/Skeleton3D/EyeShine_R.set_blend_shape_value(index, value)
-		$Armature/Skeleton3D/EyeShine_L.set_blend_shape_value(index, value)
-		
+		eye_base_r_mesh.set_blend_shape_value(index, value)
+		eye_base_l_mesh.set_blend_shape_value(index, value)
+		eye_shadow_r_mesh.set_blend_shape_value(index, value)
+		eye_shadow_l_mesh.set_blend_shape_value(index, value)
+		eye_shine_r_mesh.set_blend_shape_value(index, value)
+		eye_shine_l_mesh.set_blend_shape_value(index, value)

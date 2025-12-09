@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwkdtejjuilhp"]
+
+[ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="1_pxej0"]
+[ext_resource type="Script" uid="uid://ha8nx1gejwl8" path="res://scroll_demo/scroll_bonki.gd" id="2_2suri"]
+
+[node name="Bonki" instance=ExtResource("1_pxej0")]
+script = ExtResource("2_2suri")
+scroll_velocity = Vector3(0, 0, 0)

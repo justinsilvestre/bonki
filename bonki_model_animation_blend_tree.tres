@@ -1,6 +1,15 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=4 format=3 uid="uid://c522ts4uxsrk8"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=10 format=3 uid="uid://c522ts4uxsrk8"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ttdyf"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_qgj0r"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_2i07j"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_poafa"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3nm3d"]
+animation = &"Pearness"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_poafa"]
 animation = &"Blink"
@@ -11,6 +20,12 @@ stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hachy"]
+animation = &"EyesSpread"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2i07j"]
+animation = &"StretchWide"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgj0r"]
 animation = &"Sway"
 use_custom_timeline = true
@@ -20,12 +35,24 @@ start_offset = 0.0
 loop_mode = 1
 
 [resource]
-graph_offset = Vector2(-119.49176, -21.347115)
-nodes/output/position = Vector2(1130, 160)
+graph_offset = Vector2(56.144165, 132.36426)
+nodes/output/position = Vector2(2080, 400)
 nodes/Blink/node = SubResource("AnimationNodeAnimation_poafa")
 nodes/Blink/position = Vector2(580, 300)
 nodes/Sway/node = SubResource("AnimationNodeAnimation_qgj0r")
 nodes/Sway/position = Vector2(590, 100)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_ttdyf")
 nodes/Add2/position = Vector2(867.8396, 174.8799)
-node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Sway", &"Add2", 1, &"Blink"]
+nodes/StretchWide/node = SubResource("AnimationNodeAnimation_2i07j")
+nodes/StretchWide/position = Vector2(1020, 390)
+nodes/AddStretchWide/node = SubResource("AnimationNodeAdd2_poafa")
+nodes/AddStretchWide/position = Vector2(1290, 190)
+nodes/AddEyesSpread/node = SubResource("AnimationNodeAdd2_qgj0r")
+nodes/AddEyesSpread/position = Vector2(1590, 350)
+nodes/EyesSpread/node = SubResource("AnimationNodeAnimation_hachy")
+nodes/EyesSpread/position = Vector2(1370, 460)
+nodes/AddPearness/node = SubResource("AnimationNodeAdd2_2i07j")
+nodes/AddPearness/position = Vector2(1856.3452, 478.1029)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3nm3d")
+nodes/Animation/position = Vector2(1561.6218, 668.94836)
+node_connections = [&"output", 0, &"AddPearness", &"Add2", 0, &"Sway", &"Add2", 1, &"Blink", &"AddStretchWide", 0, &"Add2", &"AddStretchWide", 1, &"StretchWide", &"AddEyesSpread", 0, &"AddStretchWide", &"AddEyesSpread", 1, &"EyesSpread", &"AddPearness", 0, &"AddEyesSpread", &"AddPearness", 1, &"Animation"]

@@ -12,10 +12,15 @@
 script = ExtResource("2_2xsow")
 
 [node name="Skeleton3D" parent="Armature" index="1"]
-bones/1/rotation = Quaternion(-1.4505168e-16, 1.7137324e-08, -0.08755081, 0.99616015)
-bones/2/rotation = Quaternion(0.0010267575, 0.011350595, 0.09810482, 0.99511087)
-bones/5/rotation = Quaternion(0.14356814, 0.7399317, 0.6345922, -0.17082757)
-bones/5/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
+bones/0/scale = Vector3(1.2300833, 1.0000088, 1)
+bones/1/rotation = Quaternion(-1.7273737e-16, 1.7136806e-08, -0.09086231, 0.9958635)
+bones/2/rotation = Quaternion(0.0010882784, 0.012030694, 0.102299474, 0.9946803)
+bones/4/position = Vector3(0.23112628, 0.15221627, 0.12064531)
+bones/4/rotation = Quaternion(-0.18755345, 0.72660214, 0.625136, 0.21465828)
+bones/4/scale = Vector3(0.854, 1.0000001, 0.9999998)
+bones/5/position = Vector3(-0.2311208, 0.14998291, 0.120645285)
+bones/5/rotation = Quaternion(0.18419993, 0.7278634, 0.62354016, -0.21790612)
+bones/5/scale = Vector3(0.8539999, 0.9999997, 0.99999994)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("3_lcqbr")
@@ -42,9 +47,12 @@ surface_material_override/0 = ExtResource("6_41361")
 tree_root = ExtResource("7_dmfh7")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Add2/add_amount = 0.0
+parameters/AddStretchWide/add_amount = 1.46
+parameters/AddEyesSpread/add_amount = -0.29
+parameters/AddPearness/add_amount = 0.0
 
 [node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3"]
-transform = Transform3D(0.9993788, -0.027125921, 0.022496555, 0.027214931, 0.9996228, -0.0036606062, -0.022388771, 0.004270574, 0.99974024, 0.007985224, 0.8750383, -0.013264002)
+transform = Transform3D(1.2292514, -0.034180623, 0.029313182, 0.03037629, 0.99954885, -0.003905257, -0.02371076, 0.0046264487, 0.9997082, 0.010388356, 0.87478775, -0.012897331)
 bone_name = "Horn"
 bone_idx = 3
 use_external_skeleton = true

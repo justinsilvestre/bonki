@@ -3,10 +3,7 @@
 [ext_resource type="Script" uid="uid://mi1p5gkymlga" path="res://scroll_demo/scroll_demo.gd" id="1_ee3i5"]
 [ext_resource type="Script" uid="uid://bmqtxewly8xef" path="res://scroll_demo/scroll_row.gd" id="2_84if4"]
 [ext_resource type="Sky" uid="uid://rjywlprepe5s" path="res://scroll_demo/scroll_demo_sky.tres" id="2_dbhbj"]
-
-[sub_resource type="Environment" id="Environment_n5r25"]
-background_mode = 2
-sky = ExtResource("2_dbhbj")
+[ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_x8eno"]
 
 [sub_resource type="Environment" id="Environment_wsl7h"]
 background_mode = 2
@@ -22,17 +19,15 @@ plane = Plane(-1, 0, 0, 0)
 [node name="ScrollDemo" type="Node3D"]
 script = ExtResource("1_ee3i5")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_n5r25")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-light_energy = 1.896
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 environment = SubResource("Environment_wsl7h")
 projection = 1
+fov = 42.3
 size = 9.0
 
 [node name="LeftBoundary" type="Area3D" parent="."]
@@ -69,6 +64,12 @@ script = ExtResource("2_84if4")
 spawn_first_instantly = true
 spawn_wait = 2.0
 child_velocity = Vector3(-2, 0, 0)
+
+[node name="Bonki" parent="." instance=ExtResource("4_x8eno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0020924, 3.3589153, -2)
+
+[node name="Bonki" parent="Bonki" instance=ExtResource("4_x8eno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.879578, -6.0643663, 0)
 
 [connection signal="body_entered" from="LeftBoundary" to="." method="_on_boundary_entered"]
 [connection signal="body_entered" from="RightBoundary" to="." method="_on_boundary_entered"]

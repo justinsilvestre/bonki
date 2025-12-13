@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://beg1s66x1ogeb"]
+[gd_scene load_steps=14 format=3 uid="uid://beg1s66x1ogeb"]
 
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://ud6prmgfqv7u" path="res://bonki_model/crowns/cone_crown.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini_crown.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://do0tqfbw2c4ye" path="res://bonki_model/crowns/torus_crown.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://kbv6caifmeee" path="res://bonki_model/crowns/chanterelle_crown.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ddmpstbkfm1ts" path="res://bonki_model/crowns/christmas_rose_crown.tscn" id="5_lquwl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -22,16 +23,13 @@ body_color = Color(0.6957059, 0.74261713, 0.9324837, 1)
 eye_shine_color = Color(0.5124221, 0.5054931, 0.76102376, 1)
 eye_shadow_color = Color(0.62348163, 0.18804152, 0.8077017, 1)
 eye_base_color = Color(0.11803251, 0.5153408, 0.7413955, 1)
-wide_stretch_factor = 0.4033475629149243
-horn_stretch_factor = 0.57398397
-long_stretch_factor = -0.0558892764574016
-pearness_factor = -0.9206465626753456
-tall_stretch_factor = 0.5149297728900355
-wonkiness_factor = 0.6821965485039121
+horn_stretch_factor = 0.2
+tall_stretch_factor = 1.0
+wonkiness_factor = 0.30000000000000004
 eyes_closeness_factor = -0.1210825809099767
-eyes_tilt_factor = 1.1856757835731495
-eyes_height_factor = 0.19472093632933185
-horn_pscn = ExtResource("2_1bvp3")
+eyes_tilt_factor = -0.10000000000000007
+eyes_height_factor = 0.5
+crown_pscn = ExtResource("2_h2yge")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_7mycd"]
@@ -40,34 +38,16 @@ body_color = Color(0.9184007, 0.73956704, 0.8877542, 1)
 eye_shine_color = Color(0.63459635, 0.6952556, 0.50078017, 1)
 eye_shadow_color = Color(0.48259953, 0.64188886, 0.019586898, 1)
 eye_base_color = Color(0.043008655, 0.5960318, 0.13998868, 1)
-wide_stretch_factor = 0.6279259299514486
-horn_stretch_factor = 0.71144617
-long_stretch_factor = -0.4116820473057594
-pearness_factor = 0.8068006570189568
-tall_stretch_factor = 0.07021303602473838
-wonkiness_factor = 0.6111513981479382
-eyes_closeness_factor = -1.4300901039511569
-eyes_tilt_factor = 1.2125461201147272
-eyes_height_factor = -0.608230099119358
-horn_pscn = ExtResource("3_lquwl")
+crown_pscn = ExtResource("4_1bvp3")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_272bh"]
 script = ExtResource("2_lquwl")
-body_color = Color(0.8598934, 0.95556855, 0.9482882, 1)
-eye_shine_color = Color(0.5235552, 0.5967902, 0.68859756, 1)
-eye_shadow_color = Color(0.74985635, 0.4987894, 0.0116069345, 1)
-eye_base_color = Color(0.4774895, 0.7249088, 0.18981977, 1)
-wide_stretch_factor = 0.7110289330180888
-horn_stretch_factor = 0.80612254
-long_stretch_factor = 0.4492067450947932
-pearness_factor = 0.48283977218514695
-tall_stretch_factor = -0.19999999999999996
-wonkiness_factor = 0.21463258470178517
-eyes_closeness_factor = 0.06893122207125035
-eyes_tilt_factor = 0.15219436365908323
-eyes_height_factor = 0.5254160846792746
-horn_pscn = ExtResource("3_lquwl")
+body_color = Color(0.52815366, 0.7751466, 0.83059406, 1)
+eye_shine_color = Color(0.84939575, 0.8397303, 0.92172486, 1)
+eye_shadow_color = Color(0.89630216, 0.5160377, 0.82471627, 1)
+eye_base_color = Color(0.4135155, 0.34015527, 0.67391473, 1)
+crown_pscn = ExtResource("5_lquwl")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
@@ -91,7 +71,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0.24391556, 10)
 appearance = SubResource("Resource_lquwl")
 
 [node name="MiddleBonki" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.4264834, 0.315475, 9.956547)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.6472702, 0.315475, 9.956547)
 appearance = SubResource("Resource_7mycd")
 
 [node name="RightBonki" parent="." instance=ExtResource("1_ig7tw")]

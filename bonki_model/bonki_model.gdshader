@@ -34,7 +34,7 @@ void vertex() {
 }
 
 void fragment() {
-	float basic_fresnel = fresnel(4.0, NORMAL, VIEW);
+	float basic_fresnel = fresnel(6.0, NORMAL, VIEW);
 	
 	vec2 base_uv = UV;
 

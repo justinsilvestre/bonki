@@ -60,12 +60,6 @@ func _on_appearance_changed():
 	set_colors(appearance)
 	set_dimensions(appearance)
 	_crown_pscn = appearance.crown_pscn
-	
-	if _crown_node != null:
-		var crown_y_offset: float = 0
-		crown_y_offset += appearance.tall_stretch_factor * _crown_node.tall_stretch_coeff
-		crown_y_offset += appearance.horn_stretch_factor * _crown_node.horn_stretch_coeff
-		_crown_node.position.y = _crown_node_initial_y + crown_y_offset
 
 func set_colors(params: BonkiAppearanceParameters):
 	if params == null: return
@@ -102,26 +96,30 @@ func set_colors(params: BonkiAppearanceParameters):
 func set_dimensions(params: BonkiAppearanceParameters):
 	if params == null: return
 	
-	set_dimension(0, params.wide_stretch_factor)
-	set_dimension(1, params.horn_stretch_factor)
-	set_dimension(2, params.long_stretch_factor)
-	set_dimension(3, params.tall_stretch_factor)
-	set_dimension(4, params.pearness_factor)
-	set_dimension(5, params.wonkiness_factor)
-	
-	set_eyes_dimension(0, params.eyes_closeness_factor)
-	set_eyes_dimension(1, params.eyes_tilt_factor)
-	set_eyes_dimension(2, params.eyes_height_factor)
+	shape_body("WideStretch", params.wide_stretch_factor)
+	shape_body("HornStretch", params.horn_stretch_factor)
+	shape_body("LongStretch", params.long_stretch_factor)
+	shape_body("TallStretch", params.tall_stretch_factor)
+	shape_body("Pearness", params.pearness_factor)
+	shape_body("Wonkiness", params.wonkiness_factor)
 
-func set_dimension(index: int, value: float) -> void:
+	shape_eyes("EyesCloseness", params.eyes_closeness_factor)
+	shape_eyes("EyesTilt", params.eyes_tilt_factor)
+	shape_eyes("EyesHeight", params.eyes_height_factor * (1 + appearance.tall_stretch_factor ))
+
+func shape_body(blend_shape: String, value: float) -> void:
 	if (value != 0.0):
+		var index = body_mesh.find_blend_shape_by_name(blend_shape)
 		body_mesh.set_blend_shape_value(index, value)
 
-func set_eyes_dimension(index:int, value: float) -> void:
-	if (value != 0.0):
-		eye_base_r_mesh.set_blend_shape_value(index, value)
-		eye_base_l_mesh.set_blend_shape_value(index, value)
-		eye_shadow_r_mesh.set_blend_shape_value(index, value)
-		eye_shadow_l_mesh.set_blend_shape_value(index, value)
-		eye_shine_r_mesh.set_blend_shape_value(index, value)
-		eye_shine_l_mesh.set_blend_shape_value(index, value)
+func shape_eyes(blend_shape: String, value: float) -> void:
+	if (value == 0.0):
+		pass
+	var l_index = eye_base_l_mesh.find_blend_shape_by_name(blend_shape)
+	eye_base_l_mesh.set_blend_shape_value(l_index, value)
+	eye_shadow_l_mesh.set_blend_shape_value(l_index, value)
+	eye_shine_l_mesh.set_blend_shape_value(l_index, value)
+	var r_index = eye_base_r_mesh.find_blend_shape_by_name(blend_shape)
+	eye_base_r_mesh.set_blend_shape_value(r_index, value)
+	eye_shadow_r_mesh.set_blend_shape_value(r_index, value)
+	eye_shine_r_mesh.set_blend_shape_value(r_index, value)

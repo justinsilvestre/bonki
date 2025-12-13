@@ -77,28 +77,16 @@ func set_colors(params: BonkiAppearanceParameters):
 	).duplicate()  # surface override or material
 	body_material.set_shader_parameter("albedo", params.body_color)
 	body_mesh.set_surface_override_material(0, body_material)	
-		
-	var eye_base_material: StandardMaterial3D = preload(
-		"res://bonki_model/materials/bonki_eye_material.tres"
+	
+	var eye_base_material: ShaderMaterial = preload(
+		"res://bonki_model/materials/bonki_eye_shader.tres"
 	).duplicate()
-	var eye_shadow_material: StandardMaterial3D = preload(
-		"res://bonki_model/materials/bonki_eye_shadow_material.tres"
-	).duplicate()
-	var eye_shine_material: StandardMaterial3D = preload(
-		"res://bonki_model/materials/bonki_eye_shine_material.tres"
-	).duplicate()
-	eye_base_material.albedo_color = params.eye_base_color
-	eye_shadow_material.albedo_color = params.eye_shadow_color
-	eye_shine_material.albedo_color = params.eye_shine_color
+	eye_base_material.set_shader_parameter("base_color", params.eye_base_color)
+	eye_base_material.set_shader_parameter("shine_color", params.eye_shine_color)
+	eye_base_material.set_shader_parameter("shadow_color", params.eye_shadow_color)
 	
 	eye_base_l_mesh.set_surface_override_material(0, eye_base_material)
 	eye_base_r_mesh.set_surface_override_material(0, eye_base_material)
-	
-	eye_shadow_l_mesh.set_surface_override_material(0, eye_shadow_material)
-	eye_shadow_r_mesh.set_surface_override_material(0, eye_shadow_material)
-	
-	eye_shine_l_mesh.set_surface_override_material(0, eye_shine_material)
-	eye_shine_r_mesh.set_surface_override_material(0, eye_shine_material)
 	
 
 func set_dimensions(params: BonkiAppearanceParameters):

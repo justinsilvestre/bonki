@@ -1,7 +1,5 @@
 [gd_resource type="AnimationNodeBlendTree" load_steps=18 format=3 uid="uid://c522ts4uxsrk8"]
 
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_fybev"]
-
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ttdyf"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ag013"]
@@ -12,6 +10,8 @@
 filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Spine"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_poafa"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_fybev"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_qgj0r"]
 
@@ -56,7 +56,7 @@ start_offset = 0.0
 loop_mode = 1
 
 [resource]
-graph_offset = Vector2(625.12585, 167.59499)
+graph_offset = Vector2(287.13916, 127.389984)
 nodes/output/position = Vector2(3430, 550)
 nodes/Blink/node = SubResource("AnimationNodeAnimation_poafa")
 nodes/Blink/position = Vector2(580, 300)
@@ -88,8 +88,8 @@ nodes/BodyAntipearness/node = SubResource("AnimationNodeAnimation_6535g")
 nodes/BodyAntipearness/position = Vector2(1870, 720)
 nodes/AddBodyAntipearness/node = SubResource("AnimationNodeAdd2_ag013")
 nodes/AddBodyAntipearness/position = Vector2(2100, 500)
-nodes/Add2/node = SubResource("AnimationNodeAdd2_fybev")
-nodes/Add2/position = Vector2(3090, 690)
+nodes/AddEyesHeight/node = SubResource("AnimationNodeAdd2_fybev")
+nodes/AddEyesHeight/position = Vector2(3090, 690)
 nodes/EyesHeight/node = SubResource("AnimationNodeAnimation_nfc2f")
 nodes/EyesHeight/position = Vector2(2855.1174, 911.2108)
-node_connections = [&"output", 0, &"Add2", &"AddBlink", 0, &"Sway", &"AddBlink", 1, &"Blink", &"AddBodyWideStretch", 0, &"AddBlink", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness", &"Add2", 0, &"AddEyesTilt", &"Add2", 1, &"EyesHeight"]
+node_connections = [&"output", 0, &"AddEyesHeight", &"AddBlink", 0, &"Sway", &"AddBlink", 1, &"Blink", &"AddBodyWideStretch", 0, &"AddBlink", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness", &"AddEyesHeight", 0, &"AddEyesTilt", &"AddEyesHeight", 1, &"EyesHeight"]

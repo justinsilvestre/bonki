@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bs1uh1h67iew4"]
+
+[ext_resource type="Shader" uid="uid://bfte18y87lky1" path="res://bonki_model/bonki_eye.gdshader" id="1_ah5mj"]
+[ext_resource type="Texture2D" uid="uid://cx1y47s16dw1s" path="res://bonki_model/eye_texture.png" id="2_cskdr"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ah5mj")
+shader_parameter/texture_mask = ExtResource("2_cskdr")
+shader_parameter/base_color = Color(0.23, 0.1771, 0.18327169, 1)
+shader_parameter/shine_color = Color(0.29000002, 1, 0.29000002, 1)
+shader_parameter/shadow_color = Color(0.9333334, 0, 1, 1)

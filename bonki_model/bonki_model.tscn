@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cgph5bneq3l1p" path="res://bonki_model/bonki.blend" id="1_dmfh7"]
 [ext_resource type="Script" uid="uid://by255qhvas75h" path="res://bonki_model/bonki_model.gd" id="2_2xsow"]
 [ext_resource type="Material" uid="uid://ckp2oqynh8bc2" path="res://bonki_model/materials/bonki_model_body_material.tres" id="3_lcqbr"]
-[ext_resource type="Material" uid="uid://d0m46fntpstll" path="res://bonki_model/materials/bonki_eye_material.tres" id="4_hjk1a"]
+[ext_resource type="Material" uid="uid://bs1uh1h67iew4" path="res://bonki_model/materials/bonki_eye_shader.tres" id="4_dmfh7"]
 [ext_resource type="Material" uid="uid://b1cjlp6ody7yq" path="res://bonki_model/materials/bonki_eye_shadow_material.tres" id="5_k57ku"]
 [ext_resource type="Material" uid="uid://3myt3sfunf7t" path="res://bonki_model/materials/bonki_eye_shine_material.tres" id="6_41361"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c522ts4uxsrk8" path="res://bonki_model_animation_blend_tree.tres" id="7_dmfh7"]
@@ -12,8 +12,8 @@
 script = ExtResource("2_2xsow")
 
 [node name="Skeleton3D" parent="Armature" index="1"]
-bones/1/rotation = Quaternion(-1.3220073e-18, 1.6526187e-08, -0.06478024, 0.9978996)
-bones/2/rotation = Quaternion(0.0006193769, 0.006847083, 0.06935308, 0.99756855)
+bones/1/rotation = Quaternion(2.0679513e-25, 7.1247383e-25, 0.07773695, 0.9969739)
+bones/2/rotation = Quaternion(0.0053586974, 0.015583149, -0.08399273, 0.9963302)
 bones/4/position = Vector3(-2.1615529e-06, 0.15211225, 0.01766415)
 bones/4/rotation = Quaternion(-0.14714174, 0.7392293, 0.6354103, 0.16775934)
 bones/4/scale = Vector3(1, 1.0000001, 0.99999994)
@@ -25,21 +25,25 @@ bones/5/scale = Vector3(1, 0.9999999, 1.0000001)
 surface_material_override/0 = ExtResource("3_lcqbr")
 
 [node name="EyeBase_L" parent="Armature/Skeleton3D" index="1"]
-surface_material_override/0 = ExtResource("4_hjk1a")
+surface_material_override/0 = ExtResource("4_dmfh7")
 
 [node name="EyeBase_R" parent="Armature/Skeleton3D" index="2"]
-surface_material_override/0 = ExtResource("4_hjk1a")
+surface_material_override/0 = ExtResource("4_dmfh7")
 
 [node name="EyeShadow_L" parent="Armature/Skeleton3D" index="3"]
+visible = false
 surface_material_override/0 = ExtResource("5_k57ku")
 
 [node name="EyeShadow_R" parent="Armature/Skeleton3D" index="4"]
+visible = false
 surface_material_override/0 = ExtResource("5_k57ku")
 
 [node name="EyeShine_L" parent="Armature/Skeleton3D" index="5"]
+visible = false
 surface_material_override/0 = ExtResource("6_41361")
 
 [node name="EyeShine_R" parent="Armature/Skeleton3D" index="6"]
+visible = false
 surface_material_override/0 = ExtResource("6_41361")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
@@ -52,10 +56,11 @@ parameters/AddBodyPearness/add_amount = 0.0
 parameters/AddBodyTallStretch/add_amount = 0.0
 parameters/AddEyesTilt/add_amount = 0.0
 parameters/AddBodyAntipearness/add_amount = 0.0
-parameters/Add2/add_amount = 0.0
+parameters/AddEyesHeight/add_amount = 0.0
 
 [node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3"]
-transform = Transform3D(0.9997931, -0.015119042, 0.01360651, 0.015147339, 0.9998833, -0.001979784, -0.013574988, 0.0021854762, 0.99990547, 0.01128805, 0.876645, -0.015412354)
+transform = Transform3D(0.9994683, 0.0067392094, 0.031898115, -0.00647843, 0.99994475, -0.008271367, -0.031952098, 0.008060318, 0.9994569, -0.023244876, 0.87562674, -0.009359291)
+top_level = true
 bone_name = "Horn"
 bone_idx = 3
 use_external_skeleton = true

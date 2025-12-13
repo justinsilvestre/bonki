@@ -12,15 +12,14 @@
 script = ExtResource("2_2xsow")
 
 [node name="Skeleton3D" parent="Armature" index="1"]
-bones/0/scale = Vector3(1.2300833, 1.0000088, 1)
-bones/1/rotation = Quaternion(-1.7273737e-16, 1.7136806e-08, -0.09086231, 0.9958635)
-bones/2/rotation = Quaternion(0.0010882784, 0.012030694, 0.102299474, 0.9946803)
-bones/4/position = Vector3(0.23112628, 0.15221627, 0.12064531)
-bones/4/rotation = Quaternion(-0.18755345, 0.72660214, 0.625136, 0.21465828)
-bones/4/scale = Vector3(0.854, 1.0000001, 0.9999998)
-bones/5/position = Vector3(-0.2311208, 0.14998291, 0.120645285)
-bones/5/rotation = Quaternion(0.18419993, 0.7278634, 0.62354016, -0.21790612)
-bones/5/scale = Vector3(0.8539999, 0.9999997, 0.99999994)
+bones/1/rotation = Quaternion(-1.3220073e-18, 1.6526187e-08, -0.06478024, 0.9978996)
+bones/2/rotation = Quaternion(0.0006193769, 0.006847083, 0.06935308, 0.99756855)
+bones/4/position = Vector3(-2.1615529e-06, 0.15211225, 0.01766415)
+bones/4/rotation = Quaternion(-0.14714174, 0.7392293, 0.6354103, 0.16775934)
+bones/4/scale = Vector3(1, 1.0000001, 0.99999994)
+bones/5/position = Vector3(-2.1527762e-06, 0.15211232, 0.01766414)
+bones/5/rotation = Quaternion(0.14356814, 0.7399317, 0.6345922, -0.17082757)
+bones/5/scale = Vector3(1, 0.9999999, 1.0000001)
 
 [node name="Body" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("3_lcqbr")
@@ -46,13 +45,17 @@ surface_material_override/0 = ExtResource("6_41361")
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = ExtResource("7_dmfh7")
 anim_player = NodePath("../AnimationPlayer")
+parameters/AddBlink/add_amount = 0.0
+parameters/AddBodyWideStretch/add_amount = 0.0
+parameters/AddEyesSpread/add_amount = 0.0
+parameters/AddBodyPearness/add_amount = 0.0
+parameters/AddBodyTallStretch/add_amount = 0.0
+parameters/AddEyesTilt/add_amount = 0.0
+parameters/AddBodyAntipearness/add_amount = 0.0
 parameters/Add2/add_amount = 0.0
-parameters/AddStretchWide/add_amount = 1.46
-parameters/AddEyesSpread/add_amount = -0.29
-parameters/AddPearness/add_amount = 0.0
 
 [node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3"]
-transform = Transform3D(1.2292514, -0.034180623, 0.029313182, 0.03037629, 0.99954885, -0.003905257, -0.02371076, 0.0046264487, 0.9997082, 0.010388356, 0.87478775, -0.012897331)
+transform = Transform3D(0.9997931, -0.015119042, 0.01360651, 0.015147339, 0.9998833, -0.001979784, -0.013574988, 0.0021854762, 0.99990547, 0.01128805, 0.876645, -0.015412354)
 bone_name = "Horn"
 bone_idx = 3
 use_external_skeleton = true

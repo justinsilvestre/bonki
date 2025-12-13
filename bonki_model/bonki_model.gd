@@ -14,6 +14,14 @@ extends Node3D
 @onready var eye_shine_r_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShine_R
 @onready var crown_attachment: BoneAttachment3D = $CrownAttachment
 
+var add_wide_stretch_path := "parameters/AddBodyWideStretch/add_amount"
+var add_tall_stretch_path := "parameters/AddBodyTallStretch/add_amount"
+var add_pearness_path := "parameters/AddBodyPearness/add_amount"
+var add_antipearness_path := "parameters/AddBodyAntipearness/add_amount"
+var add_eyes_spread_path := "parameters/AddEyesSpread/add_amount"
+var add_eyes_tilt_path := "parameters/AddEyesTilt/add_amount"
+var add_eyes_height_path := "parameters/AddEyesHeight/add_amount"
+
 # Should be set by Bonki.appearance, and point to same resource
 var appearance: BonkiAppearanceParameters:
 	set(new_val): # Should be called automatically at scene instantiation
@@ -96,25 +104,38 @@ func set_colors(params: BonkiAppearanceParameters):
 func set_dimensions(params: BonkiAppearanceParameters):
 	if params == null: return
 	
-	shape_body("WideStretch", params.wide_stretch_factor)
-	shape_body("HornStretch", params.horn_stretch_factor)
-	shape_body("LongStretch", params.long_stretch_factor)
-	shape_body("TallStretch", params.tall_stretch_factor)
-	shape_body("Pearness", params.pearness_factor)
-	shape_body("Wonkiness", params.wonkiness_factor)
+	set_animation_appearance_parameter(add_wide_stretch_path, params.wide_stretch_factor)
+	set_body_shape_key("HornStretch", params.horn_stretch_factor)
+	if (params.pearness_factor == 0.0):
+		set_animation_appearance_parameter(add_pearness_path, params.pearness_factor)
+		set_animation_appearance_parameter(add_antipearness_path, params.pearness_factor)
+	elif (params.pearness_factor > 0.0):
+		set_animation_appearance_parameter(add_pearness_path, params.pearness_factor)
+		set_animation_appearance_parameter(add_antipearness_path, 0)
+	else:
+		set_animation_appearance_parameter(add_pearness_path, 0)
+		set_animation_appearance_parameter(add_antipearness_path, -params.pearness_factor)
+	set_body_shape_key("LongStretch", params.long_stretch_factor)
+	set_animation_appearance_parameter(add_tall_stretch_path, params.tall_stretch_factor)
+	set_body_shape_key("Wonkiness", params.wonkiness_factor)
 
-	shape_eyes("EyesCloseness", params.eyes_closeness_factor)
-	shape_eyes("EyesTilt", params.eyes_tilt_factor)
-	shape_eyes("EyesHeight", params.eyes_height_factor * (1 + appearance.tall_stretch_factor ))
+	set_animation_appearance_parameter(add_eyes_spread_path, params.eyes_spread_factor)
+	set_animation_appearance_parameter(add_eyes_tilt_path, params.eyes_tilt_factor)
+	#set_animation_appearance_parameter(add_eyes_height_path, params.eyes_height_factor)
 
-func shape_body(blend_shape: String, value: float) -> void:
-	if (value != 0.0):
-		var index = body_mesh.find_blend_shape_by_name(blend_shape)
-		body_mesh.set_blend_shape_value(index, value)
+	#set_eyes_shape_key("EyesHeight", params.eyes_height_factor * (1 + appearance.tall_stretch_factor ))
+	#set_eyes_shape_key("EyesHeight", params.eyes_height_factor)
+	set_animation_appearance_parameter(add_eyes_height_path, params.eyes_height_factor)
+	
 
-func shape_eyes(blend_shape: String, value: float) -> void:
-	if (value == 0.0):
-		pass
+func set_animation_appearance_parameter(path: String, value: float) -> void:
+	anim_tree.set(path, value)
+
+func set_body_shape_key(blend_shape: String, value: float) -> void:
+	var index = body_mesh.find_blend_shape_by_name(blend_shape)
+	body_mesh.set_blend_shape_value(index, value)
+
+func set_eyes_shape_key(blend_shape: String, value: float) -> void:
 	var l_index = eye_base_l_mesh.find_blend_shape_by_name(blend_shape)
 	eye_base_l_mesh.set_blend_shape_value(l_index, value)
 	eye_shadow_l_mesh.set_blend_shape_value(l_index, value)

@@ -24,9 +24,9 @@ extends Resource
 	set(val): tall_stretch_factor = val; emit_changed()
 @export_range(-1, 1, 0.1) var wonkiness_factor: float = 0:
 	set(val): wonkiness_factor = val; emit_changed()
-@export_range(-1.5, 1.5, 0.1) var eyes_closeness_factor: float = 0:
-	set(val): eyes_closeness_factor = val; emit_changed()
-@export_range(-1.5, 1.5, 0.1) var eyes_tilt_factor: float = 0:
+@export_range(-1, 1, 0.1) var eyes_spread_factor: float = 0:
+	set(val): eyes_spread_factor = val; emit_changed()
+@export_range(-1, 1, 0.1) var eyes_tilt_factor: float = 0:
 	set(val): eyes_tilt_factor = val; emit_changed()
 @export_range(-1, 1, 0.1) var eyes_height_factor: float = 0:
 	set(val): eyes_height_factor = val; emit_changed()
@@ -86,8 +86,8 @@ func randomize():
 	pearness_factor = randf_range(-1, 1)
 	tall_stretch_factor = randf_range(-1, 1)
 	wonkiness_factor = randf_range(-1, 1)
-	eyes_closeness_factor = randf_range(-1.5, 1.5)
-	eyes_tilt_factor = randf_range(-1.5, 1.5)
+	eyes_spread_factor = randf_range(-1, 1)
+	eyes_tilt_factor = randf_range(-1, 1)
 	eyes_height_factor = randf_range(-1, 1)
 	
 	crown_pscn = crown_choices[crown_index]

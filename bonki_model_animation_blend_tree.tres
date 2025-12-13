@@ -1,15 +1,21 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=10 format=3 uid="uid://c522ts4uxsrk8"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=18 format=3 uid="uid://c522ts4uxsrk8"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_fybev"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ttdyf"]
 
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_qgj0r"]
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ag013"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_2i07j"]
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_hachy"]
+filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Spine"]
+
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_poafa"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3nm3d"]
-animation = &"Pearness"
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_qgj0r"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_3nm3d"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_poafa"]
 animation = &"Blink"
@@ -20,11 +26,26 @@ stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6535g"]
+animation = &"BodyAntipearness"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3nm3d"]
+animation = &"BodyPearness"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ag013"]
+animation = &"BodyTallStretch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2i07j"]
+animation = &"BodyWideStretch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nfc2f"]
+animation = &"EyesHeight"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hachy"]
 animation = &"EyesSpread"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2i07j"]
-animation = &"StretchWide"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fybev"]
+animation = &"EyesTilt"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgj0r"]
 animation = &"Sway"
@@ -35,24 +56,40 @@ start_offset = 0.0
 loop_mode = 1
 
 [resource]
-graph_offset = Vector2(56.144165, 132.36426)
-nodes/output/position = Vector2(2080, 400)
+graph_offset = Vector2(625.12585, 167.59499)
+nodes/output/position = Vector2(3430, 550)
 nodes/Blink/node = SubResource("AnimationNodeAnimation_poafa")
 nodes/Blink/position = Vector2(580, 300)
 nodes/Sway/node = SubResource("AnimationNodeAnimation_qgj0r")
 nodes/Sway/position = Vector2(590, 100)
-nodes/Add2/node = SubResource("AnimationNodeAdd2_ttdyf")
-nodes/Add2/position = Vector2(867.8396, 174.8799)
-nodes/StretchWide/node = SubResource("AnimationNodeAnimation_2i07j")
-nodes/StretchWide/position = Vector2(1020, 390)
-nodes/AddStretchWide/node = SubResource("AnimationNodeAdd2_poafa")
-nodes/AddStretchWide/position = Vector2(1290, 190)
+nodes/AddBlink/node = SubResource("AnimationNodeAdd2_ttdyf")
+nodes/AddBlink/position = Vector2(860, 170)
+nodes/BodyWideStretch/node = SubResource("AnimationNodeAnimation_2i07j")
+nodes/BodyWideStretch/position = Vector2(1020, 390)
+nodes/AddBodyWideStretch/node = SubResource("AnimationNodeAdd2_poafa")
+nodes/AddBodyWideStretch/position = Vector2(1290, 190)
 nodes/AddEyesSpread/node = SubResource("AnimationNodeAdd2_qgj0r")
-nodes/AddEyesSpread/position = Vector2(1590, 350)
+nodes/AddEyesSpread/position = Vector2(2490, 340)
 nodes/EyesSpread/node = SubResource("AnimationNodeAnimation_hachy")
-nodes/EyesSpread/position = Vector2(1370, 460)
-nodes/AddPearness/node = SubResource("AnimationNodeAdd2_2i07j")
-nodes/AddPearness/position = Vector2(1856.3452, 478.1029)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_3nm3d")
-nodes/Animation/position = Vector2(1561.6218, 668.94836)
-node_connections = [&"output", 0, &"AddPearness", &"Add2", 0, &"Sway", &"Add2", 1, &"Blink", &"AddStretchWide", 0, &"Add2", &"AddStretchWide", 1, &"StretchWide", &"AddEyesSpread", 0, &"AddStretchWide", &"AddEyesSpread", 1, &"EyesSpread", &"AddPearness", 0, &"AddEyesSpread", &"AddPearness", 1, &"Animation"]
+nodes/EyesSpread/position = Vector2(2280, 630)
+nodes/AddBodyPearness/node = SubResource("AnimationNodeAdd2_2i07j")
+nodes/AddBodyPearness/position = Vector2(1880, 440)
+nodes/BodyPearness/node = SubResource("AnimationNodeAnimation_3nm3d")
+nodes/BodyPearness/position = Vector2(1550, 560)
+nodes/AddBodyTallStretch/node = SubResource("AnimationNodeAdd2_hachy")
+nodes/AddBodyTallStretch/position = Vector2(1680, 120)
+nodes/BodyTallStretch/node = SubResource("AnimationNodeAnimation_ag013")
+nodes/BodyTallStretch/position = Vector2(1500, 280)
+nodes/EyesTilt/node = SubResource("AnimationNodeAnimation_fybev")
+nodes/EyesTilt/position = Vector2(2540, 600)
+nodes/AddEyesTilt/node = SubResource("AnimationNodeAdd2_3nm3d")
+nodes/AddEyesTilt/position = Vector2(2790, 480)
+nodes/BodyAntipearness/node = SubResource("AnimationNodeAnimation_6535g")
+nodes/BodyAntipearness/position = Vector2(1870, 720)
+nodes/AddBodyAntipearness/node = SubResource("AnimationNodeAdd2_ag013")
+nodes/AddBodyAntipearness/position = Vector2(2100, 500)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_fybev")
+nodes/Add2/position = Vector2(3090, 690)
+nodes/EyesHeight/node = SubResource("AnimationNodeAnimation_nfc2f")
+nodes/EyesHeight/position = Vector2(2855.1174, 911.2108)
+node_connections = [&"output", 0, &"Add2", &"AddBlink", 0, &"Sway", &"AddBlink", 1, &"Blink", &"AddBodyWideStretch", 0, &"AddBlink", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness", &"Add2", 0, &"AddEyesTilt", &"Add2", 1, &"EyesHeight"]

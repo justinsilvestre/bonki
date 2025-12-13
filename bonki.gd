@@ -8,7 +8,7 @@ extends CharacterBody3D
 		if is_node_ready(): model.appearance = val
 
 @onready var model: BonkiModel = $BonkiModel
-@onready var blink_blend_path := "parameters/Add2/add_amount"
+@onready var blink_blend_path := "parameters/AddBlink/add_amount"
 
 var blink_timer := 0.0
 const MIN_BLINK_INTERVAL := 2.0

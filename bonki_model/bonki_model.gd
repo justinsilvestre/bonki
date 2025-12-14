@@ -28,10 +28,10 @@ var appearance: BonkiAppearanceParameters:
 		if appearance == new_val: return # no-op if unchanged
 		if new_val != null:
 			# temporary connection. not visible to editor or saved to .tscn
-			new_val.changed.connect(_on_appearance_changed)
+			new_val.changed.connect(_on_appearance_changed.bind(appearance, new_val))
 			pass
 		appearance = new_val
-		_on_appearance_changed()
+		_on_appearance_changed(appearance, new_val)
 		pass
 
 # Cached variables from appearance changes
@@ -63,13 +63,13 @@ var _crown_node: Crown = null: # Should be set by _crown_pscn setter
 		_crown_node = new_val
 var _crown_node_initial_y: float = 0 
 
-func _on_appearance_changed():
-	if appearance == null: return # TODO: maybe reset appearance to default?
-	set_colors(appearance)
-	set_dimensions(appearance)
-	_crown_pscn = appearance.crown_pscn
+func _on_appearance_changed(old_appearance: BonkiAppearanceParameters, new_appearance: BonkiAppearanceParameters):
+	if new_appearance == null: return # TODO: maybe reset appearance to default?
+	set_colors(old_appearance, new_appearance)
+	set_dimensions(old_appearance, new_appearance)
+	_crown_pscn = new_appearance.crown_pscn
 
-func set_colors(params: BonkiAppearanceParameters):
+func set_colors(old_params: BonkiAppearanceParameters, params: BonkiAppearanceParameters):
 	if params == null: return
 	
 	var body_material: ShaderMaterial = preload(
@@ -89,31 +89,37 @@ func set_colors(params: BonkiAppearanceParameters):
 	eye_base_r_mesh.set_surface_override_material(0, eye_base_material)
 	
 
-func set_dimensions(params: BonkiAppearanceParameters):
+func set_dimensions(old_params: BonkiAppearanceParameters, params: BonkiAppearanceParameters):
 	if params == null: return
+	var was_blank := old_params == null
 	
-	set_animation_appearance_parameter(add_wide_stretch_path, params.wide_stretch_factor)
-	set_body_shape_key("HornStretch", params.horn_stretch_factor)
-	if (params.pearness_factor == 0.0):
-		set_animation_appearance_parameter(add_pearness_path, params.pearness_factor)
-		set_animation_appearance_parameter(add_antipearness_path, params.pearness_factor)
-	elif (params.pearness_factor > 0.0):
-		set_animation_appearance_parameter(add_pearness_path, params.pearness_factor)
-		set_animation_appearance_parameter(add_antipearness_path, 0)
-	else:
-		set_animation_appearance_parameter(add_pearness_path, 0)
-		set_animation_appearance_parameter(add_antipearness_path, -params.pearness_factor)
-	set_body_shape_key("LongStretch", params.long_stretch_factor)
-	set_animation_appearance_parameter(add_tall_stretch_path, params.tall_stretch_factor)
-	set_body_shape_key("Wonkiness", params.wonkiness_factor)
+	if (was_blank or old_params.wide_stretch_factor != params.wide_stretch_factor):
+		set_animation_appearance_parameter(add_wide_stretch_path, params.wide_stretch_factor)
+	if (was_blank or old_params.horn_stretch_factor != params.horn_stretch_factor):
+		set_body_shape_key("HornStretch", params.horn_stretch_factor)
+	if (was_blank or old_params.pearness_factor != params.pearness_factor):
+		if (params.pearness_factor == 0.0):
+			set_animation_appearance_parameter(add_pearness_path, params.pearness_factor)
+			set_animation_appearance_parameter(add_antipearness_path, params.pearness_factor)
+		elif (params.pearness_factor > 0.0):
+			set_animation_appearance_parameter(add_pearness_path, params.pearness_factor)
+			set_animation_appearance_parameter(add_antipearness_path, 0)
+		else:
+			set_animation_appearance_parameter(add_pearness_path, 0)
+			set_animation_appearance_parameter(add_antipearness_path, -params.pearness_factor)
+	if (was_blank or old_params.long_stretch_factor != params.long_stretch_factor):
+		set_body_shape_key("LongStretch", params.long_stretch_factor)
+	if (was_blank or old_params.tall_stretch_factor != params.tall_stretch_factor):
+		set_animation_appearance_parameter(add_tall_stretch_path, params.tall_stretch_factor)
+	if (was_blank or old_params.wonkiness_factor != params.wonkiness_factor):
+		set_body_shape_key("Wonkiness", params.wonkiness_factor)
 
-	set_animation_appearance_parameter(add_eyes_spread_path, params.eyes_spread_factor)
-	set_animation_appearance_parameter(add_eyes_tilt_path, params.eyes_tilt_factor)
-	#set_animation_appearance_parameter(add_eyes_height_path, params.eyes_height_factor)
-
-	#set_eyes_shape_key("EyesHeight", params.eyes_height_factor * (1 + appearance.tall_stretch_factor ))
-	#set_eyes_shape_key("EyesHeight", params.eyes_height_factor)
-	set_animation_appearance_parameter(add_eyes_height_path, params.eyes_height_factor)
+	if (was_blank or old_params.eyes_spread_factor != params.eyes_spread_factor):
+		set_animation_appearance_parameter(add_eyes_spread_path, params.eyes_spread_factor * 0.5)
+	if (was_blank or old_params.eyes_tilt_factor != params.eyes_tilt_factor):
+		set_animation_appearance_parameter(add_eyes_tilt_path, params.eyes_tilt_factor)
+	if (was_blank or old_params.eyes_height_factor != params.eyes_height_factor):
+		set_animation_appearance_parameter(add_eyes_height_path, params.eyes_height_factor * (1 - absf(params.pearness_factor) * 0.3) - params.pearness_factor * 0.3)
 	
 
 func set_animation_appearance_parameter(path: String, value: float) -> void:

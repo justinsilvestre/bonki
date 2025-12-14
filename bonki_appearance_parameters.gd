@@ -39,24 +39,24 @@ var randomize_action: Callable = randomize
 const crown_choices = [
 	# null,
 	# preload("res://bonki_model/crowns/donut_crown.tscn"),
-	preload("res://bonki_model/crowns/chanterelle_crown.tscn"),
-	preload("res://bonki_model/crowns/christmas_rose_crown.tscn"),
-	preload("res://bonki_model/crowns/enoki_crown.tscn"),
-	preload("res://bonki_model/crowns/yellow_staghorn_crown.tscn"),
-	preload("res://bonki_model/crowns/pincushion_moss_crown.tscn"),
-	preload("res://bonki_model/crowns/porcini_crown.tscn"),
-	preload("res://bonki_model/crowns/kale_crown.tscn"),
-	preload("res://bonki_model/crowns/cladonia_crown.tscn"),
+	preload("res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn"),
+	preload("res://bonki_model/crowns/christmas_rose/christmas_rose_crown.tscn"),
+	preload("res://bonki_model/crowns/enoki/enoki_crown.tscn"),
+	preload("res://bonki_model/crowns/yellow_stagshorn/yellow_staghorn_crown.tscn"),
+	preload("res://bonki_model/crowns/pincushion_moss/pincushion_moss_crown.tscn"),
+	preload("res://bonki_model/crowns/porcini/porcini_crown.tscn"),
+	preload("res://bonki_model/crowns/kale/kale_crown.tscn"),
+	preload("res://bonki_model/crowns/cladonia/cladonia_crown.tscn"),
 ]
 const body_colors = [
 	# null,
 	# preload("res://bonki_model/crowns/donut_crown.tscn"),
-	[[48, 57], [0.5,0.9], [0.5,0.7]], # yellow
+	[[30, 45], [0.7,0.9], [0.6,0.8]], # yellow
 	[[182, 195], [0.3,0.4], [0.7,0.9]], # preload("res://bonki_model/crowns/christmas_rose_crown.tscn"),
-	[[0, 27], [0.3,0.4], [0.3,0.7]], # preload("res://bonki_model/crowns/enoki_crown.tscn"),
+	[[0, 27], [0.3,0.4], [0.7,0.9]], # preload("res://bonki_model/crowns/enoki_crown.tscn"),
 	[[42, 56], [0.7,0.9], [0.5,0.7]], # preload("res://bonki_model/crowns/yellow_staghorn_crown.tscn"),
 	[[70, 100], [0.3,0.4], [0.3,0.7]], # preload("res://bonki_model/crowns/pincushion_moss_crown.tscn"),
-	[[19, 40], [0.3,0.4], [0.3,0.9]], # preload("res://bonki_model/crowns/porcini_crown.tscn"),
+	[[20, 39], [0.5,0.7], [0.7,0.9]], # preload("res://bonki_model/crowns/porcini_crown.tscn"),
 	[[110, 119], [0.3,0.5], [0.3,0.7]], # preload("res://bonki_model/crowns/kale_crown.tscn"),
 	[[124, 145], [0.3,0.4], [0.5,0.7]], # preload("res://bonki_model/crowns/cladonia_crown.tscn"),
 ]

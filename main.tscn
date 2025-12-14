@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://beg1s66x1ogeb"]
+[gd_scene load_steps=16 format=3 uid="uid://beg1s66x1ogeb"]
 
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini_crown.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini/porcini_crown.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://kbv6caifmeee" path="res://bonki_model/crowns/chanterelle_crown.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://ddmpstbkfm1ts" path="res://bonki_model/crowns/christmas_rose_crown.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://kbv6caifmeee" path="res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ddmpstbkfm1ts" path="res://bonki_model/crowns/christmas_rose/christmas_rose_crown.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://c3pqpi4a10wy7" path="res://bonki_model/crowns/yellow_stagshorn/yellow_staghorn_crown.tscn" id="6_7mycd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -56,6 +57,24 @@ size = Vector3(60, 2, 60)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
 size = Vector3(60, 2, 60)
 
+[sub_resource type="Resource" id="Resource_5vw27"]
+script = ExtResource("2_lquwl")
+body_color = Color(0.655654, 0.5702577, 0.14327613, 1)
+eye_shine_color = Color(0.83443904, 0.919142, 0.9036593, 1)
+eye_shadow_color = Color(0.32238927, 0.59529483, 0.9717855, 1)
+eye_base_color = Color(0.16057527, 0.38995978, 0.3595757, 1)
+wide_stretch_factor = 0.5705871586347397
+horn_stretch_factor = 0.07362202587568771
+long_stretch_factor = 0.9535878213828413
+pearness_factor = 0.44217746773899846
+tall_stretch_factor = -0.03791401770343372
+wonkiness_factor = 0.8768227819425378
+eyes_spread_factor = 0.483237841795112
+eyes_tilt_factor = 0.9740037732040245
+eyes_height_factor = 0.22323652701583696
+crown_pscn = ExtResource("6_7mycd")
+metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
+
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -95,3 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9659259, -0.25881904, 0, 0.25881904, 0.965
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 2, 13.223103, 35.206596)
 current = true
+
+[node name="Bonki" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 22.910034, 0.057106018, 19.045654)
+appearance = SubResource("Resource_5vw27")

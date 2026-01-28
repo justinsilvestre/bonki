@@ -12,9 +12,9 @@
 script = ExtResource("2_2xsow")
 
 [node name="Skeleton3D" parent="Armature" index="1"]
-bones/0/rotation = Quaternion(0, -4.362085e-25, -0.021175174, 0.99977577)
-bones/1/rotation = Quaternion(0, -7.27822e-25, -0.030938111, 0.9995214)
-bones/2/rotation = Quaternion(0.0015329128, 0.012020812, 0.062153216, 0.99799305)
+bones/0/rotation = Quaternion(4.1656137e-17, 4.916602e-09, -0.032845445, 0.9994605)
+bones/1/rotation = Quaternion(-2.1937531e-16, 1.7132582e-08, -0.10910511, 0.99403024)
+bones/2/rotation = Quaternion(0.0026784388, 0.01591483, 0.059898004, 0.99807405)
 bones/3/rotation = Quaternion(-1.58718e-18, 2.2388912e-11, 1.8626451e-09, 1)
 bones/3/scale = Vector3(1.0000001, 1.0000001, 1)
 bones/4/position = Vector3(-2.1615529e-06, 0.15211225, 0.01766415)
@@ -63,7 +63,7 @@ parameters/AddEyesHeight/add_amount = 0.0
 parameters/Add2/add_amount = 0.0
 
 [node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3"]
-transform = Transform3D(0.99937445, -0.0260636, 0.023913644, 0.026164843, 0.9996501, -0.003930701, -0.023802828, 0.0045539374, 0.9997063, 0.0108551, 0.8767274, -0.012972044)
+transform = Transform3D(0.986995, 0.15794563, 0.029908538, -0.15764643, 0.9874214, -0.012125766, -0.031447537, 0.0072530936, 0.9994791, 0.24467231, 0.8569475, -0.010191007)
 top_level = true
 bone_name = "Horn"
 bone_idx = 3

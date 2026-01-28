@@ -4,9 +4,8 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://brv6m6iys4msf"
 path.s3tc="res://.godot/imported/cladonia_0.png-64eb36e85a09efc51db752d4e7d5c0c0.s3tc.ctex"
-path.etc2="res://.godot/imported/cladonia_0.png-64eb36e85a09efc51db752d4e7d5c0c0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -16,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://bonki_model/crowns/cladonia/cladonia_0.png"
-dest_files=["res://.godot/imported/cladonia_0.png-64eb36e85a09efc51db752d4e7d5c0c0.s3tc.ctex", "res://.godot/imported/cladonia_0.png-64eb36e85a09efc51db752d4e7d5c0c0.etc2.ctex"]
+dest_files=["res://.godot/imported/cladonia_0.png-64eb36e85a09efc51db752d4e7d5c0c0.s3tc.ctex"]
 
 [params]
 

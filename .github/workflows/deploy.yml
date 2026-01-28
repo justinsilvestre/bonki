@@ -21,17 +21,38 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Install dependencies
         run: |
           apt-get update
-          apt-get install -y libfontconfig1 wget xz-utils
-          # Install Blender 4.2.16 specifically
-          wget -q https://download.blender.org/release/Blender4.2/blender-4.2.16-linux-x64.tar.xz
-          tar -xf blender-4.2.16-linux-x64.tar.xz
-          mv blender-4.2.16-linux-x64 /opt/blender
-          ln -s /opt/blender/blender /usr/local/bin/blender
+          # Install libraries required by Blender and Godot
+          apt-get install -y wget xz-utils libx11-dev libxxi-dev libxxf86vm-dev libfontconfig1 libgl1-mesa-dev
 
+      - name: Install Blender 4.2.16
+        run: |
+          # Download official Blender 4.2.16 tarball
+          wget -q https://download.blender.org/release/Blender4.2/blender-4.2.16-linux-x64.tar.xz
+
+          # Extract it
+          tar -xf blender-4.2.16-linux-x64.tar.xz
+
+          # Move to a standard location (optional but cleaner)
+          mv blender-4.2.16-linux-x64 /opt/blender
+
+          # Verify installation
+          /opt/blender/blender --version
+
+      - name: Configure Blender path for Godot
+        run: |
+          mkdir -p ~/.config/godot
+
+          # Configure Godot 4 Editor Settings to use the downloaded Blender
+          cat <<EOF > ~/.config/godot/editor_settings-4.tres
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          filesystem/import/blender/blender_path = "/opt/blender/blender"
+          filesystem/import/blender/enabled = true
+          EOF
       - name: Setup Godot export templates
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates

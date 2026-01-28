@@ -22,15 +22,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Move HTML5 templates into position
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get install -y libfontconfig1
+
+      - name: Setup Godot export templates
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
       - name: Create staging directory
         run: mkdir -v -p build/web
 
-      - name: Build
-        run: godot -v --export-release --headless "Web" ../build/web/index.html project.godot
+      - name: Import project (pre-build step)
+        run: |
+          cd $GITHUB_WORKSPACE
+          godot --headless --editor --quit --verbose
+
+      - name: Build for Web
+        run: |
+          cd $GITHUB_WORKSPACE
+          timeout 300 godot --headless --export-release "Web" build/web/index.html --verbose || 
+          if [ $? -eq 124 ]; then echo "Export timed out but may have completed"; else exit $?; fi
+
+      - name: Verify build output
+        run: |
+          ls -la build/web/
+          if [ ! -f "build/web/index.html" ]; then
+            echo "Build failed - index.html not found"
+            exit 1
+          fi
 
       - name: Add coi-service-worker
         run: |

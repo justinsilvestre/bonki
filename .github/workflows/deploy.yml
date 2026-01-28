@@ -25,7 +25,12 @@ jobs:
       - name: Install dependencies
         run: |
           apt-get update
-          apt-get install -y libfontconfig1 blender
+          apt-get install -y libfontconfig1 wget xz-utils
+          # Install Blender 4.2.16 specifically
+          wget -q https://download.blender.org/release/Blender4.2/blender-4.2.16-linux-x64.tar.xz
+          tar -xf blender-4.2.16-linux-x64.tar.xz
+          mv blender-4.2.16-linux-x64 /opt/blender
+          ln -s /opt/blender/blender /usr/local/bin/blender
 
       - name: Setup Godot export templates
         run: |

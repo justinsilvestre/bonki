@@ -24,9 +24,22 @@ jobs:
       - name: Install dependencies
         run: |
           apt-get update
-          # Install libraries required by Blender and Godot
-          apt-get install -y wget xz-utils libx11-dev libxi-dev libxxf86vm-dev libfontconfig1 libgl1-mesa-dev libxrender1
-
+          # Install the full stack of X11 and GL libraries required by Blender
+          apt-get install -y \
+            wget \
+            xz-utils \
+            libgl1-mesa-dev \
+            libfontconfig1 \
+            libx11-dev \
+            libxi-dev \
+            libxxf86vm-dev \
+            libxrender1 \
+            libxfixes3 \
+            libxcursor1 \
+            libxinerama1 \
+            libsm6 \
+            libice6 \
+            libxkbcommon-x11-0
       - name: Install Blender 4.2.16
         run: |
           # Download official Blender 4.2.16 tarball

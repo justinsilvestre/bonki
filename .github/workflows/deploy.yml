@@ -24,36 +24,19 @@ jobs:
       - name: Install dependencies
         run: |
           apt-get update
-          # Install the full stack of X11 and GL libraries required by Blender
-          apt-get install -y \
-            wget \
-            xz-utils \
-            libgl1-mesa-dev \
-            libfontconfig1 \
-            libx11-dev \
-            libxi-dev \
-            libxxf86vm-dev \
-            libxrender1 \
-            libxfixes3 \
-            libxcursor1 \
-            libxinerama1 \
-            libsm6 \
-            libice6 \
-            libxkbcommon-x11-0
+          # 1. Install system blender to automatically pull ALL dependencies (X11, GL, etc.)
+          # 2. Install wget/xz to download our specific version
+          apt-get install -y blender wget xz-utils
+
       - name: Install Blender 4.2.16
         run: |
-          # Download official Blender 4.2.16 tarball
+          # Download the exact version we need
           wget -q https://download.blender.org/release/Blender4.2/blender-4.2.16-linux-x64.tar.xz
-
-          # Extract it
           tar -xf blender-4.2.16-linux-x64.tar.xz
-
-          # Move to a standard location (optional but cleaner)
           mv blender-4.2.16-linux-x64 /opt/blender
 
-          # Verify installation
+          # Verify it runs (it should work now that 'apt-get install blender' fixed the libs)
           /opt/blender/blender --version
-
       - name: Configure Blender path for Godot
         run: |
           mkdir -p ~/.config/godot

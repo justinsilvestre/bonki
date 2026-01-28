@@ -44,21 +44,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ee3i5")
 
 [node name="TopRow" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.147324, 2.6, 0)
 script = ExtResource("2_84if4")
 spawn_first_instantly = true
 spawn_wait = 2.0
 child_velocity = Vector3(-2, 0, 0)
 
 [node name="MiddleRow" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -0.39999998, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.247147, -0.39999998, 0)
 script = ExtResource("2_84if4")
 spawn_first_instantly = true
 spawn_wait = 2.0
 child_velocity = Vector3(2, 0, 0)
 
 [node name="BottomRow" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -3.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.147324, -3.4, 0)
 script = ExtResource("2_84if4")
 spawn_first_instantly = true
 spawn_wait = 2.0

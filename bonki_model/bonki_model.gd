@@ -25,6 +25,10 @@ var add_eyes_height_path := "parameters/AddEyesHeight/add_amount"
 # Should be set by Bonki.appearance, and point to same resource
 var appearance: BonkiAppearanceParameters:
 	set(new_val): # Should be called automatically at scene instantiation
+		# Skip appearance changes during CI build or in headless mode
+		if OS.has_environment("GODOT_CI_BUILD") or DisplayServer.get_name() == "headless":
+			appearance = new_val
+			return
 		if appearance == new_val: return # no-op if unchanged
 		if new_val != null:
 			# temporary connection. not visible to editor or saved to .tscn
@@ -37,6 +41,10 @@ var appearance: BonkiAppearanceParameters:
 # Cached variables from appearance changes
 var _crown_pscn: PackedScene = null:
 	set(new_val):
+		# Skip crown instantiation during CI build or in headless mode
+		if OS.has_environment("GODOT_CI_BUILD") or DisplayServer.get_name() == "headless":
+			_crown_pscn = new_val
+			return
 		if _crown_pscn == new_val: return # no-op if unchanged
 		if new_val != null:
 			var new_inst =  new_val.instantiate()

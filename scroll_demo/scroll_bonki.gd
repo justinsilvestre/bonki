@@ -6,6 +6,9 @@ extends Bonki
 
 func _ready():
 	if Engine.is_editor_hint(): return
+	# Skip initialization during CI build or in headless mode
+	if OS.has_environment("GODOT_CI_BUILD") or DisplayServer.get_name() == "headless":
+		return
 		
 	model.appearance = BonkiAppearanceParameters.new()
 	model.appearance.randomize()

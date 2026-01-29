@@ -43,5 +43,5 @@ func _start_transition():
 	go_to_next_scene()
 
 func go_to_next_scene():
-	get_tree().change_scene_to_file(next_scene)
+	SceneLoader.load_scene_with_loading(next_scene)
 	

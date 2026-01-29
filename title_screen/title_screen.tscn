@@ -4,38 +4,100 @@
 [ext_resource type="Texture2D" uid="uid://dwa0s4do3oi8" path="res://title_screen/bonki_forest_concept.png" id="1_dxpbd"]
 [ext_resource type="Texture2D" uid="uid://dvdkj43umacgx" path="res://title_screen/title.png" id="2_2dq6q"]
 
-[node name="CenterContainer" type="CenterContainer" unique_id=1956229492]
+[sub_resource type="Animation" id="Animation_vbjqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleImageTextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-776, -476.00012)]
+}
+
+[sub_resource type="Animation" id="Animation_2dq6q"]
+resource_name = "wobble"
+length = 3.9333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleImageTextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 1.99, 2.95, 3.89),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-776, -476.00012), Vector2(-773, -465), Vector2(-776, -476.00012), Vector2(-785, -485), Vector2(-776, -476.00012)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vbjqi"]
+_data = {
+&"RESET": SubResource("Animation_vbjqi"),
+&"wobble": SubResource("Animation_2dq6q")
+}
+
+[node name="Control" type="Control" unique_id=40681953]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Control" type="Control" parent="." unique_id=40681953]
-layout_mode = 2
 script = ExtResource("1_2dq6q")
 
-[node name="FadeColorRect" type="ColorRect" parent="Control" unique_id=1403467729]
-layout_mode = 0
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1044686031]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -701.0
+offset_top = -819.0
+offset_right = 699.0
+offset_bottom = 769.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5651101, 0.5651101)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_dxpbd")
+stretch_mode = 5
+
+[node name="TitleImageTextureRect" type="TextureRect" parent="." unique_id=270205586]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -776.0
+offset_top = -476.00012
+offset_right = 896.0
+offset_bottom = -332.00012
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.46197805, 0.46197805)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_2dq6q")
+stretch_mode = 5
+
+[node name="FadeColorRect" type="ColorRect" parent="." unique_id=1403467729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2592.0002
+offset_top = -1900.0001
+offset_right = -2392.0002
+offset_bottom = -1700.0001
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(23.249262, 23.249262)
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="BackgroundTextureRect" type="TextureRect" parent="Control" unique_id=1044686031]
-layout_mode = 0
-offset_left = -693.0
-offset_top = -1023.0
-offset_right = 1787.0
-offset_bottom = 2485.0
-scale = Vector2(0.5665795, 0.5665795)
-texture = ExtResource("1_dxpbd")
-
-[node name="TitleImageTextureRect" type="TextureRect" parent="Control" unique_id=1338105659]
-layout_mode = 0
-offset_left = -511.00006
-offset_top = -852.00006
-offset_right = 2241.0
-offset_bottom = 1212.0
-scale = Vector2(0.430061, 0.430061)
-texture = ExtResource("2_2dq6q")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=999815262]
+libraries/ = SubResource("AnimationLibrary_vbjqi")
+autoplay = &"wobble"

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=20 format=3 uid="uid://c522ts4uxsrk8"]
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://c522ts4uxsrk8"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_6535g"]
 

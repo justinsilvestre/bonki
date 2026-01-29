@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://ckp2oqynh8bc2"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ckp2oqynh8bc2"]
 
 [ext_resource type="Shader" uid="uid://cdhoddy2rbp4v" path="res://bonki_model/bonki_model.gdshader" id="1_ylgm3"]
 [ext_resource type="Gradient" uid="uid://8lmbtxh1mn62" path="res://bonki_model/bonki_model_fresnel_gradient.tres" id="2_ehucb"]

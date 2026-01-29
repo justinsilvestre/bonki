@@ -36,32 +36,47 @@ extends Resource
 
 @export_tool_button("Randomize")
 var randomize_action: Callable = randomize
-const crown_choices = [
+
+# Use paths instead of preloads to avoid loading everything at startup
+const crown_choice_paths = [
 	# null,
-	# preload("res://bonki_model/crowns/donut_crown.tscn"),
-	preload("res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn"),
-	preload("res://bonki_model/crowns/christmas_rose/christmas_rose_crown.tscn"),
-	preload("res://bonki_model/crowns/enoki/enoki_crown.tscn"),
-	preload("res://bonki_model/crowns/yellow_stagshorn/yellow_staghorn_crown.tscn"),
-	preload("res://bonki_model/crowns/pincushion_moss/pincushion_moss_crown.tscn"),
-	preload("res://bonki_model/crowns/porcini/porcini_crown.tscn"),
-	preload("res://bonki_model/crowns/kale/kale_crown.tscn"),
-	preload("res://bonki_model/crowns/cladonia/cladonia_crown.tscn"),
+	# "res://bonki_model/crowns/donut_crown.tscn",
+	"res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn",
+	"res://bonki_model/crowns/christmas_rose/christmas_rose_crown.tscn",
+	"res://bonki_model/crowns/enoki/enoki_crown.tscn",
+	"res://bonki_model/crowns/yellow_stagshorn/yellow_staghorn_crown.tscn",
+	"res://bonki_model/crowns/pincushion_moss/pincushion_moss_crown.tscn",
+	"res://bonki_model/crowns/porcini/porcini_crown.tscn",
+	"res://bonki_model/crowns/kale/kale_crown.tscn",
+	"res://bonki_model/crowns/cladonia/cladonia_crown.tscn",
 ]
+
+# Lazy loading getter for crown choices  
+var _crown_choices_cache: Array[PackedScene] = []
+var crown_choices: Array[PackedScene]:
+	get:
+		if _crown_choices_cache.is_empty() and not (OS.has_environment("GODOT_CI_BUILD") or DisplayServer.get_name() == "headless"):
+			for path in crown_choice_paths:
+				_crown_choices_cache.append(load(path))
+		return _crown_choices_cache
 const body_colors = [
 	# null,
 	# preload("res://bonki_model/crowns/donut_crown.tscn"),
-	[[30, 45], [0.7,0.9], [0.6,0.8]], # yellow
+	[[30, 45], [0.7,0.9], [0.8,0.9]], # yellow
 	[[182, 195], [0.3,0.4], [0.7,0.9]], # preload("res://bonki_model/crowns/christmas_rose_crown.tscn"),
-	[[0, 27], [0.3,0.4], [0.7,0.9]], # preload("res://bonki_model/crowns/enoki_crown.tscn"),
-	[[42, 56], [0.7,0.9], [0.5,0.7]], # preload("res://bonki_model/crowns/yellow_staghorn_crown.tscn"),
+	[[20, 39], [0.6,0.7], [0.5,0.6]], # preload("res://bonki_model/crowns/enoki_crown.tscn"),
+	[[42, 56], [0.8,1], [0.5,0.7]], # preload("res://bonki_model/crowns/yellow_staghorn_crown.tscn"),
 	[[70, 100], [0.3,0.4], [0.3,0.7]], # preload("res://bonki_model/crowns/pincushion_moss_crown.tscn"),
-	[[20, 39], [0.5,0.7], [0.7,0.9]], # preload("res://bonki_model/crowns/porcini_crown.tscn"),
+	[[0, 27], [0.3,0.4], [0.7,0.9]], # preload("res://bonki_model/crowns/porcini_crown.tscn"),
 	[[110, 119], [0.3,0.5], [0.3,0.7]], # preload("res://bonki_model/crowns/kale_crown.tscn"),
 	[[124, 145], [0.3,0.4], [0.5,0.7]], # preload("res://bonki_model/crowns/cladonia_crown.tscn"),
 ]
 
 func randomize():
+	# Skip randomization during CI build or in headless mode
+	if OS.has_environment("GODOT_CI_BUILD") or DisplayServer.get_name() == "headless":
+		return
+		
 	var crown_index = randi_range(0, crown_choices.size() - 1)
 	var colors = body_colors[crown_index]
 	var hue = colors[0]

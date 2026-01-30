@@ -1,7 +1,8 @@
 extends Control
 
 
-@export var next_scene: String = "res://main.tscn"
+@export var main_scene: String = "res://bonki_spring/bonki_spring.tscn"
+@export var intro_scene: String = "res://bonki_spring/bonki_spring.tscn"
 @export var fade_duration_sec: float = 0.35
 
 @onready var fade: ColorRect = $FadeColorRect
@@ -43,5 +44,8 @@ func _start_transition():
 	go_to_next_scene()
 
 func go_to_next_scene():
-	SceneLoader.load_scene_with_loading(next_scene)
+	if GameState.seen_intro:
+		SceneLoader.load_scene_with_loading(main_scene)
+	else:
+		SceneLoader.load_scene_with_loading(intro_scene)
 	

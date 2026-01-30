@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameState="*uid://boeu0ae5uk444"
-SceneLoader="*uid://cyny1028lo4ub"
+TransitionManager="*uid://dbrhnsnyl163m"
 
 [display]
 

@@ -6,12 +6,12 @@
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8585f"]
 gradient = ExtResource("2_ehucb")
 
-[sub_resource type="Gradient" id="Gradient_kl7cs"]
+[sub_resource type="Gradient" id="Gradient_ylgm3"]
 offsets = PackedFloat32Array(0.22613065, 0.26884422, 0.451005, 0.830402)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.11888111, 0.11888111, 0.11888111, 1, 0.49152538, 0.49152538, 0.49152538, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_g32e2"]
-gradient = SubResource("Gradient_kl7cs")
+gradient = SubResource("Gradient_ylgm3")
 
 [resource]
 render_priority = 0

@@ -1,55 +1,15 @@
-[gd_scene format=4 uid="uid://hxlw3a75kr5"]
+[gd_scene format=4 uid="uid://dyfabbxx1mg60"]
 
-[ext_resource type="Texture2D" uid="uid://cxemvv50x1po1" path="res://bonki_spring/art/bonki_spring_background.png" id="1_ho77f"]
-[ext_resource type="Shader" uid="uid://biuaw0b7g8awu" path="res://bonki_spring/bonki_spring_wash.gdshader" id="1_o0s8v"]
-[ext_resource type="Texture2D" uid="uid://bu73qany5tloy" path="res://bonki_spring/noise_watercolor.tres" id="2_jwgr6"]
-[ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
-[ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini/porcini_crown.tscn" id="5_u8own"]
-[ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
-[ext_resource type="PackedScene" uid="uid://kbv6caifmeee" path="res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn" id="7_7vnbg"]
-[ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="8_8c10v"]
-[ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="9_3nr71"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwgr6"]
-render_priority = 0
-shader = ExtResource("1_o0s8v")
-shader_parameter/bg_tex = ExtResource("1_ho77f")
-shader_parameter/noise_tex = ExtResource("2_jwgr6")
-shader_parameter/wobble_strength = -0.05
-shader_parameter/wobble_speed = 0.15
-shader_parameter/wash_amount = 0.6
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jwgr6"]
-size = Vector3(8, 1, 8)
-
-[sub_resource type="BoxMesh" id="BoxMesh_33gn6"]
-size = Vector3(8, 1, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_w85if"]
-size = Vector3(8, 1, 8)
-
-[sub_resource type="Resource" id="Resource_8potb"]
-script = ExtResource("6_7vnbg")
-body_color = Color(0.83417, 0.68302464, 0.5674429, 1)
-eye_shine_color = Color(0.9684159, 0.97118276, 0.93103135, 1)
-eye_shadow_color = Color(0.45697713, 0.53286624, 0.008636004, 1)
-eye_base_color = Color(0.5340315, 0.54004854, 0.30944934, 1)
-wide_stretch_factor = -0.12906566019280177
-horn_stretch_factor = 0.23410877816750253
-long_stretch_factor = 0.9628591055012315
-pearness_factor = -0.35541987193361835
-tall_stretch_factor = -0.8184010846658597
-wonkiness_factor = -0.9823008181686425
-eyes_spread_factor = 0.5826727407019869
-eyes_tilt_factor = 0.9909117590681896
-eyes_height_factor = -0.2688000340588025
-crown_pscn = ExtResource("5_u8own")
-metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
+[ext_resource type="Texture2D" uid="uid://dwa0s4do3oi8" path="res://title_screen/bonki_forest_concept.png" id="1_fpmxm"]
+[ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="2_vyos2"]
+[ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="3_1q7h5"]
+[ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="3_vjsr4"]
+[ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="4_a5lnx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfta6"]
 resource_name = "material_0"
 shading_mode = 0
-albedo_texture = ExtResource("9_3nr71")
+albedo_texture = ExtResource("4_a5lnx")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_glfur"]
 _surfaces = [{
@@ -88,7 +48,7 @@ metadata/extras = {
 "processed": true
 }
 
-[sub_resource type="PackedScene" id="PackedScene_8c10v"]
+[sub_resource type="PackedScene" id="PackedScene_aw26t"]
 _bundled = {
 "conn_count": 0,
 "conns": PackedInt32Array(),
@@ -99,12 +59,12 @@ _bundled = {
 "node_ids": PackedInt32Array(0, 0),
 "node_paths": [NodePath(".")],
 "nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0, 1073741824, 0, 4, 3, -1, 3, 5, 1, 6, 2, 7, 3, 0),
-"variants": [ExtResource("8_8c10v"), Transform3D(1, 0, 0, 0, 0.7251821, -0.6885571, 0, 0.6885571, 0.7251821, 0, 0.2481587, 0), SubResource("ArrayMesh_fdnex"), NodePath("")],
+"variants": [ExtResource("3_1q7h5"), Transform3D(1, 0, 0, 0, 0.7251821, -0.6885571, 0, 0.6885571, 0.7251821, 0, 0.2481587, 0), SubResource("ArrayMesh_fdnex"), NodePath("")],
 "version": 3
 }
 
-[sub_resource type="Resource" id="Resource_hgyec"]
-script = ExtResource("6_7vnbg")
+[sub_resource type="Resource" id="Resource_6ct58"]
+script = ExtResource("3_vjsr4")
 body_color = Color(0.51489, 0.79201454, 0.8228061, 1)
 eye_shine_color = Color(0.79420704, 0.7673467, 0.8990598, 1)
 eye_shadow_color = Color(0.8938426, 0.2747212, 0.10184037, 1)
@@ -118,78 +78,56 @@ wonkiness_factor = -0.10032154502070224
 eyes_spread_factor = -0.5951280262637992
 eyes_tilt_factor = 0.13252581770697747
 eyes_height_factor = -0.880107546916816
-crown_pscn = SubResource("PackedScene_8c10v")
+crown_pscn = SubResource("PackedScene_aw26t")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
-[sub_resource type="Resource" id="Resource_3nr71"]
-script = ExtResource("6_7vnbg")
-body_color = Color(0.8493928, 0.62625396, 0.21185341, 1)
-eye_shine_color = Color(0.84505266, 0.9478968, 0.91163665, 1)
-eye_shadow_color = Color(0.15978265, 0.42398974, 0.60340804, 1)
-eye_base_color = Color(0.29286852, 0.55550516, 0.47846514, 1)
-wide_stretch_factor = 0.23187983101690343
-horn_stretch_factor = 0.3615511167164726
-long_stretch_factor = -0.541929069154104
-pearness_factor = -0.3309938429224243
-tall_stretch_factor = 0.1852332638566467
-wonkiness_factor = -0.21479784872602625
-eyes_spread_factor = -0.3010561066430465
-eyes_tilt_factor = -0.06351579951093356
-eyes_height_factor = -0.8007480548375581
-crown_pscn = ExtResource("7_7vnbg")
-metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
+[node name="Intro" type="Control" unique_id=718073339]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="BonkiSpring" type="Node" unique_id=260375899]
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1473258965]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -669.0
+offset_top = -769.0
+offset_right = 1811.0
+offset_bottom = 2739.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6314122, 0.6314122)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_fpmxm")
+stretch_mode = 5
 
-[node name="WorldNode3D" type="Node3D" parent="." unique_id=77457003]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=238365696]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -95.0
+offset_right = 1087.0
+offset_bottom = 1969.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9914325, 1.0054898)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldNode3D" unique_id=1645234943]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=480421166]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1109, 2064)
+render_target_update_mode = 4
 
-[node name="CameraRigNode3D" type="Node3D" parent="WorldNode3D" unique_id=566747869]
-transform = Transform3D(0.9523159, 0.1737956, -0.2507776, 5.1532565e-09, 0.82191545, 0.5696095, 0.30511358, -0.5424482, 0.7827231, -3.1744606, 7.8342257, 4.6483293)
+[node name="WorldNode3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
 
-[node name="Camera3D" type="Camera3D" parent="WorldNode3D/CameraRigNode3D" unique_id=1732145892]
-projection = 1
-size = 8.0
+[node name="CameraRigNode3D" type="Node3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2049257925]
 
-[node name="BackgroundSprite3D" type="Sprite3D" parent="WorldNode3D" unique_id=352621611]
-transform = Transform3D(0.3707207, 0, -0.042553786, 0, 0.39888015, 0, 0.11902542, 0, 0.13253951, 12.834606, -28.40387, -45.475914)
-material_override = SubResource("ShaderMaterial_jwgr6")
-billboard = 1
-texture = ExtResource("1_ho77f")
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/WorldNode3D/CameraRigNode3D" unique_id=139175723]
+transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0, 2.2283163)
 
-[node name="PlatformUpperStaticBody3D" type="StaticBody3D" parent="WorldNode3D" unique_id=799142861]
-transform = Transform3D(0.9998843, 0.014370831, -0.0049842, -0.012802027, 0.9720444, 0.23444729, 0.008214094, -0.23435643, 0.9721163, 1.194847, -0.0106470585, -4.4389315)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldNode3D/PlatformUpperStaticBody3D" unique_id=1160241119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.7910733)
-shape = SubResource("BoxShape3D_jwgr6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldNode3D/PlatformUpperStaticBody3D/CollisionShape3D" unique_id=978165475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8898063, 0)
-visible = false
-mesh = SubResource("BoxMesh_33gn6")
-
-[node name="PlatformLowerStaticBody3D" type="StaticBody3D" parent="WorldNode3D" unique_id=943299447]
-transform = Transform3D(0.9998843, 0.014370831, -0.0049842, -0.012802027, 0.9720444, 0.23444729, 0.008214094, -0.23435643, 0.9721163, 1.122787, -3.1511908, -2.9656336)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldNode3D/PlatformLowerStaticBody3D" unique_id=421842754]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3493125)
-shape = SubResource("BoxShape3D_jwgr6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldNode3D/PlatformLowerStaticBody3D/CollisionShape3D" unique_id=1383520282]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8898063, 0)
-visible = false
-mesh = SubResource("BoxMesh_w85if")
-
-[node name="Bonki" parent="WorldNode3D" unique_id=2052834491 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.49994212, 0.0071854154, -0.002492119, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.1171782, 0.486058, -0.6818992, -0.8108505, -8.196823)
-appearance = SubResource("Resource_8potb")
-
-[node name="Bonki2" parent="WorldNode3D" unique_id=1144760733 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.49994212, 0.0071854154, -0.002492119, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.1171782, 0.486058, -0.10894072, 0.72000134, -3.6158426)
-appearance = SubResource("Resource_hgyec")
-
-[node name="Bonki3" parent="WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.49994212, 0.0071854154, -0.0024921186, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.117178194, 0.486058, -0.6818992, 4.344735, -9.196823)
-appearance = SubResource("Resource_3nr71")
+[node name="Bonki2" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2084119089 instance=ExtResource("2_vyos2")]
+transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.49999997, 0, 0, 0)
+appearance = SubResource("Resource_6ct58")

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dvtygwn1d61o2"]
+
+[ext_resource type="Script" uid="uid://d2j2fcc63ooam" path="res://ui/transition_overlay.gd" id="1_6uoov"]
+
+[sub_resource type="Animation" id="Animation_r70hf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../FadeColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5s8yk"]
+resource_name = "fade_from_solid"
+length = 2.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../FadeColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6uoov"]
+resource_name = "fade_to_solid"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../FadeColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5s8yk"]
+_data = {
+&"RESET": SubResource("Animation_r70hf"),
+&"fade_from_solid": SubResource("Animation_5s8yk"),
+&"fade_to_solid": SubResource("Animation_6uoov")
+}
+
+[node name="TransitionOverlay" type="Control" unique_id=414588828]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+script = ExtResource("1_6uoov")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=255738377]
+layer = 100
+
+[node name="FadeColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1625167188]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LoadingHostControl" type="Control" parent="CanvasLayer" unique_id=116579061]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FadeAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=1066824090]
+root_node = NodePath("../LoadingHostControl")
+libraries/ = SubResource("AnimationLibrary_5s8yk")

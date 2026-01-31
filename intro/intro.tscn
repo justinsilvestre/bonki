@@ -81,19 +81,25 @@ eyes_height_factor = -0.880107546916816
 crown_pscn = SubResource("PackedScene_aw26t")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vyos2"]
+size = Vector3(4, 1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1q7h5"]
+size = Vector3(4, 1, 3)
+
 [node name="Intro" type="Control" unique_id=718073339]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1473258965]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -669.0
-offset_top = -769.0
-offset_right = 1811.0
-offset_bottom = 2739.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6314122, 0.6314122)
@@ -103,23 +109,23 @@ stretch_mode = 5
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=238365696]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -22.0
-offset_top = -95.0
-offset_right = 1087.0
-offset_bottom = 1969.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1371.5
+offset_top = -1048.0
+offset_right = 1371.5
+offset_bottom = 1048.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.9914325, 1.0054898)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=480421166]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1109, 2064)
-render_target_update_mode = 4
+size = Vector2i(2743, 2096)
 
 [node name="WorldNode3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
 
@@ -131,3 +137,18 @@ transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95
 [node name="Bonki2" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2084119089 instance=ExtResource("2_vyos2")]
 transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.49999997, 0, 0, 0)
 appearance = SubResource("Resource_6ct58")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=452851521]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/WorldNode3D/StaticBody3D" unique_id=1589639107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92224, 0)
+shape = SubResource("BoxShape3D_vyos2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/WorldNode3D/StaticBody3D" unique_id=1310090111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92224, 0)
+visible = false
+mesh = SubResource("BoxMesh_1q7h5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1349412739]
+transform = Transform3D(0.04922702, 0.9388421, -0.3408112, -0.13421422, 0.344348, 0.92919916, 0.98972887, 0, 0.1429572, -2.9796019, 7.5723295, 0)
+sky_mode = 1

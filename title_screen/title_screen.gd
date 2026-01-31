@@ -1,7 +1,7 @@
 extends Control
 
-@export var main_scene: String = "res://bonki_spring/bonki_spring.tscn"
-@export var intro_scene: String = "res://bonki_spring/bonki_spring.tscn"
+@export var main_scene: String = "res://intro/intro.tscn"
+@export var intro_scene: String = "res://intro/intro.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

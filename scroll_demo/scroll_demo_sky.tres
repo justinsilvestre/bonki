@@ -1,4 +1,4 @@
-[gd_resource type="Sky" load_steps=2 format=3 uid="uid://rjywlprepe5s"]
+[gd_resource type="Sky" format=3 uid="uid://rjywlprepe5s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dbhbj"]
 ground_bottom_color = Color(0.21586502, 0.39, 0.1677, 1)

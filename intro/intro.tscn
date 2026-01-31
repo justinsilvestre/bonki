@@ -95,18 +95,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1473258965]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.6314122, 0.6314122)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("1_fpmxm")
-stretch_mode = 5
-
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=238365696]
 layout_mode = 1
 anchors_preset = 8
@@ -126,6 +114,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(2743, 2096)
+render_target_update_mode = 4
 
 [node name="WorldNode3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
 
@@ -151,4 +140,10 @@ mesh = SubResource("BoxMesh_1q7h5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1349412739]
 transform = Transform3D(0.04922702, 0.9388421, -0.3408112, -0.13421422, 0.344348, 0.92919916, 0.98972887, 0, 0.1429572, -2.9796019, 7.5723295, 0)
+shadow_enabled = true
 sky_mode = 1
+
+[node name="BackgroundSprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1721999181]
+transform = Transform3D(0.3707207, 0, -0.042553786, 0, 0.39888015, 0, 0.11902542, 0, 0.13253951, 0.107, 1.8670721, -5.7553654)
+billboard = 1
+texture = ExtResource("1_fpmxm")

@@ -22,12 +22,6 @@ shader_parameter/wash_amount = 0.6
 [sub_resource type="BoxShape3D" id="BoxShape3D_jwgr6"]
 size = Vector3(8, 1, 8)
 
-[sub_resource type="BoxMesh" id="BoxMesh_33gn6"]
-size = Vector3(8, 1, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_w85if"]
-size = Vector3(8, 1, 8)
-
 [sub_resource type="Resource" id="Resource_8potb"]
 script = ExtResource("6_7vnbg")
 body_color = Color(0.83417, 0.68302464, 0.5674429, 1)
@@ -159,37 +153,27 @@ billboard = 1
 texture = ExtResource("1_ho77f")
 
 [node name="PlatformUpperStaticBody3D" type="StaticBody3D" parent="WorldNode3D" unique_id=799142861]
-transform = Transform3D(0.9998843, 0.014370831, -0.0049842, -0.012802027, 0.9720444, 0.23444729, 0.008214094, -0.23435643, 0.9721163, 1.194847, -0.0106470585, -4.4389315)
+transform = Transform3D(0.9998843, 0.014370831, -0.0049842, -0.012802027, 0.9720444, 0.23444729, 0.008214094, -0.23435643, 0.9721163, 1.194847, 0.64344335, -4.4389315)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldNode3D/PlatformUpperStaticBody3D" unique_id=1160241119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.7910733)
+transform = Transform3D(1, 1.5133992e-09, 0, 2.3283064e-10, 1, 0, 0, 0, 1, -0.00624156, 0.47392464, -3.6767683)
 shape = SubResource("BoxShape3D_jwgr6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldNode3D/PlatformUpperStaticBody3D/CollisionShape3D" unique_id=978165475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8898063, 0)
-visible = false
-mesh = SubResource("BoxMesh_33gn6")
-
 [node name="PlatformLowerStaticBody3D" type="StaticBody3D" parent="WorldNode3D" unique_id=943299447]
-transform = Transform3D(0.9998843, 0.014370831, -0.0049842, -0.012802027, 0.9720444, 0.23444729, 0.008214094, -0.23435643, 0.9721163, 1.122787, -3.1511908, -2.9656336)
+transform = Transform3D(0.9998843, 0.014370831, -0.0049842, -0.012802027, 0.9720444, 0.23444729, 0.008214094, -0.23435643, 0.9721163, 1.122787, -1.3273838, -2.9656336)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldNode3D/PlatformLowerStaticBody3D" unique_id=421842754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3493125)
 shape = SubResource("BoxShape3D_jwgr6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldNode3D/PlatformLowerStaticBody3D/CollisionShape3D" unique_id=1383520282]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8898063, 0)
-visible = false
-mesh = SubResource("BoxMesh_w85if")
-
 [node name="Bonki" parent="WorldNode3D" unique_id=2052834491 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.49994212, 0.0071854154, -0.002492119, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.1171782, 0.486058, -0.6818992, -0.8108505, -8.196823)
+transform = Transform3D(0.49994212, 0.0071854154, -0.002492119, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.1171782, 0.486058, -0.72461736, -2.011325, -8.196823)
 appearance = SubResource("Resource_8potb")
 
 [node name="Bonki2" parent="WorldNode3D" unique_id=1144760733 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.49994212, 0.0071854154, -0.002492119, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.1171782, 0.486058, -0.10894072, 0.72000134, -3.6158426)
+transform = Transform3D(0.49994212, 0.0071854154, -0.002492119, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.1171782, 0.486058, -0.10894072, -0.8189554, -3.6158426)
 appearance = SubResource("Resource_hgyec")
 
 [node name="Bonki3" parent="WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.49994212, 0.0071854154, -0.0024921186, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.117178194, 0.486058, -0.6818992, 4.344735, -9.196823)
+transform = Transform3D(0.49994212, 0.0071854154, -0.0024921186, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.117178194, 0.486058, -0.27466547, 0.8674853, -9.196823)
 appearance = SubResource("Resource_3nr71")

@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bfjnfyn3oec7s" path="res://dog.blend" id="1_c5eso"]
 
-[node name="dog" unique_id=833774682 instance=ExtResource("1_c5eso")]
+[node name="dog" unique_id=1164298180 instance=ExtResource("1_c5eso")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(432899572) index="0" unique_id=788193474]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1307589125) index="0" unique_id=220141075]
 bones/0/position = Vector3(1.923272e-15, -0.7625303, -1.1100299)
 bones/0/rotation = Quaternion(0.14158802, 0.009173795, -0.016201835, 0.9897506)
 bones/1/rotation = Quaternion(0.21266395, 0.004076039, 0.0011398852, 0.9771162)

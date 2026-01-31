@@ -157,8 +157,10 @@ mesh = SubResource("BoxMesh_1q7h5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1349412739]
 transform = Transform3D(0.04922702, 0.9388421, -0.3408112, -0.13421422, 0.344348, 0.92919916, 0.98972887, 0, 0.1429572, -2.9796019, 7.5723295, 0)
+light_energy = 0.543
 shadow_enabled = true
-shadow_normal_bias = 5.551
+shadow_normal_bias = 10.0
+shadow_opacity = 0.62
 sky_mode = 1
 
 [node name="BackgroundSprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1721999181]

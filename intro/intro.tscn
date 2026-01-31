@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="3_1q7h5"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="3_vjsr4"]
 [ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="4_a5lnx"]
+[ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog.tscn" id="6_1q7h5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vyos2"]
 sky_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)
@@ -172,7 +173,7 @@ render_target_update_mode = 4
 [node name="CameraRigNode3D" type="Node3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2049257925]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/WorldNode3D/CameraRigNode3D" unique_id=139175723]
-transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0, 2.2283163)
+transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0.31210983, 2.6263568)
 
 [node name="Bonki2" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2084119089 instance=ExtResource("2_vyos2")]
 transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.49999997, 0, 0, 0)
@@ -202,3 +203,6 @@ sky_mode = 1
 transform = Transform3D(0.3707207, 0, -0.042553786, 0, 0.39888015, 0, 0.11902542, 0, 0.13253951, 0.107, 1.8670721, -5.7553654)
 billboard = 1
 texture = ExtResource("1_fpmxm")
+
+[node name="dog" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=769868239 instance=ExtResource("6_1q7h5")]
+transform = Transform3D(0.9205935, 7.1155304e-09, -0.39052227, -0.032875024, 0.99645036, -0.0774976, 0.38913605, 0.08418222, 0.91732585, 0.72536755, 0.5139824, 0)

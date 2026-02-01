@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://66ccsnb7emg7"]
+[gd_scene format=3 uid="uid://66ccsnb7emg7"]
 
 [ext_resource type="PackedScene" uid="uid://cgph5bneq3l1p" path="res://bonki_model/bonki.blend" id="1_dmfh7"]
 [ext_resource type="Script" uid="uid://by255qhvas75h" path="res://bonki_model/bonki_model.gd" id="2_2xsow"]
@@ -8,62 +8,59 @@
 [ext_resource type="Material" uid="uid://3myt3sfunf7t" path="res://bonki_model/materials/bonki_eye_shine_material.tres" id="6_41361"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c522ts4uxsrk8" path="res://bonki_model_animation_blend_tree.tres" id="7_dmfh7"]
 
-[node name="BonkiModel" instance=ExtResource("1_dmfh7")]
+[node name="BonkiModel" unique_id=1457518887 instance=ExtResource("1_dmfh7")]
 script = ExtResource("2_2xsow")
 
-[node name="Skeleton3D" parent="Armature" index="1"]
-bones/0/rotation = Quaternion(4.1656137e-17, 4.916602e-09, -0.032845445, 0.9994605)
-bones/1/rotation = Quaternion(-2.1937531e-16, 1.7132582e-08, -0.10910511, 0.99403024)
-bones/2/rotation = Quaternion(0.0026784388, 0.01591483, 0.059898004, 0.99807405)
-bones/3/rotation = Quaternion(-1.58718e-18, 2.2388912e-11, 1.8626451e-09, 1)
-bones/3/scale = Vector3(1.0000001, 1.0000001, 1)
-bones/4/position = Vector3(-2.1615529e-06, 0.15211225, 0.01766415)
-bones/4/rotation = Quaternion(-0.14714174, 0.7392293, 0.6354103, 0.16775934)
-bones/4/scale = Vector3(1, 1.0000001, 0.99999994)
-bones/5/position = Vector3(-2.1527762e-06, 0.15211232, 0.01766414)
-bones/5/rotation = Quaternion(0.14356814, 0.7399317, 0.6345922, -0.17082757)
-bones/5/scale = Vector3(1, 0.9999999, 1.0000001)
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(45739200) index="1" unique_id=363439222]
+bones/2/rotation = Quaternion(1.745916e-12, 4.2626064e-10, -0.0040958542, 0.9999916)
+bones/3/rotation = Quaternion(-1.7332168e-18, 2.2388912e-11, 1.8626451e-09, 1)
+bones/4/position = Vector3(-2.1625244e-06, 0.1521123, 0.017664153)
+bones/4/rotation = Quaternion(-0.14714175, 0.73922926, 0.63541037, 0.16775936)
+bones/4/scale = Vector3(1, 1.0000001, 0.9999999)
+bones/5/position = Vector3(-2.1547582e-06, 0.15211236, 0.017664135)
+bones/5/rotation = Quaternion(0.14356813, 0.7399317, 0.6345922, -0.17082757)
+bones/5/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
 
-[node name="Body" parent="Armature/Skeleton3D" index="0"]
+[node name="Body" parent="Armature/Skeleton3D" index="0" unique_id=1368054481]
 surface_material_override/0 = ExtResource("3_lcqbr")
 
-[node name="EyeBase_L" parent="Armature/Skeleton3D" index="1"]
+[node name="EyeBase_L" parent="Armature/Skeleton3D" index="1" unique_id=1510374047]
+cast_shadow = 0
 surface_material_override/0 = ExtResource("4_dmfh7")
 
-[node name="EyeBase_R" parent="Armature/Skeleton3D" index="2"]
+[node name="EyeBase_R" parent="Armature/Skeleton3D" index="2" unique_id=1456364066]
+cast_shadow = 0
 surface_material_override/0 = ExtResource("4_dmfh7")
 
-[node name="EyeShadow_L" parent="Armature/Skeleton3D" index="3"]
+[node name="EyeShadow_L" parent="Armature/Skeleton3D" index="3" unique_id=722442127]
 visible = false
 surface_material_override/0 = ExtResource("5_k57ku")
 
-[node name="EyeShadow_R" parent="Armature/Skeleton3D" index="4"]
+[node name="EyeShadow_R" parent="Armature/Skeleton3D" index="4" unique_id=2059274676]
 visible = false
 surface_material_override/0 = ExtResource("5_k57ku")
 
-[node name="EyeShine_L" parent="Armature/Skeleton3D" index="5"]
+[node name="EyeShine_L" parent="Armature/Skeleton3D" index="5" unique_id=744775152]
 visible = false
 surface_material_override/0 = ExtResource("6_41361")
 
-[node name="EyeShine_R" parent="Armature/Skeleton3D" index="6"]
+[node name="EyeShine_R" parent="Armature/Skeleton3D" index="6" unique_id=2087365868]
 visible = false
 surface_material_override/0 = ExtResource("6_41361")
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1187631698]
 tree_root = ExtResource("7_dmfh7")
 anim_player = NodePath("../AnimationPlayer")
-parameters/AddBlink/add_amount = 0.0
+parameters/AddEyesHeight/add_amount = 0.0
 parameters/AddBodyWideStretch/add_amount = 0.0
 parameters/AddEyesSpread/add_amount = 0.0
 parameters/AddBodyPearness/add_amount = 0.0
 parameters/AddBodyTallStretch/add_amount = 0.0
 parameters/AddEyesTilt/add_amount = 0.0
 parameters/AddBodyAntipearness/add_amount = 0.0
-parameters/AddEyesHeight/add_amount = 0.0
-parameters/Add2/add_amount = 0.0
 
-[node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3"]
-transform = Transform3D(0.986995, 0.15794563, 0.029908538, -0.15764643, 0.9874214, -0.012125766, -0.031447537, 0.0072530936, 0.9994791, 0.24467231, 0.8569475, -0.010191007)
+[node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3" unique_id=746988041]
+transform = Transform3D(0.99996644, 0.008191637, 8.9727625e-10, -0.008191637, 0.99996644, -7.350407e-12, -8.973064e-10, -2.0711196e-19, 1, 0.012785698, 0.87827057, -0.017664135)
 top_level = true
 bone_name = "Horn"
 bone_idx = 3

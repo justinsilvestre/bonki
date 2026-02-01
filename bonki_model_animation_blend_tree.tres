@@ -1,9 +1,5 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://c522ts4uxsrk8"]
 
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_6535g"]
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ttdyf"]
-
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ag013"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_2i07j"]
@@ -19,14 +15,8 @@ filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck", "Armature/Ske
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_3nm3d"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_poafa"]
-animation = &"Blink"
-advance_on_start = true
-use_custom_timeline = true
-timeline_length = 0.2
-stretch_time_scale = true
-start_offset = 0.0
-loop_mode = 1
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgj0r"]
+animation = &"Neutral"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6535g"]
 animation = &"BodyAntipearness"
@@ -49,31 +39,37 @@ animation = &"EyesSpread"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fybev"]
 animation = &"EyesTilt"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_56dsx"]
-animation = &"Squat"
-use_custom_timeline = true
-timeline_length = 1.0
-stretch_time_scale = true
-start_offset = 0.0
-loop_mode = 1
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ttdyf"]
+animation = &"Neutral"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgj0r"]
-animation = &"Sway"
-use_custom_timeline = true
-timeline_length = 1.0
-stretch_time_scale = true
-start_offset = 0.0
-loop_mode = 1
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_poafa"]
+animation = &"Sleep"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qgj0r"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2i07j"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hachy"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3nm3d"]
+states/Neutral/node = SubResource("AnimationNodeAnimation_ttdyf")
+states/Neutral/position = Vector2(411, 148.5)
+states/Sleep/node = SubResource("AnimationNodeAnimation_poafa")
+states/Sleep/position = Vector2(591.5, 123.5)
+transitions = ["Start", "Neutral", SubResource("AnimationNodeStateMachineTransition_qgj0r"), "Neutral", "Sleep", SubResource("AnimationNodeStateMachineTransition_2i07j"), "Sleep", "End", SubResource("AnimationNodeStateMachineTransition_hachy")]
 
 [resource]
-graph_offset = Vector2(143.065, -76.35157)
+graph_offset = Vector2(-196.04584, -26.237793)
 nodes/output/position = Vector2(3430, 550)
-nodes/Blink/node = SubResource("AnimationNodeAnimation_poafa")
-nodes/Blink/position = Vector2(580, 300)
-nodes/Sway/node = SubResource("AnimationNodeAnimation_qgj0r")
-nodes/Sway/position = Vector2(220, 0)
-nodes/AddBlink/node = SubResource("AnimationNodeAdd2_ttdyf")
-nodes/AddBlink/position = Vector2(860, 170)
+nodes/EyesHeight/node = SubResource("AnimationNodeAnimation_nfc2f")
+nodes/EyesHeight/position = Vector2(2855.1174, 911.2108)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_3nm3d")
+nodes/StateMachine/position = Vector2(542.32153, 98.177505)
+nodes/AddEyesHeight/node = SubResource("AnimationNodeAdd2_fybev")
+nodes/AddEyesHeight/position = Vector2(3090, 690)
 nodes/BodyWideStretch/node = SubResource("AnimationNodeAnimation_2i07j")
 nodes/BodyWideStretch/position = Vector2(1020, 390)
 nodes/AddBodyWideStretch/node = SubResource("AnimationNodeAdd2_poafa")
@@ -98,12 +94,6 @@ nodes/BodyAntipearness/node = SubResource("AnimationNodeAnimation_6535g")
 nodes/BodyAntipearness/position = Vector2(1870, 720)
 nodes/AddBodyAntipearness/node = SubResource("AnimationNodeAdd2_ag013")
 nodes/AddBodyAntipearness/position = Vector2(2100, 500)
-nodes/AddEyesHeight/node = SubResource("AnimationNodeAdd2_fybev")
-nodes/AddEyesHeight/position = Vector2(3090, 690)
-nodes/EyesHeight/node = SubResource("AnimationNodeAnimation_nfc2f")
-nodes/EyesHeight/position = Vector2(2855.1174, 911.2108)
-nodes/Add2/node = SubResource("AnimationNodeAdd2_6535g")
-nodes/Add2/position = Vector2(430, 30)
-nodes/Squat/node = SubResource("AnimationNodeAnimation_56dsx")
-nodes/Squat/position = Vector2(190, 180)
-node_connections = [&"output", 0, &"AddEyesHeight", &"AddBlink", 0, &"Add2", &"AddBlink", 1, &"Blink", &"AddBodyWideStretch", 0, &"AddBlink", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness", &"AddEyesHeight", 0, &"AddEyesTilt", &"AddEyesHeight", 1, &"EyesHeight", &"Add2", 0, &"Sway", &"Add2", 1, &"Squat"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_qgj0r")
+nodes/Animation/position = Vector2(983.54803, 103.5015)
+node_connections = [&"output", 0, &"AddEyesHeight", &"AddEyesHeight", 0, &"AddEyesTilt", &"AddEyesHeight", 1, &"EyesHeight", &"AddBodyWideStretch", 0, &"Animation", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness"]

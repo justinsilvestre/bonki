@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://beg1s66x1ogeb"]
+[gd_scene format=3 uid="uid://beg1s66x1ogeb"]
 
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini/porcini_crown.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://kbv6caifmeee" path="res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bcwti5ca3w0ae" path="res://bonki_model/crowns/kale/kale_crown.tscn" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ddmpstbkfm1ts" path="res://bonki_model/crowns/christmas_rose/christmas_rose_crown.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c3pqpi4a10wy7" path="res://bonki_model/crowns/yellow_stagshorn/yellow_staghorn_crown.tscn" id="6_7mycd"]
 
@@ -35,11 +35,20 @@ metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_7mycd"]
 script = ExtResource("2_lquwl")
-body_color = Color(0.9184007, 0.73956704, 0.8877542, 1)
-eye_shine_color = Color(0.63459635, 0.6952556, 0.50078017, 1)
-eye_shadow_color = Color(0.48259953, 0.64188886, 0.019586898, 1)
-eye_base_color = Color(0.043008655, 0.5960318, 0.13998868, 1)
-crown_pscn = ExtResource("4_1bvp3")
+body_color = Color(0.37823126, 0.6722834, 0.3455588, 1)
+eye_shine_color = Color(0.9712754, 0.9766174, 0.9867992, 1)
+eye_shadow_color = Color(0.20565718, 0.17480776, 0.67113197, 1)
+eye_base_color = Color(0.5070454, 0.59471065, 0.7665486, 1)
+wide_stretch_factor = 0.5565972383771345
+horn_stretch_factor = 0.05555644525116761
+long_stretch_factor = -0.5390343941606948
+pearness_factor = -0.1489517368476343
+tall_stretch_factor = -0.2997972586015223
+wonkiness_factor = -0.5081526278666126
+eyes_spread_factor = 0.1819779421933705
+eyes_tilt_factor = 0.9051860632771127
+eyes_height_factor = 0.7287072007736934
+crown_pscn = ExtResource("4_7mycd")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_272bh"]
@@ -65,56 +74,56 @@ eye_shadow_color = Color(0.32238927, 0.59529483, 0.9717855, 1)
 eye_base_color = Color(0.16057527, 0.38995978, 0.3595757, 1)
 wide_stretch_factor = 0.5705871586347397
 horn_stretch_factor = 0.07362202587568771
-long_stretch_factor = 0.9535878213828413
+long_stretch_factor = 0.9535878213828411
 pearness_factor = 0.44217746773899846
 tall_stretch_factor = -0.03791401770343372
 wonkiness_factor = 0.8768227819425378
 eyes_spread_factor = 0.483237841795112
-eyes_tilt_factor = 0.9740037732040245
+eyes_tilt_factor = 0.9740037732040244
 eyes_height_factor = 0.22323652701583696
 crown_pscn = ExtResource("6_7mycd")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=1814791205]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=125455592]
 environment = SubResource("Environment_h2yge")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1892944310]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 36.843292, 0)
 light_energy = 0.1
 shadow_enabled = true
 
-[node name="LeftBonki" parent="." instance=ExtResource("1_ig7tw")]
+[node name="LeftBonki" parent="." unique_id=1998418031 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0.24391556, 10)
 appearance = SubResource("Resource_lquwl")
 
-[node name="MiddleBonki" parent="." instance=ExtResource("1_ig7tw")]
+[node name="MiddleBonki" parent="." unique_id=1311695935 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.6472702, 0.315475, 9.956547)
 appearance = SubResource("Resource_7mycd")
 
-[node name="RightBonki" parent="." instance=ExtResource("1_ig7tw")]
+[node name="RightBonki" parent="." unique_id=1224064670 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.999913, -0.113808155, 10.153634)
 appearance = SubResource("Resource_272bh")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2082619435]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, 0)
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1457344112]
 transform = Transform3D(65.068, 0, 0, 0, 12.453, 0, 0, 0, 60, 0, 0, 0)
 mesh = SubResource("BoxMesh_7dm0k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=637691089]
 shape = SubResource("BoxShape3D_7dm0k")
 
-[node name="Marker3D" type="Marker3D" parent="."]
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1645454856]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, -0.25881904, 0, 0.25881904, 0.9659259, -1.3683205, 4, 20)
 
-[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+[node name="Camera3D" type="Camera3D" parent="Marker3D" unique_id=2047047175]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 2, 13.223103, 35.206596)
 current = true
 
-[node name="Bonki" parent="." instance=ExtResource("1_ig7tw")]
+[node name="Bonki" parent="." unique_id=1584895606 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 22.910034, 0.057106018, 19.045654)
 appearance = SubResource("Resource_5vw27")

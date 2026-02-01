@@ -1,6 +1,6 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d0m46fntpstll"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d0m46fntpstll"]
 
-[ext_resource type="Texture2D" uid="uid://cx1y47s16dw1s" path="res://bonki_model/eye_texture.png" id="1_u7bg5"]
+[ext_resource type="Texture2D" uid="uid://cx1y47s16dw1s" path="res://bonki_model/materials/eye_texture.png" id="1_u7bg5"]
 
 [resource]
 render_priority = 50

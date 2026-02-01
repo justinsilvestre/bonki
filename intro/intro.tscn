@@ -1,11 +1,84 @@
 [gd_scene format=4 uid="uid://dyfabbxx1mg60"]
 
+[ext_resource type="Script" uid="uid://djrao5uxlfgeh" path="res://intro/intro_manager.gd" id="1_6ct58"]
+[ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="1_a5lnx"]
 [ext_resource type="Texture2D" uid="uid://dwa0s4do3oi8" path="res://title_screen/bonki_forest_concept.png" id="1_fpmxm"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="2_vyos2"]
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="3_1q7h5"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="3_vjsr4"]
 [ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="4_a5lnx"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="6_1q7h5"]
+
+[sub_resource type="Animation" id="Animation_6ct58"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig_Node3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraRig_Node3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a5lnx"]
+resource_name = "to_attention"
+length = 3.2666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig_Node3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.0843227, 1.0170789), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraRig_Node3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dog/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("Dog_Sit_Down"),
+"times": PackedFloat32Array(1.5666667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ct58"]
+_data = {
+&"RESET": SubResource("Animation_6ct58"),
+&"intro_sequence_01": SubResource("Animation_a5lnx")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfta6"]
 resource_name = "material_0"
@@ -111,18 +184,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6ct58")
 
-[node name="UICanvasLayer" type="CanvasLayer" parent="." unique_id=683385579]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1210642430]
+root_node = NodePath("../SubViewportContainer/SubViewport/World_Node3D")
+libraries/ = SubResource("AnimationLibrary_6ct58")
 
-[node name="OverlayControl" type="Control" parent="UICanvasLayer" unique_id=1123055594]
+[node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=683385579]
+
+[node name="Overlay_Control" type="Control" parent="UI_CanvasLayer" unique_id=1123055594]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_a5lnx")
 
-[node name="TextPanel" type="Panel" parent="UICanvasLayer/OverlayControl" unique_id=1440409781]
+[node name="TextPanel" type="Panel" parent="UI_CanvasLayer/Overlay_Control" unique_id=1440409781]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -136,7 +215,7 @@ offset_bottom = -262.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UICanvasLayer/OverlayControl/TextPanel" unique_id=432905060]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI_CanvasLayer/Overlay_Control/TextPanel" unique_id=432905060]
 layout_mode = 0
 offset_right = 1023.0
 offset_bottom = 665.0
@@ -167,30 +246,30 @@ handle_input_locally = false
 size = Vector2i(2743, 2096)
 render_target_update_mode = 4
 
-[node name="WorldNode3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
+[node name="World_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
 
-[node name="CameraRigNode3D" type="Node3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2049257925]
+[node name="CameraRig_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2049257925]
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/WorldNode3D/CameraRigNode3D" unique_id=139175723]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World_Node3D/CameraRig_Node3D" unique_id=139175723]
 transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0.31210983, 2.6263568)
 
-[node name="Bonki2" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2084119089 instance=ExtResource("2_vyos2")]
+[node name="Bonki2" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2052698482 instance=ExtResource("2_vyos2")]
 transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.49999997, 0, 0, 0)
 appearance = SubResource("Resource_6ct58")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=452851521]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=452851521]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/WorldNode3D/StaticBody3D" unique_id=1589639107]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World_Node3D/StaticBody3D" unique_id=1589639107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92224, 0)
 shape = SubResource("BoxShape3D_vyos2")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/WorldNode3D/StaticBody3D" unique_id=1310090111]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World_Node3D/StaticBody3D" unique_id=1310090111]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92224, 0)
 visible = false
 mesh = SubResource("BoxMesh_1q7h5")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1349412739]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1349412739]
 transform = Transform3D(0.04922702, 0.9388421, -0.3408112, -0.13421422, 0.344348, 0.92919916, 0.98972887, 0, 0.1429572, -2.9796019, 7.5723295, 0)
 light_energy = 0.06
 light_specular = 0.216
@@ -198,13 +277,44 @@ shadow_enabled = true
 shadow_opacity = 0.84
 sky_mode = 1
 
-[node name="BackgroundSprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1721999181]
+[node name="Background_Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1721999181]
 transform = Transform3D(0.3707207, 0, -0.042553786, 0, 0.39888015, 0, 0.11902542, 0, 0.13253951, 0.107, 1.8670721, -5.7553654)
 billboard = 1
 texture = ExtResource("1_fpmxm")
 
-[node name="dog" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=833774682 instance=ExtResource("6_1q7h5")]
+[node name="dog" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=833774682 instance=ExtResource("6_1q7h5")]
 transform = Transform3D(0.9205935, 7.1155304e-09, -0.39052227, -0.032875024, 0.99645036, -0.0774976, 0.38913605, 0.08418222, 0.91732585, 0.72536755, 0.5139824, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1769233898]
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/dog/Armature" parent_id_path=PackedInt32Array(833774682, 1307589125) index="0" unique_id=220141075]
+bones/0/position = Vector3(-5.4168316e-14, 0.34895185, -0.93748933)
+bones/0/rotation = Quaternion(0.65433955, 0.0005657417, -0.000997816, 0.7562001)
+bones/1/rotation = Quaternion(0.107177235, 0.00024859695, 6.9616406e-05, 0.9942399)
+bones/2/rotation = Quaternion(0.025889562, -0.00015159715, -2.1647833e-05, 0.9996648)
+bones/2/scale = Vector3(1.0014552, 1.0014554, 1.0014553)
+bones/3/rotation = Quaternion(0.0822204, 0.0011939703, 7.422694e-05, 0.9966135)
+bones/3/scale = Vector3(1.0000253, 1.0160978, 1.0000459)
+bones/4/rotation = Quaternion(0.6819373, 0.009852476, -0.19440491, 0.70503277)
+bones/5/rotation = Quaternion(0.110603645, -0.00051394396, 0.12267814, 0.986264)
+bones/8/rotation = Quaternion(0.6819369, -0.009853829, 0.19440618, 0.70503277)
+bones/9/rotation = Quaternion(0.110603645, 0.0005139541, -0.12267812, 0.986264)
+bones/12/position = Vector3(-4.4656396e-18, 0.34530818, -0.93800986)
+bones/12/rotation = Quaternion(-0.35214382, -6.7002384e-17, -7.121341e-17, 0.9359459)
+bones/13/position = Vector3(-1.8428545e-09, 0.3447878, -0.9270791)
+bones/13/rotation = Quaternion(0.01645915, 0.19781512, 0.9700733, -0.13984308)
+bones/13/scale = Vector3(0.9901739, 0.9901738, 0.9901739)
+bones/14/rotation = Quaternion(-0.41264528, 0.0017285936, -0.10863371, 0.90438914)
+bones/14/scale = Vector3(1.0164486, 1.0164486, 1.0164486)
+bones/15/rotation = Quaternion(0.39748085, 0.023015486, -0.030449998, 0.91681623)
+bones/16/rotation = Quaternion(0.5860421, -3.1897798e-08, -0.038641542, 0.8093588)
+bones/17/position = Vector3(1.8428545e-09, 0.3447878, -0.9270791)
+bones/17/rotation = Quaternion(-0.016459156, 0.19781512, 0.9700733, 0.13984308)
+bones/17/scale = Vector3(0.9901739, 0.9901738, 0.9901739)
+bones/18/rotation = Quaternion(-0.41264528, -0.0017285959, 0.1086337, 0.90438914)
+bones/18/scale = Vector3(1.0164486, 1.0164486, 1.0164487)
+bones/19/rotation = Quaternion(0.39748085, -0.023015486, 0.030449998, 0.91681623)
+bones/20/rotation = Quaternion(0.5860421, 3.160676e-08, 0.038641542, 0.8093588)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1769233898]
 environment = SubResource("Environment_a5lnx")
+
+[editable path="SubViewportContainer/SubViewport/World_Node3D/dog"]

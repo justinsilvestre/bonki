@@ -168,12 +168,12 @@ ground_bottom_color = Color(0.2985006, 0.40523383, 0.23911458, 1)
 ground_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)
 energy_multiplier = 0.3
 
-[sub_resource type="Sky" id="Sky_1q7h5"]
+[sub_resource type="Sky" id="Sky_krbtg"]
 sky_material = SubResource("ProceduralSkyMaterial_vyos2")
 
 [sub_resource type="Environment" id="Environment_a5lnx"]
 background_mode = 2
-sky = SubResource("Sky_1q7h5")
+sky = SubResource("Sky_krbtg")
 ambient_light_source = 2
 ambient_light_color = Color(0.5330367, 0.5330367, 0.5330367, 0.0627451)
 tonemap_mode = 2

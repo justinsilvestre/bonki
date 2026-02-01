@@ -5,6 +5,8 @@ extends Control
 @onready var dialog_overlay = $UI_CanvasLayer/Overlay_Control
 @onready var audio_player = $AudioStreamPlayer # Assuming you add this in Step 4
 
+const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
+
 # Define the sequence steps. 
 # "type": "text" -> show text logic
 # "type": "anim" -> play animation logic
@@ -28,7 +30,7 @@ func _ready():
 
 func start_step():
 	if current_step_index >= sequence_steps.size():
-		print("Intro Finished - Load next scene here")
+		TransitionManager.go_to_scene_threaded(NEXT_SCENE)
 		return
 
 	var step = sequence_steps[current_step_index]

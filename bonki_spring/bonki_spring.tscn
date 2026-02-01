@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://kbv6caifmeee" path="res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn" id="7_7vnbg"]
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="8_8c10v"]
 [ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="9_3nr71"]
+[ext_resource type="AudioStream" uid="uid://s7e7dgcldpjl" path="res://sound/garden-music_last_3m30s.mp3" id="10_3nr71"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3nr71"]
 sky_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)
@@ -28,27 +29,77 @@ ambient_light_color = Color(0.5330367, 0.5330367, 0.5330367, 0.0627451)
 ambient_light_energy = 0.32
 tonemap_mode = 2
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8c10v"]
+[sub_resource type="Shader" id="Shader_8c10v"]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform sampler2D bg_tex : source_color;
+uniform sampler2D noise_tex : source_color;
+
+uniform float wobble_strength = 0.006;
+uniform float wobble_speed = 0.15;
+
+uniform float wash_amount = 0.20; // 0 = no wash, 1 = fully white
+
+// Controls how much the noise modulates the wash (0 = uniform wash, 1 = fully noise-driven)
+uniform float wash_noise_strength = 0.8;
+
+// Noise scale for the wash pattern (higher = finer grain)
+uniform float wash_noise_scale = 1.5;
+
+void fragment() {
+    vec2 uv = UV;
+
+    // Scroll noise in 2 directions for “living paper” feel
+    float n1 = texture(noise_tex, uv + vec2(TIME * wobble_speed, 0.0)).r;
+    float n2 = texture(noise_tex, uv + vec2(0.0, TIME * wobble_speed * 0.7)).r;
+
+    // Center around 0 then offset UV
+    vec2 offset = (vec2(n1, n2) - 0.5) * wobble_strength;
+    vec4 col = texture(bg_tex, uv + offset);
+
+    // Use noise to make wash uneven (sample noise at a separate scale, optionally also animated)
+    float wnoise = texture(
+        noise_tex,
+        uv * wash_noise_scale + vec2(TIME * wobble_speed * 0.35, TIME * wobble_speed * 0.22)
+    ).r;
+
+    // Map to [-1, 1] so it can either reduce or increase the local wash
+    float wmod = (wnoise - 0.5) * 2.0;
+
+    // Local wash amount (clamped to [0,1])
+    float local_wash = clamp(wash_amount * (1.0 + wmod * wash_noise_strength), 0.0, 1.0);
+
+    // White wash mix (uneven)
+    col.rgb = mix(col.rgb, vec3(1.0), local_wash);
+
+    ALBEDO = col.rgb;
+    ALPHA = col.a;
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3nr71"]
 load_path = "res://.godot/imported/bonki_spring_background_outlines.png-d16c8ff4bc707416be85982836cd5a20.s3tc.ctex"
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_t6nyc"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8potb"]
+frequency = 0.0727
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3nr71"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aw26t"]
 width = 256
 height = 256
-noise = SubResource("FastNoiseLite_t6nyc")
-seamless = true
+noise = SubResource("FastNoiseLite_8potb")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8potb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgyec"]
 render_priority = 1
-shader = ExtResource("1_o0s8v")
-shader_parameter/bg_tex = SubResource("CompressedTexture2D_8c10v")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_3nr71")
+shader = SubResource("Shader_8c10v")
+shader_parameter/bg_tex = SubResource("CompressedTexture2D_3nr71")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_aw26t")
 shader_parameter/wobble_strength = 0.005
-shader_parameter/wobble_speed = 0.21
-shader_parameter/wash_amount = 0.46
+shader_parameter/wobble_speed = 0.02
+shader_parameter/wash_amount = 0.21
 shader_parameter/wash_noise_strength = 0.8
-shader_parameter/wash_noise_scale = 1.5
+shader_parameter/wash_noise_scale = 2.29
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t6nyc"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8c10v"]
 width = 256
@@ -62,7 +113,7 @@ shader = ExtResource("1_o0s8v")
 shader_parameter/bg_tex = ExtResource("1_ho77f")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_8c10v")
 shader_parameter/wobble_strength = -0.05
-shader_parameter/wobble_speed = 0.15
+shader_parameter/wobble_speed = 0.42
 shader_parameter/wash_amount = 0.58
 shader_parameter/wash_noise_strength = 0.8
 shader_parameter/wash_noise_scale = 1.5
@@ -197,7 +248,7 @@ size = 8.0
 
 [node name="BackgroundSprite3D2" type="Sprite3D" parent="WorldNode3D" unique_id=1987943602]
 transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 5.7585955, -9.443253, -20.72865)
-material_override = SubResource("ShaderMaterial_8potb")
+material_override = SubResource("ShaderMaterial_hgyec")
 billboard = 1
 transparent = false
 double_sided = false
@@ -242,3 +293,8 @@ light_specular = 0.216
 shadow_enabled = true
 shadow_opacity = 0.84
 sky_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=978347152]
+stream = ExtResource("10_3nr71")
+autoplay = true
+parameters/looping = true

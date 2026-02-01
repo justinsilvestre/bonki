@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxemvv50x1po1" path="res://bonki_spring/art/bonki_spring_background.png" id="1_ho77f"]
 [ext_resource type="Shader" uid="uid://biuaw0b7g8awu" path="res://bonki_spring/bonki_spring_wash.gdshader" id="1_o0s8v"]
-[ext_resource type="Texture2D" uid="uid://bu73qany5tloy" path="res://bonki_spring/noise_watercolor.tres" id="2_jwgr6"]
+[ext_resource type="Texture2D" uid="uid://b3gtm45qy5usu" path="res://bonki_spring/art/bonki_spring_background_outlines.png" id="4_3nr71"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
 [ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini/porcini_crown.tscn" id="5_u8own"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
@@ -10,14 +10,62 @@
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="8_8c10v"]
 [ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="9_3nr71"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3nr71"]
+sky_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)
+ground_bottom_color = Color(0.2985006, 0.40523383, 0.23911458, 1)
+ground_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)
+energy_multiplier = 0.3
+
+[sub_resource type="Sky" id="Sky_1q7h5"]
+sky_material = SubResource("ProceduralSkyMaterial_3nr71")
+
+[sub_resource type="Environment" id="Environment_8potb"]
+background_mode = 2
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_1q7h5")
+ambient_light_source = 2
+ambient_light_color = Color(0.5330367, 0.5330367, 0.5330367, 0.0627451)
+ambient_light_energy = 0.32
+tonemap_mode = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8c10v"]
+load_path = "res://.godot/imported/bonki_spring_background_outlines.png-d16c8ff4bc707416be85982836cd5a20.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t6nyc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3nr71"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_t6nyc")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8potb"]
+render_priority = 1
+shader = ExtResource("1_o0s8v")
+shader_parameter/bg_tex = SubResource("CompressedTexture2D_8c10v")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_3nr71")
+shader_parameter/wobble_strength = 0.005
+shader_parameter/wobble_speed = 0.21
+shader_parameter/wash_amount = 0.46
+shader_parameter/wash_noise_strength = 0.8
+shader_parameter/wash_noise_scale = 1.5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8c10v"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_t6nyc")
+seamless = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jwgr6"]
 render_priority = 0
 shader = ExtResource("1_o0s8v")
 shader_parameter/bg_tex = ExtResource("1_ho77f")
-shader_parameter/noise_tex = ExtResource("2_jwgr6")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_8c10v")
 shader_parameter/wobble_strength = -0.05
 shader_parameter/wobble_speed = 0.15
-shader_parameter/wash_amount = 0.6
+shader_parameter/wash_amount = 0.58
+shader_parameter/wash_noise_strength = 0.8
+shader_parameter/wash_noise_scale = 1.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jwgr6"]
 size = Vector3(8, 1, 8)
@@ -137,7 +185,8 @@ metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [node name="WorldNode3D" type="Node3D" parent="." unique_id=77457003]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldNode3D" unique_id=1645234943]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="WorldNode3D" unique_id=34670161]
+environment = SubResource("Environment_8potb")
 
 [node name="CameraRigNode3D" type="Node3D" parent="WorldNode3D" unique_id=566747869]
 transform = Transform3D(0.9523159, 0.1737956, -0.2507776, 5.1532565e-09, 0.82191545, 0.5696095, 0.30511358, -0.5424482, 0.7827231, -3.1744606, 7.8342257, 4.6483293)
@@ -146,8 +195,16 @@ transform = Transform3D(0.9523159, 0.1737956, -0.2507776, 5.1532565e-09, 0.82191
 projection = 1
 size = 8.0
 
+[node name="BackgroundSprite3D2" type="Sprite3D" parent="WorldNode3D" unique_id=1987943602]
+transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 5.7585955, -9.443253, -20.72865)
+material_override = SubResource("ShaderMaterial_8potb")
+billboard = 1
+transparent = false
+double_sided = false
+texture = ExtResource("4_3nr71")
+
 [node name="BackgroundSprite3D" type="Sprite3D" parent="WorldNode3D" unique_id=352621611]
-transform = Transform3D(0.3707207, 0, -0.042553786, 0, 0.39888015, 0, 0.11902542, 0, 0.13253951, 12.834606, -28.40387, -45.475914)
+transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 5.7585955, -9.443253, -20.72865)
 material_override = SubResource("ShaderMaterial_jwgr6")
 billboard = 1
 texture = ExtResource("1_ho77f")
@@ -177,3 +234,11 @@ appearance = SubResource("Resource_hgyec")
 [node name="Bonki3" parent="WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.49994212, 0.0071854154, -0.0024921186, -0.006401013, 0.48602226, 0.117223665, 0.004107052, -0.117178194, 0.486058, -0.27466547, 0.8674853, -9.196823)
 appearance = SubResource("Resource_3nr71")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldNode3D" unique_id=702157635]
+transform = Transform3D(0.04922702, 0.9388421, -0.3408112, -0.13421422, 0.344348, 0.92919916, 0.98972887, 0, 0.1429572, -0.2830286, 6.387801, 0)
+light_energy = 0.06
+light_specular = 0.216
+shadow_enabled = true
+shadow_opacity = 0.84
+sky_mode = 1

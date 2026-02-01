@@ -3,6 +3,7 @@ extends Control
 signal step_finished
 
 @onready var text_label: RichTextLabel = $TextPanel/RichTextLabel
+
 func show_text(new_text: String):
 	text_label.text = new_text
 	show() # Make sure the UI is visible
@@ -13,3 +14,6 @@ func _gui_input(event):
 		accept_event()
 		hide()
 		step_finished.emit() # Tell the manager we are done
+
+func _ready() -> void:
+	hide()

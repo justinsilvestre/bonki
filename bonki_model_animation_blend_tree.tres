@@ -16,7 +16,7 @@ filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck", "Armature/Ske
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_3nm3d"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgj0r"]
-animation = &"Neutral"
+animation = &"Sleep"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6535g"]
 animation = &"BodyAntipearness"

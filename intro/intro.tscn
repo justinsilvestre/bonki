@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="3_vjsr4"]
 [ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="4_a5lnx"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="6_1q7h5"]
+[ext_resource type="AudioStream" uid="uid://x32p86d3a3y8" path="res://sound/kami-no-koe.mp3" id="9_krbtg"]
 
 [sub_resource type="Animation" id="Animation_6ct58"]
 length = 0.001
@@ -316,5 +317,10 @@ bones/20/rotation = Quaternion(0.5860421, 3.160676e-08, 0.038641542, 0.8093588)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1769233898]
 environment = SubResource("Environment_a5lnx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=625484589]
+stream = ExtResource("9_krbtg")
+autoplay = true
+parameters/looping = true
 
 [editable path="SubViewportContainer/SubViewport/World_Node3D/dog"]

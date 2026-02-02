@@ -167,7 +167,7 @@ uv1_offset = Vector3(-3.27, 0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1q7h5"]
 material = SubResource("StandardMaterial3D_8c3ee")
-size = Vector3(17.14, 1, 8.15)
+size = Vector3(30, 1, 30)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vyos2"]
 sky_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)

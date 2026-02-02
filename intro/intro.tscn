@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://djrao5uxlfgeh" path="res://intro/intro_manager.gd" id="1_6ct58"]
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="1_a5lnx"]
+[ext_resource type="Theme" uid="uid://bdw7totli4d4o" path="res://theme.tres" id="2_8c3ee"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="2_vyos2"]
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="3_1q7h5"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="3_vjsr4"]
@@ -291,6 +292,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_8c3ee")
 script = ExtResource("1_a5lnx")
 
 [node name="TextPanel" type="Panel" parent="UI_CanvasLayer/Overlay_Control" unique_id=1440409781]
@@ -312,7 +314,6 @@ layout_mode = 0
 offset_left = 146.0
 offset_right = 890.0
 offset_bottom = 655.0
-theme_override_font_sizes/normal_font_size = 52
 text = "Placeholder text! The quick brown fox jumps over the lazy dog! Blah blah blah the quick brown fox!"
 fit_content = true
 horizontal_alignment = 1
@@ -323,6 +324,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 736.0
+offset_bottom = -839.0
 grow_horizontal = 2
 grow_vertical = 2
 

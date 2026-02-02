@@ -6,13 +6,16 @@ signal choice_selected(index: int)
 @onready var text_label: RichTextLabel = $TextPanel/RichTextLabel
 @onready var choice_container: VBoxContainer = $Choice_VBoxContainer
 
+var current_step_type = null
+
 func show_text(new_text: String):
+	current_step_type = "text"
 	text_label.text = new_text
 	show() # Make sure the UI is visible
 
 func _gui_input(event):
 	# Detect mouse click or touch tap
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and current_step_type == "text":
 		accept_event()
 		hide()
 		step_finished.emit() # Tell the manager we are done
@@ -21,6 +24,7 @@ func _ready() -> void:
 	hide()
 	
 func show_choices(prompt_text: String, options: Array):
+	current_step_type = "choice"
 	text_label.text = prompt_text
 	show()
 	

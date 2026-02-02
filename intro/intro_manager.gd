@@ -16,7 +16,7 @@ const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
 # "type": "spec" -> trigger special behavior
 # "type": "text_input" -> text input prompt
 # "type": "choice" -> multiple choice input prompt
-var sequence_steps = [
+var sequence_steps := [
 	{"type": "anim", "anim_name": "1_01__start"}, # black screen
 	{"type": "spec", "action": "start"},# start BG music, start footsteps sound
 	{"type": "text", "content": "The air is thick with the soothing fragrance of pine."},

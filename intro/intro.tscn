@@ -329,6 +329,26 @@ offset_bottom = -839.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Input_VBoxContainer" type="VBoxContainer" parent="UI_CanvasLayer/Overlay_Control" unique_id=1986874597]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 736.0
+offset_bottom = -882.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="UI_CanvasLayer/Overlay_Control/Input_VBoxContainer" unique_id=1798994781]
+layout_mode = 2
+alignment = 1
+max_length = 10
+
+[node name="Button" type="Button" parent="UI_CanvasLayer/Overlay_Control/Input_VBoxContainer" unique_id=1314989257]
+layout_mode = 2
+text = "button"
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=238365696]
 layout_mode = 1
 anchors_preset = 8

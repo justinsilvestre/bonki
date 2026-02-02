@@ -195,7 +195,7 @@ func start_step():
 	print(step)
 	
 	if step["type"] == "text":
-		dialog_overlay.show_text(step["content"])
+		dialog_overlay.show_text(step["content"].replace("DOG", dog_name))
 		# We now wait for the 'step_finished' signal from the UI
 		
 	elif step["type"] == "anim":
@@ -216,7 +216,8 @@ func start_step():
 		dialog_overlay.show_choices(step["content"], step["options"])
 
 	elif step["type"] == "text_input":
-		dialog_overlay.show_text(step["content"])
+		var default = step.get("default", dog_name) 
+		dialog_overlay.show_text_input(step["content"], default)
 
 
 func _on_step_finished():

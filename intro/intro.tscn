@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://djrao5uxlfgeh" path="res://intro/intro_manager.gd" id="1_6ct58"]
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="1_a5lnx"]
-[ext_resource type="Texture2D" uid="uid://dwa0s4do3oi8" path="res://title_screen/bonki_forest_concept.png" id="1_fpmxm"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="2_vyos2"]
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="3_1q7h5"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="3_vjsr4"]
 [ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="4_a5lnx"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="6_1q7h5"]
+[ext_resource type="Texture2D" uid="uid://chgtt2jvwlc3d" path="res://intro/bonki_forest_background.png" id="7_krbtg"]
+[ext_resource type="Texture2D" uid="uid://bsvjmqxxjamwd" path="res://intro/bonki_forest_ground_tile.png" id="7_xwdvp"]
 [ext_resource type="AudioStream" uid="uid://x32p86d3a3y8" path="res://sound/kami-no-koe.mp3" id="9_krbtg"]
 
 [sub_resource type="Animation" id="Animation_6ct58"]
@@ -157,10 +158,16 @@ crown_pscn = SubResource("PackedScene_aw26t")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vyos2"]
-size = Vector3(4, 1, 3)
+size = Vector3(18.86, 1, 8.16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c3ee"]
+albedo_texture = ExtResource("7_xwdvp")
+uv1_scale = Vector3(6.05, 6.05, 6.05)
+uv1_offset = Vector3(-3.27, 0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1q7h5"]
-size = Vector3(4, 1, 3)
+material = SubResource("StandardMaterial3D_8c3ee")
+size = Vector3(17.14, 1, 8.15)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vyos2"]
 sky_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)
@@ -255,7 +262,7 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0.31210983, 2.6263568)
 
 [node name="Bonki2" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2052698482 instance=ExtResource("2_vyos2")]
-transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.49999997, 0, 0, 0)
+transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.49999997, 0, -0.115309715, -1.4453459)
 appearance = SubResource("Resource_6ct58")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=452851521]
@@ -266,8 +273,7 @@ shape = SubResource("BoxShape3D_vyos2")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World_Node3D/StaticBody3D" unique_id=1310090111]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92224, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92224, -1)
 mesh = SubResource("BoxMesh_1q7h5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1349412739]
@@ -279,12 +285,12 @@ shadow_opacity = 0.84
 sky_mode = 1
 
 [node name="Background_Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1721999181]
-transform = Transform3D(0.3707207, 0, -0.042553786, 0, 0.39888015, 0, 0.11902542, 0, 0.13253951, 0.107, 1.8670721, -5.7553654)
+transform = Transform3D(0.3707207, 0, -0.042553786, 0, 0.71798426, 0, 0.11902542, 0, 0.13253951, 0.107, -2.132928, -5.7553654)
 billboard = 1
-texture = ExtResource("1_fpmxm")
+texture = ExtResource("7_krbtg")
 
 [node name="dog" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=833774682 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9205935, 7.1155304e-09, -0.39052227, -0.032875024, 0.99645036, -0.0774976, 0.38913605, 0.08418222, 0.91732585, 0.72536755, 0.5139824, 0)
+transform = Transform3D(0.9205935, 7.1155304e-09, -0.39052227, -0.032875024, 0.99645036, -0.0774976, 0.38913605, 0.08418222, 0.91732585, 1.3037968, 0.5139824, -2.1310825)
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/dog/Armature" parent_id_path=PackedInt32Array(833774682, 1307589125) index="0" unique_id=220141075]
 bones/0/position = Vector3(-7.2816685e-14, 0.41246238, -0.92763025)

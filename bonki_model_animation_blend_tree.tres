@@ -16,7 +16,7 @@ filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck", "Armature/Ske
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_3nm3d"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgj0r"]
-animation = &"Sleep"
+animation = &"Neutral"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6535g"]
 animation = &"BodyAntipearness"
@@ -62,7 +62,6 @@ states/Sleep/position = Vector2(591.5, 123.5)
 transitions = ["Start", "Neutral", SubResource("AnimationNodeStateMachineTransition_qgj0r"), "Neutral", "Sleep", SubResource("AnimationNodeStateMachineTransition_2i07j"), "Sleep", "End", SubResource("AnimationNodeStateMachineTransition_hachy")]
 
 [resource]
-graph_offset = Vector2(-196.04584, -26.237793)
 nodes/output/position = Vector2(3430, 550)
 nodes/EyesHeight/node = SubResource("AnimationNodeAnimation_nfc2f")
 nodes/EyesHeight/position = Vector2(2855.1174, 911.2108)

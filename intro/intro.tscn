@@ -11,33 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bsvjmqxxjamwd" path="res://intro/bonki_forest_ground_tile.png" id="7_xwdvp"]
 [ext_resource type="AudioStream" uid="uid://x32p86d3a3y8" path="res://sound/kami-no-koe.mp3" id="9_krbtg"]
 
-[sub_resource type="Animation" id="Animation_6ct58"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CameraRig_Node3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CameraRig_Node3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_a5lnx"]
 resource_name = "to_attention"
 length = 3.2666667
@@ -76,10 +49,121 @@ tracks/2/keys = {
 "times": PackedFloat32Array(1.5666667)
 }
 
+[sub_resource type="Animation" id="Animation_xwdvp"]
+resource_name = "1_02__dog_runs_behind"
+
+[sub_resource type="Animation" id="Animation_8c3ee"]
+resource_name = "1_03__reveal_scene"
+
+[sub_resource type="Animation" id="Animation_2i53d"]
+resource_name = "1_04__dog_runs"
+
+[sub_resource type="Animation" id="Animation_axcp6"]
+resource_name = "1_05__dog_appears"
+
+[sub_resource type="Animation" id="Animation_sg2fo"]
+resource_name = "dog_greets"
+
+[sub_resource type="Animation" id="Animation_1l24h"]
+resource_name = "1_07__dog_barks"
+
+[sub_resource type="Animation" id="Animation_ie2y0"]
+resource_name = "1_08__dog_barks"
+
+[sub_resource type="Animation" id="Animation_dk8sq"]
+resource_name = "1_09__dog_runs_off"
+
+[sub_resource type="Animation" id="Animation_ao3yw"]
+resource_name = "1_08__follow_dog"
+
+[sub_resource type="Animation" id="Animation_rcqw2"]
+resource_name = "1_09__catch_up_to_dog"
+
+[sub_resource type="Animation" id="Animation_ttu4d"]
+resource_name = "1_10__notice_bonki"
+
+[sub_resource type="Animation" id="Animation_5hu1j"]
+resource_name = "2_01__dog_warns"
+
+[sub_resource type="Animation" id="Animation_m3u68"]
+resource_name = "3_01__catch_up_to_dog_to_left"
+
+[sub_resource type="Animation" id="Animation_6o4ox"]
+resource_name = "3_01__catch_up_to_dog_to_right"
+
+[sub_resource type="Animation" id="Animation_j7iwe"]
+resource_name = "4_01__dog_starts_digging"
+
+[sub_resource type="Animation" id="Animation_cxrv6"]
+resource_name = "5_01__dog_stops_digging"
+
+[sub_resource type="Animation" id="Animation_35ehl"]
+resource_name = "06_01__dog_finishes_digging"
+
+[sub_resource type="Animation" id="Animation_gs241"]
+resource_name = "6_01__bonki_is_unearthed"
+
+[sub_resource type="Animation" id="Animation_spxp1"]
+resource_name = "6_02__they_run_off"
+
+[sub_resource type="Animation" id="Animation_hp8fq"]
+resource_name = "6_03__bark_in_distance"
+
+[sub_resource type="Animation" id="Animation_7v0dw"]
+resource_name = "6_04__fade_to_black"
+
+[sub_resource type="Animation" id="Animation_6ct58"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig_Node3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraRig_Node3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ct58"]
 _data = {
-&"RESET": SubResource("Animation_6ct58"),
-&"intro_sequence_01": SubResource("Animation_a5lnx")
+&"1_01__start": SubResource("Animation_a5lnx"),
+&"1_02__dog_runs_behind": SubResource("Animation_xwdvp"),
+&"1_03__reveal_scene": SubResource("Animation_8c3ee"),
+&"1_04__dog_runs": SubResource("Animation_2i53d"),
+&"1_05__dog_appears": SubResource("Animation_axcp6"),
+&"1_06__dog_greets": SubResource("Animation_sg2fo"),
+&"1_07__dog_barks": SubResource("Animation_1l24h"),
+&"1_08__dog_barks": SubResource("Animation_ie2y0"),
+&"1_09__dog_runs_off": SubResource("Animation_dk8sq"),
+&"1_10__follow_dog": SubResource("Animation_ao3yw"),
+&"1_11__catch_up_to_dog": SubResource("Animation_rcqw2"),
+&"1_12__notice_bonki": SubResource("Animation_ttu4d"),
+&"2_01__dog_warns": SubResource("Animation_5hu1j"),
+&"3_01__catch_up_to_dog_to_left": SubResource("Animation_m3u68"),
+&"3_02__catch_up_to_dog_to_right": SubResource("Animation_6o4ox"),
+&"4_01__dog_starts_digging": SubResource("Animation_j7iwe"),
+&"5_01__dog_stops_digging": SubResource("Animation_cxrv6"),
+&"6_01__dog_finishes_digging": SubResource("Animation_35ehl"),
+&"6_02__bonki_is_unearthed": SubResource("Animation_gs241"),
+&"6_03__they_run_off": SubResource("Animation_spxp1"),
+&"6_04__bark_in_distance": SubResource("Animation_hp8fq"),
+&"6_05__fade_to_black": SubResource("Animation_7v0dw"),
+&"RESET": SubResource("Animation_6ct58")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfta6"]

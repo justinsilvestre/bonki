@@ -183,6 +183,10 @@ func _ready():
 	cutscene_player.animation_finished.connect(_on_anim_finished)
 	
 	dialog_overlay.choice_selected.connect(_on_choice_made)
+	
+	dialog_overlay.choice_selected.connect(_on_choice_made)
+	
+	dialog_overlay.text_submitted.connect(_on_text_submitted)
 	# Start the sequence
 	start_step()
 
@@ -267,6 +271,15 @@ func _on_choice_made(index: int):
 				jump_to_label("CALL_DOG")
 			else: # No (Wait)
 				jump_to_label("WAIT_UNTIL_DIGGING_FINISHED")
+
+func _on_text_submitted(new_text: String):
+	# Save the name!
+	dog_name = new_text
+	print("Name saved: ", dog_name)
+	
+	# Move to next step
+	current_step_index += 1
+	start_step()
 
 func refresh_bonki():
 	print("Bonki refreshed!")

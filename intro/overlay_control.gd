@@ -55,6 +55,7 @@ func show_choices(prompt_text: String, options: Array):
 
 func show_text_input(prompt_text: String, default_text: String = ""):
 	_reset_ui()
+	current_step_type = "text_input"
 	text_label.text = prompt_text
 	
 	# Setup input field

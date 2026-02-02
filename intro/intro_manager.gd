@@ -6,6 +6,8 @@ signal step_finished
 @onready var dialog_overlay = $UI_CanvasLayer/Overlay_Control
 @onready var audio_player = $AudioStreamPlayer
 
+var dog_name := "Doggo"
+
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
 
 # Define the sequence steps. 

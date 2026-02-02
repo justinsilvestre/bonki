@@ -20,6 +20,7 @@ var _is_busy: bool = false
 func _ready() -> void:
 	print("transition overlay ready")
 	overlay = OVERLAY_SCENE.instantiate()
+	await get_tree().process_frame
 	print("overlay instantiated")
 	get_tree().root.add_child.call_deferred(overlay)
 	print("add_child called deferred")

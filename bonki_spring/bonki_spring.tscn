@@ -122,7 +122,7 @@ shader_parameter/wash_noise_strength = 0.8
 shader_parameter/wash_noise_scale = 1.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jwgr6"]
-size = Vector3(8, 1, 8)
+size = Vector3(8, 1, 13.14)
 
 [sub_resource type="Resource" id="Resource_8potb"]
 script = ExtResource("6_7vnbg")
@@ -214,24 +214,6 @@ eyes_height_factor = 0.6073252925446548
 crown_pscn = ExtResource("11_mcyv1")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
-[sub_resource type="Resource" id="Resource_m5uqd"]
-script = ExtResource("6_7vnbg")
-body_color = Color(0.512349, 0.3021029, 0.19697979, 1)
-eye_shine_color = Color(0.7732006, 0.88685197, 0.88587326, 1)
-eye_shadow_color = Color(0.006668804, 0.3454256, 0.38477004, 1)
-eye_base_color = Color(0.23425499, 0.3885657, 0.38901213, 1)
-wide_stretch_factor = -0.12358282858690162
-horn_stretch_factor = 0.1449906139882932
-long_stretch_factor = 0.4527965269414129
-pearness_factor = 0.623456731802104
-tall_stretch_factor = 0.9651710026093224
-wonkiness_factor = 0.7872010144606394
-eyes_spread_factor = -0.18417729914820224
-eyes_tilt_factor = 0.8748534879331864
-eyes_height_factor = 0.9005455585096371
-crown_pscn = ExtResource("8_3nr71")
-metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
-
 [sub_resource type="Resource" id="Resource_qemrt"]
 script = ExtResource("6_7vnbg")
 body_color = Color(0.3681382, 0.4264087, 0.29691866, 1)
@@ -248,6 +230,24 @@ eyes_spread_factor = -0.07929613279265957
 eyes_tilt_factor = -0.4391211008920435
 eyes_height_factor = 1.0
 crown_pscn = ExtResource("13_niosp")
+metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
+
+[sub_resource type="Resource" id="Resource_m5uqd"]
+script = ExtResource("6_7vnbg")
+body_color = Color(0.512349, 0.3021029, 0.19697979, 1)
+eye_shine_color = Color(0.7732006, 0.88685197, 0.88587326, 1)
+eye_shadow_color = Color(0.006668804, 0.3454256, 0.38477004, 1)
+eye_base_color = Color(0.23425499, 0.3885657, 0.38901213, 1)
+wide_stretch_factor = -0.12358282858690162
+horn_stretch_factor = 0.1449906139882932
+long_stretch_factor = 0.4527965269414129
+pearness_factor = 0.623456731802104
+tall_stretch_factor = 0.9651710026093224
+wonkiness_factor = 0.7872010144606394
+eyes_spread_factor = -0.18417729914820224
+eyes_tilt_factor = 0.8748534879331864
+eyes_height_factor = 0.9005455585096371
+crown_pscn = ExtResource("8_3nr71")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [node name="BonkiSpring" type="Node" unique_id=260375899]
@@ -273,7 +273,7 @@ projection = 1
 size = 8.0
 
 [node name="BackgroundSprite3D2" type="Sprite3D" parent="WorldNode3D" unique_id=1987943602]
-transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 5.7585955, -9.443253, -20.72865)
+transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 11.027897, -20.83855, -36.591644)
 material_override = SubResource("ShaderMaterial_hgyec")
 billboard = 1
 transparent = false
@@ -281,7 +281,7 @@ double_sided = false
 texture = ExtResource("4_3nr71")
 
 [node name="BackgroundSprite3D" type="Sprite3D" parent="WorldNode3D" unique_id=352621611]
-transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 5.7585955, -9.443253, -20.72865)
+transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 11.027897, -20.83855, -36.591644)
 material_override = SubResource("ShaderMaterial_jwgr6")
 billboard = 1
 texture = ExtResource("1_ho77f")
@@ -301,32 +301,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3493125)
 shape = SubResource("BoxShape3D_jwgr6")
 
 [node name="Bonki" parent="WorldNode3D" unique_id=2052834491 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35000002, 0, 0, 0, 0.35, 0, 0, -8.196823)
+transform = Transform3D(0.35, 0, 0, 0, 0.35000002, 0, 0, 0, 0.35, 2.6913745, 1.8358347, -8.196823)
 appearance = SubResource("Resource_8potb")
 
 [node name="Bonki2" parent="WorldNode3D" unique_id=1144760733 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.35000002, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, -3.6158426)
+transform = Transform3D(0.35000002, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.0000895, -0.5151367, -7.3474565)
 appearance = SubResource("Resource_hgyec")
 
 [node name="Bonki3" parent="WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, -9.196823)
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 1.8358347, -9.196823)
 appearance = SubResource("Resource_enw64")
 
 [node name="Bonki4" parent="WorldNode3D" unique_id=1515544183 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, -7.475644)
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.7951776, -0.5151367, -4.1699023)
 appearance = SubResource("Resource_xuayo")
 
 [node name="Bonki5" parent="WorldNode3D" unique_id=1968939506 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, -0.569863, -2.303298)
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.42284167, -0.5151367, 0)
 appearance = SubResource("Resource_8an6b")
 
-[node name="Bonki7" parent="WorldNode3D" unique_id=1727677926 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1, -0.569863, -2.303298)
-appearance = SubResource("Resource_m5uqd")
-
 [node name="Bonki6" parent="WorldNode3D" unique_id=429063601 instance=ExtResource("4_33gn6")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, -0.569863, -1.2712379)
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.55667484, -0.5151367, -2.6318011)
 appearance = SubResource("Resource_qemrt")
+
+[node name="Bonki7" parent="WorldNode3D" unique_id=1727677926 instance=ExtResource("4_33gn6")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.32050222, -0.5151367, -5.114398)
+appearance = SubResource("Resource_m5uqd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=978347152]
 stream = ExtResource("10_3nr71")

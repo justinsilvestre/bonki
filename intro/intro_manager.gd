@@ -182,6 +182,7 @@ func _ready():
 	# Connect the AnimationPlayer signal to our advance function
 	cutscene_player.animation_finished.connect(_on_anim_finished)
 	
+	dialog_overlay.choice_selected.connect(_on_choice_made)
 	# Start the sequence
 	start_step()
 
@@ -198,20 +199,25 @@ func start_step():
 		# We now wait for the 'step_finished' signal from the UI
 		
 	elif step["type"] == "anim":
-		cutscene_player.play(step["anim_name"])
+		dialog_overlay.show_text(step["anim_name"])
+		#cutscene_player.play(step["anim_name"])
 		# We now wait for the 'animation_finished' signal from the Player
 
 	elif step["type"] == "spec":
 		dialog_overlay.show_text(step["action"])
+		## Example: call a function dynamically based on the action name
+		#if has_method(step["action"]):
+			#call(step["action"])
+		## If it's instantaneous, move to next step immediately
+		#current_step_index += 1
+		#start_step()
 
 	elif step["type"] == "choice": 
-		dialog_overlay.show_text(step["content"])
+		dialog_overlay.show_choices(step["content"], step["options"])
 
 	elif step["type"] == "text_input":
 		dialog_overlay.show_text(step["content"])
 
-
-	
 
 func _on_step_finished():
 	# Called when text is dismissed
@@ -222,3 +228,51 @@ func _on_anim_finished(anim_name):
 	# Called when an animation finishes
 	current_step_index += 1
 	start_step()
+	
+func jump_to_label(target_label: String):
+	for i in range(sequence_steps.size()):
+		var step = sequence_steps[i]
+		if step.has("label") and step["label"] == target_label:
+			current_step_index = i
+			start_step()
+			return
+	print("Error: Label not found -> ", target_label)
+	
+func _on_choice_made(index: int):
+	var step = sequence_steps[current_step_index]
+	var action = step["action"]
+	
+	# Hide the choices immediately
+	dialog_overlay.choice_container.hide()
+	
+	# Based on the "action" key, we decide where to go
+	match action:
+		"decide_about_picking":
+			if index == 0: # Yes
+				jump_to_label("TRY_PICKING")
+			else: # No
+				jump_to_label("DOG_STARTS_DIGGING")
+
+		"decide_about_moving":
+			if index == 0: # Go Left
+				jump_to_label("REFRESH_BONKI_TO_LEFT")
+			elif index == 1: # Go Right
+				jump_to_label("REFRESH_BONKI_TO_RIGHT")
+			else: # Wait here a bit
+				jump_to_label("DOG_STARTS_DIGGING")
+
+		"confirm_about_staying":
+			if index == 0: # Yes (Get going / Call Dog)
+				jump_to_label("CALL_DOG")
+			else: # No (Wait)
+				jump_to_label("WAIT_UNTIL_DIGGING_FINISHED")
+
+func refresh_bonki():
+	print("Bonki refreshed!")
+	# Your logic to move the crown
+
+func start_meter():
+	print("Meter started")
+
+func stop_meter():
+	print("Meter stopped")

@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Bonki"
-run/main_scene="uid://pdr6r1j2o5x4"
+run/main_scene="uid://hxlw3a75kr5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

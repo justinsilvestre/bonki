@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://btiup8oih403n"]
+
+[ext_resource type="Texture2D" uid="uid://2klvqmovqs0k" path="res://Dog_Skin.png" id="1_fr0rd"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_fr0rd")
+roughness = 0.5

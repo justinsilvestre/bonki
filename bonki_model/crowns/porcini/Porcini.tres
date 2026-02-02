@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bw7eumklr2ac0"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bw7eumklr2ac0"]
 
 [ext_resource type="Texture2D" uid="uid://cplau8fams6ia" path="res://bonki_model/crowns/porcini/textures/Image_0.png" id="1_egn3n"]
 
 [resource]
 resource_name = "Porcini"
-shading_mode = 0
 albedo_texture = ExtResource("1_egn3n")
+metallic = 1.0

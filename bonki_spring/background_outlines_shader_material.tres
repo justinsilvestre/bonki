@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bxndxgorqqb1h"]
+
+[ext_resource type="Shader" uid="uid://biuaw0b7g8awu" path="res://bonki_spring/bonki_spring_wash.gdshader" id="1_fixxs"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fixxs"]
+load_path = "res://.godot/imported/bonki_spring_background_outlines.png-d16c8ff4bc707416be85982836cd5a20.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8hqdk"]
+frequency = 0.0655
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yjheo"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_8hqdk")
+seamless = true
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_fixxs")
+shader_parameter/bg_tex = SubResource("CompressedTexture2D_fixxs")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_yjheo")
+shader_parameter/wobble_strength = 0.006
+shader_parameter/wobble_speed = -0.02
+shader_parameter/wash_amount = 0.0
+shader_parameter/wash_noise_strength = 3.05
+shader_parameter/wash_noise_scale = 4.63

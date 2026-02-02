@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://hxlw3a75kr5"]
 
-[ext_resource type="Texture2D" uid="uid://cxemvv50x1po1" path="res://bonki_spring/art/bonki_spring_background.png" id="1_ho77f"]
-[ext_resource type="Shader" uid="uid://biuaw0b7g8awu" path="res://bonki_spring/bonki_spring_wash.gdshader" id="1_o0s8v"]
-[ext_resource type="Texture2D" uid="uid://b3gtm45qy5usu" path="res://bonki_spring/art/bonki_spring_background_outlines.png" id="4_3nr71"]
+[ext_resource type="Shader" uid="uid://biuaw0b7g8awu" path="res://bonki_spring/bonki_spring_wash.gdshader" id="1_aw26t"]
+[ext_resource type="Texture2D" uid="uid://b3gtm45qy5usu" path="res://bonki_spring/art/bonki_spring_background_outlines.png" id="2_hgyec"]
+[ext_resource type="Texture2D" uid="uid://cxemvv50x1po1" path="res://bonki_spring/art/bonki_spring_background.png" id="3_hgyec"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
 [ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini/porcini_crown.tscn" id="5_u8own"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
@@ -32,7 +32,24 @@ ambient_light_color = Color(0.5330367, 0.5330367, 0.5330367, 0.0627451)
 ambient_light_energy = 0.32
 tonemap_mode = 2
 
-[sub_resource type="Shader" id="Shader_8c10v"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eu601"]
+frequency = 0.0424
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3vmkq"]
+noise = SubResource("FastNoiseLite_eu601")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eu601"]
+render_priority = 1
+shader = ExtResource("1_aw26t")
+shader_parameter/bg_tex = ExtResource("2_hgyec")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_3vmkq")
+shader_parameter/wobble_strength = -0.002
+shader_parameter/wobble_speed = 0.1
+shader_parameter/wash_amount = 0.0
+shader_parameter/wash_noise_strength = 0.8
+shader_parameter/wash_noise_scale = 1.5
+
+[sub_resource type="Shader" id="Shader_eu601"]
 code = "shader_type spatial;
 render_mode unshaded, cull_disabled;
 
@@ -41,7 +58,6 @@ uniform sampler2D noise_tex : source_color;
 
 uniform float wobble_strength = 0.006;
 uniform float wobble_speed = 0.15;
-
 uniform float wash_amount = 0.20; // 0 = no wash, 1 = fully white
 
 // Controls how much the noise modulates the wash (0 = uniform wash, 1 = fully noise-driven)
@@ -80,43 +96,24 @@ void fragment() {
     ALPHA = col.a;
 }"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3nr71"]
-load_path = "res://.godot/imported/bonki_spring_background_outlines.png-d16c8ff4bc707416be85982836cd5a20.s3tc.ctex"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3vmkq"]
+load_path = "res://.godot/imported/bonki_spring_background.png-7a3d287c778bf2fb96301f1739dbd77d.ctex"
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_8potb"]
-frequency = 0.0727
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mcyv1"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aw26t"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_niosp"]
 width = 256
 height = 256
-noise = SubResource("FastNoiseLite_8potb")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgyec"]
-render_priority = 1
-shader = SubResource("Shader_8c10v")
-shader_parameter/bg_tex = SubResource("CompressedTexture2D_3nr71")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_aw26t")
-shader_parameter/wobble_strength = 0.005
-shader_parameter/wobble_speed = 0.02
-shader_parameter/wash_amount = 0.21
-shader_parameter/wash_noise_strength = 0.8
-shader_parameter/wash_noise_scale = 2.29
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_t6nyc"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8c10v"]
-width = 256
-height = 256
-noise = SubResource("FastNoiseLite_t6nyc")
+noise = SubResource("FastNoiseLite_mcyv1")
 seamless = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwgr6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_enw64"]
 render_priority = 0
-shader = ExtResource("1_o0s8v")
-shader_parameter/bg_tex = ExtResource("1_ho77f")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_8c10v")
-shader_parameter/wobble_strength = -0.05
-shader_parameter/wobble_speed = 0.15
+shader = SubResource("Shader_eu601")
+shader_parameter/bg_tex = SubResource("CompressedTexture2D_3vmkq")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_niosp")
+shader_parameter/wobble_strength = -0.13
+shader_parameter/wobble_speed = 0.05
 shader_parameter/wash_amount = 0.35
 shader_parameter/wash_noise_strength = 0.8
 shader_parameter/wash_noise_scale = 1.5
@@ -272,19 +269,18 @@ transform = Transform3D(0.9523159, 0.1737956, -0.2507776, 5.1532565e-09, 0.82191
 projection = 1
 size = 8.0
 
-[node name="BackgroundSprite3D2" type="Sprite3D" parent="WorldNode3D" unique_id=1987943602]
-transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 11.027897, -20.83855, -36.591644)
-material_override = SubResource("ShaderMaterial_hgyec")
+[node name="Sprite3D" type="Sprite3D" parent="WorldNode3D" unique_id=1967856981]
+transform = Transform3D(0.36180916, 0.066129915, -0.25132558, 0, 0.31241474, 0.56927955, 0.11616422, -0.20597056, 0.7827875, 11.028, -20.8, -36.592)
+material_override = SubResource("ShaderMaterial_eu601")
 billboard = 1
-transparent = false
-double_sided = false
-texture = ExtResource("4_3nr71")
+render_priority = 2
+texture = ExtResource("2_hgyec")
 
 [node name="BackgroundSprite3D" type="Sprite3D" parent="WorldNode3D" unique_id=352621611]
-transform = Transform3D(0.3707207, 0.06941556, -0.034985337, 0, 0.32793695, 0.07924557, 0.11902541, -0.21620412, 0.10896657, 11.027897, -20.83855, -36.591644)
-material_override = SubResource("ShaderMaterial_jwgr6")
+transform = Transform3D(0.36180916, 0.066129915, -0.25132558, 0, 0.31241474, 0.56927955, 0.11616422, -0.20597056, 0.7827875, 11.027897, -20.83855, -36.591644)
+material_override = SubResource("ShaderMaterial_enw64")
 billboard = 1
-texture = ExtResource("1_ho77f")
+texture = ExtResource("3_hgyec")
 
 [node name="PlatformUpperStaticBody3D" type="StaticBody3D" parent="WorldNode3D" unique_id=799142861]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000002, 1.194847, 0.64344335, -4.4389315)

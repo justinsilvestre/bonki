@@ -34,8 +34,8 @@ var appearance: BonkiAppearanceParameters:
 			# temporary connection. not visible to editor or saved to .tscn
 			new_val.changed.connect(_on_appearance_changed.bind(appearance, new_val))
 			pass
-		appearance = new_val
 		_on_appearance_changed(appearance, new_val)
+		appearance = new_val
 		pass
 
 # Cached variables from appearance changes

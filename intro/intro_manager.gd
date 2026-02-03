@@ -4,11 +4,17 @@ signal step_finished
 
 @onready var cutscene_player = $AnimationPlayer
 @onready var dialog_overlay = $UI_CanvasLayer/Overlay_Control
-@onready var audio_player = $AudioStreamPlayer
+@onready var loop_player = $AudioStreamPlayer
+@onready var music_player = $Music_AudioStreamPlayer
+@onready var sfx_player = $AudioStreamPlayer2D
 
 var dog_name := "Doggo"
 
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
+
+var sound_paths := {
+	"footsteps": "res://sound/sfx/pixabay_footsteps-dirt-gravel.mp3"
+}
 
 # Define the sequence steps. 
 # "type": "text" -> show text logic
@@ -18,7 +24,7 @@ const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
 # "type": "choice" -> multiple choice input prompt
 var sequence_steps := [
 	{"type": "anim", "anim_name": "1_01__start"}, # black screen
-	{"type": "spec", "action": "start"},# start BG music, start footsteps sound
+	#{"type": "spec", "action": "start"},# start BG music, start footsteps sound
 	{"type": "text", "content": "The air is thick with the soothing fragrance of pine."},
 	{"type": "text", "content": "It almost makes you forget just how long you've been lost in Bonki Forest."},
 	{"type": "text", "content": "You haven't seen another soul in at least..."},
@@ -26,42 +32,42 @@ var sequence_steps := [
 	# sound of dog running behind you left to right
 	{"type": "anim", "anim_name":"1_02__dog_runs_behind"},
 	# footsteps stop, black fades to reveal empty scene
-	{"type": "anim", "anim_name":"1_03__reveal_scene"},
+	#{"type": "anim", "anim_name":"1_03__reveal_scene"},
 	{"type": "text", "content": "What was that?"},
 	# sound of dog running behind you right to left to right
-	{"type": "anim", "anim_name": "1_04__dog_runs"},
+	{"type": "anim", "anim_name": "1_03__dog_runs"},
 	{"type": "text", "content": "Who's there?"},
 	# dog appears on scene, camera pans to reveal dog with wagging tail
-	{"type": "anim", "anim_name": "1_05__dog_appears"},
+	{"type": "anim", "anim_name": "1_04__dog_appears"},
 	{"type": "text", "content": "Would you look at that!"},
 	{"type": "text", "content": "You're not alone in these woods after all."},
 	# dog greets you
-	{"type": "anim", "anim_name": "1_06__dog_greets"},
+	{"type": "anim", "anim_name": "1_05__dog_greets"},
 	{"type": "text_input", "content": "What shall we call you?"},
 	#{"type": "text_input_prompt", "content": "Name", "default": "Doggo"},
 	{"type": "text", "content": "Yes, they're definitely a DOG."},
 	# dog barks a couple times.
-	{"type": "anim", "anim_name": "1_07__dog_barks"},
+	{"type": "anim", "anim_name": "1_06__dog_barks"},
 	{"type": "text", "content": "Easy now, DOG!"},
 	# dog barks a couple times more.
-	{"type": "anim", "anim_name": "1_08__dog_barks"}, 
+	{"type": "anim", "anim_name": "1_07__dog_barks"}, 
 	{"type": "text", "content": "What's the matter?"},
 	# dog runs off screen
-	{"type": "anim", "anim_name": "1_09__dog_runs_off"},
+	{"type": "anim", "anim_name": "1_08__dog_runs_off"},
 	{"type": "text", "content": "Maybe DOG knows the way out!"}, 
 	{"type": "text", "content": "Quickly, now!"},
 	# camera pans in dog's direction + fades to black.
-	{"type": "anim", "anim_name": "1_10__follow_dog"},
+	{"type": "anim", "anim_name": "1_09__follow_dog"},
 	# random bonki crown now sticks out of ground next to dog, now in center of ground surface
 	{"type": "spec", "action": "refresh_bonki"},
 	# you catch up to the dog, i.e. camera jumps to opposite edge of screen, pans in same direction as last pan as screen fades from black
-	{"type": "anim", "anim_name": "1_11__catch_up_to_dog"},
+	{"type": "anim", "anim_name": "1_10__catch_up_to_dog"},
 	{"type": "text", "content": "This isn't the way out..."},
 	{"type": "text", "content": "Why did DOG bring you here?"},
 	{"type": "text", "content": "Wait."},
 	{"type": "text", "content": "What's that?"},
 	# camera pans down towards bonki crown sticking out of ground
-	{"type": "anim", "anim_name": "1_12__notice_bonki"},
+	{"type": "anim", "anim_name": "1_11__notice_bonki"},
 	{"type": "text", "content": "You've never seen anything like it."},
 	{"type": "text", "content": "And yet..."},
 	{"type": "text", "content": "It feels familiar."},
@@ -184,8 +190,6 @@ func _ready():
 	
 	dialog_overlay.choice_selected.connect(_on_choice_made)
 	
-	dialog_overlay.choice_selected.connect(_on_choice_made)
-	
 	dialog_overlay.text_submitted.connect(_on_text_submitted)
 	# Start the sequence
 	start_step()
@@ -203,18 +207,14 @@ func start_step():
 		# We now wait for the 'step_finished' signal from the UI
 		
 	elif step["type"] == "anim":
-		dialog_overlay.show_text(step["anim_name"])
-		#cutscene_player.play(step["anim_name"])
+		cutscene_player.play(step["anim_name"])
 		# We now wait for the 'animation_finished' signal from the Player
 
 	elif step["type"] == "spec":
-		dialog_overlay.show_text(step["action"])
 		## Example: call a function dynamically based on the action name
-		#if has_method(step["action"]):
-			#call(step["action"])
-		## If it's instantaneous, move to next step immediately
-		#current_step_index += 1
-		#start_step()
+		if has_method(step["action"]):
+			call(step["action"])
+		_on_step_finished()
 
 	elif step["type"] == "choice": 
 		dialog_overlay.show_choices(step["content"], step["options"])
@@ -232,6 +232,8 @@ func _on_step_finished():
 func _on_anim_finished(anim_name):
 	# Called when an animation finishes
 	current_step_index += 1
+	
+	sfx_player.volume_db = 0 # Reset volume in case it was faded out
 	start_step()
 	
 func jump_to_label(target_label: String):
@@ -281,6 +283,18 @@ func _on_text_submitted(new_text: String):
 	current_step_index += 1
 	start_step()
 
+func start():
+	var bg_music = load("res://sound/kami-no-koe.mp3")
+	
+	if bg_music:
+		music_player.stream = bg_music
+		music_player.volume_db = 0 # Reset volume in case it was faded out
+		music_player.play()
+		
+	start_looping_sound("footsteps")
+
+
+
 func refresh_bonki():
 	print("Bonki refreshed!")
 	# Your logic to move the crown
@@ -290,3 +304,33 @@ func start_meter():
 
 func stop_meter():
 	print("Meter stopped")
+
+## Starts a looping sound. 
+## 'path' is the string path to your sound file (e.g., "res://sounds/panting.ogg")
+func start_looping_sound(key: String):
+	print(key)
+	print(sound_paths)
+	print("has key?")
+	print(sound_paths.has(key))
+	var path = sound_paths.get(key, "NOT_FOUND!!!")
+	print(path)
+	var sound_effect = load(path)
+	
+	if sound_effect:
+		loop_player.stream = sound_effect
+		loop_player.volume_db = 0 # Reset volume in case it was faded out
+		loop_player.play()
+	else:
+		push_error("Could not find sound file at: " + path)
+
+## Stops the sound with a smooth fade-out
+func stop_looping_sound(fade_duration: float = 0.3):
+	if loop_player.playing:
+		# Create a tween to transition the volume to silence (-80 dB)
+		var tween = create_tween()
+		tween.tween_property(loop_player, "volume_db", -80.0, fade_duration)
+		
+		# Once the fade is done, actually stop the player
+		tween.finished.connect(func(): 
+			loop_player.stop()
+		)

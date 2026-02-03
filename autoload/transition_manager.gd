@@ -108,18 +108,18 @@ func _fade_to_solid() -> void:
 	print("_fade_to_solid")
 	print("fade_anim")
 	print(fade_anim)
-	fade_anim.play("fade_to_solid")
-	print("playing fade_to_solid")
-	await fade_anim.animation_finished  # Animation finished signal :contentReference[oaicite:15]{index=15}
-	print("animation_finished")
+	#fade_anim.play("fade_to_solid")
+	#print("playing fade_to_solid")
+	#await fade_anim.animation_finished  # Animation finished signal :contentReference[oaicite:15]{index=15}
+	#print("animation_finished")
 
 func _fade_from_solid() -> void:
 	print("_fade_from_solid")
-	fade_anim.play("fade_from_solid")
-	print("playing fade in")
-	await fade_anim.animation_finished
-	_set_input_blocking(false)
-	print("fade in finished")
+	#fade_anim.play("fade_from_solid")
+	#print("playing fade in")
+	#await fade_anim.animation_finished
+	#_set_input_blocking(false)
+	#print("fade in finished")
 
 func _set_input_blocking(blocking: bool) -> void:
 	print("blocking input" if blocking else "freeing input")

@@ -2,83 +2,393 @@
 
 [ext_resource type="Script" uid="uid://djrao5uxlfgeh" path="res://intro/intro_manager.gd" id="1_6ct58"]
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="1_a5lnx"]
+[ext_resource type="AudioStream" uid="uid://dran7e7eutgmw" path="res://sound/sfx/pixabay_running-on-grass-with-wet-feet-7030.mp3" id="2_2i53d"]
 [ext_resource type="Theme" uid="uid://bdw7totli4d4o" path="res://theme.tres" id="2_8c3ee"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="2_vyos2"]
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="3_1q7h5"]
+[ext_resource type="AudioStream" uid="uid://dq61fd2dtasxk" path="res://sound/sfx/zapsplat_animals_dog_medium_sized_single_bark_med_close_001_70614.mp3" id="3_2i53d"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="3_vjsr4"]
 [ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="4_a5lnx"]
+[ext_resource type="AudioStream" uid="uid://c5uc6s7qkq4de" path="res://sound/sfx/zapsplat_animals_dog_medium_sized_single_bark_med_close_002_70615.mp3" id="4_axcp6"]
+[ext_resource type="AudioStream" uid="uid://b3punh3d4kq6h" path="res://sound/sfx/zapsplat_animals_dog_medium_sized_5x_barks_fast_slight_distance_70727.mp3" id="5_sg2fo"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="6_1q7h5"]
 [ext_resource type="Texture2D" uid="uid://chgtt2jvwlc3d" path="res://intro/bonki_forest_background.png" id="7_krbtg"]
 [ext_resource type="Texture2D" uid="uid://bsvjmqxxjamwd" path="res://intro/bonki_forest_ground_tile.png" id="7_xwdvp"]
-[ext_resource type="AudioStream" uid="uid://x32p86d3a3y8" path="res://sound/kami-no-koe.mp3" id="9_krbtg"]
 
 [sub_resource type="Animation" id="Animation_a5lnx"]
 resource_name = "to_attention"
-length = 3.2666667
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraRig_Node3D:position")
+tracks/0/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.02),
+"times": PackedFloat32Array(0.0001, 0.33333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 1.0843227, 1.0170789), Vector3(0, 0, 0)]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CameraRig_Node3D:rotation")
+tracks/1/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.02),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"update": 1,
+"values": [true, true]
 }
-tracks/2/type = "animation"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog/AnimationPlayer")
+tracks/2/path = NodePath("../../..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"clips": PackedStringArray("Dog_Sit_Down"),
-"times": PackedFloat32Array(1.5666667)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_xwdvp"]
 resource_name = "1_02__dog_runs_behind"
-
-[sub_resource type="Animation" id="Animation_8c3ee"]
-resource_name = "1_03__reveal_scene"
+length = 2.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.3],
+"method": &"stop_looping_sound"
+}]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_2i53d")
+}],
+"times": PackedFloat32Array(0.06666667)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.7333333, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../AudioStreamPlayer2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.033333335, 2.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-500, 0), Vector2(500, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../../AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1.7333333, 2.0333333),
+"transitions": PackedFloat32Array(0.8122523, 0.16383998, 0.16383998, 7.4642606),
+"update": 0,
+"values": [-80.0, 15.018, 15.018, -80.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CameraRig_Node3D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.7333333, 2.0333333, 2.2333333, 2.27317, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.0843227, 1.0170789), Vector3(6.990277, 6.480215, -2.506167), Vector3(-5.03683, 2.4663773, -2.477396), Vector3(0, 1.0843227, 1.0170789), Vector3(0, 1.0843227, 1.0170789)]
+}
 
 [sub_resource type="Animation" id="Animation_2i53d"]
 resource_name = "1_04__dog_runs"
+length = 2.1666667
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../AudioStreamPlayer2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_2i53d")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraRig_Node3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.8666667, 1, 0, 1.0843227, 1.0170789, 1.0333333, 1, 0, 1.0843227, 1.0170789, 1.3333333, 1, 6.990277, 6.480215, -2.506167, 1.5333333, 1, -5.03683, 2.4663773, -2.477396, 1.57317, 1, 0, 1.0843227, 1.0170789, 1.6999999, 1, 0, 1.0843227, 1.0170789)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../AudioStreamPlayer2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-500, 0), Vector2(500, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1.7333333, 2.0333333, 2.1333334),
+"transitions": PackedFloat32Array(0.8122523, 0.16383998, 0.16383998, 7.4642606, 1),
+"update": 0,
+"values": [-80.0, 15.018, 15.018, -80.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8c3ee"]
+resource_name = "1_03__reveal_scene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333325),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraRig_Node3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1.0843227, 1.0170789, 0.29999995, 1, 6.990277, 6.480215, -2.506167, 0.5, 1, -5.03683, 2.4663773, -2.477396, 0.53983665, 1, 0, 1.0843227, 1.0170789, 0.66666675, 1, 0, 1.0843227, 1.0170789)
 
 [sub_resource type="Animation" id="Animation_axcp6"]
 resource_name = "1_05__dog_appears"
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dog/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dog:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.72177875),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(6.5434456, 0.5139824, -12.71216), Vector3(-0.0044534206, 0.5139824, -1.8325274)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dog:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.72062576),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.07679449, -1.2531464, -0.033161256), Vector3(0.07757541, -0.03812381, -0.03298017)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("dog:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_sg2fo"]
 resource_name = "dog_greets"
+length = 0.46666667
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../AudioStreamPlayer2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.62262064,
+"start_offset": 0.0,
+"stream": ExtResource("3_2i53d")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
 
 [sub_resource type="Animation" id="Animation_1l24h"]
 resource_name = "1_07__dog_barks"
+length = 0.73333335
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../AudioStreamPlayer2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.69180065,
+"start_offset": 0.0,
+"stream": ExtResource("3_2i53d")
+}, {
+"end_offset": 0.16142017,
+"start_offset": 0.0922401,
+"stream": ExtResource("4_axcp6")
+}],
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/0/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ie2y0"]
 resource_name = "1_08__dog_barks"
+length = 0.6
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../AudioStreamPlayer2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.19370423,
+"start_offset": 0.24443625,
+"stream": ExtResource("5_sg2fo")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
 
 [sub_resource type="Animation" id="Animation_dk8sq"]
 resource_name = "1_09__dog_runs_off"
+length = 1.2666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 1.2333333),
+"transitions": PackedFloat32Array(1.9999988, 1),
+"update": 0,
+"values": [Vector3(-0.0044534206, 0.5139824, -1.8325274), Vector3(11.995546, 0.5139824, -1.8325274)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dog:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0023060024, 0.20408122),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.077575415, -0.038123816, -0.03298017), Vector3(0.07757544, 1.307176, -0.032980163)]
+}
 
 [sub_resource type="Animation" id="Animation_ao3yw"]
 resource_name = "1_08__follow_dog"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.59379566),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_rcqw2"]
 resource_name = "1_09__catch_up_to_dog"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.59379566),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ttu4d"]
 resource_name = "1_10__notice_bonki"
@@ -114,46 +424,125 @@ resource_name = "6_03__bark_in_distance"
 resource_name = "6_04__fade_to_black"
 
 [sub_resource type="Animation" id="Animation_6ct58"]
-length = 0.001
+length = 1.9666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraRig_Node3D:position")
+tracks/0/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Color(0, 0, 0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CameraRig_Node3D:rotation")
+tracks/1/path = NodePath("../../../UI_CanvasLayer/UnderUI_ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../AudioStreamPlayer2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CameraRig_Node3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.0843227, 1.0170789)]
+}
+tracks/5/type = "position_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CameraRig_Node3D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 1.0843227, 1.0170789)
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("dog:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.3037968, 0.5139824, -2.1310825)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("dog:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.077575386, -0.40247878, -0.03298017)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("dog:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ct58"]
 _data = {
 &"1_01__start": SubResource("Animation_a5lnx"),
 &"1_02__dog_runs_behind": SubResource("Animation_xwdvp"),
+&"1_03__dog_runs": SubResource("Animation_2i53d"),
 &"1_03__reveal_scene": SubResource("Animation_8c3ee"),
-&"1_04__dog_runs": SubResource("Animation_2i53d"),
-&"1_05__dog_appears": SubResource("Animation_axcp6"),
-&"1_06__dog_greets": SubResource("Animation_sg2fo"),
-&"1_07__dog_barks": SubResource("Animation_1l24h"),
-&"1_08__dog_barks": SubResource("Animation_ie2y0"),
-&"1_09__dog_runs_off": SubResource("Animation_dk8sq"),
-&"1_10__follow_dog": SubResource("Animation_ao3yw"),
-&"1_11__catch_up_to_dog": SubResource("Animation_rcqw2"),
-&"1_12__notice_bonki": SubResource("Animation_ttu4d"),
+&"1_04__dog_appears": SubResource("Animation_axcp6"),
+&"1_05__dog_greets": SubResource("Animation_sg2fo"),
+&"1_06__dog_barks": SubResource("Animation_1l24h"),
+&"1_07__dog_barks": SubResource("Animation_ie2y0"),
+&"1_08__dog_runs_off": SubResource("Animation_dk8sq"),
+&"1_09__follow_dog": SubResource("Animation_ao3yw"),
+&"1_10__catch_up_to_dog": SubResource("Animation_rcqw2"),
+&"1_11__notice_bonki": SubResource("Animation_ttu4d"),
 &"2_01__dog_warns": SubResource("Animation_5hu1j"),
 &"3_01__catch_up_to_dog_to_left": SubResource("Animation_m3u68"),
 &"3_02__catch_up_to_dog_to_right": SubResource("Animation_6o4ox"),
@@ -283,7 +672,23 @@ script = ExtResource("1_6ct58")
 root_node = NodePath("../SubViewportContainer/SubViewport/World_Node3D")
 libraries/ = SubResource("AnimationLibrary_6ct58")
 
+[node name="Music_AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2092748587]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=625484589]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=42452685]
+
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=683385579]
+
+[node name="UnderUI_ColorRect" type="ColorRect" parent="UI_CanvasLayer" unique_id=762560304]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Overlay_Control" type="Control" parent="UI_CanvasLayer" unique_id=1123055594]
 layout_mode = 3
@@ -308,12 +713,14 @@ offset_right = 502.0
 offset_bottom = -262.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI_CanvasLayer/Overlay_Control/TextPanel" unique_id=432905060]
 layout_mode = 0
 offset_left = 146.0
 offset_right = 890.0
 offset_bottom = 655.0
+mouse_filter = 1
 text = "Placeholder text! The quick brown fox jumps over the lazy dog! Blah blah blah the quick brown fox!"
 fit_content = true
 horizontal_alignment = 1
@@ -373,12 +780,14 @@ render_target_update_mode = 4
 [node name="World_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
 
 [node name="CameraRig_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2049257925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0843227, 1.0170789)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World_Node3D/CameraRig_Node3D" unique_id=139175723]
 transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0.31210983, 2.6263568)
 
 [node name="Bonki2" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2052698482 instance=ExtResource("2_vyos2")]
 transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.49999997, 0, -0.115309715, -1.4453459)
+visible = false
 appearance = SubResource("Resource_6ct58")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=452851521]
@@ -406,43 +815,39 @@ billboard = 1
 texture = ExtResource("7_krbtg")
 
 [node name="dog" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1164298180 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9205935, 7.1155304e-09, -0.39052227, -0.032875024, 0.99645036, -0.0774976, 0.38913605, 0.08418222, 0.91732585, 1.3037968, 0.5139824, -2.1310825)
+transform = Transform3D(0.9205936, -5.587934e-09, -0.39052233, -0.032875028, 0.9964501, -0.07749762, 0.3891361, 0.084182195, 0.917326, 1.3037968, 0.5139824, -2.1310825)
+visible = false
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/dog/Armature" parent_id_path=PackedInt32Array(1164298180, 2039761173) index="0" unique_id=1527425128]
-bones/0/position = Vector3(-7.2816685e-14, 0.41246238, -0.92763025)
-bones/0/rotation = Quaternion(0.6774471, 6.7116765e-05, -0.00011713083, 0.73557156)
-bones/1/rotation = Quaternion(0.10111209, 2.9788163e-05, 8.43073e-06, 0.9948751)
-bones/2/rotation = Quaternion(0.029509561, -1.8041996e-05, -2.5259747e-06, 0.9995646)
-bones/2/scale = Vector3(1.0001733, 1.0001734, 1.0001734)
-bones/3/rotation = Quaternion(0.053965334, 0.00014102912, 8.850693e-06, 0.9985428)
-bones/3/scale = Vector3(1.0000027, 1.001916, 1.0000051)
-bones/4/rotation = Quaternion(0.6770536, 0.0071985847, -0.1966557, 0.70913553)
-bones/5/rotation = Quaternion(0.092516184, -6.075907e-05, 0.12544523, 0.9877775)
-bones/8/rotation = Quaternion(0.6770533, -0.007199922, 0.19665697, 0.70913553)
-bones/9/rotation = Quaternion(0.09251615, 6.077549e-05, -0.1254452, 0.98777753)
-bones/12/position = Vector3(-5.3153887e-19, 0.41202864, -0.9276923)
-bones/12/rotation = Quaternion(-0.32688037, -6.8890765e-17, -6.938825e-17, 0.94506574)
-bones/13/position = Vector3(5.8935257e-10, 0.41196677, -0.92639124)
-bones/13/rotation = Quaternion(0.002666973, 0.16063978, 0.97894907, -0.12588318)
-bones/13/scale = Vector3(0.9988305, 0.99883044, 0.9988306)
-bones/14/rotation = Quaternion(-0.38981712, 0.00020433746, -0.107760645, 0.9145657)
-bones/14/scale = Vector3(1.0019579, 1.0019579, 1.001958)
-bones/15/rotation = Quaternion(0.3715788, 0.0027025717, -0.024998639, 0.9280609)
-bones/16/rotation = Quaternion(0.5991388, -2.8572686e-08, -0.039505087, 0.79967)
-bones/17/position = Vector3(-5.8935257e-10, 0.41196677, -0.92639124)
-bones/17/rotation = Quaternion(-0.002666973, 0.16063978, 0.97894907, 0.12588318)
-bones/17/scale = Vector3(0.9988305, 0.99883044, 0.9988306)
-bones/18/rotation = Quaternion(-0.38981712, -0.00020433746, 0.107760645, 0.9145657)
-bones/18/scale = Vector3(1.0019579, 1.0019579, 1.001958)
-bones/19/rotation = Quaternion(0.3715788, -0.0027025717, 0.024998639, 0.9280609)
-bones/20/rotation = Quaternion(0.5991388, 2.8572686e-08, 0.039505087, 0.79967)
+bones/0/position = Vector3(-6.1931044e-14, 0.4036211, -0.92900276)
+bones/0/rotation = Quaternion(0.6742907, 0.00013606569, -0.00023891023, 0.738466)
+bones/1/rotation = Quaternion(0.10195643, 6.024113e-05, 1.6946295e-05, 0.9947889)
+bones/2/rotation = Quaternion(0.028837731, -4.2829477e-05, -6.0749467e-06, 0.99958414)
+bones/2/scale = Vector3(1.0006046, 1.0006047, 1.0006047)
+bones/3/rotation = Quaternion(0.057879444, 0.0002868007, 1.790153e-05, 0.99832356)
+bones/3/scale = Vector3(1.000006, 1.0038903, 1.0000107)
+bones/4/rotation = Quaternion(0.6777353, 0.007567933, -0.19634314, 0.70856684)
+bones/5/rotation = Quaternion(0.09503035, -0.00012370823, 0.12506342, 0.9875872)
+bones/8/rotation = Quaternion(0.67773503, -0.00756926, 0.19634438, 0.7085669)
+bones/9/rotation = Quaternion(0.09503032, 0.00012372018, -0.1250634, 0.9875872)
+bones/12/position = Vector3(-1.0792023e-18, 0.40274054, -0.9291286)
+bones/12/rotation = Quaternion(-0.33039394, -6.863215e-17, -6.964407e-17, 0.9438432)
+bones/13/position = Vector3(-7.33413e-10, 0.40261483, -0.926487)
+bones/13/rotation = Quaternion(0.0045597455, 0.16575828, 0.9778382, -0.12781243)
+bones/13/scale = Vector3(0.9976254, 0.99762535, 0.99762547)
+bones/14/rotation = Quaternion(-0.39299604, 0.00041562715, -0.10788571, 0.91318923)
+bones/14/scale = Vector3(1.003975, 1.003975, 1.0039753)
+bones/15/rotation = Quaternion(0.37517974, 0.005505194, -0.025752567, 0.926578)
+bones/16/rotation = Quaternion(0.5973284, -2.9642305e-08, -0.039385714, 0.80102915)
+bones/17/position = Vector3(7.33413e-10, 0.40261483, -0.926487)
+bones/17/rotation = Quaternion(-0.004559746, 0.16575828, 0.9778382, 0.12781243)
+bones/17/scale = Vector3(0.9976254, 0.99762535, 0.99762547)
+bones/18/rotation = Quaternion(-0.39299604, -0.00041562674, 0.1078857, 0.91318923)
+bones/18/scale = Vector3(1.003975, 1.003975, 1.0039753)
+bones/19/rotation = Quaternion(0.37517974, -0.005505194, 0.025752567, 0.926578)
+bones/20/rotation = Quaternion(0.5973284, 2.7852415e-08, 0.039385714, 0.80102915)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1769233898]
 environment = SubResource("Environment_a5lnx")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=625484589]
-stream = ExtResource("9_krbtg")
-autoplay = true
-parameters/looping = true
 
 [editable path="SubViewportContainer/SubViewport/World_Node3D/dog"]

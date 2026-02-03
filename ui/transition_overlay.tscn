@@ -71,6 +71,7 @@ script = ExtResource("1_6uoov")
 layer = 100
 
 [node name="FadeColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1625167188]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

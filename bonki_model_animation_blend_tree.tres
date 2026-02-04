@@ -18,6 +18,11 @@ filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck", "Armature/Ske
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgj0r"]
 animation = &"Neutral"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_56dsx"]
+animation = &"Blink"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_b1kp4"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6535g"]
 animation = &"BodyAntipearness"
 
@@ -62,6 +67,7 @@ states/Sleep/position = Vector2(591.5, 123.5)
 transitions = ["Start", "Neutral", SubResource("AnimationNodeStateMachineTransition_qgj0r"), "Neutral", "Sleep", SubResource("AnimationNodeStateMachineTransition_2i07j"), "Sleep", "End", SubResource("AnimationNodeStateMachineTransition_hachy")]
 
 [resource]
+graph_offset = Vector2(-67.7077, -50.609436)
 nodes/output/position = Vector2(3430, 550)
 nodes/EyesHeight/node = SubResource("AnimationNodeAnimation_nfc2f")
 nodes/EyesHeight/position = Vector2(2855.1174, 911.2108)
@@ -72,7 +78,7 @@ nodes/AddEyesHeight/position = Vector2(3090, 690)
 nodes/BodyWideStretch/node = SubResource("AnimationNodeAnimation_2i07j")
 nodes/BodyWideStretch/position = Vector2(1020, 390)
 nodes/AddBodyWideStretch/node = SubResource("AnimationNodeAdd2_poafa")
-nodes/AddBodyWideStretch/position = Vector2(1290, 190)
+nodes/AddBodyWideStretch/position = Vector2(1360, 190)
 nodes/AddEyesSpread/node = SubResource("AnimationNodeAdd2_qgj0r")
 nodes/AddEyesSpread/position = Vector2(2490, 340)
 nodes/EyesSpread/node = SubResource("AnimationNodeAnimation_hachy")
@@ -94,5 +100,9 @@ nodes/BodyAntipearness/position = Vector2(1870, 720)
 nodes/AddBodyAntipearness/node = SubResource("AnimationNodeAdd2_ag013")
 nodes/AddBodyAntipearness/position = Vector2(2100, 500)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qgj0r")
-nodes/Animation/position = Vector2(983.54803, 103.5015)
-node_connections = [&"output", 0, &"AddEyesHeight", &"AddEyesHeight", 0, &"AddEyesTilt", &"AddEyesHeight", 1, &"EyesHeight", &"AddBodyWideStretch", 0, &"Animation", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness"]
+nodes/Animation/position = Vector2(550, 300)
+nodes/BlinkOneShot/node = SubResource("AnimationNodeOneShot_b1kp4")
+nodes/BlinkOneShot/position = Vector2(870, 270)
+nodes/Blink/node = SubResource("AnimationNodeAnimation_56dsx")
+nodes/Blink/position = Vector2(660, 440)
+node_connections = [&"output", 0, &"AddEyesHeight", &"AddEyesHeight", 0, &"AddEyesTilt", &"AddEyesHeight", 1, &"EyesHeight", &"AddBodyWideStretch", 0, &"BlinkOneShot", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness", &"BlinkOneShot", 0, &"Animation", &"BlinkOneShot", 1, &"Blink"]

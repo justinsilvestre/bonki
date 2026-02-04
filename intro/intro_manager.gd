@@ -3,10 +3,11 @@ extends Control
 signal step_finished
 
 @onready var cutscene_player = $AnimationPlayer
-@onready var dialog_overlay = $UI_CanvasLayer/Overlay_Control
-@onready var loop_player = $AudioStreamPlayer
-@onready var music_player = $Music_AudioStreamPlayer
-@onready var sfx_player = $AudioStreamPlayer2D
+@onready var dialog_overlay := $UI_CanvasLayer/Overlay_Control
+@onready var loop_player : AudioStreamPlayer = $AudioStreamPlayer
+@onready var music_player: AudioStreamPlayer = $Music_AudioStreamPlayer
+@onready var sfx_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
 
 var dog_name := "Doggo"
 
@@ -182,6 +183,7 @@ var bonki_spring_sequence_steps = [
 var current_step_index = 0
 
 func _ready():
+	
 	# Connect the UI signal to our advance function
 	dialog_overlay.step_finished.connect(_on_step_finished)
 	
@@ -207,6 +209,7 @@ func start_step():
 		# We now wait for the 'step_finished' signal from the UI
 		
 	elif step["type"] == "anim":
+		dialog_overlay.hide()
 		cutscene_player.play(step["anim_name"])
 		# We now wait for the 'animation_finished' signal from the Player
 
@@ -293,11 +296,15 @@ func start():
 		
 	start_looping_sound("footsteps")
 
-
-
 func refresh_bonki():
 	print("Bonki refreshed!")
-	# Your logic to move the crown
+	print(bonki)
+	var new_appearance = BonkiAppearanceParameters.new()
+	new_appearance.randomize()
+	bonki.appearance = 	new_appearance
+	#bonki.model.eye_base_l_mesh.hide()
+	#bonki.model.eye_base_r_mesh.hide()
+	bonki.close_eyes()
 
 func start_meter():
 	print("Meter started")

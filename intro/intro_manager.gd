@@ -94,10 +94,13 @@ var sequence_steps := [
 	
 	# if 'wait here a bit', dog starts digging
 	# if move left or right, refresh bonki
-	{"label": "REFRESH_BONKI_TO_LEFT", "type": "spec", "action": "refresh_bonki"},
+	{"label": "REFRESH_BONKI_TO_LEFT", "type": "anim", "anim_name": "3_001_follow_dog_to_left"},
+	{"type": "spec", "action": "refresh_bonki"},
+	
 	# camera jumps to opposite edge of screen, pans in same direction as last pan while screen fades from black
 	{"type": "anim", "anim_name": "3_01__catch_up_to_dog_to_left"},
 	{"type": "text", "content": "This isn't the way out..."},
+	{"type": "anim", "anim_name": "1_11__notice_bonki"},
 	{"type": "text", "content": "What's that?"},
 	{"type": "text", "content": "It feels familiar."},
 	{
@@ -105,10 +108,12 @@ var sequence_steps := [
   		"options": ["Yes", "No"],
 		"action": "decide_about_picking",
 	},
-	{"label": "REFRESH_BONKI_TO_RIGHT", "type": "spec", "action": "refresh_bonki"},
+	{"label": "REFRESH_BONKI_TO_RIGHT", "type": "anim", "anim_name": "3_002_follow_dog_to_right"},
+	{"type": "spec", "action": "refresh_bonki"},
 	# camera jumps to opposite edge of screen, pans in same direction as last pan while screen fades from black
 	{"type": "anim", "anim_name": "3_02__catch_up_to_dog_to_right"},
 	{"type": "text", "content": "This isn't the way out..."},
+	{"type": "anim", "anim_name": "1_11__notice_bonki"},
 	{"type": "text", "content": "What's that?"},
 	{"type": "text", "content": "It feels familiar."},
 	{

@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-@onready var silhouette_mesh = $SilhouetteEffect_MeshInstance3D # Adjust path as needed
+#@onready var silhouette_mesh = $SilhouetteEffect_MeshInstance3D # Adjust path as needed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

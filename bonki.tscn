@@ -1,16 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://rhmsuguqvlui"]
+[gd_scene format=3 uid="uid://rhmsuguqvlui"]
 
 [ext_resource type="Script" uid="uid://lr0pn44uqj8p" path="res://bonki.gd" id="1_3gbxg"]
 [ext_resource type="PackedScene" uid="uid://66ccsnb7emg7" path="res://bonki_model/bonki_model.tscn" id="2_3gbxg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eqxf7"]
 
-[node name="Bonki" type="CharacterBody3D"]
+[node name="Bonki" type="CharacterBody3D" unique_id=469040401]
 script = ExtResource("1_3gbxg")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="." unique_id=435007898]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=685360306]
 shape = SubResource("SphereShape3D_eqxf7")
 
-[node name="BonkiModel" parent="." instance=ExtResource("2_3gbxg")]
+[node name="BonkiModel" parent="." unique_id=1272112936 instance=ExtResource("2_3gbxg")]

@@ -1,34 +1,160 @@
 [gd_scene format=3 uid="uid://dkgqnwu57ro4g"]
 
 [ext_resource type="PackedScene" uid="uid://bfjnfyn3oec7s" path="res://dog.blend" id="1_c5eso"]
+[ext_resource type="Script" uid="uid://bujdbkljehamh" path="res://dog/dog.gd" id="2_23r22"]
 
-[node name="dog" unique_id=1164298180 instance=ExtResource("1_c5eso")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_23r22"]
+animation = &"Dog_Bark"
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1307589125) index="0" unique_id=220141075]
-bones/0/position = Vector3(1.923272e-15, -0.7625303, -1.1100299)
-bones/0/rotation = Quaternion(0.14158802, 0.009173795, -0.016201835, 0.9897506)
-bones/1/rotation = Quaternion(0.21266395, 0.004076039, 0.0011398852, 0.9771162)
-bones/2/rotation = Quaternion(-0.03751591, -0.0024885105, -0.00035623857, 0.99929297)
-bones/2/scale = Vector3(1.0238916, 1.0238916, 1.0238917)
-bones/3/rotation = Quaternion(0.5642545, 0.01941534, 0.0012055625, 0.82537174)
-bones/3/scale = Vector3(1.0004159, 1.264286, 1.0007547)
-bones/4/rotation = Quaternion(0.7615447, 0.056206856, -0.15335196, 0.627195)
-bones/5/rotation = Quaternion(0.42067927, -0.008409133, 0.06743716, 0.90466046)
-bones/8/rotation = Quaternion(0.7615444, -0.056208014, 0.15335348, 0.62719494)
-bones/9/rotation = Quaternion(0.4206793, 0.008409135, -0.06743715, 0.90466046)
-bones/12/position = Vector3(-2.7608875e-16, -0.82234967, -1.1185756)
-bones/12/rotation = Quaternion(-0.7500291, -1.2993018e-16, 7.83921e-17, 0.6614048)
-bones/13/position = Vector3(-2.142042e-08, -0.83089554, -0.9391167)
-bones/13/rotation = Quaternion(0.25066262, 0.77511555, 0.47444287, -0.33356896)
-bones/13/scale = Vector3(0.8386772, 0.8386773, 0.8386774)
-bones/14/rotation = Quaternion(-0.76757914, 0.02817469, -0.11233249, 0.6304045)
-bones/14/scale = Vector3(1.2700448, 1.2700449, 1.2700449)
-bones/15/rotation = Quaternion(0.76115304, 0.37213555, -0.11876876, 0.5177406)
-bones/16/rotation = Quaternion(0.33128318, -3.352761e-08, -0.021843666, 0.9432785)
-bones/17/position = Vector3(2.142042e-08, -0.83089554, -0.9391167)
-bones/17/rotation = Quaternion(-0.25066265, 0.77511555, 0.47444287, 0.333569)
-bones/17/scale = Vector3(0.8386771, 0.8386771, 0.83867735)
-bones/18/rotation = Quaternion(-0.7675793, -0.028174663, 0.11233246, 0.63040435)
-bones/18/scale = Vector3(1.2700449, 1.2700452, 1.2700449)
-bones/19/rotation = Quaternion(0.76115304, -0.37213552, 0.11876873, 0.5177406)
-bones/20/rotation = Quaternion(0.33128315, 4.1909516e-08, 0.02184365, 0.9432785)
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_mo3i0"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mo3i0"]
+animation = &"Dog_Look_Up"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_dfixc"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfixc"]
+animation = &"Dog_Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_upfqx"]
+animation = &"Dog_Sit_Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7c7x"]
+animation = &"Dog_Sit_Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0cd14"]
+animation = &"Dog_Stand_Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fk6up"]
+animation = &"Dog_Stand_Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6b1ys"]
+animation = &"Dog_Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_muuir"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3f4uv"]
+advance_mode = 2
+advance_condition = &"is_standing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bw08k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b42jo"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2gn3a"]
+advance_mode = 2
+advance_condition = &"is_sitting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oj173"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_standing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdfhv"]
+advance_mode = 2
+advance_condition = &"is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lc8dg"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wge4m"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l7c7x"]
+states/Dog_Jump/node = SubResource("AnimationNodeAnimation_dfixc")
+states/Dog_Jump/position = Vector2(698.75, 169.25)
+states/Dog_Sit_Down/node = SubResource("AnimationNodeAnimation_upfqx")
+states/Dog_Sit_Down/position = Vector2(433.75, 247.5)
+states/Dog_Sit_Pose/node = SubResource("AnimationNodeAnimation_l7c7x")
+states/Dog_Sit_Pose/position = Vector2(331, 446.5)
+states/Dog_Stand_Pose/node = SubResource("AnimationNodeAnimation_0cd14")
+states/Dog_Stand_Pose/position = Vector2(323, 78)
+states/Dog_Stand_Up/node = SubResource("AnimationNodeAnimation_fk6up")
+states/Dog_Stand_Up/position = Vector2(230.5, 246.75)
+states/Dog_Walk/node = SubResource("AnimationNodeAnimation_6b1ys")
+states/Dog_Walk/position = Vector2(685.5, 30.75)
+states/End/position = Vector2(906, 118)
+states/Start/position = Vector2(107.5, 86)
+transitions = ["Dog_Sit_Down", "Dog_Sit_Pose", SubResource("AnimationNodeStateMachineTransition_muuir"), "Dog_Sit_Pose", "Dog_Stand_Up", SubResource("AnimationNodeStateMachineTransition_3f4uv"), "Start", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_bw08k"), "Dog_Stand_Pose", "Dog_Walk", SubResource("AnimationNodeStateMachineTransition_b42jo"), "Dog_Stand_Pose", "Dog_Sit_Down", SubResource("AnimationNodeStateMachineTransition_2gn3a"), "Dog_Stand_Up", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_oj173"), "Dog_Stand_Pose", "Dog_Jump", SubResource("AnimationNodeStateMachineTransition_bdfhv"), "Dog_Walk", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_lc8dg"), "Dog_Jump", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_wge4m")]
+graph_offset = Vector2(0, -88)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_23r22"]
+graph_offset = Vector2(-698.812, -164.38036)
+nodes/output/position = Vector2(990, 140)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_l7c7x")
+nodes/StateMachine/position = Vector2(-620, -90)
+nodes/BarkOneShot/node = SubResource("AnimationNodeOneShot_mo3i0")
+nodes/BarkOneShot/position = Vector2(170, 120)
+nodes/Bark/node = SubResource("AnimationNodeAnimation_23r22")
+nodes/Bark/position = Vector2(-340.6051, 291.00125)
+nodes/LookUpBlend2/node = SubResource("AnimationNodeBlend2_dfixc")
+nodes/LookUpBlend2/position = Vector2(590, 90)
+nodes/LookUp/node = SubResource("AnimationNodeAnimation_mo3i0")
+nodes/LookUp/position = Vector2(380, 270)
+node_connections = [&"output", 0, &"LookUpBlend2", &"BarkOneShot", 0, &"StateMachine", &"BarkOneShot", 1, &"Bark", &"LookUpBlend2", 0, &"BarkOneShot", &"LookUpBlend2", 1, &"LookUp"]
+
+[node name="dog" unique_id=93409961 instance=ExtResource("1_c5eso")]
+script = ExtResource("2_23r22")
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1173401902) index="0" unique_id=557373032]
+bones/0/position = Vector3(-9.9476295e-14, 0.4210433, -0.92629826)
+bones/0/rotation = Quaternion(0.6804837, 5.241172e-07, 4.867234e-07, 0.7327633)
+bones/1/rotation = Quaternion(0.100292675, 2.3720867e-07, 1.6738275e-07, 0.994958)
+bones/2/position = Vector3(1.906539e-14, 0.29200214, 1.5321154e-08)
+bones/2/rotation = Quaternion(0.029998545, 4.1180436e-12, 5.721797e-08, 0.9995499)
+bones/2/scale = Vector3(1, 1.0000001, 1)
+bones/3/rotation = Quaternion(0.050181013, 1.19058676e-07, 1.01695406e-07, 0.99874014)
+bones/3/scale = Vector3(1, 0.99999994, 0.9999998)
+bones/4/position = Vector3(6.366908e-09, 0.29200214, 2.1320437e-08)
+bones/4/rotation = Quaternion(0.6763915, 0.006840181, -0.19695887, 0.7096866)
+bones/5/position = Vector3(-2.3722002e-09, 0.917549, -4.539676e-08)
+bones/5/rotation = Quaternion(0.09007945, 2.3373991e-07, 0.12581441, 0.9879557)
+bones/6/rotation = Quaternion(-0.29507792, -4.163286e-08, 0.08708859, 0.951496)
+bones/7/rotation = Quaternion(-0.516044, -7.044593e-07, 0.1523045, 0.8429128)
+bones/8/position = Vector3(-4.1533332e-09, 0.29200214, -9.110413e-09)
+bones/8/rotation = Quaternion(0.676391, -0.0068415576, 0.19696012, 0.7096867)
+bones/9/position = Vector3(4.8628896e-09, 0.917549, 3.034131e-08)
+bones/9/rotation = Quaternion(0.090079434, -2.2248895e-07, -0.12581441, 0.9879557)
+bones/10/rotation = Quaternion(-0.29507798, 3.648646e-08, -0.08708859, 0.951496)
+bones/11/rotation = Quaternion(-0.5160441, 7.41204e-07, -0.15230444, 0.8429128)
+bones/12/position = Vector3(3.3087225e-24, 0.4210433, -0.92629826)
+bones/12/rotation = Quaternion(-0.32347822, -6.913994e-17, -6.913996e-17, 0.9462356)
+bones/13/position = Vector3(5.231965e-09, 0.42104334, -0.9262983)
+bones/13/rotation = Quaternion(0.00084866054, 0.15571755, 0.97998416, -0.12402581)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/position = Vector3(2.74173e-08, 0.9116905, 4.157748e-08)
+bones/14/rotation = Quaternion(-0.38673693, -1.0351498e-07, -0.10763841, 0.91588676)
+bones/14/scale = Vector3(1, 1.0000001, 1.0000001)
+bones/15/rotation = Quaternion(0.3680982, 4.0126116e-09, -0.024271077, 0.9294701)
+bones/16/rotation = Quaternion(0.6008907, -3.192019e-08, -0.039620604, 0.79834867)
+bones/17/position = Vector3(-5.231965e-09, 0.42104334, -0.9262983)
+bones/17/rotation = Quaternion(-0.00084866054, 0.15571755, 0.97998416, 0.12402581)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/position = Vector3(-2.74173e-08, 0.9116905, 4.157748e-08)
+bones/18/rotation = Quaternion(-0.38673693, 1.0351498e-07, 0.10763841, 0.91588676)
+bones/18/scale = Vector3(1, 1.0000001, 1.0000001)
+bones/19/rotation = Quaternion(0.3680982, -4.0126116e-09, 0.024271077, 0.9294701)
+bones/20/rotation = Quaternion(0.6008907, 3.192019e-08, 0.039620604, 0.79834867)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1815908616]
+tree_root = SubResource("AnimationNodeBlendTree_23r22")
+anim_player = NodePath("../AnimationPlayer")
+parameters/StateMachine/conditions/is_jumping = false
+parameters/StateMachine/conditions/is_sitting = false
+parameters/StateMachine/conditions/is_standing = false
+parameters/StateMachine/conditions/is_walking = false
+parameters/BarkOneShot/active = false
+parameters/BarkOneShot/internal_active = false
+parameters/BarkOneShot/request = 0
+parameters/LookUpBlend2/blend_amount = 0.0

@@ -22,6 +22,17 @@ var add_eyes_spread_path := "parameters/AddEyesSpread/add_amount"
 var add_eyes_tilt_path := "parameters/AddEyesTilt/add_amount"
 var add_eyes_height_path := "parameters/AddEyesHeight/add_amount"
 
+const EYES_SHUTNESS_BLEND_SHAPE_INDEX = 3
+
+func close_eyes():
+	eye_base_l_mesh.set_blend_shape_value(EYES_SHUTNESS_BLEND_SHAPE_INDEX, 1)
+	eye_base_r_mesh.set_blend_shape_value(EYES_SHUTNESS_BLEND_SHAPE_INDEX, 1)
+	
+func open_eyes():
+	eye_base_l_mesh.set_blend_shape_value(EYES_SHUTNESS_BLEND_SHAPE_INDEX, 0)
+	eye_base_r_mesh.set_blend_shape_value(EYES_SHUTNESS_BLEND_SHAPE_INDEX, 0)
+	pass
+
 # Should be set by Bonki.appearance, and point to same resource
 var appearance: BonkiAppearanceParameters:
 	set(new_val): # Should be called automatically at scene instantiation

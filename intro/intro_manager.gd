@@ -25,6 +25,7 @@ var sound_paths := {
 # "type": "choice" -> multiple choice input prompt
 var sequence_steps := [
 	{"type": "anim", "anim_name": "1_01__start"}, # black screen
+	
 	#{"type": "spec", "action": "start"},# start BG music, start footsteps sound
 	{"type": "text", "content": "The air is thick with the soothing fragrance of pine."},
 	#{"type": "spec", "action": "next_scene"},
@@ -41,6 +42,7 @@ var sequence_steps := [
 	{"type": "text", "content": "Who's there?"},
 	# dog appears on scene, camera pans to reveal dog with wagging tail
 	{"type": "anim", "anim_name": "1_04__dog_appears"},
+	
 	{"type": "text", "content": "Would you look at that!"},
 	{"type": "text", "content": "You're not alone in these woods after all."},
 	# dog greets you
@@ -285,10 +287,24 @@ func start():
 	
 	if bg_music:
 		music_player.stream = bg_music
-		music_player.volume_db = 0 # Reset volume in case it was faded out
+		bg_music.loop = true
+		music_player.volume_db = 0 
 		music_player.play()
 		
 	start_looping_sound("footsteps")
+	
+func fade_out_music(duration: float = 0.5):
+	# Create a tween local to this function
+	var tween = create_tween()
+	
+	# Transition the volume_db property to -80 (silent) over the duration
+	tween.tween_property(music_player, "volume_db", -80.0, duration)
+	
+	# Optional: Completely stop the player once the fade is finished
+	tween.finished.connect(func():
+		music_player.stop()
+		music_player.volume_db = 0
+	)
 
 func refresh_bonki():
 	print("Bonki refreshed!")

@@ -8,10 +8,7 @@ signal step_finished
 @onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
 
 var intro_sequence_steps = [
-	# transition to Bonki Spring
 	{"type": "anim", "anim_name": "intro_01_fade_in_and_pan"},
-	# pan around
-	{"type": "anim", "anim_name": "RESET"},
 	{"type": "text", "content": "Bonki Spring..."},
 	{"type": "text", "content": "The mythical abode of the guardians of the forest—"},
 	{"type": "text", "content": "The legendary Bonkis."},

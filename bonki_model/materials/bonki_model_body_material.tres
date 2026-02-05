@@ -7,8 +7,8 @@
 gradient = ExtResource("2_ehucb")
 
 [sub_resource type="Gradient" id="Gradient_ylgm3"]
-offsets = PackedFloat32Array(0.22613065, 0.26884422, 0.451005, 0.830402)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.11888111, 0.11888111, 0.11888111, 1, 0.49152538, 0.49152538, 0.49152538, 1)
+offsets = PackedFloat32Array(0.34606743, 0.6988764, 0.81797755, 0.89325845)
+colors = PackedColorArray(0, 0, 0, 1, 0.11888111, 0.11888111, 0.11888111, 1, 0.49152538, 0.49152538, 0.49152538, 1, 0.0674251, 0.0674251, 0.0674251, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_g32e2"]
 gradient = SubResource("Gradient_ylgm3")
@@ -17,15 +17,11 @@ gradient = SubResource("Gradient_ylgm3")
 render_priority = 0
 shader = ExtResource("1_ylgm3")
 shader_parameter/albedo = Color(0.8447067, 0.53193, 0.2517803, 1)
-shader_parameter/albedo_texture_size = Vector2i(0, 0)
-shader_parameter/point_size = 0.0
 shader_parameter/roughness = 0.0
 shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.0
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(0, 0, 0)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(0, 0, 0)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/color_gradient = SubResource("GradientTexture1D_8585f")
 shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_g32e2")

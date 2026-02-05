@@ -9,6 +9,7 @@ extends CharacterBody3D
 		if is_node_ready(): model.appearance = val
 
 @onready var model: BonkiModel = $BonkiModel
+
 var blink_blend_path := "parameters/AddBlink/add_amount"
 var blink_one_shot_path := "parameters/BlinkOneShot/request"
 
@@ -27,6 +28,12 @@ func _process(delta: float) -> void:
 		if blink_timer <= 0.0:
 			await do_blink()
 			_reset_blink_timer()
+
+func hide_eyes():
+	model.hide_eyes()
+	
+func show_eyes():
+	model.show_eyes()
 
 func close_eyes():
 	model.close_eyes()

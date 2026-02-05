@@ -307,9 +307,7 @@ func refresh_bonki():
 	var new_appearance = BonkiAppearanceParameters.new()
 	new_appearance.randomize()
 	bonki.appearance = 	new_appearance
-	#bonki.model.eye_base_l_mesh.hide()
-	#bonki.model.eye_base_r_mesh.hide()
-	bonki.close_eyes()
+	bonki.hide_eyes()
 
 func start_meter():
 	print("Meter started")

@@ -7,11 +7,7 @@ extends Node3D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var body_mesh: MeshInstance3D = $Armature/Skeleton3D/Body
 @onready var eye_base_l_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeBase_L
-@onready var eye_shadow_l_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShadow_L
-@onready var eye_shine_l_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShine_L
 @onready var eye_base_r_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeBase_R
-@onready var eye_shadow_r_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShadow_R
-@onready var eye_shine_r_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeShine_R
 @onready var crown_attachment: BoneAttachment3D = $CrownAttachment
 
 var add_wide_stretch_path := "parameters/AddBodyWideStretch/add_amount"
@@ -23,6 +19,14 @@ var add_eyes_tilt_path := "parameters/AddEyesTilt/add_amount"
 var add_eyes_height_path := "parameters/AddEyesHeight/add_amount"
 
 const EYES_SHUTNESS_BLEND_SHAPE_INDEX = 3
+
+func hide_eyes():
+	eye_base_l_mesh.hide()
+	eye_base_r_mesh.hide()
+	
+func show_eyes():
+	eye_base_l_mesh.show()
+	eye_base_r_mesh.show()
 
 func close_eyes():
 	eye_base_l_mesh.set_blend_shape_value(EYES_SHUTNESS_BLEND_SHAPE_INDEX, 1)
@@ -60,7 +64,8 @@ var _crown_pscn: PackedScene = null:
 		if new_val != null:
 			var new_inst =  new_val.instantiate()
 			if new_inst is Crown:
-				_crown_node = new_val.instantiate() # attach new crown
+				#_crown_node = new_val.instantiate() # attach new crown
+				_crown_node = new_inst # attach new crown
 			else:
 				new_inst.queue_free()
 				push_error("Crown Pscn must inherit from Crown!")
@@ -101,8 +106,7 @@ func set_colors(old_params: BonkiAppearanceParameters, params: BonkiAppearancePa
 		"res://bonki_model/materials/bonki_eye_shader.tres"
 	).duplicate()
 	eye_base_material.set_shader_parameter("base_color", params.eye_base_color)
-	eye_base_material.set_shader_parameter("shine_color", params.eye_shine_color)
-	eye_base_material.set_shader_parameter("shadow_color", params.eye_shadow_color)
+
 	
 	eye_base_l_mesh.set_surface_override_material(0, eye_base_material)
 	eye_base_r_mesh.set_surface_override_material(0, eye_base_material)
@@ -151,9 +155,6 @@ func set_body_shape_key(blend_shape: String, value: float) -> void:
 func set_eyes_shape_key(blend_shape: String, value: float) -> void:
 	var l_index = eye_base_l_mesh.find_blend_shape_by_name(blend_shape)
 	eye_base_l_mesh.set_blend_shape_value(l_index, value)
-	eye_shadow_l_mesh.set_blend_shape_value(l_index, value)
-	eye_shine_l_mesh.set_blend_shape_value(l_index, value)
+
 	var r_index = eye_base_r_mesh.find_blend_shape_by_name(blend_shape)
 	eye_base_r_mesh.set_blend_shape_value(r_index, value)
-	eye_shadow_r_mesh.set_blend_shape_value(r_index, value)
-	eye_shine_r_mesh.set_blend_shape_value(r_index, value)

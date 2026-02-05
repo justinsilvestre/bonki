@@ -48,7 +48,7 @@ func load_game():
 				dog_name = data["dog_name"]
 			if "seen_intro" in data:
 				seen_intro = data["seen_intro"]
-			if "free_bonkis_appearance_parameters" in data:
+			if "free_bonkis_appearance_parameters" in data and data["free_bonkis_appearance_parameters"]:
 				free_bonkis_appearance_parameters = JSON.to_native(data["free_bonkis_appearance_parameters"])
 		else:
 			print("Error: Corrupted save file.")

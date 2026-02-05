@@ -31,6 +31,7 @@ var normal_steps = [
 var current_step_index = 0
 
 func _ready():
+	print("ready!")
 	# Connect the UI signal to our advance function
 	dialog_overlay.step_finished.connect(_on_step_finished)
 	
@@ -89,7 +90,7 @@ func _on_anim_finished(anim_name):
 	# Called when an animation finishes
 	current_step_index += 1
 	
-	sfx_player.volume_db = 0 # Reset volume in case it was faded out
+	#sfx_player.volume_db = 0 # Reset volume in case it was faded out
 	start_step()
 	
 func jump_to_label(target_label: String):

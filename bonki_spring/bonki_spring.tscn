@@ -308,26 +308,23 @@ eyes_height_factor = 0.9005455585096371
 crown_pscn = ExtResource("8_3nr71")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
-[node name="BonkiSpring" type="Node" unique_id=260375899]
-script = ExtResource("1_3vmkq")
-
-[node name="Control" type="Control" parent="." unique_id=1322998289]
+[node name="Control" type="Control" unique_id=1322998289]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_3vmkq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=427423972]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=427423972]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_mcyv1")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control" unique_id=978347152]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=978347152]
 autoplay = true
 
-[node name="UI_CanvasLayer" type="CanvasLayer" parent="Control" unique_id=660336011]
-visible = false
+[node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=660336011]
 
-[node name="UnderUI_ColorRect" type="ColorRect" parent="Control/UI_CanvasLayer" unique_id=1892265757]
+[node name="UnderUI_ColorRect" type="ColorRect" parent="UI_CanvasLayer" unique_id=1892265757]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -336,7 +333,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.6556212)
 
-[node name="Overlay_Control" type="Control" parent="Control/UI_CanvasLayer" unique_id=1824340417]
+[node name="Overlay_Control" type="Control" parent="UI_CanvasLayer" unique_id=1824340417]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -346,7 +343,7 @@ grow_vertical = 2
 theme = ExtResource("2_eu601")
 script = ExtResource("3_3vmkq")
 
-[node name="TextPanel" type="Panel" parent="Control/UI_CanvasLayer/Overlay_Control" unique_id=1805423604]
+[node name="TextPanel" type="Panel" parent="UI_CanvasLayer/Overlay_Control" unique_id=1805423604]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -361,7 +358,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/UI_CanvasLayer/Overlay_Control/TextPanel" unique_id=1305339625]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI_CanvasLayer/Overlay_Control/TextPanel" unique_id=1305339625]
 layout_mode = 0
 offset_left = 146.0
 offset_right = 890.0
@@ -372,7 +369,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Choice_VBoxContainer" type="VBoxContainer" parent="Control/UI_CanvasLayer/Overlay_Control" unique_id=1787296601]
+[node name="Choice_VBoxContainer" type="VBoxContainer" parent="UI_CanvasLayer/Overlay_Control" unique_id=1787296601]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -382,7 +379,7 @@ offset_bottom = -839.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Input_VBoxContainer" type="VBoxContainer" parent="Control/UI_CanvasLayer/Overlay_Control" unique_id=2044564764]
+[node name="Input_VBoxContainer" type="VBoxContainer" parent="UI_CanvasLayer/Overlay_Control" unique_id=2044564764]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -393,16 +390,16 @@ offset_bottom = -882.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit" type="LineEdit" parent="Control/UI_CanvasLayer/Overlay_Control/Input_VBoxContainer" unique_id=1688442692]
+[node name="LineEdit" type="LineEdit" parent="UI_CanvasLayer/Overlay_Control/Input_VBoxContainer" unique_id=1688442692]
 layout_mode = 2
 alignment = 1
 max_length = 10
 
-[node name="Button" type="Button" parent="Control/UI_CanvasLayer/Overlay_Control/Input_VBoxContainer" unique_id=1732822292]
+[node name="Button" type="Button" parent="UI_CanvasLayer/Overlay_Control/Input_VBoxContainer" unique_id=1732822292]
 layout_mode = 2
 text = "OK"
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=798094945]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=798094945]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -417,15 +414,15 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=135837145]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=135837145]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(2743, 2096)
 render_target_update_mode = 4
 
-[node name="WorldNode3D" type="Node3D" parent="Control/SubViewportContainer/SubViewport" unique_id=77457003]
+[node name="WorldNode3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=77457003]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=702157635]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=702157635]
 transform = Transform3D(0.04922702, 0.9388421, -0.3408112, -0.13421422, 0.344348, 0.92919916, 0.98972887, 0, 0.1429572, -0.2830286, 6.387801, 0)
 light_energy = 0.06
 light_specular = 0.216
@@ -433,67 +430,69 @@ shadow_enabled = true
 shadow_opacity = 0.84
 sky_mode = 1
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=34670161]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=34670161]
 environment = SubResource("Environment_8potb")
 
-[node name="CameraRigNode3D" type="Node3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=566747869]
+[node name="CameraRigNode3D" type="Node3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=566747869]
 transform = Transform3D(0.9523159, 0.1737956, -0.2507776, 5.1532565e-09, 0.82191545, 0.5696095, 0.30511358, -0.5424482, 0.7827231, -3.1744606, 7.8342257, 4.6483293)
 
-[node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D/CameraRigNode3D" unique_id=1732145892]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/WorldNode3D/CameraRigNode3D" unique_id=1732145892]
 projection = 1
 size = 8.0
 
-[node name="Sprite3D" type="Sprite3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=1967856981]
+[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1967856981]
 transform = Transform3D(0.36180916, 0.066129915, -0.25132558, 0, 0.31241474, 0.56927955, 0.11616422, -0.20597056, 0.7827875, 11.028, -20.8, -36.592)
 material_override = SubResource("ShaderMaterial_eu601")
 billboard = 1
 render_priority = 2
 texture = SubResource("PlaceholderTexture2D_hgyec")
 
-[node name="BackgroundSprite3D" type="Sprite3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=352621611]
+[node name="BackgroundSprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=352621611]
 transform = Transform3D(0.36180916, 0.066129915, -0.25132558, 0, 0.31241474, 0.56927955, 0.11616422, -0.20597056, 0.7827875, 11.027897, -20.83855, -36.591644)
 material_override = SubResource("ShaderMaterial_enw64")
 billboard = 1
 texture = SubResource("PlaceholderTexture2D_aw26t")
 
-[node name="PlatformUpperStaticBody3D" type="StaticBody3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=799142861]
+[node name="PlatformUpperStaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=799142861]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000002, 1.194847, 0.64344335, -4.4389315)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D/PlatformUpperStaticBody3D" unique_id=1160241119]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/WorldNode3D/PlatformUpperStaticBody3D" unique_id=1160241119]
 transform = Transform3D(1, 1.5133992e-09, 0, 2.3283064e-10, 1, 0, 0, 0, 1, -0.00624156, 0.47392464, -3.6767683)
 shape = SubResource("BoxShape3D_jwgr6")
 
-[node name="PlatformLowerStaticBody3D" type="StaticBody3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=943299447]
+[node name="PlatformLowerStaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=943299447]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000002, 1.122787, -1.3273838, -2.9656336)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Control/SubViewportContainer/SubViewport/WorldNode3D/PlatformLowerStaticBody3D" unique_id=421842754]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/WorldNode3D/PlatformLowerStaticBody3D" unique_id=421842754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3493125)
 shape = SubResource("BoxShape3D_jwgr6")
 
-[node name="Bonki" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=2052834491 instance=ExtResource("4_33gn6")]
+[node name="Bonki" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2052834491 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35000002, 0, 0, 0, 0.35, 2.6913745, 1.8358347, -8.196823)
 appearance = SubResource("Resource_8potb")
 
-[node name="Bonki2" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=1144760733 instance=ExtResource("4_33gn6")]
+[node name="Bonki2" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1144760733 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35000002, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.0000895, -0.5151367, -7.3474565)
 appearance = SubResource("Resource_hgyec")
 
-[node name="Bonki3" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
+[node name="Bonki3" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 1.8358347, -9.196823)
 appearance = SubResource("Resource_enw64")
 
-[node name="Bonki4" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=1515544183 instance=ExtResource("4_33gn6")]
+[node name="Bonki4" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1515544183 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.7951776, -0.5151367, -4.1699023)
 appearance = SubResource("Resource_xuayo")
 
-[node name="Bonki5" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=1968939506 instance=ExtResource("4_33gn6")]
+[node name="Bonki5" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1968939506 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.42284167, -0.5151367, 0)
 appearance = SubResource("Resource_8an6b")
 
-[node name="Bonki6" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=429063601 instance=ExtResource("4_33gn6")]
+[node name="Bonki6" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=429063601 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.55667484, -0.5151367, -2.6318011)
 appearance = SubResource("Resource_qemrt")
 
-[node name="Bonki7" parent="Control/SubViewportContainer/SubViewport/WorldNode3D" unique_id=1727677926 instance=ExtResource("4_33gn6")]
+[node name="Bonki7" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1727677926 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.32050222, -0.5151367, -5.114398)
 appearance = SubResource("Resource_m5uqd")
+
+[node name="BonkiSpring" type="Node" parent="." unique_id=260375899]

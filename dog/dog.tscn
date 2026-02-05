@@ -22,6 +22,9 @@ animation = &"Dog_Look_Up"
 filter_enabled = true
 filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3f4uv"]
+animation = &"Dog_Dig"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfixc"]
 animation = &"Dog_Jump"
 
@@ -80,7 +83,17 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"is_jumping"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ax82p"]
+advance_mode = 2
+advance_condition = &"is_digging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wbqvr"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l7c7x"]
+states/Dog_Dig/node = SubResource("AnimationNodeAnimation_3f4uv")
+states/Dog_Dig/position = Vector2(406, -77)
 states/Dog_Jump/node = SubResource("AnimationNodeAnimation_dfixc")
 states/Dog_Jump/position = Vector2(722.75, 298.75)
 states/Dog_Sit_Down/node = SubResource("AnimationNodeAnimation_upfqx")
@@ -95,11 +108,11 @@ states/Dog_Walk/node = SubResource("AnimationNodeAnimation_6b1ys")
 states/Dog_Walk/position = Vector2(685.5, 30.75)
 states/End/position = Vector2(906, 118)
 states/Start/position = Vector2(107.5, 86)
-transitions = ["Dog_Sit_Down", "Dog_Sit_Pose", SubResource("AnimationNodeStateMachineTransition_muuir"), "Dog_Sit_Pose", "Dog_Stand_Up", SubResource("AnimationNodeStateMachineTransition_3f4uv"), "Start", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_bw08k"), "Dog_Stand_Pose", "Dog_Walk", SubResource("AnimationNodeStateMachineTransition_b42jo"), "Dog_Stand_Pose", "Dog_Sit_Down", SubResource("AnimationNodeStateMachineTransition_2gn3a"), "Dog_Stand_Up", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_oj173"), "Dog_Stand_Pose", "Dog_Jump", SubResource("AnimationNodeStateMachineTransition_bdfhv"), "Dog_Walk", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_lc8dg"), "Dog_Jump", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_wge4m"), "Dog_Sit_Pose", "Dog_Jump", SubResource("AnimationNodeStateMachineTransition_23r22")]
-graph_offset = Vector2(0, -88)
+transitions = ["Dog_Sit_Down", "Dog_Sit_Pose", SubResource("AnimationNodeStateMachineTransition_muuir"), "Dog_Sit_Pose", "Dog_Stand_Up", SubResource("AnimationNodeStateMachineTransition_3f4uv"), "Start", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_bw08k"), "Dog_Stand_Pose", "Dog_Walk", SubResource("AnimationNodeStateMachineTransition_b42jo"), "Dog_Stand_Pose", "Dog_Sit_Down", SubResource("AnimationNodeStateMachineTransition_2gn3a"), "Dog_Stand_Up", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_oj173"), "Dog_Stand_Pose", "Dog_Jump", SubResource("AnimationNodeStateMachineTransition_bdfhv"), "Dog_Walk", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_lc8dg"), "Dog_Jump", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_wge4m"), "Dog_Sit_Pose", "Dog_Jump", SubResource("AnimationNodeStateMachineTransition_23r22"), "Dog_Stand_Pose", "Dog_Dig", SubResource("AnimationNodeStateMachineTransition_ax82p"), "Dog_Dig", "Dog_Stand_Pose", SubResource("AnimationNodeStateMachineTransition_wbqvr")]
+graph_offset = Vector2(-232, -126)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_23r22"]
-graph_offset = Vector2(-839.97595, -84.078674)
+graph_offset = Vector2(-853, -179)
 nodes/output/position = Vector2(990, 140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_l7c7x")
 nodes/StateMachine/position = Vector2(-620, -190)
@@ -120,7 +133,7 @@ node_connections = [&"output", 0, &"LookUpBlend2", &"BarkOneShot", 0, &"JumpOneS
 [node name="dog" unique_id=93409961 instance=ExtResource("1_c5eso")]
 script = ExtResource("2_23r22")
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1173401902) index="0" unique_id=557373032]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(238050548) index="0" unique_id=1722205886]
 bones/0/position = Vector3(-9.9476295e-14, 0.4210433, -0.92629826)
 bones/0/rotation = Quaternion(0.6804837, 5.241172e-07, 4.867234e-07, 0.7327633)
 bones/1/rotation = Quaternion(0.100292675, 2.3720867e-07, 1.6738275e-07, 0.994958)
@@ -163,6 +176,7 @@ bones/20/rotation = Quaternion(0.6008907, 3.192019e-08, 0.039620604, 0.79834867)
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1815908616]
 tree_root = SubResource("AnimationNodeBlendTree_23r22")
 anim_player = NodePath("../AnimationPlayer")
+parameters/StateMachine/conditions/is_digging = false
 parameters/StateMachine/conditions/is_jumping = false
 parameters/StateMachine/conditions/is_sitting = false
 parameters/StateMachine/conditions/is_standing = false

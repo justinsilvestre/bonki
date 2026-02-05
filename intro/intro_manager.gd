@@ -6,10 +6,10 @@ signal step_finished
 @onready var dialog_overlay := $UI_CanvasLayer/Overlay_Control
 @onready var loop_player : AudioStreamPlayer = $AudioStreamPlayer
 @onready var music_player: AudioStreamPlayer = $Music_AudioStreamPlayer
-@onready var sfx_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+#@onready var sfx_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
 
-var dog_name := "Doggo"
+@onready var dog_name := GameState.dog_name
 
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
 
@@ -188,7 +188,8 @@ var bonki_spring_sequence_steps = [
 var current_step_index = 0
 
 func _ready():
-	
+	print("GameState.dog_name")
+	print(GameState.dog_name)
 	# Connect the UI signal to our advance function
 	dialog_overlay.step_finished.connect(_on_step_finished)
 	
@@ -240,8 +241,6 @@ func _on_step_finished():
 func _on_anim_finished(anim_name):
 	# Called when an animation finishes
 	current_step_index += 1
-	
-	sfx_player.volume_db = 0 # Reset volume in case it was faded out
 	start_step()
 	
 func jump_to_label(target_label: String):
@@ -285,6 +284,7 @@ func _on_choice_made(index: int):
 func _on_text_submitted(new_text: String):
 	# Save the name!
 	dog_name = new_text
+	GameState.save_dog_name(dog_name)
 	print("Name saved: ", dog_name)
 	
 	# Move to next step

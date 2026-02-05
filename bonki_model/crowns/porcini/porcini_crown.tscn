@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://mfinu6h27hve"]
+[gd_scene format=4 uid="uid://mfinu6h27hve"]
 
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="1_gndse"]
 [ext_resource type="Texture2D" uid="uid://b7ks6t6oroeko" path="res://bonki_model/crowns/textures/Image_0.png" id="2_d1ona"]
@@ -33,14 +33,14 @@ metadata/extras = {
 "targetNames": ["Squatness", "Tilt"]
 }
 
-[node name="PorciniCrown" type="Node3D"]
+[node name="PorciniCrown" type="Node3D" unique_id=1945053793]
 script = ExtResource("1_gndse")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1232877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11720002, 0)
 visible = false
 mesh = SubResource("ArrayMesh_7ndrk")
 skeleton = NodePath("")
 
-[node name="porcini" parent="." instance=ExtResource("3_8ti1r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12082851, 0)
+[node name="porcini" parent="." unique_id=615681469 instance=ExtResource("3_8ti1r")]
+transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0.2208285, 0)

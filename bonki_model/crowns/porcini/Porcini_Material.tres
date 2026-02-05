@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://4bi6fty7a8o5"]
+
+[ext_resource type="Texture2D" uid="uid://c6oxkmj4ts437" path="res://bonki_model/crowns/porcini/porcini_texture.png" id="1_lg1h1"]
+
+[resource]
+resource_name = "Porcini_Material"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_lg1h1")
+roughness = 0.5

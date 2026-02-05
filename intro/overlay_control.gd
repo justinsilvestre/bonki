@@ -7,7 +7,7 @@ signal text_submitted(input_text: String)
 @onready var text_label: RichTextLabel = $TextPanel/RichTextLabel
 @onready var choice_container: VBoxContainer = $Choice_VBoxContainer
 @onready var input_container = $Input_VBoxContainer
-@onready var input_field = $Input_VBoxContainer/LineEdit
+@onready var input_field := $Input_VBoxContainer/LineEdit
 @onready var confirm_button = $Input_VBoxContainer/Button
 
 var current_step_type = null

@@ -718,6 +718,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(-0.23736478, -0.6981317, 0), Vector3(-0.23736478, -0.6981317, 0)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("dog")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.2666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"sit"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rcqw2"]
 resource_name = "1_09__catch_up_to_dog"
@@ -813,12 +827,9 @@ tracks/7/path = NodePath("dog")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"sit"
-}, {
 "args": [],
 "method": &"stand"
 }]
@@ -884,10 +895,10 @@ tracks/3/path = NodePath("dog:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -0.75398225, -0.033161256)]
+"values": [Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -1.0611602, -0.033161256), Vector3(0.07679449, -0.75398225, -0.033161256)]
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -896,14 +907,14 @@ tracks/4/path = NodePath("dog")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1.0666667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"jump"
 }, {
 "args": [],
-"method": &"stand"
+"method": &"walk"
 }]
 }
 
@@ -1729,7 +1740,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.033333376, 0.26666668, 0.46666667, 0.6333333, 0.8, 0.96666664, 1.1, 1.2, 1.3333334, 1.4666667, 1.5, 1.5333332, 1.5666666, 1.5999999, 1.6333333, 1.6666667, 1.7, 1.7333333, 1.7666667, 2.6, 2.7955952, 4.233333, 5.1666665, 10.566667, 11.166667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1, 0), Vector3(1.2832417, 1, 1.3153846), Vector3(1.383, 1, 1.405), Vector3(1.283, 1, 1.595), Vector3(1.2832417, 1, 1.3153846), Vector3(1.373, 1, 1.395), Vector3(1.2832417, 1, 1.3153846), Vector3(1.383, 1, 1.405), Vector3(1.283, 1, 1.595), Vector3(1.2832417, 1, 1.3153846), Vector3(1.373, 1, 1.395), Vector3(1.383, 1, 1.405), Vector3(1.283, 1, 1.595), Vector3(1.2832417, 1, 1.3153846), Vector3(1.373, 1, 1.395), Vector3(1.2832417, 1, 1.3153846), Vector3(1.383, 1, 1.405), Vector3(1.283, 1, 1.595), Vector3(1.2832417, 1, 1.3153846), Vector3(1.373, 1, 1.395), Vector3(1.2832417, 1, 1.3153846), Vector3(10.38, 1, 9.38), Vector3(10.38, 1, 9.38), Vector3(10.38, 1, 9.88894), Vector3(10.38, 1, 9.88894), Vector3(10.38, 1, 10.64)]
+"values": [Vector3(0, 1, 0), Vector3(1.2832417, 1, 1.3153846), Vector3(1.383, 1, 1.405), Vector3(1.283, 1, 1.595), Vector3(1.2832417, 1, 1.3153846), Vector3(1.373, 1, 1.395), Vector3(1.2832417, 1, 1.3153846), Vector3(1.383, 1, 1.405), Vector3(1.283, 1, 1.595), Vector3(1.2832417, 1, 1.3153846), Vector3(1.373, 1, 1.395), Vector3(1.383, 1, 1.405), Vector3(1.283, 1, 1.595), Vector3(1.2832417, 1, 1.3153846), Vector3(1.373, 1, 1.395), Vector3(1.2832417, 1, 1.3153846), Vector3(1.383, 1, 1.405), Vector3(1.283, 1, 1.595), Vector3(1.2832417, 1, 1.3153846), Vector3(1.373, 1, 1.395), Vector3(1.2832417, 1, 1.3153846), Vector3(40.5, 1, 9.38), Vector3(25.07, 1, 10.16), Vector3(10.38, 1, 9.88894), Vector3(10.38, 1, 9.88894), Vector3(10.38, 1, 10.64)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1782,11 +1793,11 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/8/path = NodePath("DogRunningAround_Path3D/PathFollow3D:progress_ratio")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.76666665, 4.0666666),
+"times": PackedFloat32Array(2.9, 10.766666),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -1798,9 +1809,12 @@ tracks/9/path = NodePath("Bonki")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(4.3999996, 11.599999, 12.199999, 12.466666),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(4.3333335, 4.3999996, 11.599999, 12.199999, 12.466666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"close_eyes"
+}, {
 "args": [],
 "method": &"show_eyes"
 }, {
@@ -1849,6 +1863,50 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.31939524, 0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("DogRunningAround_Path3D/PathFollow3D/RemoteTransform3D:update_position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(2.9, 10.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("dog")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.6, 8.333333, 8.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"jump_on_loop"
+}, {
+"args": [],
+"method": &"stand"
+}, {
+"args": [],
+"method": &"jump"
+}]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("DogRunningAround_Path3D/PathFollow3D/RemoteTransform3D:update_rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(2.9, 10.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_spxp1"]
@@ -2236,7 +2294,7 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/16/path = NodePath("DogRunningAround_Path3D/PathFollow3D:progress_ratio")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -2270,7 +2328,7 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Path3D/PathFollow3D:progress")
+tracks/19/path = NodePath("DogRunningAround_Path3D/PathFollow3D:progress")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -2290,6 +2348,30 @@ tracks/20/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("DogRunningAround_Path3D/PathFollow3D/RemoteTransform3D:update_position")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("DogRunningAround_Path3D/PathFollow3D/RemoteTransform3D:update_rotation")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ct58"]
@@ -2362,7 +2444,7 @@ metadata/extras = {
 "processed": true
 }
 
-[sub_resource type="PackedScene" id="PackedScene_aw26t"]
+[sub_resource type="PackedScene" id="PackedScene_1l24h"]
 _bundled = {
 "conn_count": 0,
 "conns": PackedInt32Array(),
@@ -2392,27 +2474,27 @@ wonkiness_factor = -0.10032154502070224
 eyes_spread_factor = -0.5951280262637992
 eyes_tilt_factor = 0.10000000000000007
 eyes_height_factor = 1.0
-crown_pscn = SubResource("PackedScene_aw26t")
+crown_pscn = SubResource("PackedScene_1l24h")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Curve3D" id="Curve3D_ie2y0"]
 bake_interval = 10.7
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.7870641, 0, 0.6730487, 0, 0, 0, 0, 0, 0, -0.27907133, 0, 1.528001, 0, 0, 0, 0, 0, 0, -1.5793109, 0, 1.7417396, 0, 0, 0, 0, 0, 0, -3.3248382, 0, 1.2964519, 0, 0, 0, 0, 0, 0, -4.696325, 0, -0.12846895, 0, 0, 0, 0, 0, 0, -4.6250796, 0, -3.1208024, 0, 0, 0, 0, 0, 0, -2.6836257, 0, -4.6704035, 0, 0, 0, 0, 0, 0, 0.52244616, 0, -4.86633, 0, 0, 0, 0, 0, 0, 4.5122247, 0, -3.6907706, 0, 0, 0, 0, 0, 0, 5.741219, 0, -1.2149712, 0, 0, 0, 0, 0, 0, 5.242495, 0, 1.1361481, 0, 0, 0, 0, 0, 0, 2.1432939, 0, 2.2048385, 0, 0, 0, 0, 0, 0, -1.6149344, 0, 2.1870277, 0, 0, 0, 0, 0, 0, -3.7879386, 0, -0.46688768, 0, 0, 0, 0, 0, 0, -3.6810699, 0, -3.6017132, 0, 0, 0, 0, 0, 0, -2.2027144, 0, -5.703471, 0, 0, 0, 0, 0, 0, 0.5758805, 0, -6.4159307, 0, 0, 0, 0, 0, 0, 2.8201318, 0, -6.291251, 0, 0, 0, 0, 0, 0, 4.7972093, 0, -5.45411, 0, 0, 0, 0, 0, 0, 5.812464, 0, -2.8180065, 0, 0, 0, 0, 0, 0, 5.010945, 0, -1.571201, 0, 0, 0, 0, 0, 0, 2.4995217, 0, 1.1895832, 0, 0, 0, 0, 0, 0, 0.6293149, 0, 1.9198548, 0, 0, 0, 0, 0, 0, -2.2739596, 0, 0.6730487, 0, 0, 0, 0, 0, 0, -3.2001586, 0, -2.7111375, 0, 0, 0, 0, 0, 0, -1.5080657, 0, -5.45411, 0, 0, 0, 0, 0, 0, 0.30870867, 0, -7.1996374, 0, 0, 0, 0, 0, 0, 2.7666974, 0, -6.8434076, 0, 0, 0, 0, 0, 0, 3.3010411, 0, -4.955388, 0, 0, 0, 0, 0, 0, 2.3392205, 0, -3.4948435),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.66465425, 0, -5.4910116, 0, 0, 0, 0, 0, 0, -0.01477766, 0, -4.198439, 0, 0, 0, 0, 0, 0, -1.2916331, 0, -3.5111482, 0, 0, 0, 0, 0, 0, -2.9877448, 0, -3.2669086, 0, 0, 0, 0, 0, 0, -4.290357, 0, -3.7553883, 0, 0, 0, 0, 0, 0, -4.7017393, -1.9520521e-05, -4.4339433, 0, 0, 0, 0, 0, 0, -4.3157835, -1.9520521e-05, -6.051992, 0, 0, 0, 0, 0, 0, -1.6883094, -1.9520521e-05, -7.6551967, 0, 0, 0, 0, 0, 0, 2.4384568, -1.9520521e-05, -7.1653285, 0, 0, 0, 0, 0, 0, 5.1128736, 0, -3.9453523, 0, 0, 0, 0, 0, 0, 4.8822064, 0, -1.0958879, 0, 0, 0, 0, 0, 0, 1.503552, 0, 0.3966879, 0, 0, 0, 0, 0, 0, -2.1057677, 0, 0.61379045, 0, 0, 0, 0, 0, 0, -4.534597, 0, -0.68882185, 0, 0, 0, 0, 0, 0, -4.7788367, 0, -2.6156025, 0, 0, 0, 0, 0, 0, -3.3948112, 0, -4.9223113, 0, 0, 0, 0, 0, 0, -0.42322874, 0, -5.7635818, 0, 0, 0, 0, 0, 0, 0.62742925, -1.9520521e-05, -6.4676375, 0, 0, 0, 0, 0, 0, 2.7925992, 0, -5.532911, 0, 0, 0, 0, 0, 0, 4.746514, 0, -3.524717, 0, 0, 0, 0, 0, 0, 5.1264424, 0, -1.7607628, 0, 0, 0, 0, 0, 0, 4.936478, 0, 0.28813735, 0, 0, 0, 0, 0, 0, 1.829205, 0, 1.5636107, 0, 0, 0, 0, 0, 0, -3.0013118, 0, 1.2650965, 0, 0, 0, 0, 0, 0, -4.2225127, 0, -1.7064875, 0, 0, 0, 0, 0, 0, -2.5806785, 0, -4.5695205, 0, 0, 0, 0, 0, 0, -0.12471342, 0, -6.6591277, 0, 0, 0, 0, 0, 0, 1.2625381, -7.480383e-06, -6.357959, 0, 0, 0, 0, 0, 0, 3.4924157, -1.9520521e-05, -5.8738585, 0, 0, 0, 0, 0, 0, 4.1984224, 0, -2.5719638, 0, 0, 0, 0, 0, 0, 1.7592251, 0, -0.96722716, 0, 0, 0, 0, 0, 0, -2.7853897, 0, -1.4807426, 0, 0, 0, 0, 0, 0, -3.992152, 0, -3.1496687, 0, 0, 0, 0, 0, 0, -4.223235, 0, -5.21657, 0, 0, 0, 0, 0, 0, -2.1563327, 0, -6.5131974, 0, 0, 0, 0, 0, 0, 2.0673306, 0, -6.3463044, 0, 0, 0, 0, 0, 0, 4.0700426, 0, -5.0625153, 0, 0, 0, 0, 0, 0, 4.763295, 0, -2.5206118, 0, 0, 0, 0, 0, 0, 3.4409916, 0, -0.96722716, 0, 0, 0, 0, 0, 0, 0.77070737, 0, -0.46654922, 0, 0, 0, 0, 0, 0, -1.3732212, 0, -0.5564137, 0, 0, 0, 0, 0, 0, -3.1191757, 0, -2.507774, 0, 0, 0, 0, 0, 0, -2.9522827, 0, -5.7429237, 0, 0, 0, 0, 0, 0, -0.97524524, 0, -7.090903, 0, 0, 0, 0, 0, 0, 1.3355744, 0, -7.257796, 0, 0, 0, 0, 0, 0, 3.9930165, 0, -5.845627, 0, 0, 0, 0, 0, 0, 5.4693727, 0, -3.9841316, 0, 0, 0, 0, 0, 0, 5.6234293, 0, -1.5449321, 0, 0, 0, 0, 0, 0, 3.0301754, 0, -0.49222428, 0, 0, 0, 0, 0, 0, -0.3205135, 0, -0.6719554, 0, 0, 0, 0, 0, 0, -2.425927, 0, -2.3023682, 0, 0, 0, 0, 0, 0, -2.3874137, 0, -5.768599, 0, 0, 0, 0, 0, 0, -0.4859054, -0.00038573146, -6.3934155, 0, 0, 0, 0, 0, 0, 1.3177369, -0.0008740127, -4.4335203, 0, 0, 0, 0, 0, 0, 1.2597649, -0.0008740127, -2.9262207, 0, 0, 0, 0, 0, 0, 1.6752388, -0.0008740127, -1.447908, 0, 0, 0, 0, 0, 0, 3.5400383, -0.0008740127, -1.1870297, 0, 0, 0, 0, 0, 0, 3.8202412, -0.0008740127, -2.607369, 0, 0, 0, 0, 0, 0, 3.6173356, -0.0008740127, -4.530142, 0, 0, 0, 0, 0, 0, 2.7863877, -0.0008740127, -6.1244006, 0, 0, 0, 0, 0, 0, 1.8878052, -0.0008740127, -6.752442, 0, 0, 0, 0, 0, 0, 1.1921303, -0.0008740127, -6.481901, 0, 0, 0, 0, 0, 0, 0.6993592, -0.0008740127, -5.54467),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 30
+point_count = 63
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vyos2"]
 size = Vector3(18.86, 1, 8.16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c3ee"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie2y0"]
 albedo_texture = ExtResource("7_xwdvp")
 uv1_scale = Vector3(6.05, 6.05, 6.05)
 uv1_offset = Vector3(-3.27, 0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1q7h5"]
-material = SubResource("StandardMaterial3D_8c3ee")
+material = SubResource("StandardMaterial3D_ie2y0")
 size = Vector3(30, 1, 30)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ie2y0"]
@@ -2429,33 +2511,33 @@ ground_bottom_color = Color(0.2985006, 0.40523383, 0.23911458, 1)
 ground_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)
 energy_multiplier = 0.3
 
-[sub_resource type="Sky" id="Sky_krbtg"]
+[sub_resource type="Sky" id="Sky_ao3yw"]
 sky_material = SubResource("ProceduralSkyMaterial_vyos2")
 
 [sub_resource type="Environment" id="Environment_a5lnx"]
 background_mode = 2
-sky = SubResource("Sky_krbtg")
+sky = SubResource("Sky_ao3yw")
 ambient_light_source = 2
 ambient_light_color = Color(0.5330367, 0.5330367, 0.5330367, 0.0627451)
 tonemap_mode = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l24h"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dk8sq"]
 render_priority = 5
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ie2y0"]
-material = SubResource("StandardMaterial3D_1l24h")
+material = SubResource("StandardMaterial3D_dk8sq")
 height = 100.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ie2y0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcqw2"]
 render_priority = 7
 shader = ExtResource("15_1l24h")
 shader_parameter/light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ao3yw"]
-material = SubResource("ShaderMaterial_ie2y0")
+material = SubResource("ShaderMaterial_rcqw2")
 height = 100.0
 
 [node name="Intro" type="Control" unique_id=718073339]
@@ -2591,12 +2673,18 @@ motion_mode = 1
 disable_physics = true
 appearance = SubResource("Resource_6ct58")
 
-[node name="Path3D" type="Path3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=436364949]
+[node name="DogRunningAround_Path3D" type="Path3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=436364949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/Path3D" unique_id=1644556329]
-transform = Transform3D(0.38231692, 0, -0.9239326, 0, 1, 0, 0.9239326, 0, 0.38231692, 1.7870641, 0, 0.6730487)
+[node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
+transform = Transform3D(0.88505507, 0, -0.46522272, 0, 0.9999973, 0, 0.4652231, 0, 0.88505435, 0.66465425, 0, -5.4910116)
 use_model_front = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
+remote_path = NodePath("../../../dog")
+update_position = false
+update_scale = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=452851521]
 
@@ -2635,12 +2723,12 @@ mesh = SubResource("CylinderMesh_ie2y0")
 skeleton = NodePath("../..")
 
 [node name="LightPillar_MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World_Node3D/LightPillarBase_Node3D/Sillhouette_MeshInstance3D" unique_id=93906512]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.27, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, 0.27000046, 0)
 mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="dog" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9999997, 0, 0, 0, 1.0000027, 0, 0, 0, 1.0000004, 2.494, 0.514, 0.299)
+transform = Transform3D(0.99989194, 0, 0, 0, 0.9999908, 0, 0, 0, 0.99981767, 2.494, 0.514, 0.299)
 
 [node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/dog/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 1722205886) index="0" unique_id=1783989002]
 layers = 2

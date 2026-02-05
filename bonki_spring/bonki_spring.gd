@@ -5,12 +5,11 @@ signal step_finished
 @onready var cutscene_player = $AnimationPlayer
 @onready var dialog_overlay := $UI_CanvasLayer/Overlay_Control
 @onready var music_player : AudioStreamPlayer = $AudioStreamPlayer
-@onready var sfx_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
 
 var intro_sequence_steps = [
 	# transition to Bonki Spring
-	{"type": "anim", "anim_name": "RESET"},
+	{"type": "anim", "anim_name": "intro_01_fade_in_and_pan"},
 	# pan around
 	{"type": "anim", "anim_name": "RESET"},
 	{"type": "text", "content": "Bonki Spring..."},
@@ -24,26 +23,34 @@ var intro_sequence_steps = [
 	{"type": "text", "content": "Perhaps you'll unearth something even more incredible."},
 ]
 
+var normal_steps = [
+	{"type": "anim", "anim_name": "fade_in"},
+	
+]
+
 var current_step_index = 0
 
 func _ready():
-	
 	# Connect the UI signal to our advance function
 	dialog_overlay.step_finished.connect(_on_step_finished)
 	
 	# Connect the AnimationPlayer signal to our advance function
 	cutscene_player.animation_finished.connect(_on_anim_finished)
-	
-	# Start the sequence
+
+	if (GameState.seen_intro):
+		print("Intro seen already")
+	else:
+		print("Showing intro sequence")
 	start_step()
 	
 func _dog_name() -> String:
 	return GameState.dog_name
 
 func start_step():
+	var steps = intro_sequence_steps if GameState.seen_intro else normal_steps
 	if current_step_index >= intro_sequence_steps.size():
 		print("INTRO SEQUENCE FINISHED")
-		GameState.mark_intro_seen()
+		#GameState.mark_intro_seen()
 		#TransitionManager.go_to_scene_threaded(NEXT_SCENE)
 		return
 
@@ -86,8 +93,9 @@ func _on_anim_finished(anim_name):
 	start_step()
 	
 func jump_to_label(target_label: String):
-	for i in range(intro_sequence_steps.size()):
-		var step = intro_sequence_steps[i]
+	var steps = intro_sequence_steps if GameState.seen_intro else normal_steps
+	for i in range(steps.size()):
+		var step = steps[i]
 		if step.has("label") and step["label"] == target_label:
 			current_step_index = i
 			start_step()

@@ -6,7 +6,7 @@ signal step_finished
 @onready var dialog_overlay := $UI_CanvasLayer/Overlay_Control
 @onready var loop_player : AudioStreamPlayer = $AudioStreamPlayer
 @onready var music_player: AudioStreamPlayer = $Music_AudioStreamPlayer
-#@onready var sfx_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var sfx_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
 
 @onready var dog_name := GameState.dog_name
@@ -27,6 +27,7 @@ var sequence_steps := [
 	{"type": "anim", "anim_name": "1_01__start"}, # black screen
 	#{"type": "spec", "action": "start"},# start BG music, start footsteps sound
 	{"type": "text", "content": "The air is thick with the soothing fragrance of pine."},
+	#{"type": "spec", "action": "next_scene"},
 	{"type": "text", "content": "It almost makes you forget just how long you've been lost in Bonki Forest."},
 	{"type": "text", "content": "You haven't seen another soul in at least..."},
 	{"type": "text", "content": "How long has it been, again?"},
@@ -75,8 +76,8 @@ var sequence_steps := [
 	
 	# prompt yes/no
 	{
-		"type": "choice", "content": "Shall you pick it?",
-  		"options": ["Yes", "No"],
+		"type": "choice", "content": "What will you do?",
+  		"options": ["Keep a respectful distance.", "Yank it out!"],
 		"action": "decide_about_picking",
 	},
 	# if yes (pick it), camera lowers and dog barks
@@ -104,8 +105,8 @@ var sequence_steps := [
 	{"type": "text", "content": "What's that?"},
 	{"type": "text", "content": "It feels familiar."},
 	{
-		"type": "choice", "content": "Shall you pick it?",
-  		"options": ["Yes", "No"],
+		"type": "choice", "content": "What will you do?",
+  		"options": ["Let it grow in peace.", "Yank it out!"],
 		"action": "decide_about_picking",
 	},
 	{"label": "REFRESH_BONKI_TO_RIGHT", "type": "anim", "anim_name": "3_002_follow_dog_to_right"},
@@ -117,8 +118,8 @@ var sequence_steps := [
 	{"type": "text", "content": "What's that?"},
 	{"type": "text", "content": "It feels familiar."},
 	{
-		"type": "choice", "content": "Shall you pick it?",
-  		"options": ["Yes", "No"],
+		"type": "choice", "content": "What will you do?",
+  		"options": ["Observe it in silence.", "Yank it out!"],
 		"action": "decide_about_picking",
 	},
 	
@@ -129,7 +130,7 @@ var sequence_steps := [
 	# dog keeps digging, meter starts
 	{"type": "spec", "action": "start_meter"},
 	# prompt yes/no
-	{"type": "choice", "content": "Shall we get going?", "options": ["Yes", "No"], "action": "confirm_about_staying"},
+	{"type": "choice", "content": "What will you do?", "options": ["Let DOG finish.", "Keep searching for the way out."], "action": "confirm_about_staying"},
 	# if yes (get going), call DOG
 	# if no, wait until dog finished digging
 	
@@ -168,22 +169,10 @@ var sequence_steps := [
 	{"type": "text", "content": "You can't let it get away!"},
 	{"type": "text", "content": "Run, DOG!"},
 	{"type": "text", "content": "Follow that creature!"},
+	{"type": "spec", "action": "next_scene"},
+
 ]
-var bonki_spring_sequence_steps = [
-	# transition to Bonki Spring
-	{"type": "anim", "anim_name": "RESET"},
-	# pan around
-	{"type": "anim", "anim_name": "RESET"},
-	{"type": "text", "content": "Bonki Spring..."},
-	{"type": "text", "content": "The mythical abode of the guardians of the forest—"},
-	{"type": "text", "content": "The legendary Bonkis."},
-	{"type": "text", "content": "It's clear now—\nthe reason you've been led here."},
-	{"type": "text", "content": "The era of the Bonkis has returned!"},
-	{"type": "text", "content": "You've been called to reawaken them with the help of DOG."},
-	{"type": "text", "content": "Onward!"},
-	{"type": "text", "content": "With a keen eye—\nand some patience—"},
-	{"type": "text", "content": "Perhaps you'll unearth something even more incredible."},
-]
+
 
 var current_step_index = 0
 
@@ -203,12 +192,10 @@ func _ready():
 	start_step()
 
 func start_step():
-	if current_step_index >= sequence_steps.size():
-		TransitionManager.go_to_scene_threaded(NEXT_SCENE)
-		return
 
 	var step = sequence_steps[current_step_index]
 	print(step)
+	
 	
 	if step["type"] == "text":
 		dialog_overlay.show_text(step["content"].replace("DOG", dog_name))
@@ -226,7 +213,7 @@ func start_step():
 		_on_step_finished()
 
 	elif step["type"] == "choice": 
-		dialog_overlay.show_choices(step["content"], step["options"])
+		dialog_overlay.show_choices(step["content"], step["options"].map(func (s): return s.replace("DOG", dog_name)))
 
 	elif step["type"] == "text_input":
 		var default = step.get("default", dog_name) 
@@ -241,6 +228,8 @@ func _on_step_finished():
 func _on_anim_finished(anim_name):
 	# Called when an animation finishes
 	current_step_index += 1
+	
+	sfx_player.volume_db = 0 # Reset volume in case it was faded out
 	start_step()
 	
 func jump_to_label(target_label: String):
@@ -262,7 +251,7 @@ func _on_choice_made(index: int):
 	# Based on the "action" key, we decide where to go
 	match action:
 		"decide_about_picking":
-			if index == 0: # Yes
+			if index == 1: # Yes
 				jump_to_label("TRY_PICKING")
 			else: # No
 				jump_to_label("DOG_STARTS_DIGGING")
@@ -276,7 +265,7 @@ func _on_choice_made(index: int):
 				jump_to_label("DOG_STARTS_DIGGING")
 
 		"confirm_about_staying":
-			if index == 0: # Yes (Get going / Call Dog)
+			if index == 1: # (Get going / Call Dog)
 				jump_to_label("CALL_DOG")
 			else: # No (Wait)
 				jump_to_label("WAIT_UNTIL_DIGGING_FINISHED")
@@ -308,6 +297,14 @@ func refresh_bonki():
 	new_appearance.randomize()
 	bonki.appearance = 	new_appearance
 	bonki.hide_eyes()
+	
+	if GameState.free_bonkis_appearance_parameters.size() > 0:
+		GameState.free_bonkis_appearance_parameters[0] = new_appearance
+		GameState.save_game()
+	else:
+		GameState.free_bonkis_appearance_parameters.push_back(new_appearance)
+		GameState.save_game()
+		
 
 func start_meter():
 	print("Meter started")
@@ -344,3 +341,6 @@ func stop_looping_sound(fade_duration: float = 0.3):
 		tween.finished.connect(func(): 
 			loop_player.stop()
 		)
+
+func next_scene():
+	TransitionManager.go_to_scene_threaded(NEXT_SCENE)

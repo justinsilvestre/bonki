@@ -11,6 +11,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_muuir"]
+animation = &"Dog_Jump"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3f4uv"]
 
@@ -98,7 +99,7 @@ transitions = ["Dog_Sit_Down", "Dog_Sit_Pose", SubResource("AnimationNodeStateMa
 graph_offset = Vector2(0, -88)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_23r22"]
-graph_offset = Vector2(-534.2469, -474.07867)
+graph_offset = Vector2(-839.97595, -84.078674)
 nodes/output/position = Vector2(990, 140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_l7c7x")
 nodes/StateMachine/position = Vector2(-620, -190)

@@ -31,7 +31,6 @@ func walk() -> void:
 
 
 func jump() -> void:
-	stand()
 	anim_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	

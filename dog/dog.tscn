@@ -10,6 +10,10 @@ animation = &"Dog_Bark"
 filter_enabled = true
 filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_muuir"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3f4uv"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mo3i0"]
 animation = &"Dog_Look_Up"
 
@@ -94,19 +98,23 @@ transitions = ["Dog_Sit_Down", "Dog_Sit_Pose", SubResource("AnimationNodeStateMa
 graph_offset = Vector2(0, -88)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_23r22"]
-graph_offset = Vector2(-698.812, -164.38036)
+graph_offset = Vector2(-534.2469, -474.07867)
 nodes/output/position = Vector2(990, 140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_l7c7x")
-nodes/StateMachine/position = Vector2(-620, -90)
+nodes/StateMachine/position = Vector2(-620, -190)
 nodes/BarkOneShot/node = SubResource("AnimationNodeOneShot_mo3i0")
 nodes/BarkOneShot/position = Vector2(170, 120)
 nodes/Bark/node = SubResource("AnimationNodeAnimation_23r22")
-nodes/Bark/position = Vector2(-340.6051, 291.00125)
+nodes/Bark/position = Vector2(-10, 250)
 nodes/LookUpBlend2/node = SubResource("AnimationNodeBlend2_dfixc")
 nodes/LookUpBlend2/position = Vector2(590, 90)
 nodes/LookUp/node = SubResource("AnimationNodeAnimation_mo3i0")
 nodes/LookUp/position = Vector2(380, 270)
-node_connections = [&"output", 0, &"LookUpBlend2", &"BarkOneShot", 0, &"StateMachine", &"BarkOneShot", 1, &"Bark", &"LookUpBlend2", 0, &"BarkOneShot", &"LookUpBlend2", 1, &"LookUp"]
+nodes/JumpOneShot/node = SubResource("AnimationNodeOneShot_3f4uv")
+nodes/JumpOneShot/position = Vector2(0, -120)
+nodes/Jump/node = SubResource("AnimationNodeAnimation_muuir")
+nodes/Jump/position = Vector2(-170, 0)
+node_connections = [&"output", 0, &"LookUpBlend2", &"BarkOneShot", 0, &"JumpOneShot", &"BarkOneShot", 1, &"Bark", &"LookUpBlend2", 0, &"BarkOneShot", &"LookUpBlend2", 1, &"LookUp", &"JumpOneShot", 0, &"StateMachine", &"JumpOneShot", 1, &"Jump"]
 
 [node name="dog" unique_id=93409961 instance=ExtResource("1_c5eso")]
 script = ExtResource("2_23r22")
@@ -162,3 +170,6 @@ parameters/BarkOneShot/active = false
 parameters/BarkOneShot/internal_active = false
 parameters/BarkOneShot/request = 0
 parameters/LookUpBlend2/blend_amount = 0.0
+parameters/JumpOneShot/active = false
+parameters/JumpOneShot/internal_active = false
+parameters/JumpOneShot/request = 0

@@ -31,14 +31,8 @@ func walk() -> void:
 
 
 func jump() -> void:
-	anim_tree.set("parameters/StateMachine/conditions/is_jumping", true)
-	anim_tree.set("parameters/StateMachine/conditions/is_walking", false)
-	anim_tree.set("parameters/StateMachine/conditions/is_standing", true)
-	anim_tree.set("parameters/StateMachine/conditions/is_sitting", false)
-	
-	# hack to jump just once. probably best to use OneShot
-	await get_tree().process_frame
-	anim_tree.set("parameters/StateMachine/conditions/is_jumping", false)
+	stand()
+	anim_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	
 func jump_on_loop() -> void:

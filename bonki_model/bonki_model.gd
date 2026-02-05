@@ -106,6 +106,8 @@ func set_colors(old_params: BonkiAppearanceParameters, params: BonkiAppearancePa
 		"res://bonki_model/materials/bonki_eye_shader.tres"
 	).duplicate()
 	eye_base_material.set_shader_parameter("base_color", params.eye_base_color)
+	eye_base_material.set_shader_parameter("shine_color", params.eye_shine_color)
+	eye_base_material.set_shader_parameter("shadow_color", params.eye_shadow_color)
 
 	
 	eye_base_l_mesh.set_surface_override_material(0, eye_base_material)

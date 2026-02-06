@@ -91,7 +91,7 @@ var sequence_steps := [
 	{
 		"type": "choice",
 		"content": "What shall you do?",
-		"options": ["Go left", "Go right", "Wait here a bit"],
+		"options": ["Wait here a bit", "Move left", "Move right"],
 		"action": "decide_about_moving",
 	},
 	
@@ -132,7 +132,7 @@ var sequence_steps := [
 	# dog keeps digging, meter starts
 	{"type": "spec", "action": "start_meter"},
 	# prompt yes/no
-	{"type": "choice", "content": "What will you do?", "options": ["Wait and see what\nDOG digs up.", "Keep searching for\nthe way out."], "action": "confirm_about_staying"},
+	{"type": "choice", "content": "What will you do?", "options": ["Wait and see what\nDOG digs up.", "Chop chop! Gotta go!"], "action": "confirm_about_staying"},
 	# if yes (get going), call DOG
 	# if no, wait until dog finished digging
 	
@@ -260,12 +260,12 @@ func _on_choice_made(index: int):
 				jump_to_label("DOG_STARTS_DIGGING")
 
 		"decide_about_moving":
-			if index == 0: # Go Left
-				jump_to_label("REFRESH_BONKI_TO_LEFT")
-			elif index == 1: # Go Right
-				jump_to_label("REFRESH_BONKI_TO_RIGHT")
-			else: # Wait here a bit
+			if index == 0: 
 				jump_to_label("DOG_STARTS_DIGGING")
+			elif index == 1: 
+				jump_to_label("REFRESH_BONKI_TO_LEFT")
+			else: 
+				jump_to_label("REFRESH_BONKI_TO_RIGHT")
 
 		"confirm_about_staying":
 			if index == 1: # (Get going / Call Dog)
@@ -361,4 +361,15 @@ func stop_looping_sound(fade_duration: float = 0.3):
 		)
 
 func next_scene():
-	TransitionManager.go_to_scene_threaded(NEXT_SCENE)
+	var fade_duration = 0.5
+	if music_player.playing:
+		# Create a tween to transition the volume to silence (-80 dB)
+		var tween = create_tween()
+		tween.tween_property(music_player, "volume_db", -80.0, fade_duration)
+		
+		# Once the fade is done, actually stop the player
+		tween.finished.connect(func(): 
+			TransitionManager.go_to_scene_threaded(NEXT_SCENE)
+		)
+	else:
+		TransitionManager.go_to_scene_threaded(NEXT_SCENE)

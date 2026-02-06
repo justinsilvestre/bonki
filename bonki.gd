@@ -2,6 +2,7 @@
 class_name Bonki
 extends CharacterBody3D
 
+@export var animation_name = ""
 @export var disable_physics := false
 @export var appearance: BonkiAppearanceParameters:
 	set(val):
@@ -21,6 +22,10 @@ const MAX_BLINK_INTERVAL := 5.0
 
 func _ready() -> void:
 	model.appearance = appearance
+	if animation_name and animation_name.length():
+		print("animating")
+		print(animation_name)
+		model.anim_player.play(animation_name)
 
 func _process(delta: float) -> void:
 	if (blinking):

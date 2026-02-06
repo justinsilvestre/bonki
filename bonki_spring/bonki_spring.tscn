@@ -28,7 +28,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(0, 0, 0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -408,6 +408,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Overlay_Control" type="Control" parent="UI_CanvasLayer" unique_id=1824340417]
 layout_mode = 3
@@ -549,26 +550,32 @@ appearance = SubResource("Resource_8potb")
 
 [node name="Bonki2" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1144760733 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35000002, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.0000895, -0.5151367, -7.3474565)
+animation_name = "Sway"
 appearance = SubResource("Resource_hgyec")
 
 [node name="Bonki3" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 1.8358347, -9.196823)
+animation_name = "Jump"
 appearance = SubResource("Resource_enw64")
 
 [node name="Bonki4" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1515544183 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.7951776, -0.5151367, -4.1699023)
+animation_name = "Sleep"
 appearance = SubResource("Resource_xuayo")
 
 [node name="Bonki5" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1968939506 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.42284167, -0.5151367, 0)
+animation_name = null
 appearance = SubResource("Resource_8an6b")
 
 [node name="Bonki6" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=429063601 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.55667484, -0.5151367, -2.6318011)
+animation_name = null
 appearance = SubResource("Resource_qemrt")
 
 [node name="Bonki7" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1727677926 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.32050222, -0.5151367, -5.114398)
+animation_name = null
 appearance = SubResource("Resource_m5uqd")
 
 [node name="dog" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=93409961 instance=ExtResource("15_3vmkq")]

@@ -5,7 +5,7 @@ signal step_finished
 @onready var cutscene_player = $AnimationPlayer
 @onready var dialog_overlay := $UI_CanvasLayer/Overlay_Control
 @onready var music_player : AudioStreamPlayer = $Music_AudioStreamPlayer
-@onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
+
 
 var intro_sequence_steps = [
 	{"type": "anim", "anim_name": "intro_01_fade_in_and_pan"},
@@ -15,9 +15,8 @@ var intro_sequence_steps = [
 	{"type": "text", "content": "It's clear now—\nthe reason you've been led here."},
 	{"type": "text", "content": "The era of the Bonkis has returned!"},
 	{"type": "text", "content": "You've been called to reawaken them with the help of DOG."},
-	{"type": "text", "content": "Onward!"},
 	{"type": "text", "content": "With a keen eye—\nand some patience—"},
-	{"type": "text", "content": "Perhaps you'll unearth something even more incredible."},
+	{"type": "text", "content": "Who knows what else you'll unearth?"},
 ]
 
 var normal_steps = [

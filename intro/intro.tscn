@@ -2735,7 +2735,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(0.88505137, 0, -0.46522117, 0, 0.9999963, 0, 0.46522117, 0, 0.88505137, 0.66465425, 0, -5.4910116)
+transform = Transform3D(0.8850505, 0, -0.46522117, 0, 0.9999955, 0, 0.4652207, 0, 0.88505137, 0.66465425, 0, -5.4910116)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
@@ -2785,7 +2785,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="dog" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9998875, 0, 0, 0, 0.9999865, 0, 0, 0, 0.99980736, 2.494, 0.514, 0.299)
+transform = Transform3D(0.9998865, 0, 0, 0, 0.9999865, 0, 0, 0, 0.9998073, 2.494, 0.514, 0.299)
 
 [node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/dog/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 1722205886) index="0" unique_id=1783989002]
 layers = 2

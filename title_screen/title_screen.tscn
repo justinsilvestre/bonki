@@ -1,76 +1,157 @@
 [gd_scene format=3 uid="uid://pdr6r1j2o5x4"]
 
 [ext_resource type="Script" uid="uid://kodxc2ulhfto" path="res://title_screen/title_screen.gd" id="1_2dq6q"]
-[ext_resource type="Texture2D" uid="uid://dvdkj43umacgx" path="res://title_screen/title.png" id="2_2dq6q"]
+[ext_resource type="Texture2D" uid="uid://dryuif3ot4mnw" path="res://title_screen/layers/title_background.png" id="3_oqrgu"]
+[ext_resource type="Texture2D" uid="uid://bf1fbxu32cwj0" path="res://title_screen/layers/title_stone.png" id="4_fv0o7"]
+[ext_resource type="Texture2D" uid="uid://boj3s62vj1ikx" path="res://title_screen/layers/title_leaves_1.png" id="5_1oos5"]
+[ext_resource type="Texture2D" uid="uid://ddpu4tu70davh" path="res://title_screen/layers/title_leaves_2.png" id="6_fh6ay"]
+[ext_resource type="Texture2D" uid="uid://tm1js884s3c" path="res://title_screen/layers/title_leaves_3.png" id="7_jabur"]
 
 [sub_resource type="Animation" id="Animation_vbjqi"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TitleImageTextureRect:position")
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/Node3D/CameraRig:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-776, -476.00012)]
+"values": [Vector3(0.059, 1.51, 13.251)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/Node3D/CameraRig:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oqrgu"]
+resource_name = "enter"
+length = 4.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/Node3D/CameraRig:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333336, 1.4666667, 3.1666667),
+"transitions": PackedFloat32Array(1.741101, 0.53588665, 1),
+"update": 0,
+"values": [Vector3(0.059, 5.17, 17.921), Vector3(0.059, 3.2907329, 15.523137), Vector3(0.059, 1.51, 13.251)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 3.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fv0o7"]
+resource_name = "exit"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/Node3D/CameraRig:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666666, 0.53333336, 1.1333333),
+"transitions": PackedFloat32Array(0.35355338, 3.0314326, 1.741101),
+"update": 0,
+"values": [Vector3(0.059, 1.51, 13.251), Vector3(0.059, -0.129, 10.763), Vector3(0.059, 0.15, 4.611)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.73333335, 1.1333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_2dq6q"]
 resource_name = "wobble"
-length = 3.9333334
+length = 12.733334
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TitleImageTextureRect:position")
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/Node3D/CameraRig:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.96666664, 1.99, 2.95, 3.89),
+"times": PackedFloat32Array(0, 3.19, 6.6666665, 9.84, 12.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-776, -476.00012), Vector2(-773, -465), Vector2(-776, -476.00012), Vector2(-785, -485), Vector2(-776, -476.00012)]
+"values": [Vector3(0.059, 1.51, 13.251), Vector3(-0.071, 1.692, 13.251), Vector3(0.059, 1.89, 13.251), Vector3(0.279, 1.69, 13.251), Vector3(0.059, 1.51, 13.251)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/Node3D/CameraRig:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.0666666, 12.733334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vbjqi"]
 _data = {
 &"RESET": SubResource("Animation_vbjqi"),
+&"enter": SubResource("Animation_oqrgu"),
+&"exit": SubResource("Animation_fv0o7"),
 &"wobble": SubResource("Animation_2dq6q")
 }
 
 [node name="Control" type="Control" unique_id=40681953]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = -2.0
-offset_bottom = -2.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2dq6q")
 
-[node name="TitleImageTextureRect" type="TextureRect" parent="." unique_id=270205586]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -776.0
-offset_top = -476.00012
-offset_right = 6366.6426
-offset_bottom = 1814.4941
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.46197805, 0.46197805)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("2_2dq6q")
-stretch_mode = 5
-
 [node name="FadeColorRect" type="ColorRect" parent="." unique_id=1403467729]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,9 +163,55 @@ offset_bottom = -1700.0001
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(23.249262, 23.249262)
-mouse_filter = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=999815262]
 libraries/ = SubResource("AnimationLibrary_vbjqi")
 autoplay = &"wobble"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1317944365]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1439.5
+offset_top = -988.5
+offset_right = 1439.5
+offset_bottom = 988.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2009151126]
+handle_input_locally = false
+size = Vector2i(2960, 2028)
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1141443162]
+
+[node name="CameraRig" type="Node3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1315122549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.059, 1.51, 13.251)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D/CameraRig" unique_id=1583834183]
+
+[node name="Background" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=789164308]
+transform = Transform3D(24.46, 0, 0, 0, 24.46, 0, 0, 0, 24.46, 0, 0, -55.415436)
+texture = ExtResource("3_oqrgu")
+
+[node name="Stone" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=822842820]
+transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, 0.26773405, 0)
+texture = ExtResource("4_fv0o7")
+
+[node name="Leaves1" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=443070216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5161428, 6.7740035)
+texture = ExtResource("5_1oos5")
+
+[node name="Leaves2" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=97948731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7488456, 4.327936)
+texture = ExtResource("6_fh6ay")
+
+[node name="Leaves3" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1995554582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29538298, 2.11589)
+texture = ExtResource("7_jabur")

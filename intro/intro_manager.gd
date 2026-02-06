@@ -144,8 +144,8 @@ var sequence_steps := [
 	
 	{
 		"type": "choice",
-		"content": "Which way shall you go?",
-		"options": ["Go left", "Go right", "Wait here a bit"],
+		"content": "What shall you do?",
+		"options": ["Wait here a bit", "Move left", "Move right"],
 		"action": "decide_about_moving"
 	},
 	# prompt go left/wait here a bit/go right — SAME AS ABOVE
@@ -194,7 +194,8 @@ func _ready():
 	start_step()
 
 func start_step():
-
+	if (current_step_index >= sequence_steps.size()):
+		return
 	var step = sequence_steps[current_step_index]
 	print(step)
 	
@@ -282,6 +283,7 @@ func _on_text_submitted(new_text: String):
 	current_step_index += 1
 	start_step()
 
+# called in start animation step
 func start():
 	var bg_music = load("res://sound/kami-no-koe.mp3")
 	

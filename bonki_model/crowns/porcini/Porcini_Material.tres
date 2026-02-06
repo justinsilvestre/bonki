@@ -5,7 +5,5 @@
 [resource]
 resource_name = "Porcini_Material"
 cull_mode = 2
-diffuse_mode = 3
-specular_mode = 1
 albedo_texture = ExtResource("1_lg1h1")
 roughness = 0.5

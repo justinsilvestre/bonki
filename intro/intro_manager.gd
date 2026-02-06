@@ -132,7 +132,7 @@ var sequence_steps := [
 	# dog keeps digging, meter starts
 	{"type": "spec", "action": "start_meter"},
 	# prompt yes/no
-	{"type": "choice", "content": "What will you do?", "options": ["Let DOG finish.", "Keep searching for the way out."], "action": "confirm_about_staying"},
+	{"type": "choice", "content": "What will you do?", "options": ["Wait and see what DOG digs up.", "Keep searching for the way out."], "action": "confirm_about_staying"},
 	# if yes (get going), call DOG
 	# if no, wait until dog finished digging
 	

@@ -4,7 +4,7 @@ signal step_finished
 
 @onready var cutscene_player = $AnimationPlayer
 @onready var dialog_overlay := $UI_CanvasLayer/Overlay_Control
-@onready var music_player : AudioStreamPlayer = $AudioStreamPlayer
+@onready var music_player : AudioStreamPlayer = $Music_AudioStreamPlayer
 @onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
 
 var intro_sequence_steps = [
@@ -27,14 +27,7 @@ var normal_steps = [
 
 var current_step_index = 0
 
-func start_music():
-	var bg_music = load("res://sound/garden-music_last_3m30s.mp3")
-	
-	if bg_music:
-		music_player.stream = bg_music
-		music_player.volume_db = 0 # Reset volume in case it was faded out
-		music_player.play()
-		
+
 
 func _ready():
 	print("ready!")
@@ -117,4 +110,3 @@ func start():
 		music_player.stream = bg_music
 		music_player.volume_db = 0 # Reset volume in case it was faded out
 		music_player.play()
-		

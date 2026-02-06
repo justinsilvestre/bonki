@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://pdr6r1j2o5x4"]
 
 [ext_resource type="Script" uid="uid://kodxc2ulhfto" path="res://title_screen/title_screen.gd" id="1_2dq6q"]
-[ext_resource type="Texture2D" uid="uid://dwa0s4do3oi8" path="res://title_screen/bonki_forest_concept.png" id="1_dxpbd"]
 [ext_resource type="Texture2D" uid="uid://dvdkj43umacgx" path="res://title_screen/title.png" id="2_2dq6q"]
 
 [sub_resource type="Animation" id="Animation_vbjqi"]
@@ -55,22 +54,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2dq6q")
 
-[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1044686031]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -701.0
-offset_top = -819.0
-offset_right = 699.0
-offset_bottom = 769.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5651101, 0.5651101)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("1_dxpbd")
-stretch_mode = 5
-
 [node name="TitleImageTextureRect" type="TextureRect" parent="." unique_id=270205586]
 layout_mode = 1
 anchors_preset = -1
@@ -78,8 +61,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -776.0
 offset_top = -476.00012
-offset_right = 896.0
-offset_bottom = -332.00012
+offset_right = 6366.6426
+offset_bottom = 1814.4941
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.46197805, 0.46197805)
@@ -88,7 +71,6 @@ texture = ExtResource("2_2dq6q")
 stretch_mode = 5
 
 [node name="FadeColorRect" type="ColorRect" parent="." unique_id=1403467729]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

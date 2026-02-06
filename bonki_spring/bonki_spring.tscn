@@ -387,9 +387,11 @@ metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [node name="Control" type="Control" unique_id=1322998289]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_3vmkq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=427423972]
@@ -402,6 +404,7 @@ autoplay = true
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=660336011]
 
 [node name="UnderUI_ColorRect" type="ColorRect" parent="UI_CanvasLayer" unique_id=1892265757]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -457,7 +460,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Input_VBoxContainer" type="VBoxContainer" parent="UI_CanvasLayer/Overlay_Control" unique_id=2044564764]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -483,10 +485,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -851.5
-offset_top = -108.0
-offset_right = 1891.5
-offset_bottom = 1988.0
+offset_left = -1371.5
+offset_top = -1048.0
+offset_right = 1371.5
+offset_bottom = 1048.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -494,6 +496,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=135837145]
 transparent_bg = true
 handle_input_locally = false
+physics_object_picking = true
 size = Vector2i(2743, 2096)
 render_target_update_mode = 4
 
@@ -532,6 +535,7 @@ texture = SubResource("PlaceholderTexture2D_aw26t")
 
 [node name="PlatformUpperStaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=799142861]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000002, 1.194847, 0.64344335, -4.4389315)
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/WorldNode3D/PlatformUpperStaticBody3D" unique_id=1160241119]
 transform = Transform3D(1, 1.5133992e-09, 0, 2.3283064e-10, 1, 0, 0, 0, 1, -0.00624156, 0.47392464, -3.6767683)
@@ -550,32 +554,27 @@ appearance = SubResource("Resource_8potb")
 
 [node name="Bonki2" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1144760733 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35000002, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.0000895, -0.5151367, -7.3474565)
-animation_name = "Sway"
+default_animation = 1
 appearance = SubResource("Resource_hgyec")
 
 [node name="Bonki3" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 1.8358347, -9.196823)
-animation_name = "Jump"
 appearance = SubResource("Resource_enw64")
 
 [node name="Bonki4" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1515544183 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.7951776, -0.5151367, -4.1699023)
-animation_name = "Sleep"
 appearance = SubResource("Resource_xuayo")
 
 [node name="Bonki5" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1968939506 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.42284167, -0.5151367, 0)
-animation_name = null
 appearance = SubResource("Resource_8an6b")
 
 [node name="Bonki6" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=429063601 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.55667484, -0.5151367, -2.6318011)
-animation_name = null
 appearance = SubResource("Resource_qemrt")
 
 [node name="Bonki7" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1727677926 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.32050222, -0.5151367, -5.114398)
-animation_name = null
 appearance = SubResource("Resource_m5uqd")
 
 [node name="dog" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=93409961 instance=ExtResource("15_3vmkq")]

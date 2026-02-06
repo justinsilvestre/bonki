@@ -3,7 +3,7 @@ class_name BonkiModel
 extends Node3D
 
 # Hierarchy
-@onready var anim_tree: AnimationTree = $AnimationTree
+@onready var anim_tree := $AnimationTree
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var body_mesh: MeshInstance3D = $Armature/Skeleton3D/Body
 @onready var eye_base_l_mesh: MeshInstance3D = $Armature/Skeleton3D/EyeBase_L
@@ -19,6 +19,7 @@ var add_eyes_tilt_path := "parameters/AddEyesTilt/add_amount"
 var add_eyes_height_path := "parameters/AddEyesHeight/add_amount"
 
 const EYES_SHUTNESS_BLEND_SHAPE_INDEX = 3
+const EYES_SMILE_BLEND_SHAPE_INDEX = 4
 
 func hide_eyes():
 	eye_base_l_mesh.hide()
@@ -36,6 +37,43 @@ func open_eyes():
 	eye_base_l_mesh.set_blend_shape_value(EYES_SHUTNESS_BLEND_SHAPE_INDEX, 0)
 	eye_base_r_mesh.set_blend_shape_value(EYES_SHUTNESS_BLEND_SHAPE_INDEX, 0)
 	pass
+	
+func stand():
+	anim_tree.set("parameters/StateMachine/conditions/is_jumping", false)
+	anim_tree.set("parameters/StateMachine/conditions/is_sleeping", false)
+	anim_tree.set("parameters/StateMachine/conditions/is_swaying", false)
+	open_eyes()
+	
+
+func start_sway():
+	anim_tree.set("parameters/StateMachine/conditions/is_jumping", false)
+	anim_tree.set("parameters/StateMachine/conditions/is_sleeping", false)
+	anim_tree.set("parameters/StateMachine/conditions/is_swaying", true)
+	open_eyes()
+
+func start_sleep():
+	anim_tree.set("parameters/StateMachine/conditions/is_jumping", false)
+	anim_tree.set("parameters/StateMachine/conditions/is_sleeping", true)
+	anim_tree.set("parameters/StateMachine/conditions/is_swaying", false)
+	close_eyes()
+	
+func start_jumping():
+	anim_tree.set("parameters/StateMachine/conditions/is_jumping", true)
+	anim_tree.set("parameters/StateMachine/conditions/is_sleeping", false)
+	anim_tree.set("parameters/StateMachine/conditions/is_swaying", false)
+	open_eyes()
+
+func jump():
+	anim_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	eye_base_l_mesh.set_blend_shape_value(EYES_SMILE_BLEND_SHAPE_INDEX, 1)
+	eye_base_r_mesh.set_blend_shape_value(EYES_SMILE_BLEND_SHAPE_INDEX, 1)
+	await anim_tree.animation_finished
+	
+	eye_base_l_mesh.set_blend_shape_value(EYES_SMILE_BLEND_SHAPE_INDEX, 0)
+	eye_base_r_mesh.set_blend_shape_value(EYES_SMILE_BLEND_SHAPE_INDEX, 0)
+	
+
+
 
 # Should be set by Bonki.appearance, and point to same resource
 var appearance: BonkiAppearanceParameters:
@@ -149,6 +187,7 @@ func set_dimensions(old_params: BonkiAppearanceParameters, params: BonkiAppearan
 
 func set_animation_appearance_parameter(path: String, value: float) -> void:
 	anim_tree.set(path, value)
+	
 
 func set_body_shape_key(blend_shape: String, value: float) -> void:
 	var index = body_mesh.find_blend_shape_by_name(blend_shape)

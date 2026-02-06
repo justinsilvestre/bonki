@@ -7,10 +7,21 @@
 
 [node name="Bonki" type="CharacterBody3D" unique_id=469040401]
 script = ExtResource("1_3gbxg")
+disable_physics = false
 
 [node name="Node3D" type="Node3D" parent="." unique_id=435007898]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=685360306]
+transform = Transform3D(2.05, 0, 0, 0, 1.77, 0, 0, 0, 2.05, 0, 0, 0)
 shape = SubResource("SphereShape3D_eqxf7")
 
-[node name="BonkiModel" parent="." unique_id=1272112936 instance=ExtResource("2_3gbxg")]
+[node name="BonkiModel" parent="." unique_id=822724508 instance=ExtResource("2_3gbxg")]
+
+[node name="AnimationTree" parent="BonkiModel" index="2" unique_id=1187631698]
+parameters/JumpOneShot/active = false
+parameters/JumpOneShot/internal_active = false
+parameters/JumpOneShot/request = 0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+
+[editable path="BonkiModel"]

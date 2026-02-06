@@ -2,14 +2,15 @@
 class_name Bonki
 extends CharacterBody3D
 
-@export var animation_name = ""
-@export var disable_physics := false
+@export var tap_animation: TapAnim
+@export var default_animation: DefaultAnim
+@export var disable_physics := true
 @export var appearance: BonkiAppearanceParameters:
 	set(val):
 		appearance = val
 		if is_node_ready(): model.appearance = val
 
-@onready var model: BonkiModel = $BonkiModel
+@onready var model := $BonkiModel
 
 var blink_blend_path := "parameters/AddBlink/add_amount"
 var blink_one_shot_path := "parameters/BlinkOneShot/request"
@@ -19,13 +20,21 @@ var blink_timer := 0.0
 const MIN_BLINK_INTERVAL := 2.0
 const MAX_BLINK_INTERVAL := 5.0
 
+enum TapAnim {}
+enum DefaultAnim {
+	SWAY,
+	SLEEP
+}
+
 
 func _ready() -> void:
 	model.appearance = appearance
-	if animation_name and animation_name.length():
-		print("animating")
-		print(animation_name)
-		model.anim_player.play(animation_name)
+	match DefaultAnim:
+		DefaultAnim.SWAY:
+			model.start_sway()
+		DefaultAnim.SLEEP:
+			model.start_sleep()
+
 
 func _process(delta: float) -> void:
 	if (blinking):
@@ -100,3 +109,24 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	# Check if the event is a mouse button click or a screen touch
+	if event is InputEventMouseButton:
+		# Check if it's the left mouse button and it was just pressed (not released)
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			play_tap_animation()
+
+
+func play_tap_animation():
+	# Example: Triggering a transition in your AnimationTree
+	# Assuming you have a 'parameters/conditions/is_tapped' boolean in your tree
+	#$AnimationTree.set("parameters/conditions/is_tapped", true)
+	
+	# If you use a 'OneShot' node, it would look like this:
+	# $AnimationTree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
+	print("Character animation triggered!")
+	
+	model.jump()

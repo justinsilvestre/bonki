@@ -9,7 +9,7 @@
 [node name="BonkiModel" unique_id=822724508 instance=ExtResource("1_dmfh7")]
 script = ExtResource("2_2xsow")
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1449224291) index="1" unique_id=1777894256]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1447230211) index="1" unique_id=97059891]
 bones/2/position = Vector3(-4.8825977e-10, 0.20070821, 0)
 bones/2/rotation = Quaternion(1.745916e-12, 4.2626064e-10, -0.0040958542, 0.9999916)
 bones/3/rotation = Quaternion(-1.7332168e-18, 2.2388912e-11, 1.8626451e-09, 1)
@@ -20,20 +20,23 @@ bones/5/position = Vector3(-2.1547582e-06, 0.15211236, 0.017664135)
 bones/5/rotation = Quaternion(0.14356813, 0.7399317, 0.6345922, -0.17082757)
 bones/5/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
 
-[node name="Body" parent="Armature/Skeleton3D" index="0" unique_id=1063380043]
+[node name="Body" parent="Armature/Skeleton3D" index="0" unique_id=388024314]
 surface_material_override/0 = ExtResource("3_lcqbr")
 
-[node name="EyeBase_L" parent="Armature/Skeleton3D" index="1" unique_id=327822158]
+[node name="EyeBase_L" parent="Armature/Skeleton3D" index="1" unique_id=1188417675]
 cast_shadow = 0
 surface_material_override/0 = ExtResource("4_dmfh7")
 
-[node name="EyeBase_R" parent="Armature/Skeleton3D" index="2" unique_id=1032878117]
+[node name="EyeBase_R" parent="Armature/Skeleton3D" index="2" unique_id=1449201275]
 cast_shadow = 0
 surface_material_override/0 = ExtResource("4_dmfh7")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1187631698]
 tree_root = ExtResource("7_dmfh7")
 anim_player = NodePath("../AnimationPlayer")
+parameters/StateMachine/conditions/is_jumping = false
+parameters/StateMachine/conditions/is_sleeping = false
+parameters/StateMachine/conditions/is_swaying = false
 parameters/AddEyesHeight/add_amount = 0.0
 parameters/AddBodyWideStretch/add_amount = 0.0
 parameters/AddEyesSpread/add_amount = 0.0
@@ -44,6 +47,11 @@ parameters/AddBodyAntipearness/add_amount = 0.0
 parameters/BlinkOneShot/active = false
 parameters/BlinkOneShot/internal_active = false
 parameters/BlinkOneShot/request = 0
+parameters/PoseTiltHeadForwardAdd2/add_amount = 0.0
+parameters/PoseTiltHeadLeftAdd2/add_amount = 0.0
+parameters/JumpOneShot/active = false
+parameters/JumpOneShot/internal_active = false
+parameters/JumpOneShot/request = 0
 
 [node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3" unique_id=746988041]
 transform = Transform3D(0.99996644, 0.008191637, 8.9727625e-10, -0.008191637, 0.99996644, -7.350407e-12, -8.973064e-10, -2.0711196e-19, 1, 0.012785697, 0.87827045, -0.017664135)

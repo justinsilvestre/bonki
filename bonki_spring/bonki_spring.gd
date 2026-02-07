@@ -21,7 +21,6 @@ var intro_sequence_steps = [
 
 var normal_steps = [
 	{"type": "anim", "anim_name": "fade_in"},
-	
 ]
 
 var current_step_index = 0

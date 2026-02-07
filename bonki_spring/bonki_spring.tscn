@@ -7,13 +7,6 @@
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="3_3vmkq"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
-[ext_resource type="PackedScene" uid="uid://bcwti5ca3w0ae" path="res://bonki_model/crowns/kale/kale_crown.tscn" id="6_eu601"]
-[ext_resource type="PackedScene" uid="uid://kbv6caifmeee" path="res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn" id="7_7vnbg"]
-[ext_resource type="PackedScene" uid="uid://d0npk7jyfjrob" path="res://bonki_model/crowns/enoki/enoki_crown.tscn" id="8_3nr71"]
-[ext_resource type="PackedScene" uid="uid://ddmpstbkfm1ts" path="res://bonki_model/crowns/christmas_rose/christmas_rose_crown.tscn" id="9_3vmkq"]
-[ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini/porcini_crown.tscn" id="11_3vmkq"]
-[ext_resource type="PackedScene" uid="uid://c3pqpi4a10wy7" path="res://bonki_model/crowns/yellow_stagshorn/yellow_stagshorn_crown.tscn" id="11_mcyv1"]
-[ext_resource type="PackedScene" uid="uid://bvimp24y4f2pm" path="res://bonki_model/crowns/pincushion_moss/pincushion_moss_crown.tscn" id="13_niosp"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="15_3vmkq"]
 
 [sub_resource type="Animation" id="Animation_eu601"]
@@ -274,7 +267,7 @@ wonkiness_factor = -0.7761711924647486
 eyes_spread_factor = 0.02203979059741079
 eyes_tilt_factor = -0.5320153749156015
 eyes_height_factor = 0.6527926807619255
-crown_pscn = ExtResource("6_eu601")
+crown_id = "kale"
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_hgyec"]
@@ -292,10 +285,11 @@ wonkiness_factor = 0.7168254557984481
 eyes_spread_factor = -0.5449031978401686
 eyes_tilt_factor = -0.824366399233666
 eyes_height_factor = 0.8479399391651292
-crown_pscn = ExtResource("7_7vnbg")
+crown_id = "chanterelle"
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_enw64"]
+resource_name = "christmas_rose"
 script = ExtResource("6_7vnbg")
 body_color = Color(0.5979117, 0.84839344, 0.8570307, 1)
 eye_shine_color = Color(0.74453044, 0.8467967, 0.9311817, 1)
@@ -310,7 +304,6 @@ wonkiness_factor = 0.221511971113876
 eyes_spread_factor = 0.5137292499168387
 eyes_tilt_factor = -0.8770976681004125
 eyes_height_factor = 0.7261140510526143
-crown_pscn = ExtResource("9_3vmkq")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_xuayo"]
@@ -328,7 +321,7 @@ wonkiness_factor = -0.26934910264030365
 eyes_spread_factor = -0.14517517649099154
 eyes_tilt_factor = -0.3790061147085281
 eyes_height_factor = -0.06535863027193345
-crown_pscn = ExtResource("11_3vmkq")
+crown_id = "porcini"
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_8an6b"]
@@ -346,10 +339,11 @@ wonkiness_factor = 0.4333096572606767
 eyes_spread_factor = -0.7136664694234138
 eyes_tilt_factor = -0.2696478788599225
 eyes_height_factor = 0.6073252925446548
-crown_pscn = ExtResource("11_mcyv1")
+crown_id = "yellow_stagshorn"
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_qemrt"]
+resource_name = "pincushion_moss"
 script = ExtResource("6_7vnbg")
 body_color = Color(0.3681382, 0.4264087, 0.29691866, 1)
 eye_shine_color = Color(0.9886194, 0.99312633, 0.99682266, 1)
@@ -364,7 +358,6 @@ wonkiness_factor = -0.42480014204202576
 eyes_spread_factor = -0.07929613279265957
 eyes_tilt_factor = -0.4391211008920435
 eyes_height_factor = 1.0
-crown_pscn = ExtResource("13_niosp")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_m5uqd"]
@@ -382,7 +375,7 @@ wonkiness_factor = 0.7872010144606394
 eyes_spread_factor = -0.18417729914820224
 eyes_tilt_factor = 0.8748534879331864
 eyes_height_factor = 0.9005455585096371
-crown_pscn = ExtResource("8_3nr71")
+crown_id = "enoki"
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [node name="Control" type="Control" unique_id=1322998289]
@@ -404,7 +397,6 @@ autoplay = true
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=660336011]
 
 [node name="UnderUI_ColorRect" type="ColorRect" parent="UI_CanvasLayer" unique_id=1892265757]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -506,7 +498,7 @@ render_target_update_mode = 4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=702157635]
 transform = Transform3D(0.04922702, 0.9388421, -0.3408112, -0.13421422, 0.344348, 0.92919916, 0.98972887, 0, 0.1429572, -0.2830286, 6.387801, 0)
-light_energy = 0.092
+light_energy = 0.301
 light_specular = 0.216
 shadow_enabled = true
 shadow_opacity = 0.84

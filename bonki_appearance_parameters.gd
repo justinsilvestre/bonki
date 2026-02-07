@@ -35,8 +35,10 @@ var randomize_action: Callable = randomize
 @export_range(-1, 1, 0.1) var eyes_height_factor: float = 0:
 	set(val): eyes_height_factor = val;if Engine.is_editor_hint(): emit_changed()
 
-@export var crown_pscn: PackedScene = null:
-	set(new_value): crown_pscn = new_value; emit_changed();  if Engine.is_editor_hint(): emit_changed()
+@export var crown_id: String = "":
+	set(id): crown_id = id; crown_pscn = load(crown_resource_path(id)) if FileAccess.file_exists(crown_resource_path(id)) else null; if Engine.is_editor_hint(): emit_changed()
+var crown_pscn: PackedScene = null:
+	set(new_value): crown_pscn = new_value; emit_changed(); if Engine.is_editor_hint(): emit_changed()
 
 
 func crown_resource_path(id: String):
@@ -127,7 +129,7 @@ func randomize():
 	if OS.has_environment("GODOT_CI_BUILD") or DisplayServer.get_name() == "headless":
 		return
 		
-	var crown_id: String = crowns_and_colors.keys()[randi_range(0, crowns_and_colors.size() - 1)]
+	crown_id = crowns_and_colors.keys()[randi_range(0, crowns_and_colors.size() - 1)]
 
 	var colors_for_type = crowns_and_colors[crown_id].colors
 
@@ -167,3 +169,49 @@ func reload_crown():
 	crown_pscn = null
 	crown_pscn = old_crown_pscn
 	pass
+	
+
+func toJSON():
+	return {
+		"body_color": body_color.to_html(),
+		"eye_shine_color": eye_shine_color.to_html(),
+		"eye_shadow_color": eye_shadow_color.to_html(),
+		"eye_base_color": eye_base_color.to_html(),
+		"wide_stretch_factor": wide_stretch_factor,
+		"horn_stretch_factor": horn_stretch_factor,
+		"long_stretch_factor": long_stretch_factor,
+		"pearness_factor": pearness_factor,
+		"tall_stretch_factor": tall_stretch_factor,
+		"wonkiness_factor": wonkiness_factor,
+		"eyes_spread_factor": eyes_spread_factor,
+		"eyes_tilt_factor": eyes_tilt_factor,
+		"eyes_height_factor": eyes_height_factor,
+		"crown_id": crown_id if crown_id else ""
+	}
+	
+static func fromJSON(json: Dictionary) -> BonkiAppearanceParameters:
+	var obs := BonkiAppearanceParameters.new()
+	if json.is_empty():
+		return obs
+	
+	# Restore Colors
+	if "body_color" in json: obs.body_color = Color(json["body_color"])
+	if "eye_shine_color" in json: obs.eye_shine_color = Color(json["eye_shine_color"])
+	if "eye_shadow_color" in json: obs.eye_shadow_color = Color(json["eye_shadow_color"])
+	if "eye_base_color" in json: obs.eye_base_color = Color(json["eye_base_color"])
+	
+	# Restore Floats
+	obs.wide_stretch_factor = json.get("wide_stretch_factor", 0.0)
+	obs.horn_stretch_factor = json.get("horn_stretch_factor", 0.0)
+	obs.long_stretch_factor = json.get("long_stretch_factor", 0.0)
+	obs.pearness_factor = json.get("pearness_factor", 0.0)
+	obs.tall_stretch_factor = json.get("tall_stretch_factor", 0.0)
+	obs.wonkiness_factor = json.get("wonkiness_factor", 0.0)
+	obs.eyes_spread_factor = json.get("eyes_spread_factor", 0.0)
+	obs.eyes_tilt_factor = json.get("eyes_tilt_factor", 0.0)
+	obs.eyes_height_factor = json.get("eyes_height_factor", 0.0)
+	
+	obs.crown_id = json.get("crown_id", "")
+
+		
+	return obs

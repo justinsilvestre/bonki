@@ -8,10 +8,19 @@ signal step_finished
 @onready var music_player: AudioStreamPlayer = $Music_AudioStreamPlayer
 @onready var sfx_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
+@onready var dog := $SubViewportContainer/SubViewport/World_Node3D/dog
+
+@onready var dig_timer = $DigTimer
+@onready var dig_meter = $UI_CanvasLayer/Overlay_Control/DigMeter
 
 @onready var dog_name := GameState.dog_name
 
+const DEFAULT_DIG_SECONDS = 30
+
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
+
+# we don't want to trigger the final bonki reveal until e.g. any text prompts are complete
+var ready_for_dig_complete := false
 
 var sound_paths := {
 	"footsteps": "res://sound/sfx/pixabay_footsteps-dirt-gravel.mp3"
@@ -63,7 +72,7 @@ var sequence_steps := [
 	# camera pans in dog's direction + fades to black.
 	{"type": "anim", "anim_name": "1_09__follow_dog"},
 	# random bonki crown now sticks out of ground next to dog, now in center of ground surface
-	{"type": "spec", "action": "refresh_bonki"},
+	{"type": "spec", "action": "refresh_bonki", "next": true},
 	# you catch up to the dog, i.e. camera jumps to opposite edge of screen, pans in same direction as last pan as screen fades from black
 	{"type": "anim", "anim_name": "1_10__catch_up_to_dog"},
 	{"type": "text", "content": "This isn't the way out..."},
@@ -71,7 +80,7 @@ var sequence_steps := [
 	{"type": "text", "content": "Wait."},
 	{"type": "text", "content": "What's that?"},
 	# camera pans down towards bonki crown sticking out of ground
-	{"type": "anim", "anim_name": "1_11__notice_bonki"},
+	{"label": "NOTICE_BONKI", "type": "anim", "anim_name": "1_11__notice_bonki"},
 	{"type": "text", "content": "You've never seen anything like it."},
 	{"type": "text", "content": "And yet..."},
 	{"type": "text", "content": "It feels familiar."},
@@ -98,7 +107,7 @@ var sequence_steps := [
 	# if 'wait here a bit', dog starts digging
 	# if move left or right, refresh bonki
 	{"label": "REFRESH_BONKI_TO_LEFT", "type": "anim", "anim_name": "3_001_follow_dog_to_left"},
-	{"type": "spec", "action": "refresh_bonki"},
+	{"type": "spec", "action": "refresh_bonki", "next": true},
 	
 	# camera jumps to opposite edge of screen, pans in same direction as last pan while screen fades from black
 	{"type": "anim", "anim_name": "3_01__catch_up_to_dog_to_left"},
@@ -112,7 +121,7 @@ var sequence_steps := [
 		"action": "decide_about_picking",
 	},
 	{"label": "REFRESH_BONKI_TO_RIGHT", "type": "anim", "anim_name": "3_002_follow_dog_to_right"},
-	{"type": "spec", "action": "refresh_bonki"},
+	{"type": "spec", "action": "refresh_bonki", "next": true},
 	# camera jumps to opposite edge of screen, pans in same direction as last pan while screen fades from black
 	{"type": "anim", "anim_name": "3_02__catch_up_to_dog_to_right"},
 	{"type": "text", "content": "This isn't the way out..."},
@@ -127,20 +136,24 @@ var sequence_steps := [
 	
 	# dog starts digging
 	{"label": "DOG_STARTS_DIGGING", "type": "anim", "anim_name": "4_01__dog_starts_digging"},
+	{"type": "spec", "action": "start_dig_timer", "next": true },
 	{"type": "text", "content": "DOG seems to be enjoying themself."},
 	{"type": "text", "content": "But perhaps we should keep searching for the way out..."},
 	# dog keeps digging, meter starts
-	{"type": "spec", "action": "start_meter"},
 	# prompt yes/no
 	{"type": "choice", "content": "What will you do?", "options": ["Wait and see what\nDOG digs up.", "Chop chop! Gotta go!"], "action": "confirm_about_staying"},
 	# if yes (get going), call DOG
 	# if no, wait until dog finished digging
 	
+	# when reopening game
+	{"label": "DOG_CONTINUES_DIGGING", "type": "anim", "anim_name": "4_02__dog_continues_digging"},
+	{"label": "LET_METER_RUN", "type": "spec", "action": "let_meter_run"},
+	
+	
 	# call DOG
-	{"label": "CALL_DOG", "type": "text", "content": "Here, DOG!"},
-	# dog stops digging, meter stops
+	{"label": "CALL_DOG", "type": "spec", "action": "interrupt_dig", "next": true},
+	{"type": "text", "content": "Here, DOG!"},
 	{"type": "anim", "anim_name": "5_01__dog_stops_digging"},
-	{"type": "spec", "action": "stop_meter"},
 	
 	{
 		"type": "choice",
@@ -151,7 +164,7 @@ var sequence_steps := [
 	# prompt go left/wait here a bit/go right — SAME AS ABOVE
 	
 	# wait until dog finished digging
-	{"label": "WAIT_UNTIL_DIGGING_FINISHED", "type": "anim", "anim_name": "6_01__dog_finishes_digging"},
+	{"label": "DOG_FINISHES_DIGGING", "type": "anim", "anim_name": "6_01__dog_finishes_digging"},
 	# bonki is unearthed
 	{"type": "anim", "anim_name": "6_02__bonki_is_unearthed"},
 	{"type": "text", "content": "What on Earth?"},
@@ -172,26 +185,48 @@ var sequence_steps := [
 	{"type": "text", "content": "Run, DOG!"},
 	{"type": "text", "content": "Follow that creature!"},
 	{"type": "spec", "action": "next_scene"},
-
 ]
 
 
 var current_step_index = 0
 
 func _ready():
+	bonki.hide_eyes()
+	if (GameState.pending_dig):
+		print("Resuming pending dig!")
+		current_step_index = get_step_index_by_label("DOG_CONTINUES_DIGGING")
+		dog.show()
+		print("setting bonki appearance")
+		print(GameState.pending_dig.appearance)
+		bonki.appearance = GameState.pending_dig.appearance
+		bonki.show()
+	else:
+		dig_meter.hide()
+	print("Starting at step")
+	print(current_step_index)
+	
 	print("GameState.dog_name")
 	print(GameState.dog_name)
-	# Connect the UI signal to our advance function
+	
+	#dig_timer
+
 	dialog_overlay.step_finished.connect(_on_step_finished)
 	
-	# Connect the AnimationPlayer signal to our advance function
 	cutscene_player.animation_finished.connect(_on_anim_finished)
 	
 	dialog_overlay.choice_selected.connect(_on_choice_made)
 	
 	dialog_overlay.text_submitted.connect(_on_text_submitted)
+	
+	dig_timer.timeout.connect(complete_dig)
+	
 	# Start the sequence
 	start_step()
+	
+
+func _process(_delta):
+	if !dig_timer.is_stopped():
+		dig_meter.value = (dig_timer.time_left / dig_timer.wait_time) * 100
 
 func start_step():
 	if (current_step_index >= sequence_steps.size()):
@@ -210,10 +245,12 @@ func start_step():
 		# We now wait for the 'animation_finished' signal from the Player
 
 	elif step["type"] == "spec":
-		## Example: call a function dynamically based on the action name
 		if has_method(step["action"]):
 			call(step["action"])
-		_on_step_finished()
+		if ("next" in step and step["next"] == true):
+			_on_step_finished()
+		elif ("next" in step):
+			jump_to_label(step["next"])
 
 	elif step["type"] == "choice": 
 		dialog_overlay.show_choices(step["content"], step["options"].map(func (s): return s.replace("DOG", dog_name)))
@@ -243,7 +280,13 @@ func jump_to_label(target_label: String):
 			start_step()
 			return
 	print("Error: Label not found -> ", target_label)
-	
+
+func get_step_index_by_label(target_label: String):
+	for i in range(sequence_steps.size()):
+		var step = sequence_steps[i]
+		if step.has("label") and step["label"] == target_label:
+			return  i
+
 func _on_choice_made(index: int):
 	var step = sequence_steps[current_step_index]
 	var action = step["action"]
@@ -271,7 +314,7 @@ func _on_choice_made(index: int):
 			if index == 1: # (Get going / Call Dog)
 				jump_to_label("CALL_DOG")
 			else: # No (Wait)
-				jump_to_label("WAIT_UNTIL_DIGGING_FINISHED")
+				jump_to_label("LET_METER_RUN")
 
 func _on_text_submitted(new_text: String):
 	# Save the name!
@@ -315,20 +358,7 @@ func refresh_bonki():
 	new_appearance.randomize()
 	bonki.appearance = 	new_appearance
 	bonki.hide_eyes()
-	
-	if GameState.free_bonkis_appearance_parameters.size() > 0:
-		GameState.free_bonkis_appearance_parameters[0] = new_appearance
-		GameState.save_game()
-	else:
-		GameState.free_bonkis_appearance_parameters.push_back(new_appearance)
-		GameState.save_game()
-		
 
-func start_meter():
-	print("Meter started")
-
-func stop_meter():
-	print("Meter stopped")
 
 ## Starts a looping sound. 
 ## 'path' is the string path to your sound file (e.g., "res://sounds/panting.ogg")
@@ -373,3 +403,61 @@ func next_scene():
 		)
 	else:
 		TransitionManager.go_to_scene_threaded(NEXT_SCENE)
+		
+	
+
+
+func get_new_dig_seconds() -> int:
+	return DEFAULT_DIG_SECONDS
+
+func let_meter_run():
+	ready_for_dig_complete = true
+	if !dig_timer.time_left:
+		complete_dig()
+	else:
+		print("waiting for timer to run out")
+
+func start_dig_timer():
+	var pending_dig := GameState.pending_dig
+	if (pending_dig):
+		print("continuing pending dig")
+		print(pending_dig)
+	else:
+		print("starting new dig:")
+	var now: float = Time.get_unix_time_from_system()
+	var start_time := pending_dig.start_unix_time if pending_dig else now
+	var dig_seconds := pending_dig.duration_seconds if pending_dig else get_new_dig_seconds()
+	var dig_complete_time: float = start_time + dig_seconds
+	var remaining_time = max(0, dig_complete_time - now)
+	GameState.start_dig(start_time, dig_seconds, bonki.appearance)
+	
+	print("starting dig timer")
+	print("remaining seconds:")
+	print(remaining_time)
+	
+	dig_meter.show()
+	# Note: We keep wait_time as the TOTAL duration for the % math
+	# but we start the timer with the REMAINING time.
+	dig_timer.wait_time = GameState.pending_dig.duration_seconds
+	dig_timer.start(remaining_time)
+	
+	
+	GameState.start_dig(start_time, dig_seconds, bonki.appearance)
+
+
+func complete_dig():
+	dig_timer.stop()
+	if (ready_for_dig_complete):
+		dig_meter.hide()
+		## REALLY SHOULD DO THIS AFTER NEXT SCENE
+		GameState.complete_dig()
+		print("Digging complete!")
+		jump_to_label("DOG_FINISHES_DIGGING")
+	
+func interrupt_dig():
+	GameState.interrupt_dig()
+	dig_meter.hide()
+	dig_timer.stop()
+	print("Digging stopped!")
+	
+	

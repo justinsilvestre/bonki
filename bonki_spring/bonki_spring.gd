@@ -7,6 +7,24 @@ signal step_finished
 @onready var music_player : AudioStreamPlayer = $Music_AudioStreamPlayer
 
 
+@onready var bonki1 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki1
+@onready var bonki2 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki2
+@onready var bonki3 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki3
+@onready var bonki4 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki4
+@onready var bonki5 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki5
+@onready var bonki6 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki6
+@onready var bonki7 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki7
+
+@onready var placement_bonkis: Array[Bonki] = [
+	bonki1,
+	bonki2,
+	bonki3,
+	bonki4,
+	bonki5,
+	bonki6,
+	bonki7,
+]
+
 var intro_sequence_steps = [
 	{"type": "anim", "anim_name": "intro_01_fade_in_and_pan"},
 	{"type": "text", "content": "Bonki Spring..."},
@@ -34,6 +52,8 @@ func _ready():
 	
 	# Connect the AnimationPlayer signal to our advance function
 	cutscene_player.animation_finished.connect(_on_anim_finished)
+	
+	show_bonkis()
 
 	if (GameState.seen_intro):
 		print("Intro seen already")
@@ -43,6 +63,36 @@ func _ready():
 	
 func _dog_name() -> String:
 	return GameState.dog_name
+	
+func show_bonkis():
+	var free_bonkis_params := GameState.free_bonkis_appearance_parameters
+	var free_bonkis_count: int = free_bonkis_params.size() if free_bonkis_params else 0
+	for bonki in placement_bonkis:
+		bonki.hide()
+	
+	var present_bonkis_count: int = min(free_bonkis_count, placement_bonkis.size())
+	var present_bonki_placements := get_random_elements(placement_bonkis, present_bonkis_count)
+	var present_bonki_params := get_random_elements(free_bonkis_params, present_bonkis_count)
+	
+	for i in present_bonkis_count:
+		var placement = present_bonki_placements[i]
+		var appearance = present_bonki_params[i]
+		placement.appearance = appearance
+		placement.show()
+
+## Returns N unique random elements from the source array.
+func get_random_elements(source_array: Array, n: int) -> Array:
+	# 1. Create a shallow copy so we don't mess up the original list
+	var pool = source_array.duplicate()
+	
+	# 2. Randomize the order of the copy
+	pool.shuffle()
+	
+	# 3. Clamp N to ensure we don't try to grab more than exists
+	var count = min(n, pool.size())
+	
+	# 4. Return the first 'count' elements
+	return pool.slice(0, count)
 
 func start_step():
 	var steps = intro_sequence_steps if GameState.seen_intro else normal_steps

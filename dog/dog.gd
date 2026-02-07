@@ -1,5 +1,7 @@
 extends Node3D
 
+signal tapped
+
 @onready var anim_tree := $AnimationTree
 
 # Called when the node enters the scene tree for the first time.
@@ -9,6 +11,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	# Check if the event is a mouse button click or a screen touch
+	if event is InputEventMouseButton:
+		# Check if it's the left mouse button and it was just pressed (not released)
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			tapped.emit()
+
 
 func stand() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_standing", true)

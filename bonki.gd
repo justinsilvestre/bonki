@@ -12,6 +12,8 @@ extends CharacterBody3D
 
 @onready var model := $BonkiModel
 
+@export var tappable := false
+
 var blink_blend_path := "parameters/AddBlink/add_amount"
 var blink_one_shot_path := "parameters/BlinkOneShot/request"
 
@@ -117,6 +119,7 @@ func _physics_process(delta: float) -> void:
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	# Check if the event is a mouse button click or a screen touch
 	if event is InputEventMouseButton:
+		print("bonki tapped!")
 		# Check if it's the left mouse button and it was just pressed (not released)
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			play_tap_animation()
@@ -129,6 +132,8 @@ func play_tap_animation():
 	
 	# If you use a 'OneShot' node, it would look like this:
 	# $AnimationTree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
+	if (!tappable): return
 	
 	print("Character animation triggered!")
 	

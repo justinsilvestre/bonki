@@ -21,6 +21,7 @@ func show_text(new_text: String):
 func _gui_input(event):
 	# Detect mouse click or touch tap
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and current_step_type == "text":
+		print("overlay tap")
 		accept_event()
 		hide()
 		step_finished.emit() # Tell the manager we are done

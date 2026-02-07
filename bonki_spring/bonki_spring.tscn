@@ -7,7 +7,8 @@
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="3_3vmkq"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
-[ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="15_3vmkq"]
+[ext_resource type="PackedScene" uid="uid://bd1jfh2s0jegp" path="res://intro/dog_character_body_3d.tscn" id="9_8c10v"]
+[ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog_model.tscn" id="15_3vmkq"]
 
 [sub_resource type="Animation" id="Animation_eu601"]
 length = 0.001
@@ -378,6 +379,9 @@ eyes_height_factor = 0.9005455585096371
 crown_id = "enoki"
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3nr71"]
+size = Vector3(1.4, 1.85, 2.36)
+
 [node name="Control" type="Control" unique_id=1322998289]
 layout_mode = 3
 anchors_preset = 15
@@ -545,31 +549,38 @@ shape = SubResource("BoxShape3D_jwgr6")
 [node name="Bonki1" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2052834491 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35000002, 0, 0, 0, 0.35, 2.6913745, 1.8358347, -8.196823)
 appearance = SubResource("Resource_8potb")
+tappable = true
 
 [node name="Bonki2" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1144760733 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35000002, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.0000895, -0.5151367, -7.3474565)
 default_animation = 1
 appearance = SubResource("Resource_hgyec")
+tappable = true
 
 [node name="Bonki3" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=525865550 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 1.8358347, -9.196823)
 appearance = SubResource("Resource_enw64")
+tappable = true
 
 [node name="Bonki4" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1515544183 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -1.7951776, -0.5151367, -4.1699023)
 appearance = SubResource("Resource_xuayo")
+tappable = true
 
 [node name="Bonki5" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1968939506 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.42284167, -0.5151367, 0)
 appearance = SubResource("Resource_8an6b")
+tappable = true
 
 [node name="Bonki6" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=429063601 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.55667484, -0.5151367, -2.6318011)
 appearance = SubResource("Resource_qemrt")
+tappable = true
 
 [node name="Bonki7" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1727677926 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.32050222, -0.5151367, -5.114398)
 appearance = SubResource("Resource_m5uqd")
+tappable = true
 
 [node name="dog" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=93409961 instance=ExtResource("15_3vmkq")]
 transform = Transform3D(0.6128509, 0.020330312, 0.27000085, -0.022213971, 0.6696316, 1.1702611e-07, -0.2698524, -0.008952034, 0.61318797, -2.000631, -0.28763515, -1.9100385)
@@ -578,6 +589,14 @@ transform = Transform3D(0.6128509, 0.020330312, 0.27000085, -0.022213971, 0.6696
 transform = Transform3D(1, -4.656613e-10, -7.450581e-09, -4.656613e-10, 1, 0, 0, 7.450581e-09, 1, -0.0057189465, 0.17239505, -0.013272285)
 layers = 2
 
+[node name="CharacterBody3D" parent="SubViewportContainer/SubViewport/WorldNode3D/dog" unique_id=2128889500 instance=ExtResource("9_8c10v")]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/WorldNode3D/dog/CharacterBody3D" unique_id=2070624140]
+shape = SubResource("BoxShape3D_3nr71")
+
 [node name="BonkiSpring" type="Node" parent="." unique_id=260375899]
+
+[connection signal="tapped" from="SubViewportContainer/SubViewport/WorldNode3D/dog" to="." method="_on_dog_tapped"]
+[connection signal="input_event" from="SubViewportContainer/SubViewport/WorldNode3D/dog/CharacterBody3D" to="." method="_on_character_body_3d_input_event"]
 
 [editable path="SubViewportContainer/SubViewport/WorldNode3D/dog"]

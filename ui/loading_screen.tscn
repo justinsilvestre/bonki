@@ -2,21 +2,21 @@
 
 [ext_resource type="Script" uid="uid://bn3qpad2b5vbo" path="res://ui/loading_screen.gd" id="1_pojjl"]
 
-[sub_resource type="Gradient" id="Gradient_1kfex"]
+[sub_resource type="Gradient" id="Gradient_pojjl"]
 offsets = PackedFloat32Array(0, 0.9945355)
 colors = PackedColorArray(0.12004755, 0.18381128, 0.062316015, 1, 0.20362005, 0.16775748, 0.0620884, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_e66os"]
-gradient = SubResource("Gradient_1kfex")
+gradient = SubResource("Gradient_pojjl")
 width = 512
 height = 512
 repeat = 1
 
-[sub_resource type="Gradient" id="Gradient_pojjl"]
+[sub_resource type="Gradient" id="Gradient_1kfex"]
 colors = PackedColorArray(0.5133084, 0.49827075, 0.16383621, 1, 0.75853604, 0.74038666, 0.3319949, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1kfex"]
-gradient = SubResource("Gradient_pojjl")
+gradient = SubResource("Gradient_1kfex")
 width = 512
 height = 512
 

@@ -9,9 +9,10 @@
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="3_vjsr4"]
 [ext_resource type="AudioStream" uid="uid://c5uc6s7qkq4de" path="res://sound/sfx/zapsplat_animals_dog_medium_sized_single_bark_med_close_002_70615.mp3" id="4_axcp6"]
 [ext_resource type="AudioStream" uid="uid://b3punh3d4kq6h" path="res://sound/sfx/zapsplat_animals_dog_medium_sized_5x_barks_fast_slight_distance_70727.mp3" id="5_sg2fo"]
-[ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="6_1q7h5"]
+[ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog_model.tscn" id="6_1q7h5"]
 [ext_resource type="AudioStream" uid="uid://1yoid6le711i" path="res://sound/zinja-ne_first-25s.mp3" id="6_ie2y0"]
 [ext_resource type="Texture2D" uid="uid://bsvjmqxxjamwd" path="res://intro/bonki_forest_ground_tile.png" id="7_xwdvp"]
+[ext_resource type="PackedScene" uid="uid://bd1jfh2s0jegp" path="res://intro/dog_character_body_3d.tscn" id="14_ie2y0"]
 [ext_resource type="Shader" uid="uid://dgrmj3uur3lcj" path="res://intro/bonki_unearthed_light.gdshader" id="15_1l24h"]
 [ext_resource type="PackedScene" uid="uid://cp5exuu8ajpf0" path="res://intro/forest_bg_part.tscn" id="17_ao3yw"]
 [ext_resource type="Texture2D" uid="uid://dy3cs03avi5q3" path="res://intro/forest_layers/forest-bg-layer-1.png" id="18_dk8sq"]
@@ -72,7 +73,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog:visible")
+tracks/4/path = NodePath("DogModel:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -244,7 +245,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog:visible")
+tracks/5/path = NodePath("DogModel:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -260,7 +261,7 @@ length = 4.5
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dog/AnimationPlayer")
+tracks/0/path = NodePath("DogModel/AnimationPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -270,7 +271,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("dog:position")
+tracks/1/path = NodePath("DogModel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -282,7 +283,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:rotation")
+tracks/2/path = NodePath("DogModel:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -318,7 +319,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -381,7 +382,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:position")
+tracks/3/path = NodePath("DogModel:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -393,7 +394,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog:rotation")
+tracks/4/path = NodePath("DogModel:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -405,7 +406,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -466,7 +467,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:position")
+tracks/3/path = NodePath("DogModel:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -478,7 +479,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog:rotation")
+tracks/4/path = NodePath("DogModel:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -490,7 +491,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -550,7 +551,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:position")
+tracks/3/path = NodePath("DogModel:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -562,7 +563,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog:rotation")
+tracks/4/path = NodePath("DogModel:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -574,7 +575,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -601,7 +602,7 @@ length = 2.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dog:position")
+tracks/0/path = NodePath("DogModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -613,7 +614,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("dog:rotation")
+tracks/1/path = NodePath("DogModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -649,7 +650,7 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog")
+tracks/4/path = NodePath("DogModel")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -721,7 +722,7 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog")
+tracks/4/path = NodePath("DogModel")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -763,7 +764,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:position")
+tracks/2/path = NodePath("DogModel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -775,7 +776,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:rotation")
+tracks/3/path = NodePath("DogModel:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -823,7 +824,7 @@ tracks/6/keys = {
 tracks/7/type = "method"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("dog")
+tracks/7/path = NodePath("DogModel")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -879,7 +880,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:position")
+tracks/2/path = NodePath("DogModel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -891,7 +892,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:rotation")
+tracks/3/path = NodePath("DogModel:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -903,7 +904,7 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog")
+tracks/4/path = NodePath("DogModel")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -927,7 +928,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dog:position")
+tracks/0/path = NodePath("DogModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -939,7 +940,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("dog:rotation")
+tracks/1/path = NodePath("DogModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -998,7 +999,7 @@ tracks/4/use_blend = true
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1040,7 +1041,7 @@ length = 1.4333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dog:position")
+tracks/0/path = NodePath("DogModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1052,7 +1053,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("dog:rotation")
+tracks/1/path = NodePath("DogModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1107,7 +1108,7 @@ tracks/4/use_blend = true
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1149,7 +1150,7 @@ length = 1.7333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dog:position")
+tracks/0/path = NodePath("DogModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1161,7 +1162,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("dog:rotation")
+tracks/1/path = NodePath("DogModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1216,7 +1217,7 @@ tracks/4/use_blend = true
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1282,7 +1283,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:position")
+tracks/2/path = NodePath("DogModel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1294,7 +1295,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:rotation")
+tracks/3/path = NodePath("DogModel:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1342,7 +1343,7 @@ tracks/6/keys = {
 tracks/7/type = "method"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("dog")
+tracks/7/path = NodePath("DogModel")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1384,7 +1385,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:position")
+tracks/2/path = NodePath("DogModel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1396,7 +1397,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:rotation")
+tracks/3/path = NodePath("DogModel:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1444,7 +1445,7 @@ tracks/6/keys = {
 tracks/7/type = "method"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("dog")
+tracks/7/path = NodePath("DogModel")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1486,7 +1487,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:position")
+tracks/2/path = NodePath("DogModel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1498,7 +1499,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:rotation")
+tracks/3/path = NodePath("DogModel:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1510,7 +1511,7 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog")
+tracks/4/path = NodePath("DogModel")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1527,7 +1528,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1566,7 +1567,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:position")
+tracks/2/path = NodePath("DogModel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1578,7 +1579,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:rotation")
+tracks/3/path = NodePath("DogModel:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1590,7 +1591,7 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog")
+tracks/4/path = NodePath("DogModel")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1607,7 +1608,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog")
+tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1658,7 +1659,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:position")
+tracks/2/path = NodePath("DogModel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1670,7 +1671,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:rotation")
+tracks/3/path = NodePath("DogModel:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1682,7 +1683,7 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("dog")
+tracks/4/path = NodePath("DogModel")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1706,7 +1707,7 @@ length = 2.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dog:position")
+tracks/0/path = NodePath("DogModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1718,7 +1719,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("dog:rotation")
+tracks/1/path = NodePath("DogModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1730,7 +1731,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog")
+tracks/2/path = NodePath("DogModel")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1877,7 +1878,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("dog:position")
+tracks/7/path = NodePath("DogModel:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1927,7 +1928,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("dog:rotation")
+tracks/10/path = NodePath("DogModel:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1975,7 +1976,7 @@ tracks/13/keys = {
 tracks/14/type = "method"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("dog")
+tracks/14/path = NodePath("DogModel")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -2085,19 +2086,19 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("dog:position")
+tracks/2/path = NodePath("DogModel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.3999999, 3),
+"times": PackedFloat32Array(0, 1.2, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.48799992, 0.514, -5.273), Vector3(0.48799992, 0.514, -5.273), Vector3(16.098, 0.514, -8.913)]
+"values": [Vector3(2.028, 0.514, -5.273), Vector3(2.028, 0.514, -5.273), Vector3(16.098, 0.514, -8.913)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("dog:rotation")
+tracks/3/path = NodePath("DogModel:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -2133,7 +2134,7 @@ tracks/5/keys = {
 tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("dog")
+tracks/6/path = NodePath("DogModel")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2150,14 +2151,14 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("dog:visible")
+tracks/7/path = NodePath("DogModel:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(3.04),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.033333335, 3.04),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_hp8fq"]
@@ -2320,7 +2321,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("dog:position")
+tracks/5/path = NodePath("DogModel:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2332,7 +2333,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("dog:rotation")
+tracks/6/path = NodePath("DogModel:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2344,7 +2345,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("dog:visible")
+tracks/7/path = NodePath("DogModel:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -2476,7 +2477,7 @@ tracks/17/keys = {
 tracks/18/type = "animation"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("dog/AnimationPlayer")
+tracks/18/path = NodePath("DogModel/AnimationPlayer")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -2613,12 +2614,11 @@ wide_stretch_factor = 0.15163964819564368
 horn_stretch_factor = 0.16328978321322518
 long_stretch_factor = 0.6675101098654388
 pearness_factor = -0.7250600837450966
-tall_stretch_factor = 0.48072755473386364
+tall_stretch_factor = 0.4807275547338637
 wonkiness_factor = -0.39913431166207314
 eyes_spread_factor = 0.5520949237656536
 eyes_tilt_factor = 0.8007984689955692
-eyes_height_factor = 0.0027014629915957933
-crown_id = null
+eyes_height_factor = 0.00270146299159579
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Curve3D" id="Curve3D_ie2y0"]
@@ -2674,6 +2674,9 @@ shader_parameter/light_color = Color(1, 1, 1, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_ao3yw"]
 material = SubResource("ShaderMaterial_rcqw2")
 height = 100.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ie2y0"]
+size = Vector3(1.4, 1.85, 2.36)
 
 [node name="Intro" type="Control" unique_id=718073339]
 layout_mode = 3
@@ -2779,9 +2782,8 @@ expand_to_text_length = true
 layout_mode = 2
 text = "OK"
 
-[node name="DigMeter" type="TextureProgressBar" parent="UI_CanvasLayer/Overlay_Control" unique_id=144680521]
+[node name="DigMeter" type="TextureProgressBar" parent="UI_CanvasLayer" unique_id=144680521]
 custom_minimum_size = Vector2(512, 50)
-layout_mode = 0
 offset_left = 257.0
 offset_top = 1673.0
 offset_right = 778.0
@@ -2805,17 +2807,19 @@ offset_bottom = 1048.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=480421166]
 transparent_bg = true
 handle_input_locally = false
+physics_object_picking = true
 size = Vector2i(2743, 2096)
 render_target_update_mode = 4
 
 [node name="World_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
 
 [node name="CameraRig_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2049257925]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999994, 0, 0, 0, 0.9999994, 0, 2, 1)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999994, 0, 0, 0, 0.99999934, 0, 2, 1)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World_Node3D/CameraRig_Node3D" unique_id=139175723]
 transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0.31210983, 2.6263568)
@@ -2831,11 +2835,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(-0.08250964, 0, -0.9964542, 0, 0.9999909, 0, 0.99646044, 0, -0.082509115, 2.1529522, -1.9520521e-05, -5.373039)
+transform = Transform3D(-0.082509555, 0, -0.99645406, 0, 0.99999076, 0, 0.9964594, 0, -0.08250911, 2.1529522, -1.9520521e-05, -5.373039)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
-remote_path = NodePath("../../../dog")
+remote_path = NodePath("../../../DogModel")
 update_position = false
 update_scale = false
 
@@ -2876,14 +2880,19 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, 
 mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
-[node name="dog" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.99988645, 0, 0, 0, 0.99997395, 0, 0, 0, 0.99980676, 2.494, 0.514, 0.299)
+[node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
+transform = Transform3D(0.99988645, 0, 0, 0, 0.9999739, 0, 0, 0, 0.9998071, 2.494, 0.514, 0.299)
 
-[node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/dog/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 1722205886) index="0" unique_id=1783989002]
+[node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 1722205886) index="0" unique_id=1783989002]
 layers = 2
 
-[node name="AnimationTree" parent="SubViewportContainer/SubViewport/World_Node3D/dog" index="2" unique_id=1815908616]
+[node name="AnimationTree" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel" index="2" unique_id=1815908616]
 parameters/StateMachine/conditions/is_standing = true
+
+[node name="CharacterBody3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel" unique_id=2128889500 instance=ExtResource("14_ie2y0")]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/CharacterBody3D" unique_id=1765221225]
+shape = SubResource("BoxShape3D_ie2y0")
 
 [node name="ForestBgPart" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2139732122 instance=ExtResource("17_ao3yw")]
 transform = Transform3D(1.336345, 0, -0.46853125, 0, 1.4160999, 0, 0.46853125, 0, 1.336345, -7.3357935, 2.4647884, -9.043152)
@@ -2904,4 +2913,7 @@ billboard = 1
 double_sided = false
 texture = ExtResource("18_dk8sq")
 
-[editable path="SubViewportContainer/SubViewport/World_Node3D/dog"]
+[connection signal="tapped" from="SubViewportContainer/SubViewport/World_Node3D/DogModel" to="." method="_on_dog_model_tapped"]
+[connection signal="input_event" from="SubViewportContainer/SubViewport/World_Node3D/DogModel/CharacterBody3D" to="." method="_on_character_body_3d_input_event"]
+
+[editable path="SubViewportContainer/SubViewport/World_Node3D/DogModel"]

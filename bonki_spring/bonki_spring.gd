@@ -158,3 +158,12 @@ func start():
 		music_player.stream = bg_music
 		music_player.volume_db = 0 # Reset volume in case it was faded out
 		music_player.play()
+
+
+func _on_character_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	# Check if the event is a mouse button click or a screen touch
+	if event is InputEventMouseButton:
+		print("dog tapped!")
+		# Check if it's the left mouse button and it was just pressed (not released)
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print("whoopee!")

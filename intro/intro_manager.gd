@@ -8,19 +8,22 @@ signal step_finished
 @onready var music_player: AudioStreamPlayer = $Music_AudioStreamPlayer
 @onready var sfx_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
-@onready var dog := $SubViewportContainer/SubViewport/World_Node3D/dog
+@onready var dog := $SubViewportContainer/SubViewport/World_Node3D/DogModel
 
 @onready var dig_timer = $DigTimer
-@onready var dig_meter = $UI_CanvasLayer/Overlay_Control/DigMeter
+@onready var dig_meter = $UI_CanvasLayer/DigMeter
 
 @onready var dog_name := GameState.dog_name
+
+
+# we don't want to trigger the final bonki reveal until e.g. any text prompts are complete
+var ready_for_dig_complete := false
+var pending_dig: PendingDig = null
 
 const DEFAULT_DIG_SECONDS = 30
 
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
 
-# we don't want to trigger the final bonki reveal until e.g. any text prompts are complete
-var ready_for_dig_complete := false
 
 var sound_paths := {
 	"footsteps": "res://sound/sfx/pixabay_footsteps-dirt-gravel.mp3"
@@ -137,7 +140,7 @@ var sequence_steps := [
 	# dog starts digging
 	{"label": "DOG_STARTS_DIGGING", "type": "anim", "anim_name": "4_01__dog_starts_digging"},
 	{"type": "spec", "action": "start_dig_timer", "next": true },
-	{"type": "text", "content": "DOG seems to be enjoying themself."},
+	{"label": "CONSIDER_GOING", "type": "text", "content": "DOG seems to be enjoying themself."},
 	{"type": "text", "content": "But perhaps we should keep searching for the way out..."},
 	# dog keeps digging, meter starts
 	# prompt yes/no
@@ -245,6 +248,7 @@ func start_step():
 		# We now wait for the 'animation_finished' signal from the Player
 
 	elif step["type"] == "spec":
+		dialog_overlay.hide()
 		if has_method(step["action"]):
 			call(step["action"])
 		if ("next" in step and step["next"] == true):
@@ -261,6 +265,7 @@ func start_step():
 
 
 func _on_step_finished():
+	print("_on_step_finished")
 	# Called when text is dismissed
 	current_step_index += 1
 	start_step()
@@ -418,7 +423,7 @@ func let_meter_run():
 		print("waiting for timer to run out")
 
 func start_dig_timer():
-	var pending_dig := GameState.pending_dig
+	pending_dig = GameState.pending_dig
 	if (pending_dig):
 		print("continuing pending dig")
 		print(pending_dig)
@@ -459,5 +464,16 @@ func interrupt_dig():
 	dig_meter.hide()
 	dig_timer.stop()
 	print("Digging stopped!")
+	ready_for_dig_complete = false
 	
+
+
+func _on_character_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	# Check if the event is a mouse button click or a screen touch
+	if event is InputEventMouseButton:
+		print("dog tapped")
+		if ready_for_dig_complete:
+			jump_to_label("CONSIDER_GOING")
+		## Check if it's the left mouse button and it was just pressed (not released) 
+		#if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 	

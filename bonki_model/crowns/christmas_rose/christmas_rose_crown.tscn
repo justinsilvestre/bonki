@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://ddmpstbkfm1ts"]
+[gd_scene format=4 uid="uid://ddmpstbkfm1ts"]
 
 [ext_resource type="Script" uid="uid://bhja7wd55jb0l" path="res://bonki_model/crowns/crown.gd" id="1_bfta6"]
 [ext_resource type="Texture2D" uid="uid://c4rb3gqqxvfdr" path="res://bonki_model/crowns/christmas_rose/christmas_rose_0.png" id="1_elwi6"]
@@ -45,10 +45,10 @@ metadata/extras = {
 "processed": true
 }
 
-[node name="ChristmasRoseCrown" type="Node3D"]
+[node name="ChristmasRoseCrown" type="Node3D" unique_id=213862857]
 script = ExtResource("1_bfta6")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7251821, -0.6885571, 0, 0.6885571, 0.7251821, 0, 0.2481587, 0)
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1198326787]
+transform = Transform3D(1, 0, 0, 0, 0.8920658, -0.45190537, 0, 0.45190537, 0.8920658, 0, 0.2481587, 0)
 mesh = SubResource("ArrayMesh_fdnex")
 skeleton = NodePath("")

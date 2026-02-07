@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bcwti5ca3w0ae" path="res://bonki_model/crowns/kale/kale_crown.tscn" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ddmpstbkfm1ts" path="res://bonki_model/crowns/christmas_rose/christmas_rose_crown.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://c3pqpi4a10wy7" path="res://bonki_model/crowns/yellow_stagshorn/yellow_staghorn_crown.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://c3pqpi4a10wy7" path="res://bonki_model/crowns/yellow_stagshorn/yellow_stagshorn_crown.tscn" id="6_7mycd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

@@ -125,11 +125,14 @@ var _crown_node: Crown = null: # Should be set by _crown_pscn setter
 		_crown_node = new_val
 var _crown_node_initial_y: float = 0 
 
-func _on_appearance_changed(old_appearance: BonkiAppearanceParameters, new_appearance: BonkiAppearanceParameters):
+func update_appearance(old_appearance: BonkiAppearanceParameters, new_appearance: BonkiAppearanceParameters):
 	if new_appearance == null: return # TODO: maybe reset appearance to default?
 	set_colors(old_appearance, new_appearance)
 	set_dimensions(old_appearance, new_appearance)
 	_crown_pscn = new_appearance.crown_pscn
+
+func _on_appearance_changed(old_appearance: BonkiAppearanceParameters, new_appearance: BonkiAppearanceParameters):
+	update_appearance(old_appearance, new_appearance)
 
 func set_colors(old_params: BonkiAppearanceParameters, params: BonkiAppearanceParameters):
 	if params == null: return

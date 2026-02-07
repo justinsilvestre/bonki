@@ -2,8 +2,8 @@
 class_name Bonki
 extends CharacterBody3D
 
-@export var tap_animation: TapAnim
-@export var default_animation: DefaultAnim
+@export var tap_animation := TapAnim.NONE
+@export var default_animation := DefaultAnim.NONE
 @export var disable_physics := true
 @export var appearance: BonkiAppearanceParameters:
 	set(val):
@@ -20,8 +20,11 @@ var blink_timer := 0.0
 const MIN_BLINK_INTERVAL := 2.0
 const MAX_BLINK_INTERVAL := 5.0
 
-enum TapAnim {}
+enum TapAnim {
+	NONE
+}
 enum DefaultAnim {
+	NONE,
 	SWAY,
 	SLEEP
 }

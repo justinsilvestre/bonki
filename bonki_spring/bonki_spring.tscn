@@ -6,13 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://b3gtm45qy5usu" path="res://bonki_spring/art/bonki_spring_background_outlines.png" id="2_hgyec"]
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="3_3vmkq"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
-[ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini/porcini_crown.tscn" id="5_u8own"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
 [ext_resource type="PackedScene" uid="uid://bcwti5ca3w0ae" path="res://bonki_model/crowns/kale/kale_crown.tscn" id="6_eu601"]
 [ext_resource type="PackedScene" uid="uid://kbv6caifmeee" path="res://bonki_model/crowns/chanterelle/chanterelle_crown.tscn" id="7_7vnbg"]
 [ext_resource type="PackedScene" uid="uid://d0npk7jyfjrob" path="res://bonki_model/crowns/enoki/enoki_crown.tscn" id="8_3nr71"]
 [ext_resource type="PackedScene" uid="uid://ddmpstbkfm1ts" path="res://bonki_model/crowns/christmas_rose/christmas_rose_crown.tscn" id="9_3vmkq"]
-[ext_resource type="PackedScene" uid="uid://c3pqpi4a10wy7" path="res://bonki_model/crowns/yellow_stagshorn/yellow_staghorn_crown.tscn" id="11_mcyv1"]
+[ext_resource type="PackedScene" uid="uid://mfinu6h27hve" path="res://bonki_model/crowns/porcini/porcini_crown.tscn" id="11_3vmkq"]
+[ext_resource type="PackedScene" uid="uid://c3pqpi4a10wy7" path="res://bonki_model/crowns/yellow_stagshorn/yellow_stagshorn_crown.tscn" id="11_mcyv1"]
 [ext_resource type="PackedScene" uid="uid://bvimp24y4f2pm" path="res://bonki_model/crowns/pincushion_moss/pincushion_moss_crown.tscn" id="13_niosp"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="15_3vmkq"]
 
@@ -315,20 +315,20 @@ metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_xuayo"]
 script = ExtResource("6_7vnbg")
-body_color = Color(0.7761471, 0.54365, 0.46615088, 1)
-eye_shine_color = Color(0.7433268, 0.8848659, 0.8106516, 1)
-eye_shadow_color = Color(0.16486627, 0.72550845, 0.8307324, 1)
-eye_base_color = Color(0.20657235, 0.41857764, 0.3224275, 1)
-wide_stretch_factor = 0.29492660233068246
-horn_stretch_factor = 0.17936189571836636
-long_stretch_factor = 0.08050668155124363
-pearness_factor = 0.10058573979506358
-tall_stretch_factor = -0.5563856161709111
-wonkiness_factor = -0.7929373046973252
-eyes_spread_factor = -0.5390067037903352
-eyes_tilt_factor = -0.9025973272575448
-eyes_height_factor = 0.04989729445969071
-crown_pscn = ExtResource("5_u8own")
+body_color = Color(0.8115048, 0.7581972, 0.72446495, 1)
+eye_shine_color = Color(0.9222603, 0.85334843, 0.7549009, 1)
+eye_shadow_color = Color(0.23841226, 0.55422056, 0.85039693, 1)
+eye_base_color = Color(0.6771979, 0.5057181, 0.22879097, 1)
+wide_stretch_factor = 0.5364953672026433
+horn_stretch_factor = 0.2939969599602777
+long_stretch_factor = -0.684888490953219
+pearness_factor = -0.7244000671824313
+tall_stretch_factor = -0.9597282078937972
+wonkiness_factor = -0.26934910264030365
+eyes_spread_factor = -0.14517517649099154
+eyes_tilt_factor = -0.3790061147085281
+eyes_height_factor = -0.06535863027193345
+crown_pscn = ExtResource("11_3vmkq")
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_8an6b"]
@@ -514,7 +514,7 @@ sky_mode = 1
 environment = SubResource("Environment_8potb")
 
 [node name="CameraRigNode3D" type="Node3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=566747869]
-transform = Transform3D(0.9523159, 0.17379561, -0.25077757, 5.153256e-09, 0.8219154, 0.56960946, 0.30511358, -0.5424482, 0.7827232, -3.1744606, 7.8342257, 4.6483293)
+transform = Transform3D(0.9523159, 0.1737956, -0.25077757, 5.153256e-09, 0.8219153, 0.56960946, 0.30511358, -0.54244816, 0.7827232, -3.1744606, 7.8342257, 4.6483293)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/WorldNode3D/CameraRigNode3D" unique_id=1732145892]
 projection = 1
@@ -548,7 +548,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000002, 1.122787, -1.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3493125)
 shape = SubResource("BoxShape3D_jwgr6")
 
-[node name="Bonki" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2052834491 instance=ExtResource("4_33gn6")]
+[node name="Bonki1" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2052834491 instance=ExtResource("4_33gn6")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35000002, 0, 0, 0, 0.35, 2.6913745, 1.8358347, -8.196823)
 appearance = SubResource("Resource_8potb")
 

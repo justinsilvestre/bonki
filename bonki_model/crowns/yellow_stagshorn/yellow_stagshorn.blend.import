@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dyptbdk0a3o8u"
-path="res://.godot/imported/yellow_staghorn.blend-03bc7803b8050cdffe80a9ae23affb1c.scn"
+path="res://.godot/imported/yellow_stagshorn.blend-152101f76f5692ccec844e2a65b8fea3.scn"
 
 [deps]
 
-source_file="res://bonki_model/crowns/yellow_stagshorn/yellow_staghorn.blend"
-dest_files=["res://.godot/imported/yellow_staghorn.blend-03bc7803b8050cdffe80a9ae23affb1c.scn"]
+source_file="res://bonki_model/crowns/yellow_stagshorn/yellow_stagshorn.blend"
+dest_files=["res://.godot/imported/yellow_stagshorn.blend-152101f76f5692ccec844e2a65b8fea3.scn"]
 
 [params]
 

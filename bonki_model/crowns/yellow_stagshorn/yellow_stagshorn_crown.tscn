@@ -10,7 +10,7 @@ shading_mode = 0
 albedo_texture = ExtResource("2_mkgbg")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wcyb4"]
-resource_name = "yellow_staghorn_geometry_0"
+resource_name = "yellow_stagshorn_geometry_0"
 _blend_shape_names = PackedStringArray("Shortness")
 _surfaces = [{
 "aabb": AABB(-0.1980873, -0.38911843, -0.15116084, 0.4178961, 0.7635061, 0.3057127),
@@ -32,7 +32,7 @@ metadata/extras = {
 "targetNames": ["Shortness"]
 }
 
-[node name="YellowStaghornCrown" type="Node3D"]
+[node name="YellowStagshornCrown" type="Node3D"]
 script = ExtResource("1_ibmv7")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]

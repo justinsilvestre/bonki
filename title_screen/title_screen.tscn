@@ -201,7 +201,7 @@ transform = Transform3D(24.46, 0, 0, 0, 24.46, 0, 0, 0, 24.46, 0, 0, -55.415436)
 texture = ExtResource("3_oqrgu")
 
 [node name="Stone" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=822842820]
-transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, 0.26773405, 0)
+transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, 2.9075952, 0)
 texture = ExtResource("4_fv0o7")
 
 [node name="Leaves1" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=443070216]

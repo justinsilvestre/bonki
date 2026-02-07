@@ -2652,7 +2652,6 @@ volume_db = -7.437
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=42452685]
 
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=683385579]
-visible = false
 
 [node name="UnderUI_ColorRect" type="ColorRect" parent="UI_CanvasLayer" unique_id=762560304]
 anchors_preset = 15
@@ -2774,7 +2773,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(-0.08250973, 0, -0.9964542, 0, 0.9999909, 0, 0.99646145, 0, -0.082509115, 2.1529522, -1.9520521e-05, -5.373039)
+transform = Transform3D(-0.08250972, 0, -0.9964542, 0, 0.9999909, 0, 0.9964614, 0, -0.082509115, 2.1529522, -1.9520521e-05, -5.373039)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
@@ -2826,7 +2825,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="dog" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9998862, 0, 0, 0, 0.99997395, 0, 0, 0, 0.99980676, 2.494, 0.514, 0.299)
+transform = Transform3D(0.99988616, 0, 0, 0, 0.99997395, 0, 0, 0, 0.99980676, 2.494, 0.514, 0.299)
 
 [node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/dog/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 1722205886) index="0" unique_id=1783989002]
 layers = 2

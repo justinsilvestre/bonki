@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://b3punh3d4kq6h" path="res://sound/sfx/zapsplat_animals_dog_medium_sized_5x_barks_fast_slight_distance_70727.mp3" id="5_sg2fo"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog.tscn" id="6_1q7h5"]
 [ext_resource type="AudioStream" uid="uid://1yoid6le711i" path="res://sound/zinja-ne_first-25s.mp3" id="6_ie2y0"]
-[ext_resource type="Texture2D" uid="uid://chgtt2jvwlc3d" path="res://intro/bonki_forest_background.png" id="7_krbtg"]
 [ext_resource type="Texture2D" uid="uid://bsvjmqxxjamwd" path="res://intro/bonki_forest_ground_tile.png" id="7_xwdvp"]
 [ext_resource type="Shader" uid="uid://dgrmj3uur3lcj" path="res://intro/bonki_unearthed_light.gdshader" id="15_1l24h"]
 [ext_resource type="PackedScene" uid="uid://cp5exuu8ajpf0" path="res://intro/forest_bg_part.tscn" id="17_ao3yw"]
@@ -2588,14 +2587,6 @@ top_radius = 24.437
 albedo_texture = ExtResource("7_xwdvp")
 uv1_scale = Vector3(10.88, 10.88, 10.88)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ie2y0"]
-size = Vector2(61.8, 77.71)
-orientation = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao3yw"]
-shading_mode = 0
-albedo_texture = ExtResource("7_krbtg")
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vyos2"]
 sky_horizon_color = Color(0.8514824, 0.8954157, 0.87788594, 1)
 ground_bottom_color = Color(0.2985006, 0.40523383, 0.23911458, 1)
@@ -2773,7 +2764,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(-0.08250972, 0, -0.9964542, 0, 0.9999909, 0, 0.9964614, 0, -0.082509115, 2.1529522, -1.9520521e-05, -5.373039)
+transform = Transform3D(-0.08250971, 0, -0.9964542, 0, 0.9999909, 0, 0.99646133, 0, -0.082509115, 2.1529522, -1.9520521e-05, -5.373039)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
@@ -2801,12 +2792,6 @@ shadow_enabled = true
 shadow_opacity = 0.84
 sky_mode = 1
 
-[node name="Background_MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=277867421]
-transform = Transform3D(7, 0, 0, 0, 6.7047577, -2.0115237, 0, 2.0115237, 6.7047577, 0, -132.446, -141.136)
-visible = false
-mesh = SubResource("PlaneMesh_ie2y0")
-surface_material_override/0 = SubResource("StandardMaterial3D_ao3yw")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1769233898]
 environment = SubResource("Environment_a5lnx")
 
@@ -2825,7 +2810,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="dog" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.99988616, 0, 0, 0, 0.99997395, 0, 0, 0, 0.99980676, 2.494, 0.514, 0.299)
+transform = Transform3D(0.9998862, 0, 0, 0, 0.99997395, 0, 0, 0, 0.99980676, 2.494, 0.514, 0.299)
 
 [node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/dog/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 1722205886) index="0" unique_id=1783989002]
 layers = 2

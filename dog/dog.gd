@@ -32,8 +32,8 @@ func walk() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_jumping", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_digging", false)
 
-
 func jump() -> void:
+	print("dog jumped!")
 	anim_tree.set("parameters/JumpOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	

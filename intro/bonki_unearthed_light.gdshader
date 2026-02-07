@@ -15,7 +15,7 @@ void fragment() {
     // than the back-wall of our cylinder.
     if (world_depth < pillar_depth - 0.0001) {
     	ALBEDO = mix(original_world, light_color.rgb, light_color.a); // e.g. white silhouette
-        ALPHA = 1.0;
+        ALPHA = light_color.a;
     } else {
 		discard;
     }

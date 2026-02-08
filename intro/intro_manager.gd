@@ -186,7 +186,7 @@ var intro_sequence_steps : Array[PlayStep] = [
 
 var regular_steps: Array[PlayStep] = [
 	PlayStep.animation("REG_1_01__start"),
-	PlayStep.action(func(): start_music()),
+	PlayStep.action(func(): start_music(); _on_step_finished()),
 	PlayStep.text("It's biting cold in Bonki Forest today."),
 	PlayStep.text("But {dog} doesn't seem to mind."),
 	PlayStep.choice("Which way will you go?", {

@@ -3173,7 +3173,6 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Overlay_Control" type="Control" parent="UI_CanvasLayer" unique_id=1123055594]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -3345,7 +3344,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9998872, 0, 0, 0, 0.99996185, 0, 0, 0, 0.9998114, 2.494, 0.514, 0.299)
+transform = Transform3D(0.9998871, 0, 0, 0, 0.99996185, 0, 0, 0, 0.9998114, 2.494, 0.514, 0.299)
 visible = false
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature" parent_id_path=PackedInt32Array(1436450907, 238050548) index="0" unique_id=1722205886]

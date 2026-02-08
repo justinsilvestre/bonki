@@ -12,7 +12,8 @@ var pending_dig: PendingDig
 
 func _ready():
 	load_game()
-	print("save data loaded")
+	print("save data loaded from")
+	print(ProjectSettings.globalize_path(SAVE_PATH))
 	print({
 		"seen_intro": seen_intro,
 		"dog_name": dog_name,

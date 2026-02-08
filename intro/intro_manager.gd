@@ -20,176 +20,236 @@ signal step_finished
 var ready_for_dig_complete := false
 var pending_dig: PendingDig = null
 
-const DEFAULT_DIG_SECONDS = 30
+const INTRO_DIG_SECONDS = 30
+const DEFAULT_DIG_SECONDS = 300 # 5 minutes
 
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
-
 
 var sound_paths := {
 	"footsteps": "res://sound/sfx/pixabay_footsteps-dirt-gravel.mp3"
 }
 
-# Define the sequence steps. 
-# "type": "text" -> show text logic
-# "type": "anim" -> play animation logic
-# "type": "spec" -> trigger special behavior
-# "type": "text_input" -> text input prompt
-# "type": "choice" -> multiple choice input prompt
-var sequence_steps := [
-	{"type": "anim", "anim_name": "1_01__start"}, # black screen
-	
-	#{"type": "spec", "action": "start"},# start BG music, start footsteps sound
-	{"type": "text", "content": "The air is thick with the soothing fragrance of pine."},
-	#{"type": "spec", "action": "next_scene"},
-	{"type": "text", "content": "It almost makes you forget just how long you've been lost in Bonki Forest."},
-	{"type": "text", "content": "You haven't seen another soul in at least..."},
-	{"type": "text", "content": "How long has it been, again?"},
+var intro_sequence_steps : Array[PlayStep] = [
+	PlayStep.animation("1_01__start"),
+	PlayStep.action(func(): start_music(); start_looping_sound("footsteps"); _on_step_finished()),
+	#PlayStep.action(func(): scan_music_after_unearthing()),
+	# start BG music, start footsteps sound
+	PlayStep.text("The air is thick with the soothing fragrance of pine."),
+	PlayStep.text("It almost makes you forget just how long you've been lost in Bonki Forest."),
+	PlayStep.text("You haven't seen another soul in at least..."),
+	PlayStep.action(func(): stop_looping_sound(0.3); _on_step_finished()),
+	PlayStep.text("How long has it been, again?"),
 	# sound of dog running behind you left to right
-	{"type": "anim", "anim_name":"1_02__dog_runs_behind"},
+	PlayStep.animation("1_02__dog_runs_behind"),
 	# footsteps stop, black fades to reveal empty scene
-	#{"type": "anim", "anim_name":"1_03__reveal_scene"},
-	{"type": "text", "content": "What was that?"},
+	PlayStep.text("What was that?"),
 	# sound of dog running behind you right to left to right
-	{"type": "anim", "anim_name": "1_03__dog_runs"},
-	{"type": "text", "content": "Who's there?"},
+	PlayStep.animation("1_03__dog_runs"),
+	PlayStep.text("Who's there?"),
 	# dog appears on scene, camera pans to reveal dog with wagging tail
-	{"type": "anim", "anim_name": "1_04__dog_appears"},
+	PlayStep.animation("1_04__dog_appears"),
 	
-	{"type": "text", "content": "Would you look at that!"},
-	{"type": "text", "content": "You're not alone in these woods after all."},
+	PlayStep.text("Would you look at that!"),
+	PlayStep.text("You're not alone in these woods after all."),
 	# dog greets you
-	{"type": "anim", "anim_name": "1_05__dog_greets"},
-	{"type": "text_input", "content": "What shall we call you?"},
-	#{"type": "text_input_prompt", "content": "Name", "default": "Doggo"},
-	{"type": "text", "content": "Yes, they're definitely a DOG."},
+	PlayStep.animation("1_05__dog_greets"),
+	PlayStep.text_input("What shall we call you?"),
+	PlayStep.text("Yes, they're definitely a {dog}."),
 	# dog barks a couple times.
-	{"type": "anim", "anim_name": "1_06__dog_barks"},
-	{"type": "text", "content": "Easy now, DOG!"},
+	PlayStep.animation("1_06__dog_barks"),
+	PlayStep.text("Easy now, {dog}!"),
 	# dog barks a couple times more.
-	{"type": "anim", "anim_name": "1_07__dog_barks"}, 
-	{"type": "text", "content": "What's the matter?"},
+	PlayStep.animation("1_07__dog_barks"), 
+	PlayStep.text("What's the matter?"),
 	# dog runs off screen
-	{"type": "anim", "anim_name": "1_08__dog_runs_off"},
-	{"type": "text", "content": "Maybe DOG knows the way out!"}, 
-	{"type": "text", "content": "Quickly, now!"},
+	PlayStep.animation("1_08__dog_runs_off"),
+	PlayStep.text("Maybe {dog} knows the way out!"), 
+	PlayStep.text("Quickly, now!"),
 	# camera pans in dog's direction + fades to black.
-	{"type": "anim", "anim_name": "1_09__follow_dog"},
+	PlayStep.animation("1_09__follow_dog"),
 	# random bonki crown now sticks out of ground next to dog, now in center of ground surface
-	{"type": "spec", "action": "refresh_bonki", "next": true},
+	PlayStep.action(
+		func(): refresh_bonki(); _on_step_finished()
+	),
 	# you catch up to the dog, i.e. camera jumps to opposite edge of screen, pans in same direction as last pan as screen fades from black
-	{"type": "anim", "anim_name": "1_10__catch_up_to_dog"},
-	{"type": "text", "content": "This isn't the way out..."},
-	{"type": "text", "content": "Why did DOG bring you here?"},
-	{"type": "text", "content": "Wait."},
-	{"type": "text", "content": "What's that?"},
+	PlayStep.animation("1_10__catch_up_to_dog"),
+	PlayStep.text("This isn't the way out..."),
+	PlayStep.text("Why did {dog} bring you here?"),
+	PlayStep.text("Wait."),
+	PlayStep.text("What's that?"),
 	# camera pans down towards bonki crown sticking out of ground
-	{"label": "NOTICE_BONKI", "type": "anim", "anim_name": "1_11__notice_bonki"},
-	{"type": "text", "content": "You've never seen anything like it."},
-	{"type": "text", "content": "And yet..."},
-	{"type": "text", "content": "It feels familiar."},
+	PlayStep.animation("1_11__notice_bonki"),
+	PlayStep.text("You've never seen anything like it."),
+	PlayStep.text("And yet..."),
+	PlayStep.text("It feels familiar."),
 	
 	# prompt yes/no
-	{
-		"type": "choice", "content": "What will you do?",
-  		"options": ["Keep a respectful distance.", "Yank it out!"],
-		"action": "decide_about_picking",
-	},
+	PlayStep.choice("What will you do?", {
+		"Keep a respectful distance.": func(): jump_to_label("DOG_STARTS_DIGGING"),
+		"Yank it out!": func(): jump_to_label("TRY_PICKING"),
+	}),
 	# if yes (pick it), camera lowers and dog barks
 	# if no (don't pick it), dog starts digging
 	# camera lowers toward bonki, dog barks and camera moves back fast
-	{"label": "TRY_PICKING", "type": "anim", "anim_name": "2_01__dog_warns"},
-	{"type": "text", "content": "Oh, DOG didn't like that..."},
-	# prompt go left/wait here a bit/go right
-	{
-		"type": "choice",
-		"content": "What shall you do?",
-		"options": ["Wait here a bit", "Move left", "Move right"],
-		"action": "decide_about_moving",
-	},
+	PlayStep.animation("2_01__dog_warns").label_with("TRY_PICKING"),
+	PlayStep.text("Oh, {dog} didn't like that..."),
+	PlayStep.choice("What shall you do?", {
+		"Wait here a bit": func(): jump_to_label("DOG_STARTS_DIGGING"),
+		"Move left": func(): jump_to_label("REFRESH_BONKI_TO_LEFT"),
+		"Move right": func(): jump_to_label("REFRESH_BONKI_TO_RIGHT"),
+	}),
 	
 	# if 'wait here a bit', dog starts digging
 	# if move left or right, refresh bonki
-	{"label": "REFRESH_BONKI_TO_LEFT", "type": "anim", "anim_name": "3_001_follow_dog_to_left"},
-	{"type": "spec", "action": "refresh_bonki", "next": true},
+	PlayStep.animation("3_001_follow_dog_to_left").label_with("REFRESH_BONKI_TO_LEFT"),
+	PlayStep.action(func(): refresh_bonki(); _on_step_finished()
+	),
 	
 	# camera jumps to opposite edge of screen, pans in same direction as last pan while screen fades from black
-	{"type": "anim", "anim_name": "3_01__catch_up_to_dog_to_left"},
-	{"type": "text", "content": "This isn't the way out..."},
-	{"type": "anim", "anim_name": "1_11__notice_bonki"},
-	{"type": "text", "content": "What's that?"},
-	{"type": "text", "content": "It feels familiar."},
-	{
-		"type": "choice", "content": "What will you do?",
-  		"options": ["Let it grow in peace.", "Yank it out!"],
-		"action": "decide_about_picking",
-	},
-	{"label": "REFRESH_BONKI_TO_RIGHT", "type": "anim", "anim_name": "3_002_follow_dog_to_right"},
-	{"type": "spec", "action": "refresh_bonki", "next": true},
+	PlayStep.animation("3_01__catch_up_to_dog_to_left"),
+	PlayStep.text("This isn't the way out..."),
+	PlayStep.animation("1_11__notice_bonki"),
+	PlayStep.text("What's that?"),
+	PlayStep.text("It feels familiar."),
+	PlayStep.choice("What will you do?", {
+		"Let it grow in peace.": func(): jump_to_label("DOG_STARTS_DIGGING"),
+		"Yank it out!": func(): jump_to_label("TRY_PICKING"),
+	}),
+	PlayStep.animation("3_002_follow_dog_to_right").label_with("REFRESH_BONKI_TO_RIGHT"),
+	PlayStep.action(func(): refresh_bonki(); _on_step_finished()
+	),
 	# camera jumps to opposite edge of screen, pans in same direction as last pan while screen fades from black
-	{"type": "anim", "anim_name": "3_02__catch_up_to_dog_to_right"},
-	{"type": "text", "content": "This isn't the way out..."},
-	{"type": "anim", "anim_name": "1_11__notice_bonki"},
-	{"type": "text", "content": "What's that?"},
-	{"type": "text", "content": "It feels familiar."},
-	{
-		"type": "choice", "content": "What will you do?",
-  		"options": ["Observe it in silence.", "Yank it out!"],
-		"action": "decide_about_picking",
-	},
+	PlayStep.animation("3_02__catch_up_to_dog_to_right"),
+	PlayStep.text("This isn't the way out..."),
+	PlayStep.animation("1_11__notice_bonki"),
+	PlayStep.text("What's that?"),
+	PlayStep.text("It feels familiar."),
+	PlayStep.choice("What will you do?", {
+  	"Observe it in silence.": func(): jump_to_label("DOG_STARTS_DIGGING"),
+		"Yank it out!": func(): jump_to_label("TRY_PICKING"),
+	}),
 	
 	# dog starts digging
-	{"label": "DOG_STARTS_DIGGING", "type": "anim", "anim_name": "4_01__dog_starts_digging"},
-	{"type": "spec", "action": "start_dig_timer", "next": true },
-	{"label": "CONSIDER_GOING", "type": "text", "content": "DOG seems to be enjoying themself."},
-	{"type": "text", "content": "But perhaps we should keep searching for the way out..."},
+	PlayStep.animation("4_01__dog_starts_digging").label_with("DOG_STARTS_DIGGING"),
+	PlayStep.action(func(): start_dig_timer(); _on_step_finished()),
+	PlayStep.text("{dog} seems to be enjoying themself.").label_with("CONSIDER_GOING"),
+	PlayStep.text("But perhaps we should keep searching for the way out..."),
 	# dog keeps digging, meter starts
 	# prompt yes/no
-	{"type": "choice", "content": "What will you do?", "options": ["Wait and see what\nDOG digs up.", "Chop chop! Gotta go!"], "action": "confirm_about_staying"},
-	# if yes (get going), call DOG
+	PlayStep.choice("What will you do?", {
+		"Wait and see what\n{dog} digs up.": func(): jump_to_label("LET_METER_RUN"),
+		"Chop chop! Gotta go!": func(): jump_to_label("CALL_DOG"),
+	}),
+	# if yes (get going), call {dog}
 	# if no, wait until dog finished digging
 	
 	# when reopening game
-	{"label": "DOG_CONTINUES_DIGGING", "type": "anim", "anim_name": "4_02__dog_continues_digging"},
-	{"label": "LET_METER_RUN", "type": "spec", "action": "let_meter_run"},
+	PlayStep.animation("4_02__dog_continues_digging").label_with("DOG_CONTINUES_DIGGING"),
+	PlayStep.action(func(): let_meter_run()).label_with("LET_METER_RUN"),
 	
 	
-	# call DOG
-	{"label": "CALL_DOG", "type": "spec", "action": "interrupt_dig", "next": true},
-	{"type": "text", "content": "Here, DOG!"},
-	{"type": "anim", "anim_name": "5_01__dog_stops_digging"},
-	
-	{
-		"type": "choice",
-		"content": "What shall you do?",
-		"options": ["Wait here a bit", "Move left", "Move right"],
-		"action": "decide_about_moving"
-	},
+	# call {dog}
+	PlayStep.action(func(): interrupt_dig(); _on_step_finished()).label_with("CALL_DOG"),
+	PlayStep.text("Here, {dog}!"),
+	PlayStep.animation("5_01__dog_stops_digging"),
+	PlayStep.choice("What shall you do?", {
+		"Wait here a bit": func(): jump_to_label("DOG_STARTS_DIGGING"),
+		"Move left": func(): jump_to_label("REFRESH_BONKI_TO_LEFT"),
+		"Move right": func(): jump_to_label("REFRESH_BONKI_TO_RIGHT"),
+	}),
 	# prompt go left/wait here a bit/go right — SAME AS ABOVE
 	
 	# wait until dog finished digging
-	{"label": "DOG_FINISHES_DIGGING", "type": "anim", "anim_name": "6_01__dog_finishes_digging"},
+	PlayStep.animation("6_01__dog_finishes_digging").label_with("DOG_FINISHES_DIGGING"),
 	# bonki is unearthed
-	{"type": "anim", "anim_name": "6_02__bonki_is_unearthed"},
-	{"type": "text", "content": "What on Earth?"},
+	PlayStep.animation("6_02__bonki_is_unearthed"),
+	PlayStep.text("What on Earth?"),
 	# bonki runs away, dog runs after
-	{"type": "anim", "anim_name": "6_03__they_run_off"},
-	{"type": "text", "content": "There's no way..."},
+	PlayStep.animation("6_03__they_run_off"),
+	PlayStep.text("There's no way..."),
 	# dog barks
-	{"type": "anim", "anim_name": "6_04__bark_in_distance"},
-	{"type": "text", "content": "Wait up!"},
+	PlayStep.animation("6_04__bark_in_distance"),
+	PlayStep.text("Wait up!"),
 	# camera pans fast, black, running footsteps sound starts
-	{"type": "anim", "anim_name": "6_05__fade_to_black"},
-	{"type": "text", "content": "Were the stories all true?"},
-	{"type": "text", "content": "Even if they were, no one's reported a sighting in ages..."},
-	{"type": "text", "content": "..."},
-	{"type": "text", "content": "But still..."},
-	{"type": "text", "content": "You've got to make sure."},
-	{"type": "text", "content": "You can't let it get away!"},
-	{"type": "text", "content": "Run, DOG!"},
-	{"type": "text", "content": "Follow that creature!"},
-	{"type": "spec", "action": "next_scene"},
+	PlayStep.animation("6_05__fade_to_black"),
+	PlayStep.text("Were the stories all true?"),
+	PlayStep.text("Even if they were, no one's reported a sighting in ages..."),
+	PlayStep.text("..."),
+	PlayStep.text("But still..."),
+	PlayStep.text("You've got to make sure."),
+	PlayStep.text("You can't let it get away!"),
+	PlayStep.text("Run, {dog}!"),
+	PlayStep.text("Follow that creature!"),
+	PlayStep.action(func(): next_scene())
 ]
 
+var regular_steps: Array[PlayStep] = [
+	PlayStep.animation("REG_1_01__start"),
+	PlayStep.text("It's biting cold in Bonki Forest today."),
+	PlayStep.text("But {dog} doesn't seem to mind."),
+	PlayStep.choice("Which way will you go?", {
+		"Left": func(): jump_to_label("FOLLOW_DOG_TO_LEFT_BEFORE_ENCOUNTER"),
+		"Right": func(): jump_to_label("FOLLOW_DOG_TO_RIGHT_BEFORE_ENCOUNTER"),
+	}),
+
+	PlayStep.animation("REG_2_01__follow_dog_to_left_before_encounter").label_with("FOLLOW_DOG_TO_LEFT_BEFORE_ENCOUNTER"),
+	PlayStep.action(func(): jump_to_label("REFRESH_BONKI_TO_LEFT")),
+	PlayStep.animation("REG_2_02__follow_dog_to_right_before_encounter").label_with("FOLLOW_DOG_TO_RIGHT_BEFORE_ENCOUNTER"),
+	PlayStep.action(func(): jump_to_label("REFRESH_BONKI_TO_RIGHT")),
+
+	PlayStep.animation("3_001_follow_dog_to_left").label_with("FOLLOW_DOG_TO_LEFT_AFTER_ENCOUNTER"),
+	PlayStep.action(func(): refresh_bonki(); _on_step_finished()).label_with("REFRESH_BONKI_TO_LEFT"),
+	PlayStep.animation("3_01__catch_up_to_dog_to_left"),
+	PlayStep.animation("1_11__notice_bonki"),
+	PlayStep.text("What's that?"),
+	PlayStep.text("It feels familiar."),
+	PlayStep.choice("What will you do?", {
+		"Let {dog} at it": func(): jump_to_label("DOG_STARTS_DIGGING"),
+		"Move left": func(): jump_to_label("REFRESH_BONKI_TO_LEFT"),
+		"Move right": func(): jump_to_label("REFRESH_BONKI_TO_RIGHT"),
+	}),
+	PlayStep.animation("3_002_follow_dog_to_right").label_with("FOLLOW_DOG_TO_RIGHT_AFTER_ENCOUNTER"),
+	PlayStep.action(func(): refresh_bonki(); _on_step_finished()).label_with("REFRESH_BONKI_TO_RIGHT"),
+	PlayStep.animation("3_02__catch_up_to_dog_to_right"),
+	PlayStep.animation("1_11__notice_bonki"),
+	PlayStep.text("What's that?"),
+	PlayStep.text("It feels familiar."),
+	PlayStep.choice("What will you do?", {
+		"Let {dog} at it": func(): jump_to_label("DOG_STARTS_DIGGING"),
+		"Move left": func(): jump_to_label("REFRESH_BONKI_TO_LEFT"),
+		"Move right": func(): jump_to_label("REFRESH_BONKI_TO_RIGHT"),
+	}),
+
+	PlayStep.animation("4_01__dog_starts_digging").label_with("DOG_STARTS_DIGGING"),
+	PlayStep.action(func(): start_dig_timer(); _on_step_finished()),
+	PlayStep.text("{dog} seems to be enjoying themself.").label_with("CONSIDER_GOING"),
+	PlayStep.text("But perhaps there's more exploring to do..."),
+	# dog keeps digging, meter starts
+	# prompt yes/no
+	PlayStep.choice("What will you do?", {
+		"Wait and see what\n{dog} digs up.": func(): jump_to_label("LET_METER_RUN"),
+		"Chop chop! Gotta go!": func(): jump_to_label("CALL_DOG"),
+	}),
+
+	PlayStep.animation("4_02__dog_continues_digging").label_with("DOG_CONTINUES_DIGGING"),
+	PlayStep.action(func(): let_meter_run()).label_with("LET_METER_RUN"),
+
+	PlayStep.action(func(): interrupt_dig(); _on_step_finished()).label_with("CALL_DOG"),
+	PlayStep.text("Here, {dog}!"),
+	PlayStep.animation("5_01__dog_stops_digging"),
+	PlayStep.choice("What shall you do?", {
+		"Wait here a bit": func(): jump_to_label("DOG_STARTS_DIGGING"),
+		"Move left": func(): jump_to_label("REFRESH_BONKI_TO_LEFT"),
+		"Move right": func(): jump_to_label("REFRESH_BONKI_TO_RIGHT"),
+	}),
+
+	PlayStep.animation("6_01__dog_finishes_digging").label_with("DOG_FINISHES_DIGGING"),
+	PlayStep.animation("6_02__bonki_is_unearthed"),
+	PlayStep.text("You did it!"),
+	PlayStep.text("Good dog, {dog}!"),
+	PlayStep.text("Let's bring our new friend home to Bonki Spring."),
+	PlayStep.animation("REG_6_01__fade_out")
+]
 
 var current_step_index = 0
 
@@ -224,102 +284,100 @@ func _ready():
 	dig_timer.timeout.connect(complete_dig)
 	
 	# Start the sequence
-	start_step()
+	run_current_step()
 	
 
 func _process(_delta):
 	if !dig_timer.is_stopped():
 		dig_meter.value = (dig_timer.time_left / dig_timer.wait_time) * 100
 
-func start_step():
-	if (current_step_index >= sequence_steps.size()):
+func format_text(text: String):
+	return text.format({"dog": dog_name})
+
+func get_steps() -> Array[PlayStep]:
+	return regular_steps if GameState.seen_intro else intro_sequence_steps
+
+func run_current_step():
+	var steps := get_steps()
+	if (current_step_index >= steps.size()):
+		print("All steps complete.")
 		return
-	var step = sequence_steps[current_step_index]
+	var step := steps[current_step_index]
 	print(step)
 	
-	
-	if step["type"] == "text":
-		dialog_overlay.show_text(step["content"].replace("DOG", dog_name))
-		# We now wait for the 'step_finished' signal from the UI
-		
-	elif step["type"] == "anim":
-		dialog_overlay.hide()
-		cutscene_player.play(step["anim_name"])
-		# We now wait for the 'animation_finished' signal from the Player
+	match step.type:
+		PlayStep.StepType.TEXT:
+			dialog_overlay.show_text(format_text(step.text_content))
+			# We now wait for the 'step_finished' signal from the UI
+			
+		PlayStep.StepType.ANIMATION:
+			dialog_overlay.hide()
+			cutscene_player.play(step.anim_name)
+			# We now wait for the 'animation_finished' signal from the Player
 
-	elif step["type"] == "spec":
-		dialog_overlay.hide()
-		if has_method(step["action"]):
-			call(step["action"])
-		if ("next" in step and step["next"] == true):
-			_on_step_finished()
-		elif ("next" in step):
-			jump_to_label(step["next"])
+		PlayStep.StepType.ACTION:
+			dialog_overlay.hide()
+			if step.action_callback is Callable:
+				step.action_callback.call()
+			else:
+				print("============================================================================")
+				print("Error: Action is not callable or a valid method name -> ", step.action_callback)
+				print("============================================================================")
 
-	elif step["type"] == "choice": 
-		dialog_overlay.show_choices(step["content"], step["options"].map(func (s): return s.replace("DOG", dog_name)))
+		PlayStep.StepType.CHOICE: 
+			var options_text: Array[String] = []
+			for option_text in step.options:
+				options_text.push_back(format_text(option_text))
+			dialog_overlay.show_choices(format_text(step.text_content), options_text)
 
-	elif step["type"] == "text_input":
-		var default = step.get("default", dog_name) 
-		dialog_overlay.show_text_input(step["content"], default)
+		PlayStep.StepType.TEXT_INPUT:
+			dialog_overlay.show_text_input(format_text(step.text_content), dog_name)
 
 
 func _on_step_finished():
 	print("_on_step_finished")
 	# Called when text is dismissed
 	current_step_index += 1
-	start_step()
+	run_current_step()
 
 func _on_anim_finished(anim_name):
 	# Called when an animation finishes
 	current_step_index += 1
 	
 	sfx_player.volume_db = 0 # Reset volume in case it was faded out
-	start_step()
+	run_current_step()
 	
 func jump_to_label(target_label: String):
-	for i in range(sequence_steps.size()):
-		var step = sequence_steps[i]
-		if step.has("label") and step["label"] == target_label:
-			current_step_index = i
-			start_step()
-			return
-	print("Error: Label not found -> ", target_label)
+	var target = get_step_index_by_label(target_label)
+	if (target == null):
+		print("Not moving step ", target_label)
+	else:
+		current_step_index = target
+		run_current_step()
+
 
 func get_step_index_by_label(target_label: String):
-	for i in range(sequence_steps.size()):
-		var step = sequence_steps[i]
-		if step.has("label") and step["label"] == target_label:
+	var steps := get_steps()
+	for i in range(steps.size()):
+		var step = steps[i]
+		if step.label == target_label:
 			return  i
+	print("Error: Label not found -> ", target_label)
 
 func _on_choice_made(index: int):
-	var step = sequence_steps[current_step_index]
-	var action = step["action"]
+	var steps := get_steps()
+	var step: = steps[current_step_index]
+	var actions = step.options.values()
+	var action = actions[index]
+	print("options")
+	print(actions)
+	print("option index")
+	print(index)
 	
 	# Hide the choices immediately
 	dialog_overlay.choice_container.hide()
-	
-	# Based on the "action" key, we decide where to go
-	match action:
-		"decide_about_picking":
-			if index == 1: # Yes
-				jump_to_label("TRY_PICKING")
-			else: # No
-				jump_to_label("DOG_STARTS_DIGGING")
 
-		"decide_about_moving":
-			if index == 0: 
-				jump_to_label("DOG_STARTS_DIGGING")
-			elif index == 1: 
-				jump_to_label("REFRESH_BONKI_TO_LEFT")
-			else: 
-				jump_to_label("REFRESH_BONKI_TO_RIGHT")
-
-		"confirm_about_staying":
-			if index == 1: # (Get going / Call Dog)
-				jump_to_label("CALL_DOG")
-			else: # No (Wait)
-				jump_to_label("LET_METER_RUN")
+	action.call()
 
 func _on_text_submitted(new_text: String):
 	# Save the name!
@@ -329,10 +387,10 @@ func _on_text_submitted(new_text: String):
 	
 	# Move to next step
 	current_step_index += 1
-	start_step()
+	run_current_step()
 
+func start_music():
 # called in start animation step
-func start():
 	var bg_music = load("res://sound/kami-no-koe.mp3")
 	
 	if bg_music:
@@ -340,8 +398,10 @@ func start():
 		bg_music.loop = true
 		music_player.volume_db = 0 
 		music_player.play()
-		
-	start_looping_sound("footsteps")
+
+func scan_music_after_unearthing():
+	if (music_player.stream):
+		music_player.play(36)
 	
 func fade_out_music(duration: float = 0.5):
 	# Create a tween local to this function
@@ -378,7 +438,7 @@ func start_looping_sound(key: String):
 	
 	if sound_effect:
 		loop_player.stream = sound_effect
-		loop_player.volume_db = 0 # Reset volume in case it was faded out
+		loop_player.volume_db = 15 # increase volume for footsteps
 		loop_player.play()
 	else:
 		push_error("Could not find sound file at: " + path)
@@ -393,6 +453,7 @@ func stop_looping_sound(fade_duration: float = 0.3):
 		# Once the fade is done, actually stop the player
 		tween.finished.connect(func(): 
 			loop_player.stop()
+			loop_player.volume_db = 0 # Reset volume
 		)
 
 func next_scene():
@@ -408,12 +469,9 @@ func next_scene():
 		)
 	else:
 		TransitionManager.go_to_scene_threaded(NEXT_SCENE)
-		
-	
-
 
 func get_new_dig_seconds() -> int:
-	return DEFAULT_DIG_SECONDS
+	return DEFAULT_DIG_SECONDS if GameState.seen_intro else INTRO_DIG_SECONDS
 
 func let_meter_run():
 	ready_for_dig_complete = true
@@ -455,7 +513,7 @@ func complete_dig():
 	if (ready_for_dig_complete):
 		dig_meter.hide()
 		## REALLY SHOULD DO THIS AFTER NEXT SCENE
-		GameState.complete_dig()
+		# GameState.complete_dig()
 		print("Digging complete!")
 		jump_to_label("DOG_FINISHES_DIGGING")
 	

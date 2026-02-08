@@ -64,3 +64,6 @@ func dig() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_walking", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_standing", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_sitting", false)	
+
+func look_up() -> void:
+	anim_tree.set("parameters/LookUpBlend2/blend_amount", 1)

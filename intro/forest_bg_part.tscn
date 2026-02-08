@@ -53,17 +53,17 @@ billboard = 2
 texture = ExtResource("4_6lxxc")
 
 [node name="Bg6" type="Sprite3D" parent="." unique_id=1521770787]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030649899, 0, -1.8364803)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.030649899, 0, -1.8364803)
 billboard = 2
 texture = ExtResource("5_dkmwo")
 
 [node name="Bg7" type="Sprite3D" parent="." unique_id=1205251312]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.20663571, 0.9596578, 0.1867342)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.20663571, 0.9596577, 0.44377702)
 billboard = 1
 texture = ExtResource("6_62u70")
 
 [node name="Bg8" type="Sprite3D" parent="." unique_id=246015152]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023958152, 0, 0.09636999)
+transform = Transform3D(0.9999999, 0, 0, 0, 1.2499999, 0, 0, 0, 0.9999999, -0.8145028, 0.35659474, -0.73329604)
 billboard = 2
 texture = ExtResource("7_w0ec8")
 

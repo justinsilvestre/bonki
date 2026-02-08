@@ -237,8 +237,7 @@ var regular_steps: Array[PlayStep] = [
 	}),
 
 	PlayStep.animation("4_02__dog_continues_digging").label_with("DOG_CONTINUES_DIGGING"),
-	PlayStep.action(func(): start_dig_timer()).label_with("LET_METER_RUN"),
-	PlayStep.action(func(): let_meter_run()).label_with("LET_METER_RUN"),
+	PlayStep.action(func(): start_dig_timer(); let_meter_run()).label_with("LET_METER_RUN"),
 
 	PlayStep.action(func(): interrupt_dig(); _on_step_finished()).label_with("CALL_DOG"),
 	PlayStep.text("Here, {dog}!"),

@@ -33,10 +33,12 @@ texture = ExtResource("2_dyqgr")
 
 [node name="Bg16" type="Sprite3D" parent="." unique_id=1445540549]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.29546884, -0.30344462, 0.9104328)
+billboard = 2
 texture = ExtResource("3_dkmwo")
 
 [node name="Bg21" type="Sprite3D" parent="." unique_id=1693683493]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 1.1640551, -0.30344462, -0.94102585)
+billboard = 2
 texture = ExtResource("3_dkmwo")
 
 [node name="Bg19" type="Sprite3D" parent="." unique_id=512619010]
@@ -87,6 +89,7 @@ texture = ExtResource("7_w0ec8")
 
 [node name="Bg9" type="Sprite3D" parent="." unique_id=1840259163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030649899, 0, -0.3752335)
+billboard = 2
 texture = ExtResource("8_ox462")
 
 [node name="Bg10" type="Sprite3D" parent="." unique_id=1850634111]

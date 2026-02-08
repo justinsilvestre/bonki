@@ -3328,7 +3328,7 @@ render_target_update_mode = 4
 [node name="World_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
 
 [node name="CameraRig_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2049257925]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.99999934, 0, 0, 0, 0.99999934, 0, 2, 1)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999993, 0, 0, 0, 0.9999994, 0, 2, 1)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World_Node3D/CameraRig_Node3D" unique_id=139175723]
 transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0.31210983, 2.6263568)
@@ -3391,7 +3391,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.999887, 0, 0, 0, 0.9999571, 0, 0, 0, 0.99981195, 2.494, 0.514, 0.299)
+transform = Transform3D(0.9998864, 0, 0, 0, 0.99995685, 0, 0, 0, 0.9998117, 2.494, 0.514, 0.299)
 visible = false
 
 [node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 12792103) index="0" unique_id=781162244]
@@ -3409,7 +3409,7 @@ shape = SubResource("BoxShape3D_ie2y0")
 transform = Transform3D(1.336345, 0, -0.46853125, 0, 1.4160999, 0, 0.46853125, 0, 1.336345, -7.3357935, 2.4647884, -9.043152)
 
 [node name="ForestBgPart2" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=105464066 instance=ExtResource("17_ao3yw")]
-transform = Transform3D(0.35023028, 0, -1.3721071, 0, 1.4161, 0, 1.3721071, 0, 0.35023028, 12.18865, 2.4647884, -7.28221)
+transform = Transform3D(0.35023028, 0, -1.3721071, 0, 1.4161, 0, 1.3721071, 0, 0.35023028, 15.051505, 2.4647884, -5.41112)
 
 [node name="ForestBgPart3" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1158989902 instance=ExtResource("17_ao3yw")]
 transform = Transform3D(0.90149385, 0, -1.092084, 0, 1.4161, 0, 1.092084, 0, 0.90149385, 3.12928, 2.4647884, -11.356971)

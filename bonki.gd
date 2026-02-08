@@ -124,6 +124,14 @@ func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, n
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			play_tap_animation()
 
+func start_random_animation(allow_sleep = true):
+	var animation_draw = randi_range(1 if allow_sleep else 0, 3)
+	model.anim_tree.set("parameters/TimeScale/scale", randf_range(.5, 1.5))
+	match animation_draw:
+		0: model.start_sleep()
+		1: model.start_sway(); _start_blink_timer()
+		2: model.start_jumping(); _start_blink_timer()
+		3: model.stand(); _start_blink_timer()
 
 func play_tap_animation():
 	# Example: Triggering a transition in your AnimationTree
@@ -137,9 +145,11 @@ func play_tap_animation():
 	
 	print("Character animation triggered!")
 	
-	if (model.anim_tree.get("parameters/StateMachine/conditions/is_jumping") == true):
+	if (model.anim_tree.get("parameters/StateMachine/conditions/is_jumping")):
 		model.start_sway()
 		await get_tree().create_timer(1.0).timeout
 		model.start_jumping()
+	elif (model.anim_tree.get("parameters/StateMachine/conditions/is_sleeping")):
+		start_random_animation(false)
 	else:
 		model.jump()

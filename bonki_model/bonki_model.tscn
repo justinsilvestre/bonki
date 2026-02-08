@@ -9,7 +9,7 @@
 [node name="BonkiModel" unique_id=822724508 instance=ExtResource("1_dmfh7")]
 script = ExtResource("2_2xsow")
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1447230211) index="1" unique_id=97059891]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1390863100) index="1" unique_id=1750834287]
 bones/2/position = Vector3(-4.8825977e-10, 0.20070821, 0)
 bones/2/rotation = Quaternion(1.745916e-12, 4.2626064e-10, -0.0040958542, 0.9999916)
 bones/3/rotation = Quaternion(-1.7332168e-18, 2.2388912e-11, 1.8626451e-09, 1)
@@ -20,14 +20,14 @@ bones/5/position = Vector3(-2.1547582e-06, 0.15211236, 0.017664135)
 bones/5/rotation = Quaternion(0.14356813, 0.7399317, 0.6345922, -0.17082757)
 bones/5/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
 
-[node name="Body" parent="Armature/Skeleton3D" index="0" unique_id=388024314]
+[node name="Body" parent="Armature/Skeleton3D" index="0" unique_id=1767910170]
 surface_material_override/0 = ExtResource("3_lcqbr")
 
-[node name="EyeBase_L" parent="Armature/Skeleton3D" index="1" unique_id=1188417675]
+[node name="EyeBase_L" parent="Armature/Skeleton3D" index="1" unique_id=656663787]
 cast_shadow = 0
 surface_material_override/0 = ExtResource("4_dmfh7")
 
-[node name="EyeBase_R" parent="Armature/Skeleton3D" index="2" unique_id=1449201275]
+[node name="EyeBase_R" parent="Armature/Skeleton3D" index="2" unique_id=911402708]
 cast_shadow = 0
 surface_material_override/0 = ExtResource("4_dmfh7")
 

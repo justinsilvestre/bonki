@@ -106,12 +106,14 @@ states/Sway/node = SubResource("AnimationNodeAnimation_qjfd0")
 states/Sway/position = Vector2(374, 276.5)
 transitions = ["Start", "Neutral", SubResource("AnimationNodeStateMachineTransition_qgj0r"), "Neutral", "Sleep", SubResource("AnimationNodeStateMachineTransition_2i07j"), "Neutral", "Jump", SubResource("AnimationNodeStateMachineTransition_ciw2m"), "Neutral", "Sway", SubResource("AnimationNodeStateMachineTransition_77ce8"), "Sway", "Neutral", SubResource("AnimationNodeStateMachineTransition_bxofq"), "Jump", "Neutral", SubResource("AnimationNodeStateMachineTransition_fdrmb"), "Sleep", "Neutral", SubResource("AnimationNodeStateMachineTransition_yih3a")]
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ttdyf"]
+
 [resource]
 nodes/output/position = Vector2(3430, 550)
 nodes/EyesHeight/node = SubResource("AnimationNodeAnimation_nfc2f")
 nodes/EyesHeight/position = Vector2(2855.1174, 911.2108)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_3nm3d")
-nodes/StateMachine/position = Vector2(90, 170)
+nodes/StateMachine/position = Vector2(20, 10)
 nodes/AddEyesHeight/node = SubResource("AnimationNodeAdd2_fybev")
 nodes/AddEyesHeight/position = Vector2(3090, 690)
 nodes/BodyWideStretch/node = SubResource("AnimationNodeAnimation_2i07j")
@@ -154,4 +156,6 @@ nodes/Jump/node = SubResource("AnimationNodeAnimation_qgxa1")
 nodes/Jump/position = Vector2(1030, 170)
 nodes/JumpOneShot/node = SubResource("AnimationNodeOneShot_ttdyf")
 nodes/JumpOneShot/position = Vector2(1170, 10)
-node_connections = [&"output", 0, &"AddEyesHeight", &"AddEyesHeight", 0, &"AddEyesTilt", &"AddEyesHeight", 1, &"EyesHeight", &"AddBodyWideStretch", 0, &"JumpOneShot", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness", &"BlinkOneShot", 0, &"PoseTiltHeadLeftAdd2", &"BlinkOneShot", 1, &"Blink", &"PoseTiltHeadForwardAdd2", 1, &"PoseTiltHeadForward", &"PoseTiltHeadLeftAdd2", 0, &"StateMachine", &"PoseTiltHeadLeftAdd2", 1, &"PoseTiltHeadLeft", &"JumpOneShot", 0, &"BlinkOneShot", &"JumpOneShot", 1, &"Jump"]
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ttdyf")
+nodes/TimeScale/position = Vector2(320, 80)
+node_connections = [&"output", 0, &"AddEyesHeight", &"AddEyesHeight", 0, &"AddEyesTilt", &"AddEyesHeight", 1, &"EyesHeight", &"AddBodyWideStretch", 0, &"JumpOneShot", &"AddBodyWideStretch", 1, &"BodyWideStretch", &"AddEyesSpread", 0, &"AddBodyAntipearness", &"AddEyesSpread", 1, &"EyesSpread", &"AddBodyPearness", 0, &"AddBodyTallStretch", &"AddBodyPearness", 1, &"BodyPearness", &"AddBodyTallStretch", 0, &"AddBodyWideStretch", &"AddBodyTallStretch", 1, &"BodyTallStretch", &"AddEyesTilt", 0, &"AddEyesSpread", &"AddEyesTilt", 1, &"EyesTilt", &"AddBodyAntipearness", 0, &"AddBodyPearness", &"AddBodyAntipearness", 1, &"BodyAntipearness", &"BlinkOneShot", 0, &"PoseTiltHeadLeftAdd2", &"BlinkOneShot", 1, &"Blink", &"PoseTiltHeadForwardAdd2", 1, &"PoseTiltHeadForward", &"PoseTiltHeadLeftAdd2", 0, &"TimeScale", &"PoseTiltHeadLeftAdd2", 1, &"PoseTiltHeadLeft", &"JumpOneShot", 0, &"BlinkOneShot", &"JumpOneShot", 1, &"Jump", &"TimeScale", 0, &"StateMachine"]

@@ -52,6 +52,7 @@ parameters/PoseTiltHeadLeftAdd2/add_amount = 0.0
 parameters/JumpOneShot/active = false
 parameters/JumpOneShot/internal_active = false
 parameters/JumpOneShot/request = 0
+parameters/TimeScale/scale = 1.0
 
 [node name="CrownAttachment" type="BoneAttachment3D" parent="." index="3" unique_id=746988041]
 transform = Transform3D(0.99996644, 0.008191637, 8.9727625e-10, -0.008191637, 0.99996644, -7.350407e-12, -8.973064e-10, -2.0711196e-19, 1, 0.012785697, 0.87827045, -0.017664135)

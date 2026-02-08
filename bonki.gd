@@ -10,7 +10,7 @@ extends CharacterBody3D
 		appearance = val
 		if is_node_ready(): model.appearance = val
 
-@onready var model := $BonkiModel
+@onready var model: BonkiModel = $BonkiModel
 
 @export var tappable := false
 
@@ -137,4 +137,9 @@ func play_tap_animation():
 	
 	print("Character animation triggered!")
 	
-	model.jump()
+	if (model.anim_tree.get("parameters/StateMachine/conditions/is_jumping") == true):
+		model.start_sway()
+		await get_tree().create_timer(1.0).timeout
+		model.start_jumping()
+	else:
+		model.jump()

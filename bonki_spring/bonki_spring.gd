@@ -89,16 +89,29 @@ func _ready():
 func _dog_name() -> String:
 	return GameState.dog_name
 	
+
+func animate_bonki(bonki: Bonki):
+	var animation_draw = randi_range(0, 3)
+	await get_tree().create_timer(randf_range(0, .8)).timeout
+	bonki.model.anim_tree.set("parameters/TimeScale/scale", randf_range(.5, 1.5))
+	match animation_draw:
+		0: bonki.model.start_sway(); bonki._start_blink_timer()
+		1: bonki.model.start_jumping(); bonki._start_blink_timer()
+		2: bonki.model.start_sleep()
+		3: bonki.model.stand(); bonki._start_blink_timer()
+
 func show_bonkis():
 	for bonki in placement_bonkis:
 		bonki.hide()
 	
 	if !GameState.seen_intro:
 		var params := GameState.pending_dig.appearance
-		var placement_bonki = placement_bonkis[randi_range(0, placement_bonkis.size() - 1)]
+		var placement_bonki: Bonki = placement_bonkis[randi_range(0, placement_bonkis.size() - 1)]
 		placement_bonki.appearance = params
 		placement_bonki.show()
-		
+		var animation_draw = randi_range(0, 3)
+		await get_tree().create_timer(0.2).timeout
+		animate_bonki(placement_bonki)
 		return
 	
 	var free_bonkis_params := GameState.free_bonkis_appearance_parameters
@@ -116,9 +129,7 @@ func show_bonkis():
 		var appearance: BonkiAppearanceParameters = present_bonki_params[i]
 		placement.show()
 		placement.appearance = appearance
-		print(placement)
-		print(appearance)
-		print(appearance.toJSON())
+		animate_bonki(placement)
 
 ## Returns N unique random elements from the source array.
 func get_random_elements(source_array: Array, n: int) -> Array:

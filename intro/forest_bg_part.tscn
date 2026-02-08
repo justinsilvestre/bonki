@@ -2,8 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://drbu8310p3q4c" path="res://intro/forest_layers/forest-bg-layer-3.png" id="1_ljynp"]
 [ext_resource type="Texture2D" uid="uid://cb3tsrjqqrm5m" path="res://intro/forest_layers/forest-bg-layer-2.png" id="2_dyqgr"]
+[ext_resource type="Texture2D" uid="uid://csdeuktods0ue" path="res://intro/forest_layers/forest-bg-layer-11.png" id="3_dkmwo"]
 [ext_resource type="Texture2D" uid="uid://c410o3m15d31p" path="res://intro/forest_layers/forest-bg-layer-4.png" id="3_ytibi"]
 [ext_resource type="Texture2D" uid="uid://hddrdtqd117w" path="res://intro/forest_layers/forest-bg-layer-5.png" id="4_6lxxc"]
+[ext_resource type="Texture2D" uid="uid://un0v085c0ajh" path="res://intro/forest_layers/forest-bg-layer-10.png" id="4_62u70"]
 [ext_resource type="Texture2D" uid="uid://dcb55knq2rvby" path="res://intro/forest_layers/forest-bg-layer-6.png" id="5_dkmwo"]
 [ext_resource type="Texture2D" uid="uid://bbwcjonqdaecr" path="res://intro/forest_layers/forest-bg-layer-9.png" id="6_62u70"]
 [ext_resource type="Texture2D" uid="uid://huygn7h6oubo" path="res://intro/forest_layers/forest-bg-layer-8.png" id="7_w0ec8"]
@@ -15,19 +17,12 @@
 [node name="ForestBgPart" type="Node3D" unique_id=2139732122]
 transform = Transform3D(1.4161001, 0, 0, 0, 1.4161001, 0, 0, 0, 1.4161001, 0, 0, 0)
 
+[node name="Bg20" type="Sprite3D" parent="." unique_id=1580207580]
+transform = Transform3D(2.41, 0, 0, 0, 2.17, 0, 0, 0, 1, -1.2054862, 2.4617467, -6.574713)
+texture = ExtResource("1_ljynp")
+
 [node name="Bg2" type="Sprite3D" parent="." unique_id=1494008941]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030649899, 0, -6.709909)
-billboard = 2
-texture = ExtResource("1_ljynp")
-
-[node name="Bg2" type="Sprite3D" parent="Bg2" unique_id=1580207580]
-transform = Transform3D(2.41, 0, 0, 0, 2.41, 0, 0, 0, 1, -4.06, 2.461747, 2.2480001)
-billboard = 2
-texture = ExtResource("1_ljynp")
-
-[node name="Bg2" type="Sprite3D" parent="Bg2/Bg2" unique_id=2101125859]
-transform = Transform3D(1.25, 0, 0, 0, 1, 0, 0, 0, 1, 3.998, 0, -0.672)
-visible = false
+transform = Transform3D(2.0099998, 0, 0, 0, 1.56, 0, 0, 0, 0.9999999, 0.85117424, 0.43, -6.7309666)
 billboard = 2
 texture = ExtResource("1_ljynp")
 
@@ -35,6 +30,29 @@ texture = ExtResource("1_ljynp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030649899, 0, -6.315525)
 billboard = 2
 texture = ExtResource("2_dyqgr")
+
+[node name="Bg16" type="Sprite3D" parent="." unique_id=1445540549]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.29546884, -0.30344462, 0.9104328)
+texture = ExtResource("3_dkmwo")
+
+[node name="Bg21" type="Sprite3D" parent="." unique_id=1693683493]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 1.1640551, -0.30344462, -0.94102585)
+texture = ExtResource("3_dkmwo")
+
+[node name="Bg19" type="Sprite3D" parent="." unique_id=512619010]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.6399999, 0, 0, 0, 0.99999994, 1.6782984, 2.1605117, -14.656805)
+billboard = 2
+texture = ExtResource("3_dkmwo")
+
+[node name="Bg17" type="Sprite3D" parent="." unique_id=1916797180]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.28660205, -0.30344462, -4.0202346)
+billboard = 2
+texture = ExtResource("4_62u70")
+
+[node name="Bg18" type="Sprite3D" parent="." unique_id=2064652478]
+transform = Transform3D(0.9999999, 0, 0, 0, 1.76, 0, 0, 0, 0.9999999, -1.3916655, 1.6336386, -6.4948087)
+billboard = 2
+texture = ExtResource("4_62u70")
 
 [node name="Bg4" type="Sprite3D" parent="." unique_id=428407729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030649899, 0, -5.0647984)
@@ -69,7 +87,6 @@ texture = ExtResource("7_w0ec8")
 
 [node name="Bg9" type="Sprite3D" parent="." unique_id=1840259163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030649899, 0, -0.3752335)
-billboard = 2
 texture = ExtResource("8_ox462")
 
 [node name="Bg10" type="Sprite3D" parent="." unique_id=1850634111]

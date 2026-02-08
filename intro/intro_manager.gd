@@ -20,8 +20,8 @@ var ready_for_dig_complete := false
 var pending_dig: PendingDig = null
 
 const INTRO_DIG_SECONDS = 30
-const DEFAULT_DIG_SECONDS = 300 # 5 minutes
-#const DEFAULT_DIG_SECONDS = 5 # 5 seconds
+#const DEFAULT_DIG_SECONDS = 300 # 5 minutes
+const DEFAULT_DIG_SECONDS = 30
 
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
 
@@ -145,7 +145,7 @@ var intro_sequence_steps : Array[PlayStep] = [
 	
 	# when reopening game
 	PlayStep.animation("4_02__dog_continues_digging").label_with("DOG_CONTINUES_DIGGING"),
-	PlayStep.action(func(): let_meter_run()).label_with("LET_METER_RUN"),
+	PlayStep.action(func(): start_music(); let_meter_run()).label_with("LET_METER_RUN"),
 	
 	
 	# call {dog}
@@ -237,7 +237,7 @@ var regular_steps: Array[PlayStep] = [
 	}),
 
 	PlayStep.animation("4_02__dog_continues_digging").label_with("DOG_CONTINUES_DIGGING"),
-	PlayStep.action(func(): start_dig_timer(); let_meter_run()).label_with("LET_METER_RUN"),
+	PlayStep.action(func(): start_music(); start_dig_timer(); let_meter_run()).label_with("LET_METER_RUN"),
 
 	PlayStep.action(func(): interrupt_dig(); _on_step_finished()).label_with("CALL_DOG"),
 	PlayStep.text("Here, {dog}!"),
@@ -501,6 +501,7 @@ func let_meter_run():
 		print(GameState.pending_dig.complete_time() - now)
 
 func start_dig_timer():
+	accept_dig_interrupt = true
 	pending_dig = GameState.pending_dig
 	if (pending_dig):
 		print("continuing pending dig")
@@ -519,6 +520,7 @@ func start_dig_timer():
 
 
 func complete_dig():
+	accept_dig_interrupt = false
 	if (ready_for_dig_complete):
 		dig_meter.hide()
 		# otherwise we will complete dig after intro sequence finished in other scene.
@@ -528,18 +530,21 @@ func complete_dig():
 		jump_to_label("DOG_FINISHES_DIGGING")
 	
 func interrupt_dig():
+	accept_dig_interrupt = false
 	GameState.interrupt_dig()
 	dig_meter.hide()
 	print("Digging stopped!")
 	ready_for_dig_complete = false
 	
 
+var accept_dig_interrupt = false
 
 func _on_character_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	
 	# Check if the event is a mouse button click or a screen touch
 	if event is InputEventMouseButton:
 		print("dog tapped")
-		if ready_for_dig_complete:
+		if accept_dig_interrupt:
 			jump_to_label("CONSIDER_GOING")
 		## Check if it's the left mouse button and it was just pressed (not released) 
 		#if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

@@ -118,7 +118,6 @@ func show_bonkis():
 		placement.appearance = appearance
 		placement.start_random_animation()
 
-
 ## Returns N unique random elements from the source array.
 func get_random_elements(source_array: Array, n: int) -> Array:
 	# 1. Create a shallow copy so we don't mess up the original list

@@ -3210,7 +3210,6 @@ volume_db = -7.437
 [node name="DigTimer" type="Timer" parent="." unique_id=535177727]
 
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=683385579]
-visible = false
 
 [node name="UnderUI_ColorRect" type="ColorRect" parent="UI_CanvasLayer" unique_id=762560304]
 anchors_preset = 15
@@ -3329,7 +3328,7 @@ render_target_update_mode = 4
 [node name="World_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1978977852]
 
 [node name="CameraRig_Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=2049257925]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999994, 0, 0, 0, 0.99999934, 0, 2, 1)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99999934, 0, 0, 0, 0.99999934, 0, 2, 1)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World_Node3D/CameraRig_Node3D" unique_id=139175723]
 transform = Transform3D(1, 0, 0, 0, 0.95409405, -0.29950708, 0, 0.29950708, 0.95409405, 0, 0.31210983, 2.6263568)
@@ -3346,7 +3345,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(-0.08251298, 0, -0.99643826, 0, 0.9999648, 0, 0.9965008, 0, -0.082507804, 2.1529522, -1.9520521e-05, -5.373039)
+transform = Transform3D(-0.08251292, 0, -0.99643826, 0, 0.9999648, 0, 0.99650013, 0, -0.082507804, 2.1529522, -1.9520521e-05, -5.373039)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
@@ -3392,7 +3391,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.99988705, 0, 0, 0, 0.9999571, 0, 0, 0, 0.99981195, 2.494, 0.514, 0.299)
+transform = Transform3D(0.999887, 0, 0, 0, 0.9999571, 0, 0, 0, 0.99981195, 2.494, 0.514, 0.299)
 visible = false
 
 [node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 12792103) index="0" unique_id=781162244]

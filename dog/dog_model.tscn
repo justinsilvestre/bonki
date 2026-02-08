@@ -2,6 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bfjnfyn3oec7s" path="res://dog.blend" id="1_c5eso"]
 [ext_resource type="Script" uid="uid://bujdbkljehamh" path="res://dog/dog.gd" id="2_23r22"]
+[ext_resource type="Texture2D" uid="uid://bo41nv53rb6me" path="res://dog/dirt_cloud/dirt_clouds_top_left.png" id="3_ljog3"]
+[ext_resource type="Texture2D" uid="uid://cxullri67mm42" path="res://dog/dirt_cloud/dirt_clouds_top_right.png" id="4_3vsk0"]
+[ext_resource type="Texture2D" uid="uid://cddwk4xdngid8" path="res://dog/dirt_cloud/dirt_clouds_bottom_left.png" id="5_2xjls"]
+[ext_resource type="Texture2D" uid="uid://cks5tnbfkwq6d" path="res://dog/dirt_cloud/dirt_clouds_bottom_right.png" id="6_ggo63"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_23r22"]
 animation = &"Dog_Bark"
@@ -139,10 +143,111 @@ nodes/WagTailBlend2/node = SubResource("AnimationNodeBlend2_ljog3")
 nodes/WagTailBlend2/position = Vector2(-170, -300)
 node_connections = [&"output", 0, &"LookUpBlend2", &"BarkOneShot", 0, &"JumpOneShot", &"BarkOneShot", 1, &"Bark", &"LookUpBlend2", 0, &"BarkOneShot", &"LookUpBlend2", 1, &"LookUp", &"JumpOneShot", 0, &"WagTailBlend2", &"JumpOneShot", 1, &"Jump", &"WagTailBlend2", 0, &"StateMachine", &"WagTailBlend2", 1, &"WagTail"]
 
+[sub_resource type="Animation" id="Animation_3vsk0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ol577"]
+resource_name = "dirt_throwing"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.7),
+"transitions": PackedFloat32Array(0.61557215, 1.1486986, 1.319508),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.89, -1.261), Vector3(0, -1.26, -3.59)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.4981518, 1.4981518, 1.4981518)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"new_dirt_texture"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_06wec"]
+_data = {
+&"RESET": SubResource("Animation_3vsk0"),
+&"dirt_throwing": SubResource("Animation_ol577")
+}
+
 [node name="DogModel" unique_id=1120968019 instance=ExtResource("1_c5eso")]
 script = ExtResource("2_23r22")
+dirt_textures = Array[Texture2D]([ExtResource("3_ljog3"), ExtResource("4_3vsk0"), ExtResource("5_2xjls"), ExtResource("6_ggo63")])
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(671430443) index="0" unique_id=800558520]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1761120386) index="0" unique_id=12792103]
 bones/0/position = Vector3(-9.9476295e-14, 0.4210433, -0.92629826)
 bones/0/rotation = Quaternion(0.6804837, 5.241172e-07, 4.867234e-07, 0.7327633)
 bones/1/rotation = Quaternion(0.100292675, 2.3720867e-07, 1.6738275e-07, 0.994958)
@@ -196,3 +301,14 @@ parameters/JumpOneShot/active = false
 parameters/JumpOneShot/internal_active = false
 parameters/JumpOneShot/request = 0
 parameters/WagTailBlend2/blend_amount = 0.0
+
+[node name="DirtEffectsNode3D" type="Node3D" parent="." index="3" unique_id=1053018585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.99142385)
+
+[node name="Sprite3D" type="Sprite3D" parent="DirtEffectsNode3D" index="0" unique_id=577816406]
+visible = false
+billboard = 1
+texture = ExtResource("3_ljog3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DirtEffectsNode3D" index="1" unique_id=481382754]
+libraries/ = SubResource("AnimationLibrary_06wec")

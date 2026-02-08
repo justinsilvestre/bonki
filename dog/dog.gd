@@ -4,9 +4,16 @@ signal tapped
 
 @onready var anim_tree := $AnimationTree
 
+@export var dirt_textures: Array[Texture2D]
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	stand()
+
+func new_dirt_texture():
+	$DirtEffectsNode3D/Sprite3D.texture = dirt_textures.pick_random()
+	$DirtEffectsNode3D/Sprite3D.rotation.z = randf_range(0, TAU)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -26,7 +33,7 @@ func stand() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_walking", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_jumping", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_digging", false)
-
+	$DirtEffectsNode3D/AnimationPlayer.play("RESET")
 
 func sit() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_sitting", true)
@@ -34,6 +41,7 @@ func sit() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_jumping", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_walking", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_digging", false)
+	$DirtEffectsNode3D/AnimationPlayer.play("RESET")
 
 func walk() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_walking", true)
@@ -41,6 +49,7 @@ func walk() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_sitting", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_jumping", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_digging", false)
+	$DirtEffectsNode3D/AnimationPlayer.play("RESET")
 
 func jump() -> void:
 	print("dog jumped!")
@@ -53,6 +62,7 @@ func jump_on_loop() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_standing", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_sitting", false)	
 	anim_tree.set("parameters/StateMachine/conditions/is_digging", false)
+	$DirtEffectsNode3D/AnimationPlayer.play("RESET")
 
 func bark() -> void:
 	anim_tree.set("parameters/BarkOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -64,6 +74,7 @@ func dig() -> void:
 	anim_tree.set("parameters/StateMachine/conditions/is_walking", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_standing", false)
 	anim_tree.set("parameters/StateMachine/conditions/is_sitting", false)	
+	$DirtEffectsNode3D/AnimationPlayer.play("dirt_throwing")
 
 func look_up() -> void:
 	anim_tree.set("parameters/LookUpBlend2/blend_amount", 1)

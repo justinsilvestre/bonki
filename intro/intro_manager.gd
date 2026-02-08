@@ -288,9 +288,10 @@ func _ready():
 	# Start the sequence
 	run_current_step()
 	
+var complete_dig_sequence_ongoing := false
 
 func _process(_delta):
-	if GameState.pending_dig:
+	if GameState.pending_dig and !complete_dig_sequence_ongoing:
 		var now = Time.get_unix_time_from_system()
 		var remaining = (GameState.pending_dig.complete_time()) - now
 		
@@ -299,6 +300,7 @@ func _process(_delta):
 		
 		# Check for completion
 		if now >= GameState.pending_dig.complete_time():
+			complete_dig_sequence_ongoing = true
 			complete_dig()
 
 func format_text(text: String):

@@ -3250,7 +3250,6 @@ layout_mode = 2
 text = "OK"
 
 [node name="DigMeter" type="TextureProgressBar" parent="UI_CanvasLayer" unique_id=144680521]
-visible = false
 custom_minimum_size = Vector2(512, 50)
 offset_left = 257.0
 offset_top = 1673.0

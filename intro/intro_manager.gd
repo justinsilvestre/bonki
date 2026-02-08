@@ -237,6 +237,7 @@ var regular_steps: Array[PlayStep] = [
 	}),
 
 	PlayStep.animation("4_02__dog_continues_digging").label_with("DOG_CONTINUES_DIGGING"),
+	PlayStep.action(func(): start_dig_timer()).label_with("LET_METER_RUN"),
 	PlayStep.action(func(): let_meter_run()).label_with("LET_METER_RUN"),
 
 	PlayStep.action(func(): interrupt_dig(); _on_step_finished()).label_with("CALL_DOG"),
@@ -497,6 +498,8 @@ func let_meter_run():
 		complete_dig()
 	else:
 		print("waiting for timer to run out")
+		print("remaining time:")
+		print(GameState.pending_dig.complete_time() - now)
 
 func start_dig_timer():
 	pending_dig = GameState.pending_dig
@@ -510,15 +513,8 @@ func start_dig_timer():
 	var dig_seconds := pending_dig.duration_seconds if pending_dig else get_new_dig_seconds()
 	var dig_complete_time: float = start_time + dig_seconds
 	var remaining_time = max(0, dig_complete_time - now)
-	GameState.start_dig(start_time, dig_seconds, bonki.appearance)
-	
-	print("starting dig timer")
-	print("remaining seconds:")
-	print(remaining_time)
 	
 	dig_meter.show()
-
-	
 	
 	GameState.start_dig(start_time, dig_seconds, bonki.appearance)
 

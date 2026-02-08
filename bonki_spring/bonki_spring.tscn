@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="3_3vmkq"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
+[ext_resource type="Texture2D" uid="uid://dx4dbw61ju7wx" path="res://bonki_spring/art/bonki_spring_background_cascade.png" id="6_aw26t"]
 [ext_resource type="Texture2D" uid="uid://cxemvv50x1po1" path="res://bonki_spring/art/bonki_spring_background.png" id="7_8potb"]
 [ext_resource type="PackedScene" uid="uid://bd1jfh2s0jegp" path="res://intro/dog_character_body_3d.tscn" id="9_8c10v"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog_model.tscn" id="15_3vmkq"]
@@ -434,6 +435,79 @@ ambient_light_color = Color(0.5330367, 0.5330367, 0.5330367, 0.0627451)
 ambient_light_energy = 0.7
 tonemap_mode = 2
 
+[sub_resource type="Shader" id="Shader_aw26t"]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform sampler2D bg_tex : source_color;
+uniform sampler2D noise_tex : source_color;
+
+uniform float wobble_strength = 0.006;
+
+// Added: Control movement via angle (in degrees) and a single speed value
+uniform float movement_angle = 45.0; 
+uniform float movement_speed = 0.15;
+
+uniform float wash_amount = 0.20; 
+uniform float wash_noise_strength = 0.8;
+uniform float wash_noise_scale = 1.5;
+
+void fragment() {
+    vec2 uv = UV;
+
+    // Convert degrees to radians for trigonometric functions
+    float radians = movement_angle * (3.14159265359 / 180.0);
+    
+    // Create the direction vector from the angle
+    vec2 direction = vec2(cos(radians), sin(radians));
+    
+    // Calculate final movement offset
+    vec2 move_offset = direction * TIME * movement_speed;
+
+    // Scroll noise using the calculated direction
+    float n1 = texture(noise_tex, uv + move_offset).r;
+    float n2 = texture(noise_tex, uv + (move_offset * 0.7)).r;
+
+    // Center around 0 then offset UV
+    vec2 offset = (vec2(n1, n2) - 0.5) * wobble_strength;
+    vec4 col = texture(bg_tex, uv + offset);
+
+    // Use noise to make wash uneven
+    float wnoise = texture(
+        noise_tex, 
+        uv * wash_noise_scale + (move_offset * 0.35)
+    ).r;
+
+    float wmod = (wnoise - 0.5) * 2.0;
+    float local_wash = clamp(wash_amount * (1.0 + wmod * wash_noise_strength), 0.0, 1.0);
+
+    col.rgb = mix(col.rgb, vec3(1.0), local_wash);
+
+    ALBEDO = col.rgb;
+    ALPHA = col.a;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hgyec"]
+frequency = 0.0808
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eu601"]
+noise = SubResource("FastNoiseLite_hgyec")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8potb"]
+render_priority = 1
+shader = SubResource("Shader_aw26t")
+shader_parameter/bg_tex = ExtResource("6_aw26t")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_eu601")
+shader_parameter/wobble_strength = 0.096
+shader_parameter/movement_angle = 200.96
+shader_parameter/movement_speed = 0.03
+shader_parameter/wash_amount = -0.22
+shader_parameter/wash_noise_strength = 0.8
+shader_parameter/wash_noise_scale = 1.5
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hgyec"]
+size = Vector2(4035, 2752)
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eu601"]
 frequency = 0.0424
 
@@ -445,14 +519,12 @@ render_priority = 1
 shader = ExtResource("1_aw26t")
 shader_parameter/bg_tex = ExtResource("2_hgyec")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_3vmkq")
-shader_parameter/wobble_strength = -0.002
-shader_parameter/wobble_speed = 0.1
-shader_parameter/wash_amount = 0.0
-shader_parameter/wash_noise_strength = 0.8
-shader_parameter/wash_noise_scale = 1.5
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hgyec"]
-size = Vector2(4035, 2752)
+shader_parameter/wobble_strength = -0.004
+shader_parameter/movement_angle = 45.0
+shader_parameter/movement_speed = 0.07
+shader_parameter/wash_amount = 0.06
+shader_parameter/wash_noise_strength = 7.95
+shader_parameter/wash_noise_scale = 0.1
 
 [sub_resource type="Shader" id="Shader_eu601"]
 code = "shader_type spatial;
@@ -462,40 +534,44 @@ uniform sampler2D bg_tex : source_color;
 uniform sampler2D noise_tex : source_color;
 
 uniform float wobble_strength = 0.006;
-uniform float wobble_speed = 0.15;
-uniform float wash_amount = 0.20; // 0 = no wash, 1 = fully white
 
-// Controls how much the noise modulates the wash (0 = uniform wash, 1 = fully noise-driven)
+// Added: Control movement via angle (in degrees) and a single speed value
+uniform float movement_angle = 45.0; 
+uniform float movement_speed = 0.15;
+
+uniform float wash_amount = 0.20; 
 uniform float wash_noise_strength = 0.8;
-
-// Noise scale for the wash pattern (higher = finer grain)
 uniform float wash_noise_scale = 1.5;
 
 void fragment() {
     vec2 uv = UV;
 
-    // Scroll noise in 2 directions for “living paper” feel
-    float n1 = texture(noise_tex, uv + vec2(TIME * wobble_speed, 0.0)).r;
-    float n2 = texture(noise_tex, uv + vec2(0.0, TIME * wobble_speed * 0.7)).r;
+    // Convert degrees to radians for trigonometric functions
+    float radians = movement_angle * (3.14159265359 / 180.0);
+    
+    // Create the direction vector from the angle
+    vec2 direction = vec2(cos(radians), sin(radians));
+    
+    // Calculate final movement offset
+    vec2 move_offset = direction * TIME * movement_speed;
+
+    // Scroll noise using the calculated direction
+    float n1 = texture(noise_tex, uv + move_offset).r;
+    float n2 = texture(noise_tex, uv + (move_offset * 0.7)).r;
 
     // Center around 0 then offset UV
     vec2 offset = (vec2(n1, n2) - 0.5) * wobble_strength;
     vec4 col = texture(bg_tex, uv + offset);
 
-    // Use noise to make wash uneven (sample noise at a separate scale, optionally also animated)
+    // Use noise to make wash uneven
     float wnoise = texture(
-        noise_tex,
-        uv * wash_noise_scale + vec2(TIME * wobble_speed * 0.35, TIME * wobble_speed * 0.22)
+        noise_tex, 
+        uv * wash_noise_scale + (move_offset * 0.35)
     ).r;
 
-    // Map to [-1, 1] so it can either reduce or increase the local wash
     float wmod = (wnoise - 0.5) * 2.0;
-
-    // Local wash amount (clamped to [0,1])
     float local_wash = clamp(wash_amount * (1.0 + wmod * wash_noise_strength), 0.0, 1.0);
-    ;
 
-    // White wash mix (uneven)
     col.rgb = mix(col.rgb, vec3(1.0), local_wash);
 
     ALBEDO = col.rgb;
@@ -516,7 +592,8 @@ shader = SubResource("Shader_eu601")
 shader_parameter/bg_tex = ExtResource("7_8potb")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_niosp")
 shader_parameter/wobble_strength = -0.04
-shader_parameter/wobble_speed = 0.14
+shader_parameter/movement_angle = 45.0
+shader_parameter/movement_speed = 0.15
 shader_parameter/wash_amount = 0.27
 shader_parameter/wash_noise_strength = 0.87
 shader_parameter/wash_noise_scale = 1.5
@@ -795,6 +872,13 @@ transform = Transform3D(0.9523159, 0.1737956, -0.25077757, 5.153256e-09, 0.82191
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/WorldNode3D/CameraRigNode3D" unique_id=1732145892]
 projection = 1
 size = 8.0
+
+[node name="Sprite3D2" type="Sprite3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=2105039321]
+transform = Transform3D(0.20946845, 0.038285747, -0.14526623, 4.786124e-09, 0.18087168, 0.3290436, 0.06725299, -0.11924611, 0.45245117, 11.611324, -25.382267, -42.066)
+material_override = SubResource("ShaderMaterial_8potb")
+billboard = 1
+render_priority = 2
+texture = SubResource("PlaceholderTexture2D_hgyec")
 
 [node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=1967856981]
 transform = Transform3D(0.28563884, 0.05220782, -0.19829588, 0, 0.24664323, 0.4491615, 0.09170859, -0.16260834, 0.6176194, 11.716354, -26.254955, -42.066364)

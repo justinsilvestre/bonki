@@ -67,3 +67,10 @@ func dig() -> void:
 
 func look_up() -> void:
 	anim_tree.set("parameters/LookUpBlend2/blend_amount", 1)
+	
+func start_wagging_tail() -> void:
+	anim_tree.set("parameters/WagTailBlend2/blend_amount", 1)
+
+func stop_wagging_tail() -> void:
+	anim_tree.set("parameters/WagTailBlend2/blend_amount", 0)
+	

@@ -185,6 +185,7 @@ var intro_sequence_steps : Array[PlayStep] = [
 
 var regular_steps: Array[PlayStep] = [
 	PlayStep.animation("REG_1_01__start"),
+	PlayStep.action(func(): dog.start_wagging_tail(); _on_step_finished()),
 	PlayStep.action(func(): start_music(); _on_step_finished()),
 	PlayStep.text("It's biting cold in Bonki Forest today."),
 	PlayStep.text("But {dog} doesn't seem to mind."),
@@ -194,14 +195,17 @@ var regular_steps: Array[PlayStep] = [
 	}),
 
 	PlayStep.animation("REG_2_01__follow_dog_to_left_before_encounter").label_with("FOLLOW_DOG_TO_LEFT_BEFORE_ENCOUNTER"),
+	PlayStep.action(func(): dog.stop_wagging_tail(); _on_step_finished()),
 	PlayStep.action(func(): jump_to_label("REFRESH_BONKI_TO_LEFT")),
 	PlayStep.animation("REG_2_02__follow_dog_to_right_before_encounter").label_with("FOLLOW_DOG_TO_RIGHT_BEFORE_ENCOUNTER"),
+	PlayStep.action(func(): dog.stop_wagging_tail(); _on_step_finished()),
 	PlayStep.action(func(): jump_to_label("REFRESH_BONKI_TO_RIGHT")),
 
 	PlayStep.animation("3_001_follow_dog_to_left").label_with("FOLLOW_DOG_TO_LEFT_AFTER_ENCOUNTER"),
 	PlayStep.action(func(): refresh_bonki(); _on_step_finished()).label_with("REFRESH_BONKI_TO_LEFT"),
 	PlayStep.animation("3_01__catch_up_to_dog_to_left"),
 	PlayStep.animation("1_11__notice_bonki"),
+	PlayStep.action(func(): dog.start_wagging_tail(); _on_step_finished()),
 	PlayStep.text("What's that?"),
 	PlayStep.text("It feels familiar."),
 	PlayStep.choice("What will you do?", {

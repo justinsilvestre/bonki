@@ -947,14 +947,14 @@ tappable = true
 [node name="dog" parent="SubViewportContainer/SubViewport/WorldNode3D" unique_id=93409961 instance=ExtResource("15_3vmkq")]
 transform = Transform3D(0.5893645, 0, 0.3186682, 0, 0.66999996, 0, -0.31866822, 0, 0.5893645, -2.000631, -0.28763515, -1.9100385)
 
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/WorldNode3D/dog/Armature" parent_id_path=PackedInt32Array(93409961, 238050548) index="0" unique_id=1722205886]
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/WorldNode3D/dog/Armature" parent_id_path=PackedInt32Array(93409961, 671430443) index="0" unique_id=800558520]
 bones/2/position = Vector3(1.906539e-14, 0.29200214, 1.5321154e-08)
 bones/2/rotation = Quaternion(0.029998545, 4.1180436e-12, 5.721797e-08, 0.9995499)
 bones/2/scale = Vector3(1, 1.0000001, 1)
 bones/3/rotation = Quaternion(0.050181013, 1.19058676e-07, 1.01695406e-07, 0.99874014)
 bones/3/scale = Vector3(1, 0.99999994, 0.9999998)
 
-[node name="Dog" parent="SubViewportContainer/SubViewport/WorldNode3D/dog/Armature/Skeleton3D" index="0" unique_id=1783989002]
+[node name="Dog" parent="SubViewportContainer/SubViewport/WorldNode3D/dog/Armature/Skeleton3D" index="0" unique_id=2095279315]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0057189465, 0.17239505, -0.013272285)
 layers = 2
 

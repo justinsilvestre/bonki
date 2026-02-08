@@ -14,6 +14,8 @@ signal step_finished
 @onready var bonki6 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki6
 @onready var bonki7 := $SubViewportContainer/SubViewport/WorldNode3D/Bonki7
 
+@onready var dog := $SubViewportContainer/SubViewport/WorldNode3D/dog
+
 var input_ready = false
 
 var forest_scene: String = "res://intro/intro.tscn"
@@ -46,6 +48,7 @@ var regular_steps: Array[PlayStep] = [
 	PlayStep.action(func(): input_ready = true; print("Waiting")),
 	
 	PlayStep.animation("02_01__consider_walk").label_with("CONSIDER_WALK"),
+	PlayStep.action(func(): dog.start_wagging_tail(); _on_step_finished()),
 	PlayStep.choice("Take {dog} on a walk?", {
 		"Yes": func(): jump_to_label("GO_TO_FOREST"),
 		"No": func(): jump_to_label("STAY_HERE"),
@@ -54,7 +57,7 @@ var regular_steps: Array[PlayStep] = [
 	PlayStep.text("It's so peaceful here.").label_with("STAY_HERE"),
 	PlayStep.text("Let's just sit for a moment."),
 	PlayStep.animation("02_02__decide_to_stay"),
-	PlayStep.action(func(): print("Waiting")),
+	PlayStep.action(func(): dog.stop_wagging_tail()),
 
 	PlayStep.text("Come on, {dog}!").label_with("GO_TO_FOREST"),
 	PlayStep.animation("02_03__decide_to_walk"),

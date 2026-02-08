@@ -382,11 +382,14 @@ tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"bark"
+}, {
+"args": [],
+"method": &"start_wagging_tail"
 }]
 }
 
@@ -467,14 +470,17 @@ tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.033333335, 0.36666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.033333335, 0.36666667, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"bark"
 }, {
 "args": [],
 "method": &"bark"
+}, {
+"args": [],
+"method": &"stop_wagging_tail"
 }]
 }
 
@@ -1710,9 +1716,12 @@ tracks/2/path = NodePath("DogModel")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.26666656, 0.4, 0.96666664, 1.9333332),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.033333335, 0.26666656, 0.4, 0.96666664, 1.9333332),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"start_wagging_tail"
+}, {
 "args": [],
 "method": &"jump"
 }, {
@@ -3295,7 +3304,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(-0.082513005, 0, -0.99643826, 0, 0.9999648, 0, 0.9965011, 0, -0.082507804, 2.1529522, -1.9520521e-05, -5.373039)
+transform = Transform3D(-0.082513, 0, -0.99643826, 0, 0.9999648, 0, 0.99650097, 0, -0.082507804, 2.1529522, -1.9520521e-05, -5.373039)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
@@ -3341,17 +3350,17 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.99988717, 0, 0, 0, 0.9999572, 0, 0, 0, 0.99981195, 2.494, 0.514, 0.299)
+transform = Transform3D(0.9998871, 0, 0, 0, 0.99995714, 0, 0, 0, 0.99981195, 2.494, 0.514, 0.299)
 visible = false
 
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature" parent_id_path=PackedInt32Array(1436450907, 238050548) index="0" unique_id=1722205886]
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature" parent_id_path=PackedInt32Array(1436450907, 671430443) index="0" unique_id=800558520]
 bones/2/position = Vector3(1.906539e-14, 0.29200214, 1.5321154e-08)
 bones/2/rotation = Quaternion(0.029998545, 4.1180436e-12, 5.721797e-08, 0.9995499)
 bones/2/scale = Vector3(1, 1.0000001, 1)
 bones/3/rotation = Quaternion(0.050181013, 1.19058676e-07, 1.01695406e-07, 0.99874014)
 bones/3/scale = Vector3(1, 0.99999994, 0.9999998)
 
-[node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature/Skeleton3D" index="0" unique_id=1783989002]
+[node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature/Skeleton3D" index="0" unique_id=2095279315]
 layers = 2
 
 [node name="AnimationTree" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel" index="2" unique_id=1815908616]

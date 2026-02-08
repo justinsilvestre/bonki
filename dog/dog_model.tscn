@@ -118,10 +118,10 @@ graph_offset = Vector2(-232, -126)
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oglu8"]
 animation = &"Dog_Wag_Tail"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ljog3"]
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_3vsk0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_23r22"]
-graph_offset = Vector2(-1113.6239, -314.27686)
+graph_offset = Vector2(-1181.6239, -371.27686)
 nodes/output/position = Vector2(990, 140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_l7c7x")
 nodes/StateMachine/position = Vector2(-620, -190)
@@ -138,10 +138,10 @@ nodes/JumpOneShot/position = Vector2(0, -120)
 nodes/Jump/node = SubResource("AnimationNodeAnimation_muuir")
 nodes/Jump/position = Vector2(-170, 0)
 nodes/WagTail/node = SubResource("AnimationNodeAnimation_oglu8")
-nodes/WagTail/position = Vector2(-320, -300)
-nodes/WagTailBlend2/node = SubResource("AnimationNodeBlend2_ljog3")
-nodes/WagTailBlend2/position = Vector2(-170, -300)
-node_connections = [&"output", 0, &"LookUpBlend2", &"BarkOneShot", 0, &"JumpOneShot", &"BarkOneShot", 1, &"Bark", &"LookUpBlend2", 0, &"BarkOneShot", &"LookUpBlend2", 1, &"LookUp", &"JumpOneShot", 0, &"WagTailBlend2", &"JumpOneShot", 1, &"Jump", &"WagTailBlend2", 0, &"StateMachine", &"WagTailBlend2", 1, &"WagTail"]
+nodes/WagTail/position = Vector2(-360, -120)
+nodes/WagTailAdd2/node = SubResource("AnimationNodeAdd2_3vsk0")
+nodes/WagTailAdd2/position = Vector2(-190, -280)
+node_connections = [&"output", 0, &"LookUpBlend2", &"BarkOneShot", 0, &"JumpOneShot", &"BarkOneShot", 1, &"Bark", &"LookUpBlend2", 0, &"BarkOneShot", &"LookUpBlend2", 1, &"LookUp", &"JumpOneShot", 0, &"WagTailAdd2", &"JumpOneShot", 1, &"Jump", &"WagTailAdd2", 0, &"StateMachine", &"WagTailAdd2", 1, &"WagTail"]
 
 [sub_resource type="Animation" id="Animation_3vsk0"]
 length = 0.001
@@ -251,9 +251,11 @@ dirt_textures = Array[Texture2D]([ExtResource("3_ljog3"), ExtResource("4_3vsk0")
 bones/0/position = Vector3(-9.9476295e-14, 0.4210433, -0.92629826)
 bones/0/rotation = Quaternion(0.6804837, 5.241172e-07, 4.867234e-07, 0.7327633)
 bones/1/rotation = Quaternion(0.100292675, 2.3720867e-07, 1.6738275e-07, 0.994958)
-bones/2/position = Vector3(-3.2502177e-07, 0.11371884, 0.17040454)
-bones/2/rotation = Quaternion(-0.25263435, 4.980905e-12, -4.8186143e-07, 0.9675619)
-bones/3/rotation = Quaternion(-0.1354154, 1.18112396e-07, -2.7442712e-07, 0.99078894)
+bones/2/position = Vector3(1.906539e-14, 0.29200214, 1.5321154e-08)
+bones/2/rotation = Quaternion(0.029998545, 4.1180436e-12, 5.721797e-08, 0.9995499)
+bones/2/scale = Vector3(1, 1.0000001, 1)
+bones/3/rotation = Quaternion(0.050181013, 1.19058676e-07, 1.01695406e-07, 0.99874014)
+bones/3/scale = Vector3(1, 0.99999994, 0.9999998)
 bones/4/position = Vector3(6.366908e-09, 0.29200214, 2.1320437e-08)
 bones/4/rotation = Quaternion(0.6763915, 0.006840181, -0.19695887, 0.7096866)
 bones/5/position = Vector3(-2.3722002e-09, 0.917549, -4.539676e-08)
@@ -296,11 +298,11 @@ parameters/StateMachine/conditions/is_walking = false
 parameters/BarkOneShot/active = false
 parameters/BarkOneShot/internal_active = false
 parameters/BarkOneShot/request = 0
-parameters/LookUpBlend2/blend_amount = 1.0
+parameters/LookUpBlend2/blend_amount = 0.0
 parameters/JumpOneShot/active = false
 parameters/JumpOneShot/internal_active = false
 parameters/JumpOneShot/request = 0
-parameters/WagTailBlend2/blend_amount = 0.0
+parameters/WagTailAdd2/add_amount = 0.0
 
 [node name="DirtEffectsNode3D" type="Node3D" parent="." index="3" unique_id=1053018585]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.99142385)

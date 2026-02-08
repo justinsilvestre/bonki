@@ -295,11 +295,14 @@ tracks/5/path = NodePath("DogModel")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.03333336, 2.9333334, 4.233333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.03333336, 0.4, 2.9333334, 4.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"jump_on_loop"
+}, {
+"args": [],
+"method": &"start_wagging_tail"
 }, {
 "args": [],
 "method": &"walk"
@@ -391,6 +394,18 @@ tracks/5/keys = {
 "args": [],
 "method": &"start_wagging_tail"
 }]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DogModel/AnimationTree:parameters/LookUpBlend2/blend_amount")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1.0666667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.42, 0.42, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_1l24h"]
@@ -806,9 +821,12 @@ tracks/7/path = NodePath("DogModel")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(1.2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 1.2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"start_wagging_tail"
+}, {
 "args": [],
 "method": &"stand"
 }]
@@ -886,9 +904,12 @@ tracks/4/path = NodePath("DogModel")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.4666667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.6666667, 1.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"jump"
+}, {
 "args": [],
 "method": &"jump"
 }, {
@@ -1325,11 +1346,14 @@ tracks/7/path = NodePath("DogModel")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"stand"
+}, {
+"args": [],
+"method": &"start_wagging_tail"
 }]
 }
 
@@ -1427,11 +1451,14 @@ tracks/7/path = NodePath("DogModel")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"stand"
+}, {
+"args": [],
+"method": &"start_wagging_tail"
 }]
 }
 
@@ -1668,8 +1695,8 @@ tracks/4/path = NodePath("DogModel")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.16666667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.16666667, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"stand"
@@ -1679,6 +1706,9 @@ tracks/4/keys = {
 }, {
 "args": [],
 "method": &"stand"
+}, {
+"args": [],
+"method": &"stop_wagging_tail"
 }]
 }
 
@@ -3019,6 +3049,18 @@ tracks/26/keys = {
 "update": 0,
 "values": [Vector3(0.30417597, 0, 0)]
 }
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("DogModel/AnimationTree:parameters/LookUpBlend2/blend_amount")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ct58"]
 _data = {
@@ -3168,6 +3210,7 @@ volume_db = -7.437
 [node name="DigTimer" type="Timer" parent="." unique_id=535177727]
 
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=683385579]
+visible = false
 
 [node name="UnderUI_ColorRect" type="ColorRect" parent="UI_CanvasLayer" unique_id=762560304]
 anchors_preset = 15
@@ -3303,7 +3346,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(-0.082513, 0, -0.99643826, 0, 0.9999648, 0, 0.99650097, 0, -0.082507804, 2.1529522, -1.9520521e-05, -5.373039)
+transform = Transform3D(-0.08251298, 0, -0.99643826, 0, 0.9999648, 0, 0.9965008, 0, -0.082507804, 2.1529522, -1.9520521e-05, -5.373039)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
@@ -3349,22 +3392,14 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9998871, 0, 0, 0, 0.99995714, 0, 0, 0, 0.99981195, 2.494, 0.514, 0.299)
+transform = Transform3D(0.99988705, 0, 0, 0, 0.9999571, 0, 0, 0, 0.99981195, 2.494, 0.514, 0.299)
 visible = false
 
-[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature" parent_id_path=PackedInt32Array(1436450907, 671430443) index="0" unique_id=800558520]
-bones/2/position = Vector3(1.906539e-14, 0.29200214, 1.5321154e-08)
-bones/2/rotation = Quaternion(0.029998545, 4.1180436e-12, 5.721797e-08, 0.9995499)
-bones/2/scale = Vector3(1, 1.0000001, 1)
-bones/3/rotation = Quaternion(0.050181013, 1.19058676e-07, 1.01695406e-07, 0.99874014)
-bones/3/scale = Vector3(1, 0.99999994, 0.9999998)
-
-[node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature/Skeleton3D" index="0" unique_id=2095279315]
+[node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 12792103) index="0" unique_id=781162244]
 layers = 2
 
 [node name="AnimationTree" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel" index="2" unique_id=1815908616]
 parameters/StateMachine/conditions/is_standing = true
-parameters/LookUpBlend2/blend_amount = 0.0
 
 [node name="CharacterBody3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel" unique_id=2128889500 instance=ExtResource("14_ie2y0")]
 

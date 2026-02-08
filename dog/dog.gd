@@ -80,8 +80,8 @@ func look_up() -> void:
 	anim_tree.set("parameters/LookUpBlend2/blend_amount", 1)
 	
 func start_wagging_tail() -> void:
-	anim_tree.set("parameters/WagTailBlend2/blend_amount", 1)
+	anim_tree.set("parameters/WagTailAdd2/add_amount", 1)
 
 func stop_wagging_tail() -> void:
-	anim_tree.set("parameters/WagTailBlend2/blend_amount", 0)
+	anim_tree.set("parameters/WagTailAdd2/add_amount", 0)
 	

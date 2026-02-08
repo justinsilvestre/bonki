@@ -38,7 +38,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 6.0666666, 6.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-3.6315222, 4.204515, -3.1995387), Vector3(-3.1744606, 7.8342257, 4.6483293), Vector3(-3.1744606, 7.8342257, 4.6483293)]
+"values": [Vector3(-3.632, 3.325, -3.2), Vector3(-3.1744606, 7.8342257, 4.6483293), Vector3(-3.1744606, 7.8342257, 4.6483293)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -377,10 +377,10 @@ tracks/1/path = NodePath("Control/SubViewportContainer/SubViewport/WorldNode3D/C
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2.4333334, 6.0666666, 6.5),
+"times": PackedFloat32Array(2.3, 6.0666666, 6.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-3.6315222, 4.204515, -3.1995387), Vector3(-3.1744606, 7.8342257, 4.6483293), Vector3(-3.1744606, 7.8342257, 4.6483293)]
+"values": [Vector3(-3.632, 3.295, -3.2), Vector3(-3.1744606, 7.8342257, 4.6483293), Vector3(-3.1744606, 7.8342257, 4.6483293)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false

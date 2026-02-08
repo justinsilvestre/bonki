@@ -25,7 +25,10 @@ func _gui_input(event: InputEvent) -> void:
 		await anim_player.animation_finished
 		if GameState.seen_intro:
 			print("Starting game, intro already seen")
-			TransitionManager.go_to_scene_threaded(spring_scene)
+			if GameState.pending_dig:
+				TransitionManager.go_to_scene_threaded(forest_scene)
+			else:
+				TransitionManager.go_to_scene_threaded(spring_scene)
 		else:
 			print("Starting intro")
 			print(GameState)

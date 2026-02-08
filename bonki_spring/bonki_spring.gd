@@ -101,6 +101,8 @@ func show_bonkis():
 	var free_bonkis_params := GameState.free_bonkis_appearance_parameters
 	var free_bonkis_count: int = free_bonkis_params.size() if free_bonkis_params else 0
 
+	print("showing free bonkis:")
+	print(free_bonkis_count)
 	
 	var present_bonkis_count: int = min(free_bonkis_count, placement_bonkis.size())
 	var present_bonki_placements := get_random_elements(placement_bonkis, present_bonkis_count)

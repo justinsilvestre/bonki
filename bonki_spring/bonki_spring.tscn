@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="3_3vmkq"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
+[ext_resource type="Texture2D" uid="uid://cxemvv50x1po1" path="res://bonki_spring/art/bonki_spring_background.png" id="7_8potb"]
 [ext_resource type="PackedScene" uid="uid://bd1jfh2s0jegp" path="res://intro/dog_character_body_3d.tscn" id="9_8c10v"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog_model.tscn" id="15_3vmkq"]
 
@@ -492,6 +493,7 @@ void fragment() {
 
     // Local wash amount (clamped to [0,1])
     float local_wash = clamp(wash_amount * (1.0 + wmod * wash_noise_strength), 0.0, 1.0);
+    ;
 
     // White wash mix (uneven)
     col.rgb = mix(col.rgb, vec3(1.0), local_wash);
@@ -499,9 +501,6 @@ void fragment() {
     ALBEDO = col.rgb;
     ALPHA = col.a;
 }"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3vmkq"]
-load_path = "res://.godot/imported/bonki_spring_background.png-7a3d287c778bf2fb96301f1739dbd77d.ctex"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mcyv1"]
 
@@ -514,12 +513,12 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_enw64"]
 render_priority = 0
 shader = SubResource("Shader_eu601")
-shader_parameter/bg_tex = SubResource("CompressedTexture2D_3vmkq")
+shader_parameter/bg_tex = ExtResource("7_8potb")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_niosp")
 shader_parameter/wobble_strength = -0.04
 shader_parameter/wobble_speed = 0.14
-shader_parameter/wash_amount = -4.61
-shader_parameter/wash_noise_strength = 0.8
+shader_parameter/wash_amount = 0.27
+shader_parameter/wash_noise_strength = 0.87
 shader_parameter/wash_noise_scale = 1.5
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aw26t"]
@@ -676,7 +675,6 @@ stream = ExtResource("2_3nr71")
 autoplay = true
 
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="." unique_id=660336011]
-visible = false
 
 [node name="UnderUI_ColorRect" type="ColorRect" parent="UI_CanvasLayer" unique_id=1892265757]
 anchors_preset = 15

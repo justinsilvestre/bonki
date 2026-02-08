@@ -22,6 +22,7 @@ var pending_dig: PendingDig = null
 
 const INTRO_DIG_SECONDS = 30
 const DEFAULT_DIG_SECONDS = 300 # 5 minutes
+#const DEFAULT_DIG_SECONDS = 5 # 5 seconds
 
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
 
@@ -185,6 +186,7 @@ var intro_sequence_steps : Array[PlayStep] = [
 
 var regular_steps: Array[PlayStep] = [
 	PlayStep.animation("REG_1_01__start"),
+	PlayStep.action(func(): start_music()),
 	PlayStep.text("It's biting cold in Bonki Forest today."),
 	PlayStep.text("But {dog} doesn't seem to mind."),
 	PlayStep.choice("Which way will you go?", {
@@ -245,10 +247,12 @@ var regular_steps: Array[PlayStep] = [
 
 	PlayStep.animation("6_01__dog_finishes_digging").label_with("DOG_FINISHES_DIGGING"),
 	PlayStep.animation("6_02__bonki_is_unearthed"),
-	PlayStep.text("You did it!"),
+	PlayStep.text("You've freed another Bonki!"),
 	PlayStep.text("Good dog, {dog}!"),
 	PlayStep.text("Let's bring our new friend home to Bonki Spring."),
-	PlayStep.animation("REG_6_01__fade_out")
+	PlayStep.animation("REG_6_01__fade_out"),
+	PlayStep.action(func(): next_scene())
+	
 ]
 
 var current_step_index = 0
@@ -512,8 +516,9 @@ func complete_dig():
 	dig_timer.stop()
 	if (ready_for_dig_complete):
 		dig_meter.hide()
-		## REALLY SHOULD DO THIS AFTER NEXT SCENE
-		# GameState.complete_dig()
+		# otherwise we will complete dig after intro sequence finished in other scene.
+		if (GameState.seen_intro):
+			GameState.complete_dig()
 		print("Digging complete!")
 		jump_to_label("DOG_FINISHES_DIGGING")
 	

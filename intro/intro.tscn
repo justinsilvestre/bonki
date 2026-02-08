@@ -2429,10 +2429,10 @@ tracks/0/path = NodePath("DogModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.9333333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.1, 0.2, 0.5, 1.9333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1.608, 0.514, -3.813), Vector3(1.608, 0.514, -3.813), Vector3(-17.072, 0.514, -23.303)]
+"values": [Vector3(0, 0.514, -3.32), Vector3(0.3750596, 0.514, -3.4349902), Vector3(1.6002536, 0.514, -3.8106248), Vector3(-17.072, 0.514, -23.303)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -2441,10 +2441,10 @@ tracks/1/path = NodePath("DogModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.13333334, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.1, 0.13333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -2.5638888, -0.033161256)]
+"values": [Vector3(0, 0, -0.033161256), Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -2.5638888, -0.033161256)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2538,10 +2538,10 @@ tracks/0/path = NodePath("DogModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 0.76666665, 1.7333333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.76666665, 1.7333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.514, -3.32), Vector3(0, 0.514, -3.32), Vector3(18.288, 0.514, -23.303)]
+"values": [Vector3(0, 0.514, -3.32), Vector3(0, 0.514, -3.32), Vector3(0, 0.514, -3.32), Vector3(18.288, 0.514, -23.303)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -2550,10 +2550,10 @@ tracks/1/path = NodePath("DogModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.033333335, 0.23333333, 0.76666665),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.23333333, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, -0.033161256), Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -4.00204, -0.033161256)]
+"values": [Vector3(0, 0, -0.033161256), Vector3(0, 0, -0.033161256), Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -4.00204, -0.033161256)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -3345,7 +3345,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9998875, 0, 0, 0, 0.99996203, 0, 0, 0, 0.9998115, 2.494, 0.514, 0.299)
+transform = Transform3D(0.9998872, 0, 0, 0, 0.99996185, 0, 0, 0, 0.9998114, 2.494, 0.514, 0.299)
 visible = false
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature" parent_id_path=PackedInt32Array(1436450907, 238050548) index="0" unique_id=1722205886]

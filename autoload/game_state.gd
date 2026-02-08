@@ -82,6 +82,7 @@ func mark_intro_seen() -> void:
 	
 func add_bonki(appearance: BonkiAppearanceParameters) -> void:
 	free_bonkis_appearance_parameters.push_back(appearance)
+	save_game()
 
 func save_dog_name(name: String):
 	dog_name = name

@@ -109,10 +109,13 @@ func show_bonkis():
 	var present_bonki_params := get_random_elements(free_bonkis_params, present_bonkis_count)
 	
 	for i in present_bonkis_count:
-		var placement = present_bonki_placements[i]
-		var appearance = present_bonki_params[i]
-		placement.appearance = appearance
+		var placement: Bonki = present_bonki_placements[i]
+		var appearance: BonkiAppearanceParameters = present_bonki_params[i]
 		placement.show()
+		placement.appearance = appearance
+		print(placement)
+		print(appearance)
+		print(appearance.toJSON())
 
 ## Returns N unique random elements from the source array.
 func get_random_elements(source_array: Array, n: int) -> Array:

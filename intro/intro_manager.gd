@@ -10,7 +10,6 @@ signal step_finished
 @onready var bonki: Bonki = $SubViewportContainer/SubViewport/World_Node3D/Bonki
 @onready var dog := $SubViewportContainer/SubViewport/World_Node3D/DogModel
 
-@onready var dig_timer = $DigTimer
 @onready var dig_meter = $UI_CanvasLayer/DigMeter
 
 @onready var dog_name := GameState.dog_name
@@ -207,8 +206,8 @@ var regular_steps: Array[PlayStep] = [
 	PlayStep.text("It feels familiar."),
 	PlayStep.choice("What will you do?", {
 		"Let {dog} at it": func(): jump_to_label("DOG_STARTS_DIGGING"),
-		"Move left": func(): jump_to_label("REFRESH_BONKI_TO_LEFT"),
-		"Move right": func(): jump_to_label("REFRESH_BONKI_TO_RIGHT"),
+		"Move left": func(): jump_to_label("FOLLOW_DOG_TO_LEFT_AFTER_ENCOUNTER"),
+		"Move right": func(): jump_to_label("FOLLOW_DOG_TO_RIGHT_AFTER_ENCOUNTER"),
 	}),
 	PlayStep.animation("3_002_follow_dog_to_right").label_with("FOLLOW_DOG_TO_RIGHT_AFTER_ENCOUNTER"),
 	PlayStep.action(func(): refresh_bonki(); _on_step_finished()).label_with("REFRESH_BONKI_TO_RIGHT"),
@@ -218,8 +217,8 @@ var regular_steps: Array[PlayStep] = [
 	PlayStep.text("It feels familiar."),
 	PlayStep.choice("What will you do?", {
 		"Let {dog} at it": func(): jump_to_label("DOG_STARTS_DIGGING"),
-		"Move left": func(): jump_to_label("REFRESH_BONKI_TO_LEFT"),
-		"Move right": func(): jump_to_label("REFRESH_BONKI_TO_RIGHT"),
+		"Move left": func(): jump_to_label("FOLLOW_DOG_TO_LEFT_AFTER_ENCOUNTER"),
+		"Move right": func(): jump_to_label("FOLLOW_DOG_TO_RIGHT_AFTER_ENCOUNTER"),
 	}),
 
 	PlayStep.animation("4_01__dog_starts_digging").label_with("DOG_STARTS_DIGGING"),
@@ -285,15 +284,22 @@ func _ready():
 	
 	dialog_overlay.text_submitted.connect(_on_text_submitted)
 	
-	dig_timer.timeout.connect(complete_dig)
 	
 	# Start the sequence
 	run_current_step()
 	
 
 func _process(_delta):
-	if !dig_timer.is_stopped():
-		dig_meter.value = (dig_timer.time_left / dig_timer.wait_time) * 100
+	if GameState.pending_dig:
+		var now = Time.get_unix_time_from_system()
+		var remaining = (GameState.pending_dig.complete_time()) - now
+		
+		var progress = remaining / GameState.pending_dig.duration_seconds
+		dig_meter.value = clamp(progress * 100, 0, 100)
+		
+		# Check for completion
+		if now >= GameState.pending_dig.complete_time():
+			complete_dig()
 
 func format_text(text: String):
 	return text.format({"dog": dog_name})
@@ -479,7 +485,9 @@ func get_new_dig_seconds() -> int:
 
 func let_meter_run():
 	ready_for_dig_complete = true
-	if !dig_timer.time_left:
+	var now: float = Time.get_unix_time_from_system()
+
+	if now >= GameState.pending_dig.complete_time():
 		complete_dig()
 	else:
 		print("waiting for timer to run out")
@@ -503,17 +511,13 @@ func start_dig_timer():
 	print(remaining_time)
 	
 	dig_meter.show()
-	# Note: We keep wait_time as the TOTAL duration for the % math
-	# but we start the timer with the REMAINING time.
-	dig_timer.wait_time = GameState.pending_dig.duration_seconds
-	dig_timer.start(remaining_time)
+
 	
 	
 	GameState.start_dig(start_time, dig_seconds, bonki.appearance)
 
 
 func complete_dig():
-	dig_timer.stop()
 	if (ready_for_dig_complete):
 		dig_meter.hide()
 		# otherwise we will complete dig after intro sequence finished in other scene.
@@ -525,7 +529,6 @@ func complete_dig():
 func interrupt_dig():
 	GameState.interrupt_dig()
 	dig_meter.hide()
-	dig_timer.stop()
 	print("Digging stopped!")
 	ready_for_dig_complete = false
 	

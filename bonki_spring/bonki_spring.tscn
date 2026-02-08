@@ -432,8 +432,8 @@ background_energy_multiplier = 0.93
 sky = SubResource("Sky_1q7h5")
 ambient_light_source = 2
 ambient_light_color = Color(0.5330367, 0.5330367, 0.5330367, 0.0627451)
-ambient_light_energy = 0.7
-tonemap_mode = 2
+ambient_light_energy = 0.5
+tonemap_mode = 1
 
 [sub_resource type="Shader" id="Shader_aw26t"]
 code = "shader_type spatial;
@@ -501,9 +501,9 @@ shader_parameter/noise_tex = SubResource("NoiseTexture2D_eu601")
 shader_parameter/wobble_strength = 0.096
 shader_parameter/movement_angle = 200.96
 shader_parameter/movement_speed = 0.03
-shader_parameter/wash_amount = -0.22
+shader_parameter/wash_amount = 0.69
 shader_parameter/wash_noise_strength = 0.8
-shader_parameter/wash_noise_scale = 1.5
+shader_parameter/wash_noise_scale = 0.34
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hgyec"]
 size = Vector2(4035, 2752)
@@ -594,9 +594,9 @@ shader_parameter/noise_tex = SubResource("NoiseTexture2D_niosp")
 shader_parameter/wobble_strength = -0.04
 shader_parameter/movement_angle = 45.0
 shader_parameter/movement_speed = 0.15
-shader_parameter/wash_amount = 0.27
+shader_parameter/wash_amount = 0.74
 shader_parameter/wash_noise_strength = 0.87
-shader_parameter/wash_noise_scale = 1.5
+shader_parameter/wash_noise_scale = 0.39
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aw26t"]
 size = Vector2(4035, 2752)
@@ -696,7 +696,6 @@ crown_id = "yellow_stagshorn"
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_qemrt"]
-resource_name = "pincushion_moss"
 script = ExtResource("6_7vnbg")
 body_color = Color(0.3681382, 0.4264087, 0.29691866, 1)
 eye_shine_color = Color(0.9886194, 0.99312633, 0.99682266, 1)
@@ -711,6 +710,7 @@ wonkiness_factor = -0.42480014204202576
 eyes_spread_factor = -0.07929613279265957
 eyes_tilt_factor = -0.4391211008920435
 eyes_height_factor = 1.0
+crown_id = "pincushion_moss"
 metadata/_custom_type_script = "uid://cj4ebql8lb5uh"
 
 [sub_resource type="Resource" id="Resource_m5uqd"]

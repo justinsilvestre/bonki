@@ -13,6 +13,9 @@ static func create(start_unix_time: float, duration_seconds: int, appearance: Bo
 	dig.duration_seconds = duration_seconds
 	dig.appearance = appearance
 	return dig
+	
+func complete_time():
+	return start_unix_time + duration_seconds
 
 static func fromJSON(json):
 	var dig := PendingDig.new()

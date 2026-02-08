@@ -1138,10 +1138,10 @@ tracks/1/path = NodePath("DogModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.23333333, 0.76666665),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.23333333, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -4.00204, -0.033161256)]
+"values": [Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -0.75398225, -0.033161256), Vector3(0.07679449, -4.00204, -0.033161256)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -3114,7 +3114,7 @@ background_mode = 2
 sky = SubResource("Sky_ao3yw")
 ambient_light_source = 2
 ambient_light_color = Color(0.5330367, 0.5330367, 0.5330367, 0.0627451)
-ambient_light_energy = 1.37
+ambient_light_energy = 0.35
 tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dk8sq"]
@@ -3320,7 +3320,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rcqw2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1349412739]
 transform = Transform3D(0.04922702, 0.9388421, -0.3408112, -0.13421422, 0.344348, 0.92919916, 0.98972887, 0, 0.1429572, -2.9796019, 7.5723295, 0)
-light_energy = 0.463
+light_energy = 0.255
 light_specular = 0.216
 shadow_enabled = true
 shadow_opacity = 0.84
@@ -3344,7 +3344,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9998871, 0, 0, 0, 0.99996185, 0, 0, 0, 0.9998114, 2.494, 0.514, 0.299)
+transform = Transform3D(0.9998868, 0, 0, 0, 0.99996185, 0, 0, 0, 0.9998114, 2.494, 0.514, 0.299)
 visible = false
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature" parent_id_path=PackedInt32Array(1436450907, 238050548) index="0" unique_id=1722205886]

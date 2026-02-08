@@ -36,7 +36,7 @@ var randomize_action: Callable = randomize
 	set(val): eyes_height_factor = val;if Engine.is_editor_hint(): emit_changed()
 
 @export var crown_id: String = "":
-	set(id): crown_id = id; crown_pscn = load(crown_resource_path(id)) if FileAccess.file_exists(crown_resource_path(id)) else null; if Engine.is_editor_hint(): emit_changed()
+	set(id): crown_id = id; crown_pscn = load(crown_resource_path(id)); if Engine.is_editor_hint(): emit_changed()
 var crown_pscn: PackedScene = null:
 	set(new_value): crown_pscn = new_value; emit_changed(); if Engine.is_editor_hint(): emit_changed()
 

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://boj3s62vj1ikx" path="res://title_screen/layers/title_leaves_1.png" id="5_1oos5"]
 [ext_resource type="Texture2D" uid="uid://ddpu4tu70davh" path="res://title_screen/layers/title_leaves_2.png" id="6_fh6ay"]
 [ext_resource type="Texture2D" uid="uid://tm1js884s3c" path="res://title_screen/layers/title_leaves_3.png" id="7_jabur"]
+[ext_resource type="Script" uid="uid://ds8dmfvhi3p6c" path="res://title_screen/version_label.gd" id="7_oqrgu"]
 
 [sub_resource type="Animation" id="Animation_vbjqi"]
 length = 0.001
@@ -215,3 +216,22 @@ texture = ExtResource("6_fh6ay")
 [node name="Leaves3" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1995554582]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29538298, 2.11589)
 texture = ExtResource("7_jabur")
+
+[node name="Label" type="Label" parent="." unique_id=1268043100]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 197.0
+offset_top = 925.0
+offset_right = 531.0
+offset_bottom = 959.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.29411766)
+theme_override_font_sizes/font_size = 24
+text = "v1.0.0"
+horizontal_alignment = 2
+script = ExtResource("7_oqrgu")

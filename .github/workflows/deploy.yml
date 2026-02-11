@@ -82,6 +82,13 @@ jobs:
           # Create a CI-specific project override to disable problematic features
           echo "Creating CI build configuration..."
 
+      - name: Create build info
+        run: |
+          cd $GITHUB_WORKSPACE
+          # Generate timestamp in format YYMMDD-HHMM (e.g., 260211-0937)
+          date +"%-y%m%d-%H%M" > build_info.txt
+          echo "Created build_info.txt with timestamp: $(cat build_info.txt)"
+
       - name: Build for Web
         run: |
           cd $GITHUB_WORKSPACE

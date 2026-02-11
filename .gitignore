@@ -8,3 +8,5 @@ addons
 build/
 
 preview
+
+build_info.txt

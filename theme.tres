@@ -81,7 +81,7 @@ corner_detail = 5
 
 [resource]
 default_font = ExtResource("1_vj6dk")
-default_font_size = 52
+default_font_size = 75
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)

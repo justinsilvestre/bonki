@@ -20,8 +20,7 @@ var ready_for_dig_complete := false
 var pending_dig: PendingDig = null
 
 const INTRO_DIG_SECONDS = 30
-#const DEFAULT_DIG_SECONDS = 300 # 5 minutes
-const DEFAULT_DIG_SECONDS = 30
+var DEFAULT_DIG_SECONDS = 30 if OS.is_debug_build() else 300
 
 const NEXT_SCENE = "res://bonki_spring/bonki_spring.tscn"
 
@@ -232,12 +231,23 @@ var regular_steps: Array[PlayStep] = [
 	# dog keeps digging, meter starts
 	# prompt yes/no
 	PlayStep.choice("What will you do?", {
-		"Wait and see what\n{dog} digs up.": func(): jump_to_label("LET_METER_RUN"),
+		"Wait and see what\n{dog} digs up.": func(): jump_to_label("MESSAGE_BEFORE_METER_RUN"),
 		"Chop chop! Gotta go!": func(): jump_to_label("CALL_DOG"),
 	}),
+	
+	PlayStep.text("{dog} will be busy for a while...").label_with("MESSAGE_BEFORE_METER_RUN"),
+	PlayStep.text("A perfect chance to stop and observe what's around us."),
+	PlayStep.action(func(): jump_to_label("LET_METER_RUN")),
+	
 
 	PlayStep.animation("4_02__dog_continues_digging").label_with("DOG_CONTINUES_DIGGING"),
-	PlayStep.action(func(): start_music(); start_dig_timer(); let_meter_run()).label_with("LET_METER_RUN"),
+	PlayStep.action(func(): jump_to_label("LET_METER_RUN")),
+	
+	PlayStep.action(func():
+		start_music()
+		start_dig_timer()
+		let_meter_run()
+		).label_with("LET_METER_RUN"),
 
 	PlayStep.action(func(): interrupt_dig(); _on_step_finished()).label_with("CALL_DOG"),
 	PlayStep.text("Here, {dog}!"),
@@ -406,7 +416,9 @@ func _on_text_submitted(new_text: String):
 	run_current_step()
 
 func start_music():
-# called in start animation step
+	if music_player.playing:
+		return
+	# called in start animation step
 	var bg_music = load("res://sound/kami-no-koe.mp3")
 	
 	if bg_music:

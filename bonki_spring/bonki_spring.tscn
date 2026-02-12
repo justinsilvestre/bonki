@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b3gtm45qy5usu" path="res://bonki_spring/art/bonki_spring_background_outlines.png" id="2_hgyec"]
 [ext_resource type="Script" uid="uid://dfdl2akcigg6l" path="res://intro/overlay_control.gd" id="3_3vmkq"]
 [ext_resource type="PackedScene" uid="uid://rhmsuguqvlui" path="res://bonki.tscn" id="4_33gn6"]
+[ext_resource type="Script" uid="uid://ccegnllsqts2" path="res://intro/text_continuation_indicator.gd" id="5_hgyec"]
 [ext_resource type="Script" uid="uid://cj4ebql8lb5uh" path="res://bonki_appearance_parameters.gd" id="6_7vnbg"]
 [ext_resource type="Texture2D" uid="uid://dx4dbw61ju7wx" path="res://bonki_spring/art/bonki_spring_background_cascade.png" id="6_aw26t"]
 [ext_resource type="Texture2D" uid="uid://cxemvv50x1po1" path="res://bonki_spring/art/bonki_spring_background.png" id="7_8potb"]
@@ -797,6 +798,11 @@ text = "Placeholder text! The quick brown fox jumps over the lazy dog! Blah blah
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="UI_CanvasLayer/Overlay_Control/TextPanel" unique_id=1225615981]
+position = Vector2(18, -22)
+polygon = PackedVector2Array(881, 557, 881, 630, 938, 594)
+script = ExtResource("5_hgyec")
 
 [node name="Choice_VBoxContainer" type="VBoxContainer" parent="UI_CanvasLayer/Overlay_Control" unique_id=1787296601]
 layout_mode = 1

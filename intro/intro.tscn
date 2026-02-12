@@ -11,7 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://b3punh3d4kq6h" path="res://sound/sfx/zapsplat_animals_dog_medium_sized_5x_barks_fast_slight_distance_70727.mp3" id="5_sg2fo"]
 [ext_resource type="PackedScene" uid="uid://dkgqnwu57ro4g" path="res://dog/dog_model.tscn" id="6_1q7h5"]
 [ext_resource type="AudioStream" uid="uid://1yoid6le711i" path="res://sound/zinja-ne_first-25s.mp3" id="6_ie2y0"]
+[ext_resource type="AudioStream" uid="uid://b1k0yuicnwvwl" path="res://sound/universfield-magic-surprise-145912.mp3" id="7_dk8sq"]
 [ext_resource type="Texture2D" uid="uid://bsvjmqxxjamwd" path="res://intro/bonki_forest_ground_tile.png" id="7_xwdvp"]
+[ext_resource type="Script" uid="uid://ccegnllsqts2" path="res://intro/text_continuation_indicator.gd" id="9_ao3yw"]
 [ext_resource type="PackedScene" uid="uid://bd1jfh2s0jegp" path="res://intro/dog_character_body_3d.tscn" id="14_ie2y0"]
 [ext_resource type="Shader" uid="uid://dgrmj3uur3lcj" path="res://intro/bonki_unearthed_light.gdshader" id="15_1l24h"]
 [ext_resource type="PackedScene" uid="uid://cp5exuu8ajpf0" path="res://intro/forest_bg_part.tscn" id="17_ao3yw"]
@@ -2080,6 +2082,21 @@ tracks/20/keys = {
 "method": &"scan_music_after_unearthing"
 }]
 }
+tracks/21/type = "audio"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../../../AudioStreamPlayer2D")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_dk8sq")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/21/use_blend = true
 
 [sub_resource type="Animation" id="Animation_spxp1"]
 resource_name = "6_02__they_run_off"
@@ -3221,6 +3238,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Overlay_Control" type="Control" parent="UI_CanvasLayer" unique_id=1123055594]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -3257,6 +3275,11 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Polygon2D" type="Polygon2D" parent="UI_CanvasLayer/Overlay_Control/TextPanel" unique_id=467948181]
+position = Vector2(18, -22)
+polygon = PackedVector2Array(881, 557, 881, 630, 938, 594)
+script = ExtResource("9_ao3yw")
+
 [node name="Choice_VBoxContainer" type="VBoxContainer" parent="UI_CanvasLayer/Overlay_Control" unique_id=1206189444]
 layout_mode = 1
 anchors_preset = 15
@@ -3265,7 +3288,7 @@ anchor_bottom = 1.0
 offset_left = 25.0
 offset_top = 736.0
 offset_right = -36.0
-offset_bottom = -830.0
+offset_bottom = -470.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -3345,7 +3368,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(-0.08251292, 0, -0.99643826, 0, 0.9999648, 0, 0.99650013, 0, -0.082507804, 2.1529522, -1.9520521e-05, -5.373039)
+transform = Transform3D(-0.08251266, 0, -0.99643797, 0, 0.9999636, 0, 0.9964969, 0, -0.082507774, 2.1529522, -1.9520521e-05, -5.373039)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]
@@ -3391,7 +3414,7 @@ mesh = SubResource("CylinderMesh_ao3yw")
 skeleton = NodePath("../../..")
 
 [node name="DogModel" parent="SubViewportContainer/SubViewport/World_Node3D" unique_id=1436450907 instance=ExtResource("6_1q7h5")]
-transform = Transform3D(0.9998864, 0, 0, 0, 0.99995685, 0, 0, 0, 0.9998117, 2.494, 0.514, 0.299)
+transform = Transform3D(0.99988735, 0, 0, 0, 0.99995697, 0, 0, 0, 0.9998121, 2.494, 0.514, 0.299)
 visible = false
 
 [node name="Dog" parent="SubViewportContainer/SubViewport/World_Node3D/DogModel/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1436450907, 12792103) index="0" unique_id=781162244]

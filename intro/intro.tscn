@@ -3368,7 +3368,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 curve = SubResource("Curve3D_ie2y0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D" unique_id=1644556329]
-transform = Transform3D(-0.08251266, 0, -0.99643797, 0, 0.9999636, 0, 0.9964969, 0, -0.082507774, 2.1529522, -1.9520521e-05, -5.373039)
+transform = Transform3D(-0.08251265, 0, -0.99643797, 0, 0.9999636, 0, 0.9964968, 0, -0.082507774, 2.1529522, -1.9520521e-05, -5.373039)
 use_model_front = true
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="SubViewportContainer/SubViewport/World_Node3D/DogRunningAround_Path3D/PathFollow3D" unique_id=2116023811]

@@ -9,7 +9,7 @@ signal text_submitted(input_text: String)
 @onready var input_container = $Input_VBoxContainer
 @onready var input_field := $Input_VBoxContainer/LineEdit
 @onready var confirm_button = $Input_VBoxContainer/Button
-@onready var text_proceed_indicator: Polygon2D = $TextPanel/Polygon2D
+@onready var text_continuation_indicator: TextContinuationIndicator= $TextPanel/Polygon2D
 
 var current_step_type = null
 
@@ -18,7 +18,7 @@ func show_text(new_text: String):
 	current_step_type = "text"
 	text_label.text = new_text
 	show() # Make sure the UI is visible
-	text_proceed_indicator.show()
+	text_continuation_indicator.show_indicator()
 
 func _gui_input(event):
 	# Detect mouse click or touch tap
@@ -70,7 +70,7 @@ func show_text_input(prompt_text: String, default_text: String = ""):
 func _reset_ui():
 	choice_container.hide()
 	input_container.hide()
-	text_proceed_indicator.hide()
+	text_continuation_indicator.hide_indicator()
 	
 func _on_confirm_pressed():
 	if input_field.text.strip_edges() == "":

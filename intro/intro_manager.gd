@@ -254,8 +254,8 @@ var regular_steps: Array[PlayStep] = [
 	PlayStep.animation("5_01__dog_stops_digging"),
 	PlayStep.choice("What shall you do?", {
 		"Wait here a bit": func(): jump_to_label("DOG_STARTS_DIGGING"),
-		"Move left": func(): jump_to_label("REFRESH_BONKI_TO_LEFT"),
-		"Move right": func(): jump_to_label("REFRESH_BONKI_TO_RIGHT"),
+		"Move left": func(): jump_to_label("FOLLOW_DOG_TO_LEFT_BEFORE_ENCOUNTER"),
+		"Move right": func(): jump_to_label("FOLLOW_DOG_TO_RIGHT_BEFORE_ENCOUNTER"),
 	}),
 
 	PlayStep.animation("6_01__dog_finishes_digging").label_with("DOG_FINISHES_DIGGING"),
